@@ -1,0 +1,576 @@
+ <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Showcase - Joshua Josef Mort's Portfolio</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"> <style> :root { --primary-color: #6c5ce7; --secondary-color: #00cec9; --accent-color: #fd79a8; --background-color: #f9f9f9; --text-color: #2d3436; --nav-bg: #2d3436; }
+text
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Raleway', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+    }
+
+    nav {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: var(--nav-bg);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 1000;
+    }
+
+    nav ul {
+        list-style-type: none;
+    }
+
+    nav li {
+        margin-bottom: 20px;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    nav a i {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    nav a:hover, nav a.active {
+        color: var(--secondary-color);
+    }
+
+    .nav-social {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-social a {
+        color: #fff;
+        font-size: 24px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-social a:hover {
+        color: var(--accent-color);
+    }
+
+    main {
+        margin-left: 250px;
+        padding: 50px;
+    }
+
+    .load-bar {
+        position: fixed;
+        top: 0;
+        left: 250px;
+        width: 4px;
+        height: 0;
+        background-color: var(--accent-color);
+        z-index: 1000;
+        transition: height 0.3s ease;
+    }
+
+    .section-indicator {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 1000;
+    }
+
+    .section-indicator-item {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--nav-bg);
+        margin: 10px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    .section-indicator-item.active {
+        background-color: var(--accent-color);
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 40px;
+    }
+
+    .showcase-section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .showcase-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .showcase-item {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .showcase-item:hover {
+        transform: translateY(-10px);
+    }
+
+    .showcase-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .showcase-item-content {
+        padding: 20px;
+    }
+
+    .showcase-item h3 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    .showcase-item p {
+        margin-bottom: 15px;
+    }
+
+    .showcase-item a {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .showcase-item a:hover {
+        background-color: var(--secondary-color);
+    }
+
+    .animation-showcase {
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        color: #fff;
+        padding: 100px 50px;
+    }
+
+    .animation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .animation-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .animation-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .animation-card video {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .animation-card:hover video {
+        transform: scale(1.1);
+    }
+
+    .animation-card-content {
+        padding: 20px;
+    }
+
+    .animation-card h3 {
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    .animation-card p {
+        margin-bottom: 20px;
+    }
+
+    .details-section {
+        background-color: #fff;
+        padding: 100px 50px;
+    }
+
+    .details-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .details-content h2 {
+        text-align: left;
+        margin-bottom: 30px;
+    }
+
+    .details-content ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .details-content li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .details-content li i {
+        margin-right: 15px;
+        color: var(--secondary-color);
+        font-size: 24px;
+    }
+
+    .contact-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: #fff;
+        padding: 15px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .contact-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background-color: #ff79a8;
+    }
+
+    footer {
+        background-color: var(--nav-bg);
+        color: #fff;
+        padding: 50px;
+        text-align: center;
+        margin-left: 250px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-section {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h3 {
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+    }
+
+    .footer-section ul {
+        list-style-type: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+        color: var(--accent-color);
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .page-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(108, 92, 231, 0.8), rgba(0, 206, 201, 0.8), rgba(253, 121, 168, 0.8));
+        z-index: 9999;
+        clip-path: circle(0% at 50% 50%);
+        transition: clip-path 0.5s ease;
+    }
+
+    .page-transition.active {
+        clip-path: circle(150% at 50% 50%);
+    }
+</style>
+
+</head> <body> <nav> <ul> <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> <li><a href="about.html"><i class="fas fa-user"></i> About</a></li> <li><a href="showcase.html" class="active"><i class="fas fa-briefcase"></i> Showcase</a></li> <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li> <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li> </ul> <div class="nav-social"> <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="#" target="_blank"><i class="fab fa-facebook"></i></a> <a href="#" target="_blank"><i class="fab fa-instagram"></i></a> </div> </nav>
+text
+<div class="load-bar"></div>
+
+<div class="section-indicator">
+    <div class="section-indicator-item" data-section="websites"></div>
+    <div class="section-indicator-item" data-section="apps"></div>
+    <div class="section-indicator-item" data-section="designs"></div>
+</div>
+
+<main>
+    <section class="showcase-section" id="websites">
+        <h1>Website Projects</h1>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="path/to/project1-image.jpg" alt="Project 1">
+                <div class="showcase-item-content">
+                    <h3>Project 1</h3>
+                    <p>A brief description of the project and its key features.</p>
+                    <a href="#">View Project</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="path/to/project2-image.jpg" alt="Project 2">
+                <div class="showcase-item-content">
+                    <h3>Project 2</h3>
+                    <p>A brief description of the project and its key features.</p>
+                    <a href="#">View Project</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="path/to/project3-image.jpg" alt="Project 3">
+                <div class="showcase-item-content">
+                    <h3>Project 3</h3>
+                    <p>A brief description of the project and its key features.</p>
+                    <a href="#">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase-section" id="apps">
+        <h2>Mobile App Projects</h2>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="path/to/app1-image.jpg" alt="App 1">
+                <div class="showcase-item-content">
+                    <h3>App 1</h3>
+                    <p>A brief description of the app and its key features.</p>
+                    <a href="#">View App</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="path/to/app2-image.jpg" alt="App 2">
+                <div class="showcase-item-content">
+                    <h3>App 2</h3>
+                    <p>A brief description of the app and its key features.</p>
+                    <a href="#">View App</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase-section" id="designs">
+        <h2>Graphic Design Projects</h2>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="path/to/design1-image.jpg" alt="Design 1">
+                <div class="showcase-item-content">
+                    <h3>Design 1</h3>
+                    <p>A brief description of the design project.</p>
+                    <a href="#">View Design</a>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="path/to/design2-image.jpg" alt="Design 2">
+                <div class="showcase-item-content">
+                    <h3>Design 2</h3>
+                    <p>A brief description of the design project.</p>
+                    <a href="#">View Design</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="animation-showcase">
+        <h2>Animation Showcase</h2>
+        <div class="animation-grid">
+            <a href="#" class="animation-card">
+                <video src="path/to/animation1.mp4" loop muted></video>
+                <div class="animation-card-content">
+                    <h3>Animation 1</h3>
+                    <p>A brief description of the animation project.</p>
+                </div>
+            </a>
+            <a href="#" class="animation-card">
+                <video src="path/to/animation2.mp4" loop muted></video>
+                <div class="animation-card-content">
+                    <h3>Animation 2</h3>
+                    <p>A brief description of the animation project.</p>
+                </div>
+            </a>
+            <a href="#" class="animation-card">
+                <video src="path/to/animation3.mp4" loop muted></video>
+                <div class="animation-card-content">
+                    <h3>Animation 3</h3>
+                    <p>A brief description of the animation project.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="details-content">
+            <h2>Project Details</h2>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Custom responsive designs</li>
+                <li><i class="fas fa-check-circle"></i> Interactive user interfaces</li>
+                <li><i class="fas fa-check-circle"></i> Optimized for performance and SEO</li>
+                <li><i class="fas fa-check-circle"></i> Cross-browser compatibility</li>
+                <li><i class="fas fa-check-circle"></i> Integration with various APIs and services</li>
+            </ul>
+            <a href="contact.html" class="contact-button">Contact Me</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Services</h3>
+            <ul>
+                <li>Web Development</li>
+                <li>Graphic Design</li>
+                <li>SEO Optimization</li>
+                <li>Responsive Design</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <ul>
+                <li>Email: joshua@websiteanimation.co.uk</li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: 123 Web St, Digital City, 12345</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Joshua Josef Mort. All rights reserved.</p>
+    </div>
+</footer>
+
+<div class="page-transition"></div>
+
+<script>
+    const loadBar = document.querySelector('.load-bar');
+    const showcaseSections = document.querySelectorAll('.showcase-section');
+    const pageTransition = document.querySelector('.page-transition');
+    const sectionIndicatorItems = document.querySelectorAll('.section-indicator-item');
+
+    function checkVisibility() {
+        showcaseSections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            if (rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5) {
+                section.classList.add('visible');
+                sectionIndicatorItems.forEach(item => item.classList.remove('active'));
+                sectionIndicatorItems[index].classList.add('active');
+            }
+        });
+    }
+
+    function updateLoadBar() {
+        const scrollPosition = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = (scrollPosition / maxScroll) * 100;
+
+        loadBar.style.height = `${scrollPercentage}%`;
+    }
+
+    window.addEventListener('scroll', () => {
+        checkVisibility();
+        updateLoadBar();
+    });
+
+    window.addEventListener('load', () => {
+        checkVisibility();
+        updateLoadBar();
+    });
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+
+            pageTransition.classList.add('active');
+
+            setTimeout(() => {
+                window.location.href = href;
+            }, 500);
+        });
+    });
+
+    // Add this code to play/pause videos on hover
+    const animationCards = document.querySelectorAll('.animation-card');
+    animationCards.forEach(card => {
+        const video = card.querySelector('video');
+        card.addEventListener('mouseenter', () => {
+            video.play();
+        });
+        card.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+</script>
+
+</body> </html>

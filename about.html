@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Joe Mort - Web Developer & Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fd79a8;
+            --background-color: #f9f9f9;
+            --text-color: #2d3436;
+            --nav-bg: #2d3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        nav {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--nav-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav li {
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-social {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-social a {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .nav-social a:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 50px;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-header img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-section {
+            flex-basis: 48%;
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-section h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--nav-bg);
+            color: #fff;
+            padding: 50px;
+            margin-left: 250px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li>
+            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-social">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="about-header">
+            <img src="path/to/profile-image.jpg" alt="Joe Mort">
+            <h1>About Joe Mort</h1>
+            <p>Web Developer & Designer</p>
+        </div>
+
+        <div class="about-content">
+            <section class="about-section">
+                <h2>Who Am I?</h2>
+                <p>Hi, I'm Joe Mort, a passionate web developer and designer with over 7 years of experience in creating stunning digital experiences. My journey in the world of web development began with a fascination for how technology can shape user experiences and solve real-world problems.</p>
+                <p>Throughout my career, I've had the opportunity to work on a diverse range of projects, from small business websites to large-scale e-commerce platforms. I pride myself on staying up-to-date with the latest industry trends and technologies, ensuring that I can deliver cutting-edge solutions to my clients.</p>
+            </section>
+
+            <section class="about-section">
+                <h2>My Skills</h2>
+                <p>I've honed my skills in various areas of web development and design. Here are some of the key skills I bring to every project:</p>
+                <div class="skills-list">
+                    <span class="skill-item">HTML5</span>
+                    <span class="skill-item">CSS3</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">React</span>
+                    <span class="skill-item">Vue.js</span>
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">MySQL</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">Responsive Design</span>
+                    <span class="skill-item">UI/UX Design</span>
+                    <span class="skill-item">SEO Optimization</span>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>2021 - Present</h3>
+                        <p>Freelance Web Developer & Designer</p>
+                        <p>Working with clients globally to create bespoke web solutions.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2018 - 2021</h3>
+                        <p>Senior Web Developer at TechNova Solutions</p>
+                        <p>Led a team of developers in creating innovative web applications.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2016 - 2018</h3>
+                        <p>Web Developer at PixelPerfect Studios</p>
+                        <p>Specialized in front-end development and UI/UX design.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2014 - 2016</h3>
+                        <p>Junior Web Developer at WebWizards Inc.</p>
+                        <p>Started my professional journey in web development.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <h2>My Philosophy</h2>
+                <p>I believe in creating web experiences that not only look great but also provide real value to users. My approach combines aesthetics with functionality, ensuring that every project I work on is both visually appealing and user-friendly.</p>
+                <p>Continuous learning is at the core of my professional ethos. The tech world is ever-evolving, and I make it a point to stay updated with the latest trends and technologies in web development and design.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="showcase.html">Showcase</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li>Web Development</li>
+                    <li>Graphic Design</li>
+                    <li>SEO Optimization</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Email: joe@joemort.com</li>
+                    <li>Phone: (123) 456-7890</li>
+                    <li>Address: 123 Web St, Digital City, 12345</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Joe Mort. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
