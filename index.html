@@ -1,178 +1,224 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Joshua Josef Mort - Web Developer & Designer</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script> <style> :root { --primary-color: #6c5ce7; --secondary-color: #00cec9; --accent-color: #fd79a8; --background-color: #f9f9f9; --text-color: #2d3436; --nav-bg: #2d3436; } * { box-sizing: border-box; margin: 0; padding: 0; } html, body { height: 100%; scroll-behavior: smooth; } body { font-family: 'Raleway', sans-serif; background-color: var(--background-color); color: var(--text-color); overflow-x: hidden; display: flex; flex-direction: column; } nav { width: 250px; height: 100vh; position: fixed; left: 0; top: 0; background-color: var(--nav-bg); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 1000; transition: all 0.5s ease; } nav.scrolled { width: 100%; height: 60px; flex-direction: row; align-items: center; } nav ul { list-style-type: none; display: flex; flex-direction: column; margin-top: 50px; } nav.scrolled ul { flex-direction: row; margin-top: 0; } nav li { margin-bottom: 20px; } nav.scrolled li { margin-bottom: 0; margin-right: 20px; } nav a { color: #fff; text-decoration: none; font-size: 18px; transition: color 0.3s ease; display: flex; align-items: center; } nav a i { margin-right: 10px; font-size: 20px; } nav a:hover, nav a.active { color: var(--secondary-color); } .nav-social { display: flex; justify-content: space-around; margin-bottom: 70px; } nav.scrolled .nav-social { margin-right: 30px; margin-top: 0; margin-bottom: 0; } .nav-social a { color: #fff; font-size: 24px; transition: color 0.3s ease; margin-right: 20px; } .nav-social a:hover { color: var(--accent-color); } .fa-linkedin { color: #0077B5; } main { transition: margin-left 0.5s ease; flex-grow: 1; } main.scrolled { margin-left: 0; } h1, h2, h3 { color: var(--primary-color); } .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; color: #fff; padding: 0 50px; position: fixed; top: 0; left: 0; right: 0; z-index: 2; pointer-events: none; } .hero-content { padding-left: 100px; pointer-events: auto; position: relative; z-index: 25; transition: padding-left 0.5s ease; } .hero.scrolled .hero-content { padding-left: 50px; } .hero h1 { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); } .hero p { font-size: clamp(1rem, 3vw, 1.8rem); max-width: 600px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); } .cta-button { display: inline-block; background-color: var(--accent-color); color: #fff; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; text-transform: uppercase; letter-spacing: 1px; pointer-events: auto; position: relative; overflow: hidden; } .cta-button:before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent); transition: all 0.6s; } .cta-button:hover:before { left: 100%; } .cta-button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); background-color: #ff79a8; } .content-wrapper { position: relative; z-index: 3; background-color: var(--background-color); margin-top: 100vh; padding-top: 1px; width: 100%; transition: margin-left 0.5s ease; } .section { padding: 100px 0; margin: 0; width: 100%; opacity: 1; transform: translateX(0); transition: opacity 0.5s ease, transform 0.5s ease; } .section > * { max-width: 1200px; margin: 0 auto; padding: 0 20px; } .section.visible { opacity: 1; transform: translateX(0); } .skills-section { margin-top: 100px; background-color: #fff; padding: 80px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); } .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; } .skill-card { background-color: #f8f9fa; border-radius: 10px; padding: 30px; text-align: left; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .skill-card:hover { transform: translateY(-10px); } .skill-card i { font-size: 48px; color: var(--secondary-color); margin-bottom: 20px; } .skill-card h3 { margin-bottom: 15px; font-size: 24px; } .skill-card ul { list-style-type: none; padding-left: 0; } .skill-card ul li { margin-bottom: 10px; position: relative; padding-left: 25px; } .skill-card ul li:before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--accent-color); } .projects-section { background-color: #2d3436; color: #fff; } .projects-section h2 { color: #fff; } .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } .project-card { background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .project-card:hover { transform: translateY(-10px); } .project-card img, .project-card video { width: 100%; height: 200px; object-fit: cover; } .project-card-content { padding: 20px; } .project-card h3 { margin-bottom: 10px; } .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; justify-content: center; } .service-card { background-color: #fff; border-radius: 10px; padding: 30px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .service-card:hover { transform: translateY(-10px); } .service-card i { font-size: 48px; color: var(--secondary-color); margin-bottom: 20px; } .service-card h3 { margin-bottom: 15px; } .testimonials { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 50px; } .testimonial-card { background-color: #fff; border-radius: 10px; padding: 30px; width: calc(33.33% - 20px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 30px; } .testimonial-card p { font-style: italic; margin-bottom: 20px; } .testimonial-author { font-weight: bold; } .animation-showcase { background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); color: #fff; padding: 100px 50px; } .animation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } .animation-card { background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; } .animation-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); } .animation-card video { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease; } .animation-card:hover video { transform: scale(1.1); } .animation-card-content { padding: 20px; } .animation-card h3 { color: #fff; margin-bottom: 15px; } .animation-card p { margin-bottom: 20px; } .spline-scene-cubes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: auto; } .spline-scene-laptop { position: relative; width: 100vw; height: 100vh; z-index: 2; } footer { background-color: var(--nav-bg); color: #fff; padding: 50px 0; text-align: center; position: relative; z-index: 3; width: 100vw; margin-top: auto; } .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding: 0 20px; } .footer-section { flex: 1; margin: 0 20px; min-width: 200px; text-align: left; } .footer-section h3 { color: var(--secondary-color); margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase; } .footer-section ul { list-style-type: none; } .footer-section ul li { margin-bottom: 10px; } .footer-section ul li a { color: #fff; text-decoration: none; transition: color 0.3s ease; display: flex; align-items: center; } .footer-section ul li a:hover { color: var(--accent-color); } .footer-section ul li i { margin-right: 10px; font-size: 16px;
-}
-.footer-bottom {
-margin-top: 30px;
-padding-top: 20px;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-.page-transition {
-position: fixed;
-top: 0;
-right: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, rgba(45, 52, 54, 0.8), rgba(108, 92, 231, 0.8), rgba(0, 206, 201, 0.8), rgba(253, 121, 168, 0.8));
-z-index: 99999;
-transform: translateX(100%);
-transition: transform 1s ease;
-}
-.page-transition.active {
-transform: translateX(0);
-}
-.progress-bar {
-position: fixed;
-top: 0;
-left: 0;
-width: 0;
-height: 4px;
-background-color: var(--accent-color);
-z-index: 1001;
-transition: width 0.3s ease;
-}
-.gradient-overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background: linear-gradient(135deg, rgba(45, 52, 54, 0.5), rgba(108, 92, 231, 0.5), rgba(0, 206, 201, 0.5), rgba(253, 121, 168, 0.5));
-z-index: 2;
-pointer-events: none;
-}
-.spline-watermark-cover {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 65px;
-background-color: var(--background-color);
-z-index: 17;
-}
-.interaction-hint {
-position: fixed;
-bottom: 80px;
-left: 50%;
-transform: translateX(-50%);
-background-color: rgba(255, 255, 255, 0.8);
-padding: 10px 20px;
-border-radius: 20px;
-font-weight: bold;
-z-index: 18;
-animation: bounce 2s infinite;
-}
-@keyframes bounce {
-0%, 20%, 50%, 80%, 100% {
-transform: translateY(0) translateX(-50%);
-}
-40% {
-transform: translateY(-30px) translateX(-50%);
-}
-60% {
-transform: translateY(-15px) translateX(-50%);
-}
-}
-.scroll-hint {
-position: fixed;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%);
-color: #fff;
-font-size: 24px;
-animation: fadeInOut 2s infinite;
-z-index: 18;
-}
-@keyframes fadeInOut {
-0%, 100% { opacity: 0; }
-50% { opacity: 1; }
-}
-.freelancer-info {
-background-color: #2d3436;
-color: #fff;
-padding: 80px 0;
-text-align: center;
-margin-top: 50px;
-}
-.freelancer-info h2 {
-color: var(--secondary-color);
-margin-bottom: 30px;
-font-size: 4rem;
-font-weight: 900;
-}
-.freelancer-info p {
-max-width: 800px;
-margin: 0 auto 20px;
-line-height: 1.6;
-font-size: 1.2rem;
-}
-.freelancer-info img {
-max-width: 200px;
-margin-bottom: 30px;
-border-radius: 50%;
-border: 5px solid var(--accent-color);
-}
-.video-placeholder {
-width: 100%;
-max-width: 800px;
-height: 450px;
-background-color: #ddd;
-margin: 50px auto;
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 1.5rem;
-color: #666;
-}
-@media (max-width: 768px) {
-nav {
-width: 100%;
-height: auto;
-position: static;
-}
-main {
-margin-left: 0;
-}
-.hero {
-padding: 50px 20px;
-position: relative;
-left: 0;
-}
-.hero-content {
-padding-left: 0;
-}
-.section {
-padding: 50px 20px;
-}
-.testimonial-card {
-width: 100%;
-}
-.footer-section {
-flex-basis: 100%;
-margin-bottom: 30px;
-}
-.spline-scene-cubes {
-left: 0;
-}
-}
-</style> </head> <body> <nav> <ul> <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li> <li><a href="about.html"><i class="fas fa-user"></i> About</a></li> <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li> <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li> <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li> </ul> <div class="nav-social"> <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="#" target="_blank"><i class="fab fa-facebook"></i></a> <a href="#" target="_blank"><i class="fab fa-instagram"></i></a> </div> </nav> <main> <div class="progress-bar"></div> <div class="spline-scene-cubes"> <spline-viewer url="https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode"></spline-viewer> </div> <div class="gradient-overlay"></div> <div class="spline-watermark-cover"></div> <div class="interaction-hint">Click and drag to interact!</div> <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div> <section class="hero"> <div class="hero-content"> <h1>Joshua Josef Mort</h1> <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p> <a href="services.html" class="cta-button">Explore My Work</a> </div> </section> <div class="content-wrapper"> <section class="freelancer-info"> <img src="Logo.png" alt="Joshua Josef Mort Logo"> <h2>Joshua Josef Mort</h2> <p>I'm a freelance web developer and designer based in the UK. With a passion for creating stunning digital experiences, I specialize in web development, graphic design, and 3D/2D animation.</p> <p>At WebsiteAnimation.co.uk, I offer a range of services including custom website development, responsive design, SEO optimization, and creative animations that bring your ideas to life.</p> </section> <section class="section skills-section"> <h2>My Expertise</h2> <div class="skills-grid"> <div class="skill-card"> <i class="fas fa-code"></i> <h3>Web Development</h3> <ul> <li>HTML5, CSS3, JavaScript</li> <li>Responsive Design</li> <li>React, Vue.js, Angular</li> <li>Backend Integration</li> </ul> </div> <div class="skill-card"> <i class="fas fa-paint-brush"></i> <h3>Graphic Design</h3> <ul> <li>Adobe Creative Suite</li> <li>Logo Design</li> <li>Brand Identity</li> <li>UI/UX Design</li> </ul> </div> <div class="skill-card"> <i class="fas fa-search"></i> <h3>SEO Optimization</h3> <ul> <li>On-page Optimization</li> <li>Keyword Research</li> <li>Content Optimization</li> <li>Technical SEO</li> </ul> </div> <div class="skill-card"> <i class="fas fa-cube"></i> <h3>2D/3D Animation</h3> <ul> <li>After Effects</li> <li>Blender</li> <li>Motion Graphics</li> <li>3D Modeling</li> </ul> </div> </div> </section> <div class="video-placeholder">Video Placeholder</div> <section class="section projects-section"> <h2>Featured Projects</h2> <div class="projects-grid"> <div class="project-card"> <img src="path/to/project1.jpg" alt="Project 1"> <div class="project-card-content"> <h3>Project 1</h3> <p>A brief description of the project and its key features.</p> </div> </div> <div class="project-card"> <img src="path/to/project2.jpg" alt="Project 2"> <div class="project-card-content"> <h3>Project 2</h3> <p>A brief description of the project and its key features.</p> </div> </div> <div class="project-card"> <img src="path/to/project3.jpg" alt="Project 3"> <div class="project-card-content"> <h3>Project 3</h3> <p>A brief description of the project and its key features.</p> </div> </div> </div> <div class="projects-grid" style="margin-top: 30px;"> <div class="project-card"> <video src="path/to/video1.mp4" loop muted></video> <div class="project-card-content"> <h3>Video Project 1</h3> <p>A brief description of the video project.</p> </div> </div> <div class="project-card"> <video src="path/to/video2.mp4" loop muted></video> <div class="project-card-content"> <h3>Video Project 2</h3> <p>A brief description of the video project.</p> </div> </div> </div> </section> <section class="section services-section"> <h2>My Services</h2> <div class="services-grid"> <div class="service-card"> <i class="fas fa-laptop-code"></i> <h3>Web Development</h3> <p>Custom websites using HTML, CSS, and JavaScript. Expertise in WordPress, Wix, and Webflow.</p> </div> <div class="service-card"> <i class="fas fa-film"></i> <h3>3D/2D Animation</h3> <p>Captivating animations using Blender and After Effects for product demos and explainer videos.</p> </div> <div class="service-card"> <i class="fas fa-pencil-ruler"></i> <h3>Web Design</h3> <p>User-friendly designs with intuitive navigation and engaging visual elements using Adobe XD and Figma.</p> </div> <div class="service-card"> <i class="fas fa-edit"></i> <h3>Video/Image Editing</h3> <p>Professional editing services using Adobe Premiere Pro and Photoshop for stunning visual content.</p> </div> <div class="service-card"> <i class="fas fa-print"></i> <h3>Graphic Printing</h3> <p>High-quality print designs for vinyl decals and indoor signage using Adobe Illustrator and InDesign.</p> </div> </div> </section> <section class="section animation-showcase"> <h2>Animation Showcase</h2> <div class="animation-grid"> <a href="showcase.html" class="animation-card"> <video src="videos/0.mp4" loop muted></video> <div class="animation-card-content"> <h3>Water 2D</h3> <p>A mesmerizing 2D animation showcasing fluid dynamics and water effects.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/13.mp4" loop muted></video> <div class="animation-card-content"> <h3>Balloons 3D</h3> <p>Colorful 3D balloons floating and interacting in a dynamic environment.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/2.mp4" loop muted></video> <div class="animation-card-content"> <h3>Space Ship 3D</h3> <p>An intricately designed 3D space ship model with realistic textures and lighting.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/7.mp4" loop muted></video> <div class="animation-card-content"> <h3>Planet Earth 3D</h3> <p>A detailed 3D animation of Earth, showcasing its rotation and atmospheric effects.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/4.mp4" loop muted></video> <div class="animation-card-content"> <h3>Planets 3D</h3> <p>A captivating 3D animation featuring multiple planets in a cosmic dance.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/5.mp4" loop muted></video> <div class="animation-card-content"> <h3>Fish Swimming 3D</h3> <p>Lifelike 3D animation of fish swimming in a vibrant underwater environment.</p> </div> </a> </div> </section> <section class="section testimonials-section"> <h2>Client Testimonials</h2> <div class="testimonials"> <div class="testimonial-card"> <p>"Joshua's work exceeded our expectations. His attention to detail and creativity brought our vision to life."</p> <span class="testimonial-author">- Jane Doe</span> </div> <div class="testimonial-card"> <p>"Working with Joshua was a pleasure. He delivered our project on time and with exceptional quality."</p> <span class="testimonial-author">- John Smith</span> </div> <div class="testimonial-card"> <p>"Joshua's expertise in web development and design helped us achieve our goals and improve our online presence."</p> <span class="testimonial-author">- Sarah Johnson</span> </div> <div class="testimonial-card"> <p>"Incredible attention to detail and a true professional. Joshua's work has significantly boosted our brand image."</p> <span class="testimonial-author">- Michael Brown</span> </div> <div class="testimonial-card"> <p>"Joshua's creativity and technical skills are unmatched. He brought fresh ideas that transformed our project."</p> <span class="testimonial-author">- Emily Davis</span> </div> </div> </section> </div> <div class="spline-scene-laptop"> <spline-viewer url="https://prod.spline.design/OgqA9xl92DMBZgRN/scene.splinecode"></spline-viewer> </div> </main> <footer> <div class="footer-content"> <div class="footer-section"> <h3>Quick Links</h3> <ul> <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> <li><a href="about.html"><i class="fas fa-user"></i> About</a></li> <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li> <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li> <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li> </ul> </div> <div class="footer-section"> <h3>Services</h3> <ul> <li><i class="fas fa-laptop-code"></i> Web Development</li> <li><i class="fas fa-paint-brush"></i> Graphic Design</li> <li><i class="fas fa-search"></i> SEO Optimization</li> <li><i class="fas fa-film"></i> 2D/3D Animation</li> <li><i class="fas fa-edit"></i> Video/Image Editing</li> <li><i class="fas fa-print"></i> Graphic Printing</li> </ul> </div> <div class="footer-section"> <h3>Contact</h3> <ul> <li><i class="fas fa-envelope"></i> joshua@websiteanimation.co.uk</li> <li><i class="fas fa-phone"></i> (123) 456-7890</li> <li><i class="fas fa-map-marker-alt"></i> 123 Web St, Digital City, 12345</li> </ul> </div> </div> <div class="footer-bottom"> <p>&copy; 2024 WebsiteAnimation.co.uk. All rights reserved.</p> </div> </footer> <div class="page-transition"></div> <script> function pageTransition() { const transition = document.querySelector('.page-transition'); transition.classList.add('active'); setTimeout(() => { transition.classList.remove('active'); }, 1000); }
-    document.querySelectorAll('a').forEach(link => {
-        if (link.href.indexOf(document.domain) > -1) {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                pageTransition();
-                setTimeout(() => {
-                    window.location = href;
-                }, 1000);
-            });
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Joshua Josef Mort - Web Developer & Designer</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script> <style> :root { --primary-color: #6c5ce7; --secondary-color: #00cec9; --accent-color: #fd79a8; --background-color: #f9f9f9; --text-color: #2d3436; --nav-bg: #2d3436; } * { box-sizing: border-box; margin: 0; padding: 0; } html, body { height: 100%; scroll-behavior: smooth; } body { font-family: 'Raleway', sans-serif; background-color: var(--background-color); color: var(--text-color); overflow-x: hidden; display: flex; flex-direction: column; } nav { width: 250px; height: 100vh; position: fixed; left: 0; top: 0; background-color: var(--nav-bg); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 1000; transition: all 0.5s ease; } nav.scrolled { width: 100%; height: 50px; flex-direction: row; align-items: center; } nav ul { list-style-type: none; display: flex; flex-direction: column; margin-top: 50px; } nav.scrolled ul { flex-direction: row; margin-top: 0; } nav li { margin-bottom: 20px; } nav.scrolled li { margin-bottom: 0; margin-right: 20px; } nav a { color: #fff; text-decoration: none; font-size: 18px; transition: color 0.3s ease; display: flex; align-items: center; } nav a i { margin-right: 10px; font-size: 20px; } nav a:hover, nav a.active { color: var(--secondary-color); } .nav-social { display: flex; justify-content: space-around; margin-bottom: 70px; } nav.scrolled .nav-social { margin-right: 30px; margin-top: 0; margin-bottom: 0; } .nav-social a { color: #fff; font-size: 24px; transition: color 0.3s ease; margin-right: 20px; } .nav-social a:hover { color: var(--accent-color); } .fa-linkedin { color: #0077B5; } main { transition: margin-left 0.5s ease; flex-grow: 1; margin-left: 250px; } main.scrolled { margin-left: 0; } h1, h2, h3 { color: var(--primary-color); } .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; color: #fff; padding: 0 50px; position: fixed; top: 0; left: 250px; right: 0; z-index: 2; pointer-events: none; } .hero-content { padding-left: 100px; pointer-events: auto; position: relative; z-index: 25; transition: padding-left 0.5s ease; } .hero.scrolled .hero-content { padding-left: 50px; } .hero h1 { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); } .hero p { font-size: clamp(1rem, 3vw, 1.8rem); max-width: 600px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); } .cta-button { display: inline-block; background-color: var(--accent-color); color: #fff; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; text-transform: uppercase; letter-spacing: 1px; pointer-events: auto; position: relative; overflow: hidden; } .cta-button:before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent); transition: all 0.6s; } .cta-button:hover:before { left: 100%; } .cta-button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); background-color: #ff79a8; } .content-wrapper { position: relative; z-index: 3; background-color: var(--background-color); margin-top: 100vh; padding-top: 1px; width: calc(100vw - 250px); transition: width 0.5s ease, margin-left 0.5s ease; overflow: hidden; } .content-wrapper.scrolled { width: 100vw; margin-left: 0; } .section { padding: 100px 0; margin: 0; width: 100%; opacity: 0; transform: translateX(100px); transition: opacity 0.5s ease, transform 0.5s ease; } .section > * { max-width: 1200px; margin: 0 auto; padding: 0 20px; } .section.visible { opacity: 1; transform: translateX(0); } .skills-section { background-color: var(--nav-bg); padding: 80px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); color: #fff; } .skills-section h2 { color: var(--secondary-color); } .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; } .skill-card { background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; text-align: left; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .skill-card:hover { transform: translateY(-10px); } .skill-card i { font-size: 48px; color: var(--secondary-color); margin-bottom: 20px; } .skill-card h3 { margin-bottom: 15px; font-size: 24px; color: #fff; } .skill-card ul { list-style-type: none; padding-left: 0; } .skill-card ul li { margin-bottom: 10px; position: relative; padding-left: 25px; } .skill-card ul li:before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: var(--accent-color); } .projects-section { background-color: #fff; color: var(--text-color); } .projects-section h2 { color: var(--primary-color); } .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } .project-card { background-color: #f0f0f0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .project-card:hover { transform: translateY(-10px); } .project-card img, .project-card video { width: 100%; height: 200px; object-fit: cover; } .project-card-content { padding: 20px; } .project-card h3 { margin-bottom: 10px; } .services-section { background-color: var(--nav-bg); color: #fff; } .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; justify-content: center; } .service-card { background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 30px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; } .service-card:hover { transform: translateY(-10px); } .service-card i { font-size: 48px; color: var(--secondary-color); margin-bottom: 20px; } .service-card h3 { margin-bottom: 15px; color: #fff; } .testimonials { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 50px; } .testimonial-card { background-color: #fff; border-radius: 10px; padding: 30px; width: calc(33.33% - 20px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 30px; } .testimonial-card p { font-style: italic; margin-bottom: 20px; } .testimonial-author { font-weight: bold; } .animation-showcase { background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); color: #fff; padding: 100px 50px; } .animation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } .animation-card { background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; } .animation-card:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); z-index: 10; } .animation-card video { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease; } .animation-card:hover video { transform: scale(1.1); } .animation-card-content { padding: 20px; } .animation-card h3 { color: #fff; margin-bottom: 15px; } .animation-card p { margin-bottom: 20px; } .spline-scene-cubes { position: fixed; top: 0; left: 250px; width: calc(100vw - 250px); height: 100vh; z-index: 1; pointer-events: auto; } .gradient-overlay { position: fixed; top: 0; left: 250px; width: calc(100vw - 250px); height: 100vh; background: linear-gradient(135deg, rgba(45, 52, 54, 0.25), rgba(108, 92, 231, 0.25), rgba(0, 206, 201, 0.25), rgba(253, 121, 168, 0.25)); z-index: 2; pointer-events: none; } .spline-watermark-cover { position: fixed; bottom: 0; left: 250px; width: calc(100vw - 250px); height: 65px; background-color: var(--background-color); z-index: 17; } .interaction-hint { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background-color: rgba(255, 255, .interaction-hint {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        z-index: 18;
+        animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0) translateX(-50%);
         }
-    });
+        40% {
+            transform: translateY(-30px) translateX(-50%);
+        }
+        60% {
+            transform: translateY(-15px) translateX(-50%);
+        }
+    }
+    .scroll-hint {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 24px;
+        animation: fadeInOut 2s infinite;
+        z-index: 18;
+    }
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+    .freelancer-info {
+        background-color: #fff;
+        color: var(--text-color);
+        padding: 80px 0;
+        text-align: center;
+    }
+    .freelancer-info h2 {
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+        font-size: 4rem;
+        font-weight: 900;
+    }
+    .freelancer-info p {
+        max-width: 800px;
+        margin: 0 auto 20px;
+        line-height: 1.6;
+        font-size: 1.2rem;
+    }
+    .freelancer-info img {
+        max-width: 200px;
+        margin-bottom: 30px;
+        border-radius: 50%;
+        border: 5px solid var(--accent-color);
+    }
+    footer {
+        background-color: var(--nav-bg);
+        color: #fff;
+        padding: 50px 0;
+        text-align: center;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        margin-top: auto;
+    }
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .footer-section {
+        flex: 1;
+        margin: 0 20px;
+        min-width: 200px;
+        text-align: left;
+    }
+    .footer-section h3 {
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+    .footer-section ul {
+        list-style-type: none;
+    }
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+    .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+    .footer-section ul li a:hover {
+        color: var(--accent-color);
+    }
+    .footer-section ul li i {
+        margin-right: 10px;
+        font-size: 16px;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: var(--accent-color);
+        z-index: 1001;
+        transition: width 0.3s ease;
+    }
+    @media (max-width: 768px) {
+        nav {
+            width: 100%;
+            height: auto;
+            position: static;
+        }
+        main {
+            margin-left: 0;
+        }
+        .hero {
+            padding: 50px 20px;
+            position: relative;
+            left: 0;
+        }
+        .hero-content {
+            padding-left: 0;
+        }
+        .section {
+            padding: 50px 20px;
+        }
+        .testimonial-card {
+            width: 100%;
+        }
+        .footer-section {
+            flex-basis: 100%;
+            margin-bottom: 30px;
+        }
+        .spline-scene-cubes,
+        .gradient-overlay,
+        .spline-watermark-cover {
+            left: 0;
+            width: 100vw;
+        }
+        .content-wrapper {
+            width: 100vw;
+        }
+    }
+</style>
 
+</head> <body> <nav> <ul> <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li> <li><a href="about.html"><i class="fas fa-user"></i> About</a></li> <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li> <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li> <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li> </ul> <div class="nav-social"> <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="#" target="_blank"><i class="fab fa-facebook"></i></a> <a href="#" target="_blank"><i class="fab fa-instagram"></i></a> </div> </nav> <main> <div class="progress-bar"></div> <div class="spline-scene-cubes"> <spline-viewer url="https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode"></spline-viewer> </div> <div class="gradient-overlay"></div> <div class="spline-watermark-cover"></div> <div class="interaction-hint">Click and drag to interact!</div> <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div> <section class="hero"> <div class="hero-content"> <h1>Joshua Josef Mort</h1> <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p> <a href="services.html" class="cta-button">Explore My Work</a> </div> </section> <div class="content-wrapper"> <section class="freelancer-info section"> <img src="Logo.png" alt="Joshua Josef Mort Logo"> <h2>Joshua Josef Mort</h2> <p>I'm a freelance web developer and designer based in the UK. With a passion for creating stunning digital experiences, I specialize in web development, graphic design, and 3D/2D animation.</p> <p>At WebsiteAnimation.co.uk, I offer a range of services including custom website development, responsive design, SEO optimization, and creative animations that bring your ideas to life.</p> </section> <section class="section skills-section"> <h2>My Expertise</h2> <div class="skills-grid"> <div class="skill-card"> <i class="fas fa-code"></i> <h3>Web Development</h3> <ul> <li>HTML5, CSS3, JavaScript</li> <li>Responsive Design</li> <li>React, Vue.js, Angular</li> <li>Backend Integration</li> </ul> </div> <div class="skill-card"> <i class="fas fa-paint-brush"></i> <h3>Graphic Design</h3> <ul> <li>Adobe Creative Suite</li> <li>Logo Design</li> <li>Brand Identity</li> <li>UI/UX Design</li> </ul> </div> <div class="skill-card"> <i class="fas fa-search"></i> <h3>SEO Optimization</h3> <ul> <li>On-page Optimization</li> <li>Keyword Research</li> <li>Content Optimization</li> <li>Technical SEO</li> </ul> </div> <div class="skill-card"> <i class="fas fa-cube"></i> <h3>2D/3D Animation</h3> <ul> <li>After Effects</li> <li>Blender</li> <li>Motion Graphics</li> <li>3D Modeling</li> </ul> </div> </div> </section> <section class="section projects-section"> <h2>Featured Projects</h2> <div class="projects-grid"> <div class="project-card"> <img src="path/to/project1.jpg" alt="Project 1"> <div class="project-card-content"> <h3>Project 1</h3> <p>A brief description of the project and its key features.</p> </div> </div> <div class="project-card"> <img src="path/to/project2.jpg" alt="Project 2"> <div class="project-card-content"> <h3>Project 2</h3> <p>A brief description of the project and its key features.</p> </div> </div> <div class="project-card"> <img src="path/to/project3.jpg" alt="Project 3"> <div class="project-card-content"> <h3>Project 3</h3> <p>A brief description of the project and its key features.</p> </div> </div> </div> </section> <section class="section services-section"> <h2>My Services</h2> <div class="services-grid"> <div class="service-card"> <i class="fas fa-laptop-code"></i> <h3>Web Development</h3> <p>Custom websites using HTML, CSS, and JavaScript. Expertise in WordPress, Wix, and Webflow.</p> </div> <div class="service-card"> <i class="fas fa-film"></i> <h3>3D/2D Animation</h3> <p>Captivating animations using Blender and After Effects for product demos and explainer videos.</p> </div> <div class="service-card"> <i class="fas fa-pencil-ruler"></i> <h3>Web Design</h3> <p>User-friendly designs with intuitive navigation and engaging visual elements using Adobe XD and Figma.</p> </div> <div class="service-card"> <i class="fas fa-edit"></i> <h3>Video/Image Editing</h3> <p>Professional editing services using Adobe Premiere Pro and Photoshop for stunning visual content.</p> </div> <div class="service-card"> <i class="fas fa-print"></i> <h3>Graphic Printing</h3> <p>High-quality print designs for vinyl decals and indoor signage using Adobe Illustrator and InDesign.</p> </div> </div> </section> <section class="section animation-showcase"> <h2>Animation Showcase</h2> <div class="animation-grid"> <a href="showcase.html" class="animation-card"> <video src="videos/0.mp4" loop muted></video> <div class="animation-card-content"> <h3>Water 2D</h3> <p>A mesmerizing 2D animation showcasing fluid dynamics and water effects.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/13.mp4" loop muted></video> <div class="animation-card-content"> <h3>Balloons 3D</h3> <p>Colorful 3D balloons floating and interacting in a dynamic environment.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/2.mp4" loop muted></video> <div class="animation-card-content"> <h3>Space Ship 3D</h3> <p>An intricately designed 3D space ship model with realistic textures and lighting.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/7.mp4" loop muted></video> <div class="animation-card-content"> <h3>Planet Earth 3D</h3> <p>A detailed 3D animation of Earth, showcasing its rotation and atmospheric effects.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/4.mp4" loop muted></video> <div class="animation-card-content"> <h3>Planets 3D</h3> <p>A captivating 3D animation featuring multiple planets in a cosmic dance.</p> </div> </a> <a href="showcase.html" class="animation-card"> <video src="videos/5.mp4" loop muted></video> <div class="animation-card-content"> <h3>Fish Swimming 3D</h3> <p>Lifelike 3D animation of fish swimming in a vibrant underwater environment.</p> </div> </a> </div> </section> <section class="section testimonials-section"> <h2>Client Testimonials</h2> <div class="testimonials"> <div class="testimonial-card"> <p>"Joshua's work exceeded our expectations. His attention to detail and creativity brought our vision to life."</p> <span class="testimonial-author">- Jane Doe</span> </div> <div class="testimonial-card"> <p>"Working with Joshua was a pleasure. He delivered our project on time and with exceptional quality."</p>
+ <div class="testimonial-card">
+                    <p>"Working with Joshua was a pleasure. He delivered our project on time and with exceptional quality."</p>
+                    <span class="testimonial-author">- John Smith</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Joshua's expertise in web development and design helped us achieve our goals and improve our online presence."</p>
+                    <span class="testimonial-author">- Sarah Johnson</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li>
+                <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Services</h3>
+            <ul>
+                <li><i class="fas fa-laptop-code"></i> Web Development</li>
+                <li><i class="fas fa-paint-brush"></i> Graphic Design</li>
+                <li><i class="fas fa-search"></i> SEO Optimization</li>
+                <li><i class="fas fa-film"></i> 2D/3D Animation</li>
+                <li><i class="fas fa-edit"></i> Video/Image Editing</li>
+                <li><i class="fas fa-print"></i> Graphic Printing</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <ul>
+                <li><i class="fas fa-envelope"></i> joshua@websiteanimation.co.uk</li>
+                <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                <li><i class="fas fa-map-marker-alt"></i> 123 Web St, Digital City, 12345</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 WebsiteAnimation.co.uk. All rights reserved.</p>
+    </div>
+</footer>
+<script>
     const nav = document.querySelector('nav');
     const main = document.querySelector('main');
     const hero = document.querySelector('.hero');
     const contentWrapper = document.querySelector('.content-wrapper');
     const splineViewerCubes = document.querySelector('.spline-scene-cubes spline-viewer');
-    const splineViewerLaptop = document.querySelector('.spline-scene-laptop spline-viewer');
     const progressBar = document.querySelector('.progress-bar');
     const sections = document.querySelectorAll('.section');
     const animationCards = document.querySelectorAll('.animation-card');
@@ -188,14 +234,14 @@ left: 0;
             nav.classList.add('scrolled');
             main.classList.add('scrolled');
             hero.classList.add('scrolled');
-            contentWrapper.style.marginLeft = '0';
+            contentWrapper.classList.add('scrolled');
             interactionHint.style.display = 'none';
             scrollHint.style.display = 'none';
         } else {
             nav.classList.remove('scrolled');
             main.classList.remove('scrolled');
             hero.classList.remove('scrolled');
-            contentWrapper.style.marginLeft = '250px';
+            contentWrapper.classList.remove('scrolled');
             interactionHint.style.display = 'block';
             scrollHint.style.display = 'block';
         }
@@ -207,7 +253,7 @@ left: 0;
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
 
-            if (scrollPosition > sectionTop - windowHeight * 0.6 && scrollPosition < sectionTop + sectionHeight) {
+            if (scrollPosition > sectionTop - windowHeight * 0.8) {
                 section.classList.add('visible');
             }
         });
@@ -234,10 +280,14 @@ left: 0;
         const video = card.querySelector('video');
         card.addEventListener('mouseenter', () => {
             video.play();
+            card.style.transform = 'scale(1.2)';
+            card.style.zIndex = '10';
         });
         card.addEventListener('mouseleave', () => {
             video.pause();
             video.currentTime = 0;
+            card.style.transform = 'scale(1)';
+            card.style.zIndex = '1';
         });
     });
 
@@ -245,8 +295,18 @@ left: 0;
         e.preventDefault();
     }, { passive: false });
 
-    splineViewerLaptop.addEventListener('wheel', (e) => {
-        e.preventDefault();
-    }, { passive: false });
+    document.querySelectorAll('a').forEach(link => {
+        if (link.href.indexOf(document.domain) > -1) {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                contentWrapper.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    window.location = href;
+                }, 500);
+            });
+        }
+    });
 </script>
+
 </body> </html>
