@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase - Joshua Josef Mort's Portfolio</title>
+    <title>Showcase - Joe's Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -11,10 +11,9 @@
             --primary-color: #6c5ce7;
             --secondary-color: #00cec9;
             --accent-color: #fd79a8;
-            --background-color: #ffffff;
-            --text-color: #2d3436;
-            --nav-bg: #2d3436;
-            --side-bg: rgba(45, 52, 54, 0.9);
+            --background-color: #2d3436;
+            --text-color: #ffffff;
+            --nav-bg: rgba(45, 52, 54, 1);
         }
         * {
             box-sizing: border-box;
@@ -34,7 +33,7 @@
             bottom: 0;
             width: 100px;
             z-index: -1;
-            background-color: var(--side-bg);
+            background-color: var(--nav-bg);
             transition: opacity 0.3s ease;
             overflow: hidden;
         }
@@ -78,7 +77,6 @@
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s ease;
         }
         .nav-progress {
             position: absolute;
@@ -97,7 +95,7 @@
             margin-right: 20px;
         }
         nav a {
-            color: var(--background-color);
+            color: var(--text-color);
             text-decoration: none;
             font-size: 18px;
             display: flex;
@@ -118,7 +116,7 @@
             display: flex;
         }
         .nav-social a {
-            color: var(--background-color);
+            color: var(--text-color);
             font-size: 24px;
             margin-left: 15px;
             transition: all 0.3s ease;
@@ -131,49 +129,25 @@
             padding-top: 80px;
             margin: 0 100px;
         }
-        .top-slideshow {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-            background-color: var(--nav-bg);
-        }
-        .top-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .top-slide.active {
-            opacity: 1;
-        }
-        .top-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
         .showcase-section {
             opacity: 1;
             transform: translateX(0);
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             padding: 60px 20px;
-            margin-bottom: 50px;
+            margin-bottom: 0;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 200px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            color: var(--background-color);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: var(--text-color);
         }
         .showcase-section h1, .showcase-section h2 {
             text-align: center;
-            color: var(--background-color);
+            color: var(--text-color);
             margin-bottom: 40px;
             font-size: 2.5em;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .showcase-grid {
             display: grid;
@@ -181,15 +155,15 @@
             gap: 30px;
         }
         .showcase-item {
-            background-color: var(--background-color);
+            background-color: rgba(255,255,255,0.1);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
         .showcase-item:hover {
             transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         .showcase-item img {
             width: 100%;
@@ -205,7 +179,7 @@
         }
         .showcase-item h3 {
             margin-bottom: 10px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             font-size: 1.5em;
         }
         .showcase-item p {
@@ -215,7 +189,7 @@
         .showcase-item a {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--background-color);
+            color: var(--text-color);
             padding: 10px 20px;
             border-radius: 25px;
             text-decoration: none;
@@ -235,12 +209,12 @@
             align-items: center;
             padding: 80px 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 200px;
+            border-radius: 20px;
             overflow: hidden;
-            margin-bottom: 50px;
+            margin-bottom: 0;
         }
         .film-production h2 {
-            color: var(--background-color);
+            color: var(--text-color);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .film-production-video {
@@ -282,13 +256,14 @@
             100% { transform: translateX(-100%); }
         }
         .reel-video {
-            flex: 0 0 100%;
-            margin-right: 20px;
-            height: 600px;
+            flex: 0 0 calc(33.33% - 10px);
+            margin-right: 10px;
+            height: 200px;
             transition: all 0.3s ease;
         }
         .reel-video:hover {
             transform: scale(1.05);
+            height: 400px;
         }
         .reel-video video {
             width: 100%;
@@ -303,10 +278,10 @@
             align-items: flex-start;
             background-color: var(--nav-bg);
             padding: 100px 50px;
-            border-radius: 200px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            color: var(--background-color);
-            margin-bottom: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: var(--text-color);
+            margin-bottom: 0;
         }
         .details-content {
             flex: 1;
@@ -338,7 +313,7 @@
         .contact-button {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--background-color);
+            color: var(--text-color);
             padding: 15px 30px;
             border-radius: 30px;
             text-decoration: none;
@@ -356,14 +331,14 @@
         .contact-form {
             flex: 1;
             max-width: 500px;
-            background-color: var(--background-color);
+            background-color: rgba(255,255,255,0.1);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .contact-form h3 {
             margin-bottom: 20px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             font-size: 1.8em;
         }
         .contact-form input,
@@ -374,10 +349,12 @@
             border: 1px solid var(--secondary-color);
             border-radius: 5px;
             font-size: 1.1em;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--text-color);
         }
         .contact-form button {
             background-color: var(--primary-color);
-            color: var(--background-color);
+            color: var(--text-color);
             border: none;
             padding: 15px 30px;
             border-radius: 5px;
@@ -394,7 +371,7 @@
         }
         footer {
             background-color: var(--nav-bg);
-            color: var(--background-color);
+            color: var(--text-color);
             padding: 50px 0;
         }
         .footer-content {
@@ -421,11 +398,11 @@
             margin-bottom: 10px;
         }
         .footer-section ul li a {
-            color: var(--background-color);
+            color: var(--text-color);
             text-decoration: none;
             transition: all 0.3s ease;
         }
-                .footer-section ul li a:hover {
+        .footer-section ul li a:hover {
             color: var(--accent-color);
             padding-left: 5px;
         }
@@ -435,116 +412,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--background-color);
-            transition: opacity 0.75s, visibility 0.75s;
-            z-index: 9999;
-        }
-        .loader--hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader::after {
-            content: "";
-            width: 75px;
-            height: 75px;
-            border: 15px solid var(--secondary-color);
-            border-top-color: var(--primary-color);
-            border-radius: 50%;
-            animation: loading 0.75s ease infinite;
-        }
-        @keyframes loading {
-            from { transform: rotate(0turn); }
-            to { transform: rotate(1turn); }
-        }
-        .whatsapp-chat {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .whatsapp-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #25D366;
-            color: var(--background-color);
-            text-align: center;
-            line-height: 60px;
-            font-size: 30px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-        .whatsapp-toggle:hover {
-            transform: scale(1.1);
-        }
-        .whatsapp-content {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 300px;
-            background-color: var(--background-color);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            padding: 20px;
-            display: none;
-            transition: all 0.3s ease;
-        }
-        .whatsapp-content.active {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .whatsapp-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .whatsapp-header img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .whatsapp-header h3 {
-            color: var(--text-color);
-            font-size: 1.2em;
-        }
-        .whatsapp-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--secondary-color);
-            border-radius: 5px;
-            margin-bottom: 10px;
-            font-size: 1em;
-        }
-        .whatsapp-send {
-            background-color: #25D366;
-            color: var(--background-color);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
-        }
-        .whatsapp-send:hover {
-            background-color: #128C7E;
-        }
         .anchor-menu {
             position: fixed;
             top: 50%;
@@ -552,19 +419,20 @@
             transform: translateY(-50%);
             z-index: 1000;
         }
-        .anchor-menu a {
+                .anchor-menu a {
             display: block;
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
             background-color: var(--accent-color);
-            margin: 10px 0;
+            margin: 15px 0;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         .anchor-menu a:hover,
         .anchor-menu a.active {
-            background-color: var(--primary-color);
-            transform: scale(1.5);
+            background-color: var(--secondary-color);
+            transform: scale(1.3);
         }
         @media (max-width: 768px) {
             nav {
@@ -634,28 +502,12 @@
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
         <div class="nav-social">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </nav>
 
     <main>
-        <section id="home" class="top-slideshow">
-            <div class="top-slide active">
-                <img src="path/to/service1-image.jpg" alt="Service 1">
-            </div>
-            <div class="top-slide">
-                <img src="path/to/service2-image.jpg" alt="Service 2">
-            </div>
-            <div class="top-slide">
-                <img src="path/to/website1-image.jpg" alt="Website 1">
-            </div>
-            <div class="top-slide">
-                <img src="path/to/animation1-image.jpg" alt="Animation 1">
-            </div>
-        </section>
-
         <section id="projects" class="showcase-section">
             <h1>Projects</h1>
             <div class="showcase-grid">
@@ -799,7 +651,7 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                                                <div class="reel-video">
+                        <div class="reel-video">
                             <video>
                                 <source src="film production/spiderman/6.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
@@ -869,7 +721,7 @@
             <div class="footer-section">
                 <h3>Contact</h3>
                 <ul>
-                    <li>Email: joshua@websiteanimation.co.uk</li>
+                    <li>Email: joe@websiteanimation.co.uk</li>
                     <li>Phone: +44 07478773451</li>
                     <li>Locations: Swansea, Neath Port Talbot, Crewe, South Wales, UK</li>
                     <li>Serving Worldwide Customers</li>
@@ -877,7 +729,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Joshua Josef Mort. All rights reserved.</p>
+            <p>&copy; 2024 Joe. All rights reserved.</p>
         </div>
     </footer>
 
@@ -888,7 +740,7 @@
         <div class="whatsapp-content">
             <div class="whatsapp-header">
                 <img src="path/to/profile-image.jpg" alt="Profile">
-                <h3>Joshua Josef Mort</h3>
+                <h3>Joe</h3>
             </div>
             <input type="text" class="whatsapp-input" placeholder="Type a message...">
             <button class="whatsapp-send">Send</button>
@@ -912,13 +764,12 @@
             });
         });
 
-        // Navbar scroll progress and color change
-        const nav = document.querySelector('nav');
+        // Navbar scroll progress
         const navProgress = document.querySelector('.nav-progress');
         const sections = document.querySelectorAll('section');
         const anchorLinks = document.querySelectorAll('.anchor-menu a');
 
-        function updateNavbar() {
+                function updateNavbar() {
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
@@ -927,13 +778,12 @@
             const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
             navProgress.style.width = `${scrollPercentage}%`;
 
-            // Change navbar color and update anchor menu
+            // Update anchor menu
             sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop - nav.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
                 const sectionBottom = sectionTop + section.offsetHeight;
 
                 if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    nav.style.backgroundColor = getComputedStyle(section).backgroundColor;
                     anchorLinks.forEach(link => link.classList.remove('active'));
                     anchorLinks[index].classList.add('active');
                 }
@@ -941,22 +791,6 @@
         }
 
         window.addEventListener('scroll', updateNavbar);
-
-        // Top slideshow
-        const slides = document.querySelectorAll('.top-slide');
-        let currentSlide = 0;
-
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        setInterval(nextSlide, 5000);
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1025,6 +859,23 @@
             }
         });
 
+        // Automatic sliding for film reels
+        function slideReels() {
+            reelSliders.forEach(slider => {
+                const firstVideo = slider.querySelector('.reel-video');
+                slider.appendChild(firstVideo.cloneNode(true));
+                slider.style.transition = 'transform 0.5s ease-in-out';
+                slider.style.transform = 'translateX(-33.33%)';
+                
+                setTimeout(() => {
+                    slider.style.transition = 'none';
+                    slider.style.transform = 'translateX(0)';
+                    slider.removeChild(slider.firstElementChild);
+                }, 500);
+            });
+        }
+
+        setInterval(slideReels, 3000);
     </script>
 </body>
 </html>
