@@ -8,3 +8,11 @@ website template content/VoltPro Electrician
 
 film production/shining
 film production/spiderman
+
+website template content\BrewHaven Coffee
+website template content\ChicCuts Hairdresser
+website template content\GreenThread Fashion
+website template content\QuantumLeap AI Tech
+website template content\Sex Pistols Expose Music
+website template content\TradeMasters Plumbing
+website template content\VoltPro Electrician
