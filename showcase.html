@@ -3,557 +3,633 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase - Joe's Portfolio</title>
+    <title>Website Animation Co</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #00cec9;
-            --accent-color: #fd79a8;
-            --background-color: #2d3436;
-            --text-color: #ffffff;
-            --nav-bg: rgba(255, 255, 255, 0.9);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 18px;
-            overflow-x: hidden;
-        }
-
-        .lava-lamp {
-            position: fixed;
-            top: 120px; 
-            bottom: 0;
-            width: 100px;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .lava-lamp-left { left: 0; }
-        .lava-lamp-right { right: 0; }
-
-        .lava-blob {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-            filter: blur(30px);
-            opacity: 0.5;
-            animation: lavaMove 15s infinite alternate;
-        }
-
-        @keyframes lavaMove {
-            0% { transform: translateY(0) scale(1) rotate(0deg); }
-            25% { transform: translateY(-15%) scale(1.1) rotate(5deg); }
-            50% { transform: translateY(-30%) scale(1.2) rotate(-5deg); }
-            75% { transform: translateY(-15%) scale(1.1) rotate(5deg); }
-            100% { transform: translateY(0) scale(1) rotate(0deg); }
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background-color: var(--nav-bg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            transition: transform 0.3s ease;
-        }
-
-        nav li { margin-right: 20px; }
-
-        nav a {
-            color: var(--background-color);
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover { color: var(--accent-color); }
-
-        .section-menu {
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(45, 52, 54, 0.8);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            z-index: 999;
-            transition: all 0.3s ease;
-            width: 100vw;
-        }
-
-        .section-menu a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .section-menu a:hover { color: var(--secondary-color); }
-
-        .nav-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background-color: var(--accent-color);
-            width: 0;
-            transition: width 0.3s ease;
-        }
-
-        main {
-            padding-top: 120px;
-            padding-bottom: 60px;
-            max-width: calc(100% - 200px);
-            margin: 0 auto;
-        }
-
-        section {
-            padding: 40px 20px;
-            margin-bottom: 50px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--secondary-color);
-        }
-
-        .top-slideshow {
-            width: 100%;
-            height: 60vh;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-
-        .top-slide {
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 100%;
-            height: 100%;
-            transition: left 0.5s ease;
-        }
-
-        .top-slide.active { left: 0; }
-
-        .top-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .top-slide::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .top-slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--text-color);
-            z-index: 2;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .showcase-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            transition: transform 0.3s ease;
-            border-radius: 10px;
-        }
-
-        .showcase-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .showcase-item img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
-
-        .film-production-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .film-production-videos, .mobile-projects {
-            width: 48%;
-        }
-
-        .film-production-video {
-            margin-bottom: 20px;
-        }
-
-        .film-production-video iframe {
-            width: 100%;
-            height: 250px;
-            border: 2px solid var(--accent-color);
-            border-radius: 10px;
-        }
-
-        .mobile-border {
-            width: 250px;
-            height: 500px;
-            border: 10px solid #000;
-            border-radius: 30px;
-            overflow: hidden;
-            position: relative;
-            margin: 0 auto;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mobile-border:hover {
-            transform: scale(1.05);
-        }
-
-        .mobile-border.expanded {
-            width: 70%;
-            height: 70vh;
-        }
-
-        .mobile-slide {
-            position: absolute;
-            top: 0; left: 100%;
-            width: 100%;
-            height: 100%;
-            transition: left 0.5s ease;
-        }
-
-        .mobile-slide.active { left: 0; }
-
-        .mobile-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .mobile-info {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .mobile-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .mobile-controls button {
-            margin: 0 10px;
-            padding: 8px 16px;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .mobile-controls button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .reels-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .reels-column {
-            width: 48%;
-        }
-
-        .reel-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .reel-videos {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .reel-video {
-            width: 30%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .middle-video {
-            width: 40%;
-            height: 250px;
-            transition: height 0.3s ease;
-        }
-
-        .middle-video:hover {
-            height: 500px;
-        }
-
-        .details-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .product-details, .contact-form {
-            width: 48%;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .product-details h2, .contact-form h2 {
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .product-details ul {
-            list-style-type: none;
-        }
-
-        .product-details li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-details li i {
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: var(--text-color);
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .contact-form button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        footer {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            padding: 60px 20px;
-            border-top: 1px solid var(--accent-color);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 20px;
-            padding: 0 20px;
-        }
-
-        .footer-column:first-child {
-            margin-left: -50px;
-        }
-
-        .footer-column h3 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .footer-column p, .footer-column a {
-            margin-bottom: 8px;
-            display: block;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: var(--accent-color);
-        }
-
-        .social-icons {
-            margin-top: 15px;
-        }
-
-        .social-icons a {
-            color: var(--text-color);
-            font-size: 20px;
-            margin-right: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--accent-color);
-        }
-
-        .whatsapp-chat {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .whatsapp-toggle {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: #25D366;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 35px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .whatsapp-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-        }
-
-        .whatsapp-box {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 300px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            display: none;
-        }
-
-        .whatsapp-box.active {
-            display: block;
-        }
-
-        .whatsapp-header {
-            background-color: #25D366;
-            color: #fff;
-            padding: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        .whatsapp-body {
-            padding: 10px;
-        }
-
-        .whatsapp-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-               .whatsapp-send {
-            background-color: #25D366;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                max-width: 100%;
-                padding: 100px 10px 60px;
-            }
-            .film-production-container, .reels-container, .details-section { 
-                flex-direction: column; 
-            }
-            .film-production-videos, .mobile-projects, .reels-column, .product-details, .contact-form { 
-                width: 100%; 
-            }
-            .footer-content { 
-                flex-direction: column; 
-            }
-            .footer-column:first-child {
-                margin-left: 0;
-            }
-            .lava-lamp {
-                width: 50px;
-            }
-            .section-menu {
-                flex-wrap: wrap;
-            }
-            .section-menu a {
-                margin: 5px;
-            }
-        }
+     :root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #00cec9;
+    --accent-color: #fd79a8;
+    --background-color: #2d3436;
+    --text-color: #ffffff;
+    --nav-bg: #ffffff;
+    --nav-bg-scrolled: #2d3436;
+    --footer-bg: #1e272e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin-top: 0;
+}
+
+nav {
+    width: 100%;
+    background-color: var(--nav-bg);
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav.scrolled {
+    background-color: var(--nav-bg-scrolled);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: var(--background-color);
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav.scrolled a {
+    color: var(--text-color);
+}
+
+nav a:hover, nav a.active {
+    color: var(--secondary-color);
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-social {
+    display: flex;
+}
+
+.nav-social a {
+    color: var(--background-color);
+    font-size: 24px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+nav.scrolled .nav-social a {
+    color: var(--text-color);
+}
+
+.nav-social a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+.nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent-color);
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+main {
+    margin-top: 80px;
+    padding: 0;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.lava-lamp {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+    background: linear-gradient(45deg, #2d3436, #6c5ce7, #00cec9, #fd79a8);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.lava-lamp-left {
+    left: 0;
+}
+
+.lava-lamp-right {
+    right: 0;
+}
+
+.lava-blob {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: radial-gradient(circle, var(--accent-color) 0%, rgba(253, 121, 168, 0) 70%);
+    filter: blur(30px);
+    transition: transform 0.5s ease;
+}
+
+.top-slideshow, spline-viewer {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.top-slideshow {
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.top-slide {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s ease;
+}
+
+.top-slide.active { left: 0; }
+
+.top-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.top-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(45, 52, 54, 0.5);
+}
+
+.top-slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-color);
+    z-index: 2;
+}
+
+spline-viewer {
+    height: 35vh;
+}
+
+.featured-projects {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.featured-project {
+    width: 48%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.featured-project img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.showcase-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.showcase-item:hover {
+    transform: translateY(-10px);
+}
+
+.showcase-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.film-production-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.film-production-videos, .mobile-projects {
+    width: 48%;
+}
+
+.film-production-video {
+    margin-bottom: 20px;
+}
+
+.film-production-video iframe {
+    width: 100%;
+    height: 250px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+}
+
+.mobile-border {
+    width: 250px;
+    height: 500px;
+    border: 10px solid #000;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.mobile-border:hover {
+    transform: scale(1.05);
+}
+
+.mobile-border.expanded {
+    width: 70%;
+    height: 70vh;
+}
+
+.mobile-slide {
+    position: absolute;
+    top: 0; left: 100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s ease;
+}
+
+.mobile-slide.active { left: 0; }
+
+.mobile-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobile-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.mobile-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.mobile-controls button {
+    margin: 0 10px;
+    padding: 8px 16px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.mobile-controls button:hover {
+    background-color: var(--secondary-color);
+}
+
+.reels-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.reels-column {
+    width: 48%;
+}
+
+.reel-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.reel-videos {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.reel-video {
+    width: 30%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: height 0.3s ease;
+}
+
+.reel-video:hover {
+    height: 300px;
+}
+
+.middle-video {
+    width: 40%;
+    height: 250px;
+}
+
+.middle-video:hover {
+    height: 350px;
+}
+
+.details-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.product-details, .contact-form {
+    width: 48%;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.product-details {
+    margin-bottom: 30px;
+}
+
+.product-details h2, .contact-form h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.product-details ul {
+    list-style-type: none;
+}
+
+.product-details li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.product-details li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.contact-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.chat-button, .whatsapp-button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    padding: 0;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.chat-button {
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+}
+
+.whatsapp-button {
+    bottom: 90px;
+    right: 20px;
+    background-color: #25D366;
+}
+
+.chat-button:hover, .whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.chat-box-header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.chat-box-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+.chat-box-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+
+.chat-box-footer input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: #fff;
+    padding: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 20px;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-social-icons a {
+    color: #fff;
+    font-size: 36px;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+    nav ul {
+        margin-bottom: 20px;
+    }
+    .featured-projects, .film-production-container, .reels-container, .details-section {
+        flex-direction: column;
+    }
+    .featured-project, .film-production-videos, .mobile-projects, .reels-column, .product-details, .contact-form {
+        width: 100%;
+    }
+    .content-wrapper {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    .lava-lamp {
+        width: 50px;
+    }
+    .top-slideshow, spline-viewer {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -563,410 +639,439 @@
     <div class="lava-lamp lava-lamp-right">
         <div class="lava-blob"></div>
     </div>
+    
     <nav>
-        <div class="nav-progress"></div>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="showcase.html">Showcase</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
         </ul>
+        <div class="nav-social">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="nav-progress"></div>
     </nav>
 
-    <div class="section-menu">
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#film-production">Film Production</a>
-        <a href="#mobile-projects">Mobile Projects</a>
-        <a href="#reels">Reels</a>
-        <a href="#contact">Contact</a>
-    </div>
-
     <main>
-        <section id="home" class="top-slideshow">
-            <div class="top-slide active">
-                <video autoplay loop muted playsinline>
-                    <source src="showcase slideshow videos/1.mp4" type="video/mp4">
-                </video>
-                <div class="top-slide-content">
-                    <h2>Innovative Web Solutions</h2>
-                    <p>Crafting responsive and engaging websites for modern businesses</p>
+        <div class="content-wrapper">
+            <section id="home" class="top-slideshow">
+                <div class="top-slide active">
+                    <video autoplay loop muted playsinline>
+                        <source src="showcase slideshow videos/1.mp4" type="video/mp4">
+                    </video>
+                    <div class="top-slide-content">
+                        <h2>Innovative Web Solutions</h2>
+                        <p>Crafting responsive and engaging websites for modern businesses</p>
+                    </div>
                 </div>
-            </div>
-            <div class="top-slide">
-                <video autoplay loop muted playsinline>
-                    <source src="showcase slideshow videos/2.mp4" type="video/mp4">
-                </video>
-                <div class="top-slide-content">
-                    <h2>Creative Design</h2>
-                    <p>Bringing your vision to life with stunning visuals and intuitive interfaces</p>
+                <div class="top-slide">
+                    <video autoplay loop muted playsinline>
+                        <source src="showcase slideshow videos/2.mp4" type="video/mp4">
+                    </video>
+                    <div class="top-slide-content">
+                        <h2>Creative Design</h2>
+                        <p>Bringing your vision to life with stunning visuals and intuitive interfaces</p>
+                    </div>
                 </div>
-            </div>
-            <div class="top-slide">
-                <video autoplay loop muted playsinline>
-                    <source src="showcase slideshow videos/3.mp4" type="video/mp4">
-                </video>
-                <div class="top-slide-content">
-                    <h2>Mobile-First Approach</h2>
-                    <p>Ensuring seamless experiences across all devices and platforms</p>
+                <div class="top-slide">
+                    <video autoplay loop muted playsinline>
+                        <source src="showcase slideshow videos/3.mp4" type="video/mp4">
+                    </video>
+                    <div class="top-slide-content">
+                        <h2>Mobile-First Approach</h2>
+                        <p>Ensuring seamless experiences across all devices and platforms</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="projects" class="showcase-section">
-            <h1>Projects</h1>
-            <div class="showcase-grid">
-                <div class="showcase-item">
-                    <img src="website template content/BrewHaven Coffee/website-image.jpg" alt="BrewHaven Coffee Website">
-                    <h3>BrewHaven Coffee</h3>
-                    <p>A modern website for a cozy coffee shop, featuring online ordering and a loyalty program.</p>
+            <section id="featured-projects" class="featured-projects">
+                <div class="featured-project">
+                    <img src="featured-project-1.jpg" alt="Featured Project 1">
+                    <h3>E-commerce Platform</h3>
+                    <p>A cutting-edge online shopping experience with seamless payment integration and responsive design.</p>
                 </div>
-                <div class="showcase-item">
-                    <img src="website template content/ChicCuts Hairdresser/website-image.jpg" alt="ChicCuts Hairdresser Website">
-                    <h3>ChicCuts Hairdresser</h3>
-                    <p>Stylish website for a trendy hair salon, with online booking and portfolio showcase.</p>
+                <div class="featured-project">
+                    <img src="featured-project-2.jpg" alt="Featured Project 2">
+                    <h3>Portfolio Showcase</h3>
+                    <p>An elegant and interactive portfolio website for a professional photographer, featuring dynamic galleries and smooth transitions.</p>
                 </div>
-                <div class="showcase-item">
-                    <img src="website template content/GreenThread Fashion/website-image.jpg" alt="GreenThread Fashion Website">
-                    <h3>GreenThread Fashion</h3>
-                    <p>Eco-friendly fashion brand website with e-commerce integration and sustainability blog.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="film-production" class="film-production-container">
-            <div class="film-production-videos">
-                <h2>Film Production</h2>
-                <div class="film-production-video">
-                    <iframe src="https://www.youtube.com/embed/eKn2AvMSHWQ" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="film-production-video">
-                    <iframe src="https://www.youtube.com/embed/qyxbC41titM" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div id="mobile-projects" class="mobile-projects">
-                <h2>Mobile Projects</h2>
-                <div class="mobile-border">
-                    <div class="mobile-slide active">
-                        <video autoplay loop muted playsinline>
-                            <source src="showcase slideshow videos/A.mp4" type="video/mp4">
-                        </video>
+            <section id="projects" class="showcase-section">
+                <h1>Projects</h1>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <img src="website template content/BrewHaven Coffee/website-image.jpg" alt="BrewHaven Coffee Website">
+                        <h3>BrewHaven Coffee</h3>
+                        <p>A modern website for a cozy coffee shop, featuring online ordering and a loyalty program.</p>
                     </div>
-                    <div class="mobile-slide">
-                        <video autoplay loop muted playsinline>
-                            <source src="showcase slideshow videos/B.mp4" type="video/mp4">
-                        </video>
+                    <div class="showcase-item">
+                        <img src="website template content/ChicCuts Hairdresser/website-image.jpg" alt="ChicCuts Hairdresser Website">
+                        <h3>ChicCuts Hairdresser</h3>
+                        <p>Stylish website for a trendy hair salon, with online booking and portfolio showcase.</p>
                     </div>
-                    <div class="mobile-slide">
-                        <video autoplay loop muted playsinline>
-                            <source src="showcase slideshow videos/C.mp4" type="video/mp4">
-                        </video>
+                    <div class="showcase-item">
+                        <img src="website template content/GreenThread Fashion/website-image.jpg" alt="GreenThread Fashion Website">
+                        <h3>GreenThread Fashion</h3>
+                        <p>Eco-friendly fashion brand website with e-commerce integration and sustainability blog.</p>
                     </div>
                 </div>
-                <div class="mobile-info">
-                    <h3>Innovative Mobile Solutions</h3>
-                    <p>Our mobile projects showcase cutting-edge design and functionality, optimized for various platforms and devices.</p>
-                </div>
-                <div class="mobile-controls">
-                    <button id="prevMobile">Previous</button>
-                    <button id="nextMobile">Next</button>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="reels" class="reels-container">
-            <div class="reels-column">
-                <h2>The Shining Reels</h2>
-                <div class="reel-slider">
-                    <div class="reel-videos">
-                        <video class="reel-video" loop muted playsinline>
-                            <source src="film production/shining/1.mp4" type="video/mp4">
-                        </video>
-                        <video class="reel-video middle-video" loop muted playsinline>
-                            <source src="film production/shining/2.mp4" type="video/mp4">
-                        </video>
-                        <video class="reel-video" loop muted playsinline>
-                            <source src="film production/shining/3.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="reels-column">
-                <h2>Spider-Man Reels</h2>
-                <div class="reel-slider">
-                    <div class="reel-videos">
-                        <video class="reel-video" loop muted playsinline>
-                            <source src="film production/spiderman/1.mp4" type="video/mp4">
-                        </video>
-                        <video class="reel-video middle-video" loop muted playsinline>
-                            <source src="film production/spiderman/2.mp4" type="video/mp4">
-                        </video>
-                        <video class="reel-video" loop muted playsinline>
-                            <source src="film production/spiderman/3.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <spline-viewer url="https://prod.spline.design/G-MtdYgsebLntpma/scene.splinecode"></spline-viewer>
 
-        <section id="contact" class="details-section">
-            <div class="product-details">
-                <h2>Product Details</h2>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Custom responsive designs tailored to your brand</li>
-                    <li><i class="fas fa-check-circle"></i> Interactive user interfaces for enhanced engagement</li>
-                    <li><i class="fas fa-check-circle"></i> Optimized for performance and SEO to boost visibility</li>
-                    <li><i class="fas fa-check-circle"></i> Cross-browser compatibility for wide accessibility</li>
-                    <li><i class="fas fa-check-circle"></i> Integration with various APIs and services for extended functionality</li>
-                    <li><i class="fas fa-check-circle"></i> Mobile-first approach ensuring seamless experiences across devices</li>
-                    <li><i class="fas fa-check-circle"></i> Scalable solutions to grow with your business needs</li>
-                </ul>
-            </div>
-            <div class="contact-form">
-                <h2>Get in Touch</h2>
-                <form>
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </section>
+            <section id="film-production" class="film-production-container">
+                <div class="film-production-videos">
+                    <h2>Film Production</h2>
+                    <div class="film-production-video">
+                        <iframe src="https://www.youtube.com/embed/eKn2AvMSHWQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="film-production-video">
+                        <iframe src="https://www.youtube.com/embed/qyxbC41titM" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div id="mobile-projects" class="mobile-projects">
+                    <h2>Mobile Projects</h2>
+                    <div class="mobile-border">
+                        <div class="mobile-slide active">
+                            <video autoplay loop muted playsinline>
+                                <source src="showcase slideshow videos/A.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="mobile-slide">
+                            <video autoplay loop muted playsinline>
+                                <source src="showcase slideshow videos/B.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="mobile-slide">
+                            <video autoplay loop muted playsinline>
+                                <source src="showcase slideshow videos/C.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="mobile-info">
+                        <h3>Innovative Mobile Solutions</h3>
+                        <p>Our mobile projects showcase cutting-edge design and functionality, optimized for various platforms and devices.</p>
+                    </div>
+                    <div class="mobile-controls">
+                        <button id="prevMobile">Previous</button>
+                        <button id="nextMobile">Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reels" class="reels-container">
+                <div class="reels-column">
+                    <h2>The Shining Reels</h2>
+                    <div class="reel-slider">
+                        <div class="reel-videos">
+                            <video class="reel-video" loop muted playsinline>
+                                <source src="film production/shining/1.mp4" type="video/mp4">
+                            </video>
+                            <video class="reel-video middle-video" loop muted playsinline>
+                                <source src="film production/shining/2.mp4" type="video/mp4">
+                            </video>
+                            <video class="reel-video" loop muted playsinline>
+                                <source src="film production/shining/3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="reels-column">
+                    <h2>Spider-Man Reels</h2>
+                    <div class="reel-slider">
+                        <div class="reel-videos">
+                            <video class="reel-video" loop muted playsinline>
+                                <source src="film production/spiderman/1.mp4" type="video/mp4">
+                            </video>
+                            <video class="reel-video middle-video" loop muted playsinline>
+                                <source src="film production/spiderman/2.mp4" type="video/mp4">
+                            </video>
+                            <video class="reel-video" loop muted playsinline>
+                                <source src="film production/spiderman/3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="details-section">
+                <div class="product-details">
+                    <h2>Product Details</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Custom responsive designs tailored to your brand</li>
+                        <li><i class="fas fa-check-circle"></i> Interactive user interfaces for enhanced engagement</li>
+                        <li><i class="fas fa-check-circle"></i> Optimized for performance and SEO to boost visibility</li>
+                        <li><i class="fas fa-check-circle"></i> Cross-browser compatibility for wide accessibility</li>
+                        <li><i class="fas fa-check-circle"></i> Integration with various APIs and services for extended functionality</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-first approach ensuring seamless experiences across devices</li>
+                        <li><i class="fas fa-check-circle"></i> Scalable solutions to grow with your business needs</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <h2>Get in Touch</h2>
+                    <form>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-column">
+            <div class="footer-section">
                 <h3>About Us</h3>
                 <p>We are a creative agency specializing in web design, development, and digital marketing solutions. Our mission is to help businesses thrive in the digital landscape through innovative and tailored solutions.</p>
             </div>
-            <div class="footer-column">
+            <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="showcase.html">Showcase</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-                <a href="contact.html">Contact</a>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="showcase.html">Showcase</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
-            <div class="footer-column">
+            <div class="footer-section">
                 <h3>Contact Information</h3>
-                <p>Neath, Swansea, Wales, UK</p>
-                <p>+ Worldwide Customers</p>
-                <p>Phone: +44 7478773451</p>
-                <p>Email: joe@websiteanimation.co.uk</p>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Neath, Swansea, Wales, UK</li>
+                    <li><i class="fas fa-globe"></i> + Worldwide Customers</li>
+                    <li><i class="fas fa-phone"></i> +44 7478773451</li>
+                    <li><i class="fas fa-envelope"></i> joe@websiteanimation.co.uk</li>
+                </ul>
             </div>
-            <div class="footer-column">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
+        </div>
+        <div class="footer-social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Website Animation Co. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="whatsapp-chat">
-        <div class="whatsapp-toggle">
-            <i class="fab fa-whatsapp"></i>
-        </div>
-        <div class="whatsapp-box">
-            <div class="whatsapp-header">
-                <h3>WhatsApp Chat</h3>
-            </div>
-            <div class="whatsapp-body">
-                <input type="text" class="whatsapp-input" placeholder="Type your message...">
-                <button class="whatsapp-send">Send</button>
-            </div>
-        </div>
-    </div>
+    <a href="#" class="chat-button">Chat with us</a>
+    <a href="#" class="whatsapp-button"><i class="fab fa-whatsapp"></i> WhatsApp</a>
 
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
     <script>
-        // Top slideshow
-        const topSlides = document.querySelectorAll('.top-slide');
-        let currentTopSlide = 0;
+      // Top slideshow
+const topSlides = document.querySelectorAll('.top-slide');
+let currentTopSlide = 0;
 
-        function showTopSlide(n) {
-            topSlides[currentTopSlide].classList.remove('active');
-            currentTopSlide = (n + topSlides.length) % topSlides.length;
-            topSlides[currentTopSlide].classList.add('active');
-        }
+function showTopSlide(n) {
+    topSlides[currentTopSlide].classList.remove('active');
+    currentTopSlide = (n + topSlides.length) % topSlides.length;
+    topSlides[currentTopSlide].classList.add('active');
+}
 
-        setInterval(() => showTopSlide(currentTopSlide + 1), 5000);
+setInterval(() => showTopSlide(currentTopSlide + 1), 5000);
 
-        // Mobile project slideshow
-        const mobileSlides = document.querySelectorAll('.mobile-slide');
-        let currentMobileSlide = 0;
-        const prevMobileBtn = document.getElementById('prevMobile');
-        const nextMobileBtn = document.getElementById('nextMobile');
+// Mobile project slideshow
+const mobileSlides = document.querySelectorAll('.mobile-slide');
+let currentMobileSlide = 0;
+const prevMobileBtn = document.getElementById('prevMobile');
+const nextMobileBtn = document.getElementById('nextMobile');
 
-        function showMobileSlide(n) {
-            mobileSlides[currentMobileSlide].classList.remove('active');
-            currentMobileSlide = (n + mobileSlides.length) % mobileSlides.length;
-            mobileSlides[currentMobileSlide].classList.add('active');
-        }
+function showMobileSlide(n) {
+    mobileSlides[currentMobileSlide].classList.remove('active');
+    currentMobileSlide = (n + mobileSlides.length) % mobileSlides.length;
+    mobileSlides[currentMobileSlide].classList.add('active');
+}
 
-        prevMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide - 1));
-        nextMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide + 1));
+prevMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide - 1));
+nextMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide + 1));
 
-        // Film reels functionality
-        const reelSliders = document.querySelectorAll('.reel-slider');
-        reelSliders.forEach(slider => {
-            const videos = slider.querySelectorAll('.reel-video');
-            let currentIndex = 0;
+// Film reels functionality
+const reelSliders = document.querySelectorAll('.reel-slider');
+reelSliders.forEach(slider => {
+    const videos = slider.querySelectorAll('.reel-video');
+    let currentIndex = 0;
 
-            function updateReelVideo() {
-                slider.querySelector('.reel-videos').style.transform = `translateX(-${currentIndex * 33.33}%)`;
-            }
+    function updateReelVideo() {
+        slider.querySelector('.reel-videos').style.transform = `translateX(-${currentIndex * 33.33}%)`;
+    }
 
-            function cycleReelVideos() {
-                currentIndex = (currentIndex + 1) % videos.length;
-                updateReelVideo();
-            }
+    function cycleReelVideos() {
+        currentIndex = (currentIndex + 1) % videos.length;
+        updateReelVideo();
+    }
 
-            setInterval(cycleReelVideos, 5000);
+    setInterval(cycleReelVideos, 5000);
 
-            videos.forEach((video, index) => {
-                video.addEventListener('mouseenter', () => {
-                    if (index === 1) {
-                        video.muted = false;
-                    }
-                });
-
-                video.addEventListener('mouseleave', () => {
-                    if (index === 1) {
-                        video.muted = true;
-                    }
-                });
-            });
-        });
-
-        // Navbar scroll progress
-        const nav = document.querySelector('nav');
-        const navProgress = document.querySelector('.nav-progress');
-        const sections = document.querySelectorAll('section');
-        const sectionMenu = document.querySelector('.section-menu');
-
-        function updateNavbar() {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-
-            // Update progress bar
-                        const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
-            navProgress.style.width = `${scrollPercentage}%`;
-
-            // Move section menu
-            const sectionMenuWidth = sectionMenu.offsetWidth;
-            const maxLeftPosition = window.innerWidth - sectionMenuWidth;
-            const leftPosition = Math.max((scrollPercentage / 100) * maxLeftPosition, 0);
-            sectionMenu.style.left = `${leftPosition}px`;
-            sectionMenu.style.transform = 'translateX(0)';
-
-            // Highlight active section in menu
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop - nav.offsetHeight;
-                const sectionBottom = sectionTop + section.offsetHeight;
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    sectionMenu.querySelectorAll('a').forEach(link => link.classList.remove('active'));
-                    sectionMenu.querySelectorAll('a')[index].classList.add('active');
-                }
-            });
-
-            // Update lava lamp effect
-            const lavaLamps = document.querySelectorAll('.lava-lamp');
-            lavaLamps.forEach(lamp => {
-                const lavaBlob = lamp.querySelector('.lava-blob');
-                const yOffset = (scrollPosition / documentHeight) * 100;
-                lavaBlob.style.transform = `translateY(${yOffset}%) scale(${1 + yOffset/100})`;
-            });
-        }
-
-        window.addEventListener('scroll', updateNavbar);
-
-        // WhatsApp chat functionality
-        const whatsappToggle = document.querySelector('.whatsapp-toggle');
-        const whatsappBox = document.querySelector('.whatsapp-box');
-        whatsappToggle.addEventListener('click', () => {
-            whatsappBox.classList.toggle('active');
-        });
-
-        document.querySelector('.whatsapp-send').addEventListener('click', () => {
-            const message = document.querySelector('.whatsapp-input').value;
-            if (message) {
-                window.open(`https://wa.me/447478773451?text=${encodeURIComponent(message)}`, '_blank');
+    videos.forEach((video, index) => {
+        video.addEventListener('mouseenter', () => {
+            if (index === 1) {
+                video.muted = false;
             }
         });
+        video.addEventListener('mouseleave', () => {
+            if (index === 1) {
+                video.muted = true;
+            }
+        });
+    });
+});
 
-        // Form submission
-        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+// Navbar scroll effect and lava lamp animation
+function updateNavbarAndLavaLamp() {
+    const nav = document.querySelector('nav');
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
+    
+    document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
+    
+    if (scrollPosition > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+
+    const lavaLamps = document.querySelectorAll('.lava-lamp');
+    lavaLamps.forEach(lamp => {
+        const lavaBlob = lamp.querySelector('.lava-blob');
+        const yOffset = (scrollPosition / (documentHeight - windowHeight)) * 100;
+        lavaBlob.style.transform = `translateY(${yOffset}%) scale(${1 + yOffset/200})`;
+        lamp.style.backgroundPosition = `${yOffset}% 50%`;
+    });
+}
+
+window.addEventListener('scroll', updateNavbarAndLavaLamp);
+
+// Mobile project expansion
+const mobileBorder = document.querySelector('.mobile-border');
+mobileBorder.addEventListener('click', () => {
+    mobileBorder.classList.toggle('expanded');
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Page load animation
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '1';
+        section.style.transform = 'translateX(0)';
+    });
+    updateNavbarAndLavaLamp(); // Initialize lava lamp positions
+});
+
+// Page transition for main nav links
+document.querySelectorAll('nav a:not([href^="#"])').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('href');
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateX(-100%)';
+        setTimeout(() => {
+            window.location.href = target;
+        }, 500);
+    });
+});
+
+// Ensure elements load in from right to left
+function revealElements() {
+    const elements = document.querySelectorAll('section, .showcase-item, .film-production-video, .mobile-border, .reel-slider');
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        
+        if (elementTop < window.innerHeight && elementBottom > 0) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
+        } else {
+            element.style.opacity = '0';
+            element.style.transform = 'translateX(100%)';
+        }
+    });
+}
+
+window.addEventListener('scroll', revealElements);
+window.addEventListener('load', revealElements);
+
+// Chat functionality
+function toggleChatBox(boxClass) {
+    const chatBox = document.querySelector(boxClass);
+    chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
+}
+
+const chatButton = document.querySelector('.chat-button');
+chatButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleChatBox('.chat-box.email');
+});
+
+const whatsappButton = document.querySelector('.whatsapp-button');
+whatsappButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleChatBox('.chat-box.whatsapp');
+});
+
+function sendMessage(boxClass) {
+    const chatBox = document.querySelector(boxClass);
+    const input = chatBox.querySelector('input');
+    const message = input.value.trim();
+    if (message) {
+        const chatBody = chatBox.querySelector('.chat-box-body');
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        chatBody.appendChild(messageElement);
+        input.value = '';
+
+        if (boxClass === '.chat-box.email') {
+            // Send email logic here
+            console.log(`Sending email to joe@websiteanimation.co.uk: ${message}`);
+        } else if (boxClass === '.chat-box.whatsapp') {
+            window.open(`https://wa.me/447478773451?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    }
+}
+
+document.querySelectorAll('.chat-box-footer input').forEach(input => {
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
             e.preventDefault();
-            alert('Thank you for your message. We will get back to you soon!');
-            this.reset();
-        });
-
-        // Mobile project expansion
-        const mobileBorder = document.querySelector('.mobile-border');
-        mobileBorder.addEventListener('click', () => {
-            mobileBorder.classList.toggle('expanded');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Page load animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            document.querySelectorAll('section').forEach(section => {
-                section.style.opacity = '1';
-                section.style.transform = 'translateX(0)';
-            });
-        });
-
-        // Page transition for main nav links
-        document.querySelectorAll('nav a:not([href^="#"])').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = this.getAttribute('href');
-                document.body.style.opacity = '0';
-                document.body.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    window.location.href = target;
-                }, 500);
-            });
-        });
-
-        // Ensure elements load in from right to left
-        function revealElements() {
-            const elements = document.querySelectorAll('section, .showcase-item, .film-production-video, .mobile-border, .reel-slider');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementBottom = element.getBoundingClientRect().bottom;
-                
-                if (elementTop < window.innerHeight && elementBottom > 0) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateX(0)';
-                } else {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateX(100%)';
-                }
-            });
+            sendMessage(e.target.closest('.chat-box').classList.contains('email') ? '.chat-box.email' : '.chat-box.whatsapp');
         }
-
-        window.addEventListener('scroll', revealElements);
-        window.addEventListener('load', revealElements);
+    });
+});
     </script>
+
+<div class="chat-box email">
+    <div class="chat-box-header">Chat with us</div>
+    <div class="chat-box-body"></div>
+    <div class="chat-box-footer">
+        <input type="text" placeholder="Type your message...">
+    </div>
+</div>
+
+<div class="chat-box whatsapp">
+    <div class="chat-box-header">WhatsApp Chat</div>
+    <div class="chat-box-body"></div>
+    <div class="chat-box-footer">
+        <input type="text" placeholder="Type your message...">
+    </div>
+</div>
+
+
 </body>
 </html>
