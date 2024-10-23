@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-     :root {
+   :root {
     --primary-color: #6c5ce7;
     --secondary-color: #00cec9;
     --accent-color: #fd79a8;
     --background-color: #2d3436;
     --text-color: #ffffff;
-    --nav-bg: #ffffff;
-    --nav-bg-scrolled: #2d3436;
+    --nav-bg: #2d3436;
+    --nav-bg-scrolled: rgba(108, 92, 231, 0.65);
     --footer-bg: #1e272e;
 }
 
@@ -62,7 +62,7 @@ nav li {
 }
 
 nav a {
-    color: var(--background-color);
+    color: var(--secondary-color);
     text-decoration: none;
     font-size: 18px;
     transition: all 0.3s ease;
@@ -84,7 +84,7 @@ nav a:hover, nav a.active {
 }
 
 .nav-social a {
-    color: var(--background-color);
+    color: var(--secondary-color);
     font-size: 24px;
     transition: all 0.3s ease;
     margin-left: 15px;
@@ -103,8 +103,8 @@ nav.scrolled .nav-social a {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 3px;
-    background: var(--accent-color);
+    height: 2px;
+    background: #ffffff;
     width: 0;
     transition: width 0.3s ease;
 }
@@ -118,12 +118,13 @@ main {
 }
 
 .content-wrapper {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+    overflow: hidden;
 }
 
+/* Lava Lamp Effect */
 .lava-lamp {
     position: fixed;
     top: 0;
@@ -131,10 +132,18 @@ main {
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    opacity: 0.3;
-    background: linear-gradient(45deg, #2d3436, #6c5ce7, #00cec9, #fd79a8);
+    opacity: 0.4;
+    background: linear-gradient(45deg, 
+        #2d3436, 
+        #6c5ce7, 
+        #00cec9, 
+        #fd79a8,
+        #00b894,
+        #e17055
+    );
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 10s ease infinite;
+    filter: blur(20px);
 }
 
 @keyframes gradientBG {
@@ -158,21 +167,35 @@ main {
     width: 100%;
     height: 100px;
     background: radial-gradient(circle, var(--accent-color) 0%, rgba(253, 121, 168, 0) 70%);
-    filter: blur(30px);
-    transition: transform 0.5s ease;
+    filter: blur(40px);
+    animation: blobMove 8s ease-in-out infinite;
 }
 
+@keyframes blobMove {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(30%) scale(1.1); }
+}
+
+/* Slideshow and Spline Viewer */
 .top-slideshow, spline-viewer {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+    width: calc(100% - 40px);
+    max-width: 1600px;
+    margin: 120px auto 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 .top-slideshow {
-    height: 60vh;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 50px;
+    height: 65vh;
+    border: 5px solid var(--secondary-color);
+    background-color: var(--background-color);
+}
+
+spline-viewer {
+    height: 45vh;
+    border: 5px solid var(--accent-color);
+    background-color: var(--background-color);
 }
 
 .top-slide {
@@ -182,9 +205,14 @@ main {
     width: 100%;
     height: 100%;
     transition: left 0.5s ease;
+    /* Remove transform property here */
 }
 
-.top-slide.active { left: 0; }
+.top-slide.active { 
+    left: 0;
+    /* Remove transform property here */
+}
+
 
 .top-slide video {
     width: 100%;
@@ -212,14 +240,11 @@ main {
     z-index: 2;
 }
 
-spline-viewer {
-    height: 35vh;
-}
-
+/* Featured Projects and Showcase Grid */
 .featured-projects {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin: 40px 0;
 }
 
 .featured-project {
@@ -240,6 +265,7 @@ spline-viewer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    margin: 40px 0;
 }
 
 .showcase-item {
@@ -261,12 +287,15 @@ spline-viewer {
     border-radius: 5px;
 }
 
+/* Film Production and Mobile Projects */
 .film-production-container {
     display: flex;
     justify-content: space-between;
+    margin: 60px 0;
 }
 
-.film-production-videos, .mobile-projects {
+.film-production-videos, 
+.mobile-projects {
     width: 48%;
 }
 
@@ -304,13 +333,16 @@ spline-viewer {
 
 .mobile-slide {
     position: absolute;
-    top: 0; left: 100%;
+    top: 0;
+    left: 100%;
     width: 100%;
     height: 100%;
     transition: left 0.5s ease;
 }
 
-.mobile-slide.active { left: 0; }
+.mobile-slide.active { 
+    left: 0; 
+}
 
 .mobile-slide video {
     width: 100%;
@@ -344,11 +376,12 @@ spline-viewer {
     background-color: var(--secondary-color);
 }
 
+/* Reels Container */
 .reels-container {
     display: flex;
     justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 40px;
+    gap: 40px;
+    margin: 60px 0;
 }
 
 .reels-column {
@@ -368,45 +401,48 @@ spline-viewer {
 
 .reel-video {
     width: 30%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     transition: height 0.3s ease;
 }
 
 .reel-video:hover {
-    height: 300px;
+    height: 350px;
 }
 
 .middle-video {
     width: 40%;
-    height: 250px;
+    height: 300px;
 }
 
 .middle-video:hover {
-    height: 350px;
+    height: 400px;
 }
 
+/* Contact and Details Section */
 .details-section {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin: 60px 0;
+    gap: 40px;
 }
 
-.product-details, .contact-form {
+.product-details, 
+.contact-form {
     width: 48%;
-    padding: 30px;
+    padding: 40px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
+    font-size: 1.1em;
 }
 
-.product-details {
-    margin-bottom: 30px;
-}
-
-.product-details h2, .contact-form h2 {
+.product-details h2, 
+.contact-form h2 {
     color: var(--accent-color);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 2em;
 }
 
 .product-details ul {
@@ -414,9 +450,10 @@ spline-viewer {
 }
 
 .product-details li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
+    font-size: 1.1em;
 }
 
 .product-details li i {
@@ -427,13 +464,18 @@ spline-viewer {
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 15px;
+    margin-bottom: 25px;
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1.1em;
+}
+
+.contact-form textarea {
+    height: 200px;
+    resize: vertical;
 }
 
 .contact-form input::placeholder,
@@ -445,8 +487,8 @@ spline-viewer {
     background-color: var(--accent-color);
     color: #fff;
     border: none;
-    padding: 12px 25px;
-    font-size: 18px;
+    padding: 15px 30px;
+    font-size: 1.2em;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border-radius: 5px;
@@ -456,39 +498,59 @@ spline-viewer {
     background-color: var(--secondary-color);
 }
 
-.chat-button, .whatsapp-button {
+/* Chat and WhatsApp Buttons */
+.whatsapp-button {
     position: fixed;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    padding: 0;
+    bottom: 180px;
+    right: 35px;
+    background-color: #25D366;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
     z-index: 1000;
     cursor: pointer;
+    text-decoration: none;
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
-.chat-button {
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--primary-color);
-}
-
-.whatsapp-button {
-    bottom: 90px;
-    right: 20px;
-    background-color: #25D366;
-}
-
-.chat-button:hover, .whatsapp-button:hover {
+.whatsapp-button:hover {
     transform: scale(1.1);
 }
 
+.chat-button {
+    position: fixed;
+    width: auto;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 25px;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.chat-button:hover {
+    transform: scale(1.05);
+}
+
+/* Chat Box Styling */
 .chat-box {
     position: fixed;
     bottom: 80px;
@@ -496,7 +558,7 @@ spline-viewer {
     width: 300px;
     height: 400px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     display: none;
     flex-direction: column;
@@ -505,7 +567,7 @@ spline-viewer {
 }
 
 .chat-box-header {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: #fff;
     padding: 15px;
     font-weight: bold;
@@ -517,6 +579,20 @@ spline-viewer {
     padding: 15px;
     overflow-y: auto;
     background-color: #f0f0f0;
+}
+
+.chat-box-body p {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.chat-box-body p.user-message {
+    margin-left: auto;
+    background-color: var(--secondary-color);
+    color: #fff;
 }
 
 .chat-box-footer {
@@ -533,17 +609,19 @@ spline-viewer {
     font-size: 14px;
 }
 
+/* Footer Styling */
 footer {
     background-color: var(--footer-bg);
     color: #fff;
     padding: 50px;
+    margin-top: 50px;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -557,6 +635,7 @@ footer {
     color: var(--secondary-color);
     margin-bottom: 20px;
     font-weight: 700;
+    font-size: 1.5em;
 }
 
 .footer-section ul {
@@ -603,30 +682,244 @@ footer {
     transform: scale(1.2);
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        padding: 0 30px;
+    }
+    
+    .top-slideshow,
+    spline-viewer {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+    }
+
+    .top-slideshow {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    .featured-projects,
+    .film-production-container,
+    .reels-container {
+        flex-direction: column;
+    }
+
+    .featured-project,
+    .film-production-videos,
+    .mobile-projects,
+    .reels-column {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .details-section {
+        flex-direction: column;
+    }
+
+    .product-details,
+    .contact-form {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
+        padding: 15px;
     }
+    
     nav ul {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    .featured-projects, .film-production-container, .reels-container, .details-section {
-        flex-direction: column;
+    
+    nav li {
+        margin: 5px 10px;
     }
-    .featured-project, .film-production-videos, .mobile-projects, .reels-column, .product-details, .contact-form {
-        width: 100%;
+    
+    .top-slideshow {
+        margin-top: 120px;
+        height: 40vh;
     }
-    .content-wrapper {
-        max-width: 100%;
-        padding: 0 20px;
+
+    spline-viewer {
+        height: 35vh;
     }
+
+    .mobile-border.expanded {
+        width: 90%;
+    }
+
     .lava-lamp {
         width: 50px;
     }
-    .top-slideshow, spline-viewer {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+
+    .whatsapp-button {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+        right: 20px;
+        bottom: 160px;
+    }
+
+    .chat-button {
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 20px;
+    }
+
+    .chat-button span {
+        display: none;
+    }
+
+    .chat-box {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+
+    .footer-section {
+        flex: 100%;
+        margin: 20px 0;
+    }
+
+    .reel-video {
+        height: 200px;
+    }
+
+    .reel-video:hover {
+        height: 250px;
+    }
+
+    .middle-video {
+        height: 220px;
+    }
+
+    .middle-video:hover {
+        height: 270px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-slideshow {
+        height: 30vh;
+        margin-top: 140px;
+    }
+
+    spline-viewer {
+        height: 25vh;
+    }
+
+    .nav-social {
+        display: none;
+    }
+
+    .mobile-border {
+        width: 200px;
+        height: 400px;
+    }
+
+    .product-details,
+    .contact-form {
+        padding: 20px;
+    }
+
+    .footer-social-icons a {
+        font-size: 24px;
+        margin: 0 10px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Print Styles */
+@media print {
+    .chat-button,
+    .whatsapp-button,
+    .chat-box,
+    .nav-social,
+    .mobile-controls {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    .top-slideshow,
+    spline-viewer,
+    .film-production-video iframe,
+    .mobile-border,
+    .reel-slider {
+        display: none;
+    }
+
+    .content-wrapper {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .featured-project,
+    .showcase-item,
+    .product-details,
+    .contact-form {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        background: none;
+        border: 1px solid #ddd;
+    }
+
+    footer {
+        background: none;
+        color: #000;
+        border-top: 1px solid #ddd;
     }
 }
 
@@ -859,199 +1152,213 @@ footer {
         </div>
     </footer>
 
+<a href="#" class="whatsapp-button">
+    <i class="fab fa-whatsapp"></i>
+</a>
     <a href="#" class="chat-button">Chat with us</a>
-    <a href="#" class="whatsapp-button"><i class="fab fa-whatsapp"></i> WhatsApp</a>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
     <script>
-      // Top slideshow
-const topSlides = document.querySelectorAll('.top-slide');
-let currentTopSlide = 0;
-
-function showTopSlide(n) {
-    topSlides[currentTopSlide].classList.remove('active');
-    currentTopSlide = (n + topSlides.length) % topSlides.length;
-    topSlides[currentTopSlide].classList.add('active');
-}
-
-setInterval(() => showTopSlide(currentTopSlide + 1), 5000);
-
-// Mobile project slideshow
-const mobileSlides = document.querySelectorAll('.mobile-slide');
-let currentMobileSlide = 0;
-const prevMobileBtn = document.getElementById('prevMobile');
-const nextMobileBtn = document.getElementById('nextMobile');
-
-function showMobileSlide(n) {
-    mobileSlides[currentMobileSlide].classList.remove('active');
-    currentMobileSlide = (n + mobileSlides.length) % mobileSlides.length;
-    mobileSlides[currentMobileSlide].classList.add('active');
-}
-
-prevMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide - 1));
-nextMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide + 1));
-
-// Film reels functionality
-const reelSliders = document.querySelectorAll('.reel-slider');
-reelSliders.forEach(slider => {
-    const videos = slider.querySelectorAll('.reel-video');
-    let currentIndex = 0;
-
-    function updateReelVideo() {
-        slider.querySelector('.reel-videos').style.transform = `translateX(-${currentIndex * 33.33}%)`;
-    }
-
-    function cycleReelVideos() {
-        currentIndex = (currentIndex + 1) % videos.length;
-        updateReelVideo();
-    }
-
-    setInterval(cycleReelVideos, 5000);
-
-    videos.forEach((video, index) => {
-        video.addEventListener('mouseenter', () => {
-            if (index === 1) {
-                video.muted = false;
-            }
-        });
-        video.addEventListener('mouseleave', () => {
-            if (index === 1) {
-                video.muted = true;
-            }
-        });
-    });
-});
-
-// Navbar scroll effect and lava lamp animation
-function updateNavbarAndLavaLamp() {
-    const nav = document.querySelector('nav');
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
+     // Initialize all necessary elements
+document.addEventListener('DOMContentLoaded', function() {
     
-    document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
-    
-    if (scrollPosition > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+    // Top slideshow functionality
+    const topSlides = document.querySelectorAll('.top-slide');
+    let currentTopSlide = 0;
+
+    function showTopSlide(n) {
+        topSlides[currentTopSlide].classList.remove('active');
+        currentTopSlide = (n + topSlides.length) % topSlides.length;
+        topSlides[currentTopSlide].classList.add('active');
     }
 
-    const lavaLamps = document.querySelectorAll('.lava-lamp');
-    lavaLamps.forEach(lamp => {
-        const lavaBlob = lamp.querySelector('.lava-blob');
-        const yOffset = (scrollPosition / (documentHeight - windowHeight)) * 100;
-        lavaBlob.style.transform = `translateY(${yOffset}%) scale(${1 + yOffset/200})`;
-        lamp.style.backgroundPosition = `${yOffset}% 50%`;
-    });
-}
+    setInterval(() => showTopSlide(currentTopSlide + 1), 5000);
 
-window.addEventListener('scroll', updateNavbarAndLavaLamp);
+    // Mobile project slideshow
+    const mobileSlides = document.querySelectorAll('.mobile-slide');
+    let currentMobileSlide = 0;
+    const prevMobileBtn = document.getElementById('prevMobile');
+    const nextMobileBtn = document.getElementById('nextMobile');
 
-// Mobile project expansion
-const mobileBorder = document.querySelector('.mobile-border');
-mobileBorder.addEventListener('click', () => {
-    mobileBorder.classList.toggle('expanded');
-});
+    function showMobileSlide(n) {
+        mobileSlides[currentMobileSlide].classList.remove('active');
+        currentMobileSlide = (n + mobileSlides.length) % mobileSlides.length;
+        mobileSlides[currentMobileSlide].classList.add('active');
+    }
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    if(prevMobileBtn && nextMobileBtn) {
+        prevMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide - 1));
+        nextMobileBtn.addEventListener('click', () => showMobileSlide(currentMobileSlide + 1));
+    }
+
+    // Film reels functionality
+    const reelSliders = document.querySelectorAll('.reel-slider');
+    reelSliders.forEach(slider => {
+        const videos = slider.querySelectorAll('.reel-video');
+        let currentIndex = 0;
+
+        function updateReelVideo() {
+            slider.querySelector('.reel-videos').style.transform = `translateX(-${currentIndex * 33.33}%)`;
+        }
+
+        function cycleReelVideos() {
+            currentIndex = (currentIndex + 1) % videos.length;
+            updateReelVideo();
+        }
+
+        setInterval(cycleReelVideos, 5000);
+
+        videos.forEach((video, index) => {
+            video.addEventListener('mouseenter', () => {
+                if (index === 1) { // Middle video
+                    video.muted = false;
+                }
+            });
+            video.addEventListener('mouseleave', () => {
+                if (index === 1) {
+                    video.muted = true;
+                }
+            });
         });
     });
-});
 
-// Page load animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    document.querySelectorAll('section').forEach(section => {
-        section.style.opacity = '1';
-        section.style.transform = 'translateX(0)';
-    });
-    updateNavbarAndLavaLamp(); // Initialize lava lamp positions
-});
-
-// Page transition for main nav links
-document.querySelectorAll('nav a:not([href^="#"])').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = this.getAttribute('href');
-        document.body.style.opacity = '0';
-        document.body.style.transform = 'translateX(-100%)';
-        setTimeout(() => {
-            window.location.href = target;
-        }, 500);
-    });
-});
-
-// Ensure elements load in from right to left
-function revealElements() {
-    const elements = document.querySelectorAll('section, .showcase-item, .film-production-video, .mobile-border, .reel-slider');
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
+    // Navbar scroll effect and lava lamp animation
+    function updateNavbarAndLavaLamp() {
+        const nav = document.querySelector('nav');
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
         
-        if (elementTop < window.innerHeight && elementBottom > 0) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateX(0)';
+        document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
+        
+        if (scrollPosition > 50) {
+            nav.classList.add('scrolled');
         } else {
-            element.style.opacity = '0';
-            element.style.transform = 'translateX(100%)';
-        }
-    });
-}
-
-window.addEventListener('scroll', revealElements);
-window.addEventListener('load', revealElements);
-
-// Chat functionality
-function toggleChatBox(boxClass) {
-    const chatBox = document.querySelector(boxClass);
-    chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
-}
-
-const chatButton = document.querySelector('.chat-button');
-chatButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleChatBox('.chat-box.email');
-});
-
-const whatsappButton = document.querySelector('.whatsapp-button');
-whatsappButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleChatBox('.chat-box.whatsapp');
-});
-
-function sendMessage(boxClass) {
-    const chatBox = document.querySelector(boxClass);
-    const input = chatBox.querySelector('input');
-    const message = input.value.trim();
-    if (message) {
-        const chatBody = chatBox.querySelector('.chat-box-body');
-        const messageElement = document.createElement('p');
-        messageElement.textContent = message;
-        chatBody.appendChild(messageElement);
-        input.value = '';
-
-        if (boxClass === '.chat-box.email') {
-            // Send email logic here
-            console.log(`Sending email to joe@websiteanimation.co.uk: ${message}`);
-        } else if (boxClass === '.chat-box.whatsapp') {
-            window.open(`https://wa.me/447478773451?text=${encodeURIComponent(message)}`, '_blank');
+            nav.classList.remove('scrolled');
         }
     }
-}
 
-document.querySelectorAll('.chat-box-footer input').forEach(input => {
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+    window.addEventListener('scroll', updateNavbarAndLavaLamp);
+
+    // Mobile project expansion
+    const mobileBorder = document.querySelector('.mobile-border');
+    if(mobileBorder) {
+        mobileBorder.addEventListener('click', () => {
+            mobileBorder.classList.toggle('expanded');
+        });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            sendMessage(e.target.closest('.chat-box').classList.contains('email') ? '.chat-box.email' : '.chat-box.whatsapp');
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Contact form handling
+    const contactForm = document.querySelector('.contact-form form');
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const mailtoLink = `mailto:joe@websiteanimation.co.uk?subject=Website Inquiry&body=Name: ${formData.get('name')}%0D%0AEmail: ${formData.get('email')}%0D%0AMessage: ${formData.get('message')}`;
+            window.location.href = mailtoLink;
+        });
+    }
+
+    // Chat functionality
+    const chatButton = document.querySelector('.chat-button');
+    const chatBox = document.querySelector('.chat-box');
+    let chatOpen = false;
+
+    function toggleChat(e) {
+        if(e) e.preventDefault();
+        chatOpen = !chatOpen;
+        chatBox.style.display = chatOpen ? 'flex' : 'none';
+    }
+
+    if(chatButton && chatBox) {
+        chatButton.addEventListener('click', toggleChat);
+
+        // Chat message handling
+        const chatInput = chatBox.querySelector('.chat-box-footer input');
+        
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if(message) {
+                // Add message to chat
+                const messageElement = document.createElement('p');
+                messageElement.classList.add('user-message');
+                messageElement.textContent = message;
+                chatBox.querySelector('.chat-box-body').appendChild(messageElement);
+
+                // Send via email
+                const mailtoLink = `mailto:joe@websiteanimation.co.uk?subject=Chat Message&body=${encodeURIComponent(message)}`;
+                window.open(mailtoLink, '_blank');
+
+                // Clear input
+                chatInput.value = '';
+            }
         }
+
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                e.preventDefault();
+                sendChatMessage();
+            }
+        });
+    }
+
+    // Page load animations
+    function revealElements() {
+        const elements = document.querySelectorAll('section, .showcase-item, .film-production-video, .mobile-border, .reel-slider');
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+            
+            if (elementTop < window.innerHeight && elementBottom > 0) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateX(0)';
+            } else {
+                element.style.opacity = '0';
+                element.style.transform = 'translateX(100%)';
+            }
+        });
+    }
+
+// WhatsApp button click handler
+document.querySelector('.whatsapp-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://wa.me/+447478773451', '_blank'); // Corrected WhatsApp link
+});
+
+    window.addEventListener('scroll', revealElements);
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+        revealElements();
+        updateNavbarAndLavaLamp();
+    });
+
+    // Page transition effects
+    document.querySelectorAll('nav a:not([href^="#"])').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if(!this.classList.contains('active')) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                document.body.style.opacity = '0';
+                document.body.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    window.location.href = target;
+                }, 500);
+            }
+        });
     });
 });
     </script>
