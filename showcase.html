@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="showcaseStyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
     <div class="lava-lamp lava-lamp-left">
         <div class="lava-blob"></div>
     </div>
@@ -17,22 +18,21 @@
         <div class="lava-blob"></div>
     </div>
     
-   <nav>
-    <ul>
-        <li><a href="index.html" class="page-transition-link active">Home</a></li>
-        <li><a href="showcase.html" class="page-transition-link">Showcase</a></li>
-        <li><a href="about.html" class="page-transition-link">About</a></li>
-        <li><a href="services.html" class="page-transition-link">Services</a></li>
-        <li><a href="contact.html" class="page-transition-link">Contact</a></li>
-    </ul>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="page-transition-link active">Home</a></li>
+            <li><a href="showcase.html" class="page-transition-link">Showcase</a></li>
+            <li><a href="about.html" class="page-transition-link">About</a></li>
+            <li><a href="services.html" class="page-transition-link">Services</a></li>
+            <li><a href="contact.html" class="page-transition-link">Contact</a></li>
+        </ul>
         <div class="nav-social">
             <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="nav-progress"></div>
     </nav>
-
-    <main>
+    <main id="main-content">
         <div class="content-wrapper">
             <section id="home" class="top-slideshow">
                 <div class="top-slide active">
@@ -97,7 +97,6 @@
                     </div>
                 </div>
             </section>
-
             <spline-viewer url="https://prod.spline.design/G-MtdYgsebLntpma/scene.splinecode"></spline-viewer>
 
             <section id="film-production" class="film-production-container">
@@ -174,7 +173,6 @@
                     </div>
                 </div>
             </section>
-
             <section id="contact" class="details-section">
                 <div class="product-details">
                     <h2>Product Details</h2>
@@ -209,13 +207,13 @@
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-   <ul>
-        <li><a href="index.html" class="page-transition-link active">Home</a></li>
-        <li><a href="showcase.html" class="page-transition-link">Showcase</a></li>
-        <li><a href="about.html" class="page-transition-link">About</a></li>
-        <li><a href="services.html" class="page-transition-link">Services</a></li>
-        <li><a href="contact.html" class="page-transition-link">Contact</a></li>
-    </ul>
+                <ul>
+                    <li><a href="index.html" class="page-transition-link">Home</a></li>
+                    <li><a href="showcase.html" class="page-transition-link">Showcase</a></li>
+                    <li><a href="about.html" class="page-transition-link">About</a></li>
+                    <li><a href="services.html" class="page-transition-link">Services</a></li>
+                    <li><a href="contact.html" class="page-transition-link">Contact</a></li>
+                </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact Information</h3>
@@ -236,16 +234,40 @@
         </div>
     </footer>
 
-<a href="#" class="whatsapp-button">
-    <i class="fab fa-whatsapp"></i>
-</a>
-    <a href="#" class="chat-button">Chat with us</a>
+    <a href="#" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp Us</span>
+    </a>
+    <a href="#" class="chat-button">
+        <i class="fas fa-comment"></i>
+        <span>Chat with us</span>
+    </a>
+
+    <div class="chat-box email">
+        <div class="chat-box-header">Chat with us</div>
+        <div class="chat-box-body"></div>
+        <div class="chat-box-footer">
+            <input type="text" placeholder="Type your message...">
+        </div>
+    </div>
+
+    <div class="chat-box whatsapp">
+        <div class="chat-box-header">WhatsApp Chat</div>
+        <div class="chat-box-body"></div>
+        <div class="chat-box-footer">
+            <input type="text" placeholder="Type your message...">
+        </div>
+    </div>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
-    <script>
+
+<script>
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Page Transitions
-    const transitionLinks = document.querySelectorAll('.page-transition-link');
+        // ==================
+    // PAGE TRANSITIONS
+    // ==================
+    const transitionLinks = document.querySelectorAll('nav a, .footer-section a');
     
     transitionLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -253,13 +275,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const target = this.getAttribute('href');
                 
-                // Navbar transition
+                // Get all elements
                 const navbar = document.querySelector('nav');
-                navbar.style.animation = 'navExit 0.5s ease forwards';
-                
-                // Content transition
+                const footer = document.querySelector('footer');
                 const mainContent = document.querySelector('main');
-                mainContent.style.animation = 'contentExit 0.5s ease forwards';
+                const allPageElements = mainContent.querySelectorAll('section, .featured-project, .film-production-video, .mobile-border, .reel-item, .product-details, .contact-form');
+                
+                // Navbar transition - up and fade
+                navbar.style.cssText = `
+                    animation: navExitUp 0.5s ease forwards;
+                    transform-origin: top;
+                `;
+                
+                // Footer transition - down and fade
+                footer.style.cssText = `
+                    animation: footerExitDown 0.5s ease forwards;
+                    transform-origin: bottom;
+                `;
+                
+                // All content elements - left and fade
+                allPageElements.forEach(element => {
+                    element.style.cssText = `
+                        animation: contentExitLeft 0.5s ease forwards;
+                        transform-origin: left;
+                    `;
+                });
 
                 // Navigate after animation
                 setTimeout(() => {
@@ -269,8 +309,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Rest of your existing JavaScript remains the same
-    // Top slideshow functionality
+
+
+    // ==================
+    // NAVIGATION ACTIVE STATE
+    // ==================
+    document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === window.location.pathname.split('/').pop()) {
+            link.classList.add('active');
+        }
+    });
+
+    // ==================
+    // TOP SLIDESHOW
+    // ==================
     const topSlides = document.querySelectorAll('.top-slide');
     let currentTopSlide = 0;
 
@@ -284,7 +337,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(() => showTopSlide(currentTopSlide + 1), 5000);
     }
 
-    // Your existing mobile project functionality
+    // ==================
+    // MOBILE PROJECTS
+    // ==================
     const mobileBorder = document.querySelector('.mobile-border');
     const mobileSlides = document.querySelectorAll('.mobile-slide');
     let currentMobileSlide = 0;
@@ -297,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Your existing mobile slide functions
     function showMobileSlide(n) {
         mobileSlides[currentMobileSlide].classList.remove('active');
         currentMobileSlide = (n + mobileSlides.length) % mobileSlides.length;
@@ -315,7 +369,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Enhanced Chat Functionality
+    // ==================
+    // NAVBAR SCROLL EFFECT
+    // ==================
+    function updateNavbar() {
+        const nav = document.querySelector('nav');
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
+        
+        // Update progress bar
+        document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
+        
+        // Add/remove scrolled class
+        if (scrollPosition > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }
+
+    // ==================
+    // CHAT FUNCTIONALITY
+    // ==================
     const setupChatBox = (buttonClass, boxClass, type) => {
         const button = document.querySelector(`.${buttonClass}`);
         const chatBox = document.querySelector(`.chat-box.${type}`);
@@ -340,11 +417,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     const message = input.value.trim();
                     if (message) {
+                        // Add message to chat box
+                        const messageElement = document.createElement('p');
+                        messageElement.classList.add('user-message');
+                        messageElement.textContent = message;
+                        chatBox.querySelector('.chat-box-body').appendChild(messageElement);
+
+                        // Handle message based on type
                         if (type === 'email') {
                             window.location.href = `mailto:joe@websiteanimation.co.uk?subject=Chat Message&body=${encodeURIComponent(message)}`;
                         } else {
                             window.open(`https://wa.me/447478773451?text=${encodeURIComponent(message)}`, '_blank');
                         }
+
                         input.value = '';
                     }
                 }
@@ -356,53 +441,72 @@ document.addEventListener('DOMContentLoaded', function() {
     setupChatBox('chat-button', 'email', 'email');
     setupChatBox('whatsapp-button', 'whatsapp', 'whatsapp');
 
-    // Navbar scroll effect
-    function updateNavbar() {
-        const nav = document.querySelector('nav');
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
-        
-        document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
-        
-        if (scrollPosition > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
+    // ==================
+    // CONTACT FORM
+    // ==================
+    const contactForm = document.querySelector('.contact-form form');
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const mailtoLink = `mailto:joe@websiteanimation.co.uk?subject=Website Inquiry&body=Name: ${formData.get('name')}%0D%0AEmail: ${formData.get('email')}%0D%0AMessage: ${formData.get('message')}`;
+            window.location.href = mailtoLink;
+        });
     }
 
-    // Event listeners
+    // ==================
+    // SMOOTH SCROLLING
+    // ==================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ==================
+    // VIDEO HANDLING
+    // ==================
+    const videos = document.querySelectorAll('video');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play();
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    videos.forEach(video => {
+        observer.observe(video);
+    });
+
+    // ==================
+    // EVENT LISTENERS
+    // ==================
     window.addEventListener('scroll', () => {
         requestAnimationFrame(updateNavbar);
     });
 
-    // Initialize on load
     window.addEventListener('load', () => {
         updateNavbar();
+        document.body.classList.add('loaded');
     });
+
+    // ==================
+    // INITIALIZATION
+    // ==================
+    updateNavbar();
 });
 
 
-    </script>
-
-<div class="chat-box email">
-    <div class="chat-box-header">Chat with us</div>
-    <div class="chat-box-body"></div>
-    <div class="chat-box-footer">
-        <input type="text" placeholder="Type your message...">
-    </div>
-</div>
-
-<div class="chat-box whatsapp">
-    <div class="chat-box-header">WhatsApp Chat</div>
-    <div class="chat-box-body"></div>
-    <div class="chat-box-footer">
-        <input type="text" placeholder="Type your message...">
-    </div>
-</div>
-
+</script>
 
 </body>
 </html>
