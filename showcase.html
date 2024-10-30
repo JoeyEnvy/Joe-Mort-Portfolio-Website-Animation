@@ -64,18 +64,27 @@
                 </div>
             </section>
 
-            <section id="featured-projects" class="featured-projects">
-                <div class="featured-project">
-                    <img src="featured-project-1.jpg" alt="Featured Project 1">
-                    <h3>E-commerce Platform</h3>
-                    <p>A cutting-edge online shopping experience with seamless payment integration and responsive design.</p>
-                </div>
-                <div class="featured-project">
-                    <img src="featured-project-2.jpg" alt="Featured Project 2">
-                    <h3>Portfolio Showcase</h3>
-                    <p>An elegant and interactive portfolio website for a professional photographer, featuring dynamic galleries and smooth transitions.</p>
-                </div>
-            </section>
+
+
+<section class="sex-pistols-section">
+    <div class="sex-pistols-left">
+        <!-- Placeholder content -->
+        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <h2>Left Column Content</h2>
+        </div>
+    </div>
+    
+    <div class="sex-pistols-right" id="pistolsImageContainer">
+        <img src="website template content/Sex Pistols Expose Music/1.png" class="pistols-image" alt="Sex Pistols 1" style="animation-delay: 0s">
+        <img src="website template content/Sex Pistols Expose Music/2.png" class="pistols-image" alt="Sex Pistols 2" style="animation-delay: 0.1s">
+        <img src="website template content/Sex Pistols Expose Music/3.png" class="pistols-image" alt="Sex Pistols 3" style="animation-delay: 0.2s">
+        <img src="website template content/Sex Pistols Expose Music/4.png" class="pistols-image" alt="Sex Pistols 4" style="animation-delay: 0.3s">
+    </div>
+</section>
+
+
+
+
 
             <section id="projects" class="showcase-section">
                 <h1>Projects</h1>
@@ -139,40 +148,92 @@
                 </div>
             </section>
 
-            <section id="reels" class="reels-container">
+   <section id="reels" class="reels-container">
                 <div class="reels-column">
                     <h2>The Shining Reels</h2>
-                    <div class="reel-slider">
-                        <div class="reel-videos">
-                            <video class="reel-video" loop muted playsinline>
+                    <div class="reel-videos">
+                        <div class="reel-video-wrapper">
+                            <video class="reel-video" loop playsinline>
                                 <source src="film production/shining/1.mp4" type="video/mp4">
                             </video>
-                            <video class="reel-video middle-video" loop muted playsinline>
+                            <div class="reel-overlay">
+                                <div class="reel-controls">
+                                    <button class="play-pause">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="audio-control">
+                                        <i class="fas fa-volume-mute"></i>
+                                    </button>
+                                    <button class="fullscreen">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reel-video-wrapper">
+                            <video class="reel-video" loop playsinline>
                                 <source src="film production/shining/2.mp4" type="video/mp4">
                             </video>
-                            <video class="reel-video" loop muted playsinline>
-                                <source src="film production/shining/3.mp4" type="video/mp4">
-                            </video>
+                            <div class="reel-overlay">
+                                <div class="reel-controls">
+                                    <button class="play-pause">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="audio-control">
+                                        <i class="fas fa-volume-mute"></i>
+                                    </button>
+                                    <button class="fullscreen">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="reels-column">
                     <h2>Spider-Man Reels</h2>
-                    <div class="reel-slider">
-                        <div class="reel-videos">
-                            <video class="reel-video" loop muted playsinline>
+                    <div class="reel-videos">
+                        <div class="reel-video-wrapper">
+                            <video class="reel-video" loop playsinline>
                                 <source src="film production/spiderman/1.mp4" type="video/mp4">
                             </video>
-                            <video class="reel-video middle-video" loop muted playsinline>
+                            <div class="reel-overlay">
+                                <div class="reel-controls">
+                                    <button class="play-pause">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="audio-control">
+                                        <i class="fas fa-volume-mute"></i>
+                                    </button>
+                                    <button class="fullscreen">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reel-video-wrapper">
+                            <video class="reel-video" loop playsinline>
                                 <source src="film production/spiderman/2.mp4" type="video/mp4">
                             </video>
-                            <video class="reel-video" loop muted playsinline>
-                                <source src="film production/spiderman/3.mp4" type="video/mp4">
-                            </video>
+                            <div class="reel-overlay">
+                                <div class="reel-controls">
+                                    <button class="play-pause">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="audio-control">
+                                        <i class="fas fa-volume-mute"></i>
+                                    </button>
+                                    <button class="fullscreen">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <section id="contact" class="details-section">
                 <div class="product-details">
                     <h2>Product Details</h2>
@@ -198,6 +259,7 @@
             </section>
         </div>
     </main>
+</div>
 
     <footer>
         <div class="footer-content">
@@ -262,9 +324,8 @@
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.32/build/spline-viewer.js"></script>
 
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
-        // ==================
+    // ==================
     // PAGE TRANSITIONS
     // ==================
     const transitionLinks = document.querySelectorAll('nav a, .footer-section a');
@@ -308,8 +369,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-
 
     // ==================
     // NAVIGATION ACTIVE STATE
@@ -379,10 +438,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const documentHeight = document.documentElement.scrollHeight;
         const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
         
-        // Update progress bar
         document.querySelector('.nav-progress').style.width = `${scrollPercentage}%`;
         
-        // Add/remove scrolled class
         if (scrollPosition > 50) {
             nav.classList.add('scrolled');
         } else {
@@ -404,7 +461,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 isOpen = !isOpen;
                 chatBox.style.display = isOpen ? 'flex' : 'none';
                 
-                // Close other chat box if open
                 const otherBox = document.querySelector(`.chat-box.${type === 'email' ? 'whatsapp' : 'email'}`);
                 if (otherBox) {
                     otherBox.style.display = 'none';
@@ -417,13 +473,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     const message = input.value.trim();
                     if (message) {
-                        // Add message to chat box
                         const messageElement = document.createElement('p');
                         messageElement.classList.add('user-message');
                         messageElement.textContent = message;
                         chatBox.querySelector('.chat-box-body').appendChild(messageElement);
 
-                        // Handle message based on type
                         if (type === 'email') {
                             window.location.href = `mailto:joe@websiteanimation.co.uk?subject=Chat Message&body=${encodeURIComponent(message)}`;
                         } else {
@@ -470,6 +524,124 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==================
+    // REELS FUNCTIONALITY
+    // ==================
+    const videoWrappers = document.querySelectorAll('.reel-video-wrapper');
+    
+    // Video arrays
+    const shiningVideos = [
+        'film production/shining/1.mp4',
+        'film production/shining/2.mp4',
+        'film production/shining/3.mp4',
+        'film production/shining/4.mp4',
+        'film production/shining/5.mp4'
+    ];
+
+    const spidermanVideos = [
+        'film production/spiderman/1.mp4',
+        'film production/spiderman/2.mp4',
+        'film production/spiderman/3.mp4',
+        'film production/spiderman/4.mp4',
+        'film production/spiderman/5.mp4',
+        'film production/spiderman/6.mp4',
+        'film production/spiderman/7.mp4',
+        'film production/spiderman/8.mp4'
+    ];
+
+    // Setup video controls and behavior
+    videoWrappers.forEach(wrapper => {
+        const video = wrapper.querySelector('.reel-video');
+        const playPauseBtn = wrapper.querySelector('.play-pause');
+        const audioBtn = wrapper.querySelector('.audio-control');
+        const fullscreenBtn = wrapper.querySelector('.fullscreen');
+        const playIcon = playPauseBtn.querySelector('i');
+        const audioIcon = audioBtn.querySelector('i');
+        
+        // Set initial states
+        video.muted = true;
+        
+        // Hover functionality
+        wrapper.addEventListener('mouseenter', () => {
+            video.play();
+            playIcon.classList.replace('fa-play', 'fa-pause');
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            video.pause();
+            playIcon.classList.replace('fa-pause', 'fa-play');
+            video.muted = true;
+            audioIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+        });
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (video.paused) {
+                video.play();
+                playIcon.classList.replace('fa-play', 'fa-pause');
+            } else {
+                video.pause();
+                playIcon.classList.replace('fa-pause', 'fa-play');
+            }
+        });
+
+        // Audio functionality
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.muted = !video.muted;
+            audioIcon.classList.replace(
+                video.muted ? 'fa-volume-up' : 'fa-volume-mute',
+                video.muted ? 'fa-volume-mute' : 'fa-volume-up'
+            );
+        });
+
+        // Fullscreen functionality
+        fullscreenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!document.fullscreenElement) {
+                video.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    });
+
+    // Setup video rotation
+    function setupVideoRotation(wrappers, videoList) {
+        let currentIndices = [0, Math.floor(videoList.length / 2)]; // Start at different points
+
+        wrappers.forEach((wrapper, index) => {
+            const video = wrapper.querySelector('.reel-video');
+            video.muted = true;
+
+            video.addEventListener('ended', function() {
+                // Find next available index that's not playing in the other video
+                let nextIndex;
+                do {
+                    currentIndices[index] = (currentIndices[index] + 1) % videoList.length;
+                    nextIndex = currentIndices[index];
+                } while (currentIndices.filter((_, i) => i !== index).includes(nextIndex));
+
+                video.src = videoList[nextIndex];
+                video.play();
+            });
+
+            // Start playing from different initial positions
+            video.src = videoList[currentIndices[index]];
+            video.play().catch(function(error) {
+                console.log("Video autoplay failed:", error);
+            });
+        });
+    }
+
+    // Initialize video rotation
+    const shiningWrappers = Array.from(document.querySelectorAll('.reels-column:first-child .reel-video-wrapper'));
+    const spidermanWrappers = Array.from(document.querySelectorAll('.reels-column:last-child .reel-video-wrapper'));
+
+    setupVideoRotation(shiningWrappers, shiningVideos);
+    setupVideoRotation(spidermanWrappers, spidermanVideos);
+
+    // ==================
     // VIDEO HANDLING
     // ==================
     const videos = document.querySelectorAll('video');
@@ -505,8 +677,150 @@ document.addEventListener('DOMContentLoaded', function() {
     updateNavbar();
 });
 
+//sexpistolsexpose 
+
+
+// Sex Pistols Image Gallery Controller
+const pistolsImageContainer = document.getElementById('pistolsImageContainer');
+let currentPistolsImages = [1, 2, 3, 4];
+const totalPistolsImages = 21;
+let isTransitioning = false;
+
+// Function to get random unique image numbers
+function getUniqueRandomImages() {
+    const usedNumbers = new Set(currentPistolsImages);
+    const newImages = [];
+    
+    while (newImages.length < 4) {
+        const newNum = Math.floor(Math.random() * totalPistolsImages) + 1;
+        if (!usedNumbers.has(newNum) && !newImages.includes(newNum)) {
+            newImages.push(newNum);
+            usedNumbers.add(newNum);
+        }
+    }
+    
+    return newImages;
+}
+
+// Function to animate image change
+function animateImageChange(imageElement, newImageNum) {
+    return new Promise((resolve) => {
+        imageElement.style.opacity = '0';
+        imageElement.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            imageElement.src = `website template content/Sex Pistols Expose Music/${newImageNum}.png`;
+            imageElement.alt = `Sex Pistols ${newImageNum}`;
+            
+            // Trigger reflow
+            imageElement.offsetHeight;
+            
+            imageElement.style.opacity = '0.8';
+            imageElement.style.transform = 'scale(1)';
+            
+            setTimeout(resolve, 300);
+        }, 300);
+    });
+}
+
+// Function to rotate all images
+async function rotateImages() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    
+    const newImages = getUniqueRandomImages();
+    const images = Array.from(pistolsImageContainer.getElementsByTagName('img'));
+    
+    // Animate all images with slight delay between each
+    for (let i = 0; i < images.length; i++) {
+        await animateImageChange(images[i], newImages[i]);
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    
+    currentPistolsImages = newImages;
+    isTransitioning = false;
+}
+
+// Function to handle fullscreen view
+function handleFullscreenView(image) {
+    const fullscreenContainer = document.createElement('div');
+    fullscreenContainer.className = 'fullscreen-container';
+    fullscreenContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+
+    const fullscreenImage = document.createElement('img');
+    fullscreenImage.src = image.src;
+    fullscreenImage.alt = image.alt;
+    fullscreenImage.style.cssText = `
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 20px;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    `;
+
+    fullscreenContainer.appendChild(fullscreenImage);
+    document.body.appendChild(fullscreenContainer);
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+        fullscreenContainer.style.opacity = '1';
+        fullscreenImage.style.transform = 'scale(1)';
+    });
+
+    // Close on click or escape
+    const closeFullscreen = () => {
+        fullscreenContainer.style.opacity = '0';
+        fullscreenImage.style.transform = 'scale(0.9)';
+        setTimeout(() => fullscreenContainer.remove(), 300);
+    };
+
+    fullscreenContainer.addEventListener('click', closeFullscreen);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeFullscreen();
+    });
+}
+
+// Initialize the gallery
+function initializePistolsGallery() {
+    if (!pistolsImageContainer) return;
+
+    // Set up click handlers
+    pistolsImageContainer.querySelectorAll('.pistols-image').forEach(image => {
+        image.addEventListener('click', () => handleFullscreenView(image));
+    });
+
+    // Start rotation with random intervals
+    function scheduleNextRotation() {
+        const randomDelay = 3000 + Math.random() * 2000; // 3-5 seconds
+        setTimeout(() => {
+            rotateImages().then(() => {
+                scheduleNextRotation();
+            });
+        }, randomDelay);
+    }
+
+    scheduleNextRotation();
+}
+
+// Start when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializePistolsGallery);
 
 </script>
+
 
 </body>
 </html>
