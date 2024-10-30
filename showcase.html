@@ -122,6 +122,7 @@
         </div>
     </div>
 
+<section class="sex-pistols-section">
     <!-- Separate Gallery Section -->
     <div class="pistols-gallery-section">
         <div class="gallery-grid">
@@ -149,14 +150,18 @@
 
         <!-- Top Right: Info & Mobile -->
         <div class="grid-item info-mobile-container">
-            <div class="volt-info">
-                <h2 class="voltpro-title">VoltPro Electrical</h2>
-                <p class="volt-description">Professional electrical solutions for residential and commercial services.</p>
-                <div class="volt-features">
-                    <span class="feature-tag">24/7 Service</span>
-                    <span class="feature-tag">Licensed</span>
-                </div>
-            </div>
+           <div class="volt-info">
+    <h2 class="voltpro-title">VoltPro Electrical</h2>
+    <p class="volt-description">Full-service electrical contractor with 18+ years of experience, specializing in residential and commercial solutions. From new construction and remodels to emergency services, we deliver excellence in every project[1][2].</p>
+    <div class="volt-features">
+        <span class="feature-tag">24/7 Emergency Service</span>
+        <span class="feature-tag">Licensed & Insured</span>
+        <span class="feature-tag">Free Estimates</span>
+        <span class="feature-tag">Tesla Certified</span>
+        <span class="feature-tag">New Construction</span>
+    </div>
+</div>
+
             <div class="volt-mobile-preview">
                 <div class="volt-mobile-border">
                     <video class="preview-video" muted loop playsinline>
@@ -935,34 +940,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // VoltPro Section Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize elements
-    const voltSection = {
-        container: document.querySelector('.voltpro-section'),
+    // Initialize all elements
+    const voltElements = {
+        // Gallery elements
         galleryTrack: document.querySelector('.gallery-track'),
         prevButton: document.querySelector('.gallery-nav.prev'),
         nextButton: document.querySelector('.gallery-nav.next'),
+        images: document.querySelectorAll('.volt-image'),
+        specialImages: document.querySelectorAll('.volt-special-image'),
+        
+        // Preview elements
+        mobilePreview: document.querySelector('.volt-mobile-border'),
+        desktopPreview: document.querySelector('.volt-desktop-border'),
+        previewVideos: document.querySelectorAll('.preview-video'),
+        
+        // Fullscreen elements
         fullscreenContainer: document.querySelector('.volt-fullscreen-container'),
         expandedImage: document.querySelector('.volt-expanded'),
         expandedVideo: document.querySelector('.volt-expanded-video'),
-        closeButton: document.querySelector('.volt-fullscreen-close'),
-        mobilePreview: document.querySelector('.volt-mobile-border'),
-        desktopPreview: document.querySelector('.volt-desktop-border'),
-        images: document.querySelectorAll('.volt-image'),
-        specialImages: document.querySelectorAll('.volt-special-image'),
-        previewVideos: document.querySelectorAll('.preview-video')
+        closeButton: document.querySelector('.volt-fullscreen-close')
     };
 
-    // Gallery Variables
+    // Gallery variables
     let currentIndex = 0;
     let isAnimating = false;
     const imagesPerView = 3;
-    const totalImages = voltSection.images.length;
+
+    // Fullscreen Functions
+    function showFullscreen(type, source) {
+        voltElements.fullscreenContainer.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        if (type === 'image') {
+            voltElements.expandedImage.style.display = 'block';
+            voltElements.expandedVideo.style.display = 'none';
+            voltElements.expandedImage.src = source;
+        } else if (type === 'video') {
+            voltElements.expandedVideo.style.display = 'block';
+            voltElements.expandedImage.style.display = 'none';
+            voltElements.expandedVideo.src = source;
+            voltElements.expandedVideo.play().catch(err => console.log('Video autoplay prevented'));
+        }
+    }
+
+    function closeFullscreen() {
+        voltElements.fullscreenContainer.style.display = 'none';
+        voltElements.expandedImage.style.display = 'none';
+        voltElements.expandedVideo.style.display = 'none';
+        if (voltElements.expandedVideo.pause) voltElements.expandedVideo.pause();
+        document.body.style.overflow = 'auto';
+    }
 
     // Gallery Functions
     function moveGallery(direction) {
         if (isAnimating) return;
         isAnimating = true;
 
+        const totalImages = voltElements.images.length;
         if (direction === 'next') {
             currentIndex = (currentIndex + 1) % (totalImages - imagesPerView + 1);
         } else {
@@ -977,132 +1011,89 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateGalleryPosition() {
-        const offset = -(currentIndex * (100 / totalImages));
-        voltSection.galleryTrack.style.transform = `translateX(${offset}%)`;
-    }
-
-    // Fullscreen Functions
-    function openFullscreen(type, source) {
-        voltSection.fullscreenContainer.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        if (type === 'image') {
-            voltSection.expandedImage.src = source;
-            voltSection.expandedImage.classList.add('active');
-            voltSection.expandedVideo.classList.remove('active');
-            voltSection.expandedVideo.pause();
-        } else if (type === 'video') {
-            voltSection.expandedVideo.src = source;
-            voltSection.expandedVideo.classList.add('active');
-            voltSection.expandedImage.classList.remove('active');
-            voltSection.expandedVideo.play().catch(error => {
-                console.log("Video play prevented:", error);
-            });
-        }
-    }
-
-    function closeFullscreen() {
-        voltSection.fullscreenContainer.classList.remove('active');
-        document.body.style.overflow = '';
-        voltSection.expandedImage.classList.remove('active');
-        voltSection.expandedVideo.classList.remove('active');
-        voltSection.expandedVideo.pause();
+        if (!voltElements.galleryTrack) return;
+        const offset = -(currentIndex * (100 / voltElements.images.length));
+        voltElements.galleryTrack.style.transform = `translateX(${offset}%)`;
     }
 
     // Event Listeners
+    // Gallery Images
+    voltElements.images.forEach(image => {
+        image.addEventListener('click', () => {
+            showFullscreen('image', image.src);
+        });
+    });
+
+    // Special Images
+    voltElements.specialImages.forEach(image => {
+        image.addEventListener('click', () => {
+            showFullscreen('image', image.src);
+        });
+    });
+
+    // Video Previews
+    voltElements.mobilePreview.addEventListener('click', () => {
+        showFullscreen('video', 'website template content/VoltPro Electrician/B.mp4');
+    });
+
+    voltElements.desktopPreview.addEventListener('click', () => {
+        showFullscreen('video', 'website template content/VoltPro Electrician/D.mp4');
+    });
+
     // Gallery Navigation
-    voltSection.prevButton?.addEventListener('click', () => {
-        moveGallery('prev');
-        stopAutoPlay();
-    });
-
-    voltSection.nextButton?.addEventListener('click', () => {
-        moveGallery('next');
-        stopAutoPlay();
-    });
-
-    // Image Click Handlers
-    voltSection.images.forEach(image => {
-        image.addEventListener('click', function(e) {
-            e.preventDefault();
-            openFullscreen('image', this.src);
-        });
-    });
-
-    voltSection.specialImages.forEach(image => {
-        image.addEventListener('click', function(e) {
-            e.preventDefault();
-            openFullscreen('image', this.src);
-        });
-    });
-
-    // Video Preview Handlers
-    voltSection.mobilePreview?.addEventListener('click', () => {
-        openFullscreen('video', 'website template content/VoltPro Electrician/B.mp4');
-    });
-
-    voltSection.desktopPreview?.addEventListener('click', () => {
-        openFullscreen('video', 'website template content/VoltPro Electrician/D.mp4');
-    });
-
-    // Fullscreen Close Handlers
-    voltSection.closeButton?.addEventListener('click', closeFullscreen);
-    voltSection.fullscreenContainer?.addEventListener('click', function(e) {
-        if (e.target === this) closeFullscreen();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeFullscreen();
-    });
-
-    // Auto Play Gallery
-    let autoPlayInterval;
-    const autoPlayDelay = 3000;
-
-    function startAutoPlay() {
-        stopAutoPlay();
-        autoPlayInterval = setInterval(() => moveGallery('next'), autoPlayDelay);
+    if (voltElements.prevButton) {
+        voltElements.prevButton.addEventListener('click', () => moveGallery('prev'));
+    }
+    
+    if (voltElements.nextButton) {
+        voltElements.nextButton.addEventListener('click', () => moveGallery('next'));
     }
 
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
+    // Fullscreen Close
+    voltElements.closeButton.addEventListener('click', closeFullscreen);
+    
+    voltElements.fullscreenContainer.addEventListener('click', (e) => {
+        if (e.target === voltElements.fullscreenContainer) {
+            closeFullscreen();
         }
-    }
+    });
 
-    // Video Intersection Observer
+    // Keyboard Controls
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeFullscreen();
+        }
+    });
+
+    // Video Autoplay Management
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            const video = entry.target;
             if (entry.isIntersecting) {
-                video.play().catch(error => console.log("Video autoplay prevented:", error));
+                entry.target.play().catch(err => console.log('Video autoplay prevented'));
             } else {
-                video.pause();
+                entry.target.pause();
             }
         });
     }, { threshold: 0.5 });
 
-    voltSection.previewVideos.forEach(video => {
+    voltElements.previewVideos.forEach(video => {
         videoObserver.observe(video);
     });
 
-    // Mouse Enter/Leave Handlers for Gallery
-    voltSection.galleryTrack.addEventListener('mouseenter', stopAutoPlay);
-    voltSection.galleryTrack.addEventListener('mouseleave', startAutoPlay);
-
-    // Touch Event Handlers
+    // Touch Events for Gallery
     let touchStartX = 0;
     let touchEndX = 0;
 
-    voltSection.galleryTrack.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoPlay();
-    }, { passive: true });
+    if (voltElements.galleryTrack) {
+        voltElements.galleryTrack.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
 
-    voltSection.galleryTrack.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startAutoPlay();
-    }, { passive: true });
+        voltElements.galleryTrack.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
 
     function handleSwipe() {
         const swipeThreshold = 50;
@@ -1119,8 +1110,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize
     updateGalleryPosition();
-    startAutoPlay();
 });
+
 
 
 
