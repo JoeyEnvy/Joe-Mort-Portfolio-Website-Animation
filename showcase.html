@@ -136,9 +136,10 @@
 
 <!-- VoltPro Electrician Section -->
 <section class="voltpro-section">
-    <div class="volt-columns">
-        <!-- Left Column with Desktop Preview -->
-        <div class="voltpro-left">
+    <!-- Grid Container -->
+    <div class="volt-grid">
+        <!-- Top Left: Desktop Preview -->
+        <div class="grid-item desktop-container">
             <div class="volt-desktop-border">
                 <video class="preview-video" muted loop playsinline>
                     <source src="website template content/VoltPro Electrician/D.mp4" type="video/mp4">
@@ -146,22 +147,16 @@
             </div>
         </div>
 
-        <!-- Right Column with Info and Mobile -->
-        <div class="voltpro-right">
+        <!-- Top Right: Info & Mobile -->
+        <div class="grid-item info-mobile-container">
             <div class="volt-info">
                 <h2 class="voltpro-title">VoltPro Electrical</h2>
-                <p class="volt-description">Professional electrical solutions delivering excellence in residential and commercial services. Specializing in modern installations, emergency repairs, and innovative electrical systems.</p>
+                <p class="volt-description">Professional electrical solutions for residential and commercial services.</p>
                 <div class="volt-features">
-                    <span class="feature-tag">24/7 Emergency Service</span>
-                    <span class="feature-tag">Licensed Experts</span>
-                    <span class="feature-tag">Smart Solutions</span>
+                    <span class="feature-tag">24/7 Service</span>
+                    <span class="feature-tag">Licensed</span>
                 </div>
-                <a href="#" class="voltpro-link">
-                    <span>Explore Services</span>
-                    <i class="fas fa-bolt"></i>
-                </a>
             </div>
-
             <div class="volt-mobile-preview">
                 <div class="volt-mobile-border">
                     <video class="preview-video" muted loop playsinline>
@@ -170,12 +165,10 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Gallery Sections -->
-    <div class="volt-gallery-section">
-        <!-- Main Gallery Slider -->
-        <div class="volt-numbered-gallery">
+        <!-- Bottom Left: Gallery -->
+        <div class="grid-item gallery-container">
+            <button class="gallery-nav prev">&lt;</button>
             <div class="gallery-track">
                 <img src="website template content/VoltPro Electrician/1.png" alt="VoltPro Service 1" class="volt-image">
                 <img src="website template content/VoltPro Electrician/2.png" alt="VoltPro Service 2" class="volt-image">
@@ -190,14 +183,11 @@
                 <img src="website template content/VoltPro Electrician/11.png" alt="VoltPro Service 11" class="volt-image">
                 <img src="website template content/VoltPro Electrician/12.png" alt="VoltPro Service 12" class="volt-image">
             </div>
-            <div class="gallery-nav">
-                <button class="gallery-prev">&lt;</button>
-                <button class="gallery-next">&gt;</button>
-            </div>
+            <button class="gallery-nav next">&gt;</button>
         </div>
 
-        <!-- Special Gallery -->
-        <div class="volt-special-gallery">
+        <!-- Bottom Right: Special Images -->
+        <div class="grid-item special-container">
             <img src="website template content/VoltPro Electrician/A.png" alt="VoltPro Special A" class="volt-special-image">
             <img src="website template content/VoltPro Electrician/C.png" alt="VoltPro Special C" class="volt-special-image">
         </div>
@@ -949,73 +939,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const voltSection = {
         container: document.querySelector('.voltpro-section'),
         galleryTrack: document.querySelector('.gallery-track'),
-        images: document.querySelectorAll('.volt-image'),
-        specialImages: document.querySelectorAll('.volt-special-image'),
-        prevButton: document.querySelector('.gallery-prev'),
-        nextButton: document.querySelector('.gallery-next'),
+        prevButton: document.querySelector('.gallery-nav.prev'),
+        nextButton: document.querySelector('.gallery-nav.next'),
         fullscreenContainer: document.querySelector('.volt-fullscreen-container'),
         expandedImage: document.querySelector('.volt-expanded'),
         expandedVideo: document.querySelector('.volt-expanded-video'),
         closeButton: document.querySelector('.volt-fullscreen-close'),
         mobilePreview: document.querySelector('.volt-mobile-border'),
         desktopPreview: document.querySelector('.volt-desktop-border'),
+        images: document.querySelectorAll('.volt-image'),
+        specialImages: document.querySelectorAll('.volt-special-image'),
         previewVideos: document.querySelectorAll('.preview-video')
     };
 
-    // Gallery Animation Variables
+    // Gallery Variables
     let currentIndex = 0;
-    const imagesPerView = window.innerWidth > 1200 ? 4 : window.innerWidth > 992 ? 3 : window.innerWidth > 768 ? 2 : 1;
-    const autoPlayDelay = 3000;
-    let autoPlayInterval;
+    let isAnimating = false;
+    const imagesPerView = 3;
+    const totalImages = voltSection.images.length;
 
-    // Initialize Gallery
-    function initGallery() {
-        const totalImages = voltSection.images.length;
-        voltSection.galleryTrack.style.width = `${(totalImages / imagesPerView) * 100}%`;
-        startAutoPlay();
-    }
-
-    // Gallery Navigation
+    // Gallery Functions
     function moveGallery(direction) {
-        const totalImages = voltSection.images.length;
+        if (isAnimating) return;
+        isAnimating = true;
+
         if (direction === 'next') {
             currentIndex = (currentIndex + 1) % (totalImages - imagesPerView + 1);
         } else {
             currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            if (currentIndex > totalImages - imagesPerView) {
+                currentIndex = totalImages - imagesPerView;
+            }
         }
+        
         updateGalleryPosition();
+        setTimeout(() => isAnimating = false, 500);
     }
 
     function updateGalleryPosition() {
-        const offset = -(currentIndex * (100 / voltSection.images.length));
+        const offset = -(currentIndex * (100 / totalImages));
         voltSection.galleryTrack.style.transform = `translateX(${offset}%)`;
-    }
-
-    // Auto Play Functions
-    function startAutoPlay() {
-        stopAutoPlay();
-        autoPlayInterval = setInterval(() => moveGallery('next'), autoPlayDelay);
-    }
-
-    function stopAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
     }
 
     // Fullscreen Functions
     function openFullscreen(type, source) {
         voltSection.fullscreenContainer.classList.add('active');
         document.body.style.overflow = 'hidden';
-        stopAutoPlay();
 
         if (type === 'image') {
             voltSection.expandedImage.src = source;
             voltSection.expandedImage.classList.add('active');
             voltSection.expandedVideo.classList.remove('active');
+            voltSection.expandedVideo.pause();
         } else if (type === 'video') {
             voltSection.expandedVideo.src = source;
             voltSection.expandedVideo.classList.add('active');
             voltSection.expandedImage.classList.remove('active');
-            voltSection.expandedVideo.play().catch(error => console.log("Video play prevented:", error));
+            voltSection.expandedVideo.play().catch(error => {
+                console.log("Video play prevented:", error);
+            });
         }
     }
 
@@ -1025,67 +1007,76 @@ document.addEventListener('DOMContentLoaded', function() {
         voltSection.expandedImage.classList.remove('active');
         voltSection.expandedVideo.classList.remove('active');
         voltSection.expandedVideo.pause();
-        startAutoPlay();
     }
 
     // Event Listeners
-    voltSection.prevButton.addEventListener('click', () => {
+    // Gallery Navigation
+    voltSection.prevButton?.addEventListener('click', () => {
         moveGallery('prev');
         stopAutoPlay();
     });
 
-    voltSection.nextButton.addEventListener('click', () => {
+    voltSection.nextButton?.addEventListener('click', () => {
         moveGallery('next');
         stopAutoPlay();
     });
 
+    // Image Click Handlers
     voltSection.images.forEach(image => {
-        image.addEventListener('click', function() {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
             openFullscreen('image', this.src);
         });
     });
 
     voltSection.specialImages.forEach(image => {
-        image.addEventListener('click', function() {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
             openFullscreen('image', this.src);
         });
     });
 
-    voltSection.mobilePreview.addEventListener('click', () => {
+    // Video Preview Handlers
+    voltSection.mobilePreview?.addEventListener('click', () => {
         openFullscreen('video', 'website template content/VoltPro Electrician/B.mp4');
     });
 
-    voltSection.desktopPreview.addEventListener('click', () => {
+    voltSection.desktopPreview?.addEventListener('click', () => {
         openFullscreen('video', 'website template content/VoltPro Electrician/D.mp4');
     });
 
-    voltSection.closeButton.addEventListener('click', closeFullscreen);
-
-    voltSection.fullscreenContainer.addEventListener('click', function(e) {
+    // Fullscreen Close Handlers
+    voltSection.closeButton?.addEventListener('click', closeFullscreen);
+    voltSection.fullscreenContainer?.addEventListener('click', function(e) {
         if (e.target === this) closeFullscreen();
     });
-
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeFullscreen();
     });
 
-    // Initialize gallery on load
-    initGallery();
+    // Auto Play Gallery
+    let autoPlayInterval;
+    const autoPlayDelay = 3000;
 
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(initGallery, 250);
-    });
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(() => moveGallery('next'), autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    }
 
     // Video Intersection Observer
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            const video = entry.target;
             if (entry.isIntersecting) {
-                entry.target.play().catch(error => console.log("Video autoplay prevented:", error));
+                video.play().catch(error => console.log("Video autoplay prevented:", error));
             } else {
-                entry.target.pause();
+                video.pause();
             }
         });
     }, { threshold: 0.5 });
@@ -1093,7 +1084,45 @@ document.addEventListener('DOMContentLoaded', function() {
     voltSection.previewVideos.forEach(video => {
         videoObserver.observe(video);
     });
+
+    // Mouse Enter/Leave Handlers for Gallery
+    voltSection.galleryTrack.addEventListener('mouseenter', stopAutoPlay);
+    voltSection.galleryTrack.addEventListener('mouseleave', startAutoPlay);
+
+    // Touch Event Handlers
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    voltSection.galleryTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+    }, { passive: true });
+
+    voltSection.galleryTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoPlay();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                moveGallery('next');
+            } else {
+                moveGallery('prev');
+            }
+        }
+    }
+
+    // Initialize
+    updateGalleryPosition();
+    startAutoPlay();
 });
+
+
 
 
 </script>
