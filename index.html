@@ -1,100 +1,185 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joshua Josef Mort - Web Developer & Designer</title>
+    
+    <!-- External CSS Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="indexStyles.css">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
- </head>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="indexStyles.css">
+    
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
+</head>
 <body>
+    <!-- Page Loader -->
     <div class="page-loader"></div>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="showcase.html"><i class="fas fa-film"></i> Animations</a></li>
-            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-        <div class="nav-social">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+
+    <!-- Navigation -->
+<!-- Navigation -->
+<nav>
+    <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="showcase.html"><i class="fas fa-photo-video"></i> Showcase</a></li>
+        <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+        <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+    
+    <div class="nav-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+ <div class="nav-progress"></div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Joshua Josef Mort</h1>
+        <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p>
+        <div class="cta-button-container">
+            <a href="contact.html" class="cta-button">Get in Touch</a>
         </div>
+    </div>
+</div>
+
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Joshua Josef Mort</h1>
+        <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p>
+        <div class="cta-button-container">
+            <a href="contact.html" class="cta-button">Get in Touch</a>
+        </div>
+    </div>
+</div>
+
+     
+        
+        <!-- Navigation Progress Bar -->
         <div class="nav-progress-bar"></div>
     </nav>
 
     <main>
+        <!-- Main Progress Bar -->
         <div class="progress-bar"></div>
-        <div class="spline-scene-cubes">
-            <spline-viewer url="https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode"></spline-viewer>
-        </div>
+
+        <!-- 3D Spline Scene -->
+    <div class="spline-scene-cubes">
+    <spline-viewer 
+        hint 
+        loading-anim-type="spinner-small-dark" 
+        url="https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode">
+    </spline-viewer>
+</div>
+
+
+        <!-- Visual Elements -->
         <div class="gradient-overlay"></div>
-        <div class="interaction-hint">Click and drag to interact!</div>
-        <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
 
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1>Joshua Josef Mort</h1>
-                <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p>
-                <div class="cta-button-container">
-                    <a href="#services" class="cta-button">Explore My Work</a>
-                </div>
-            </div>
-        </section>
-
+  
         <div class="content-wrapper">
-            <section id="featured-services" class="services-list section">
-                <h2>Featured Services</h2>
-                <div class="services-grid">
-                    <div class="service-item">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>Web Development</h3>
-                        <p>Custom websites built with the latest technologies.</p>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-paint-brush"></i>
-                        <h3>Graphic Design</h3>
-                        <p>Eye-catching visuals that communicate your message.</p>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-film"></i>
-                        <h3>3D/2D Animation</h3>
-                        <p>Engaging animations that bring your ideas to life.</p>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-search"></i>
-                        <h3>SEO Optimization</h3>
-                        <p>Boost your online visibility and drive organic traffic.</p>
-                    </div>
-                </div>
-            </section>
+  
 
+            <!-- Freelancer Joe Mort About Section -->
             <section id="about" class="freelancer-info section">
-                <div class="container">
-                    <div class="freelancer-info-left">
-                        <h2>Joshua Josef Mort</h2>
-                        <p>I'm a <span class="highlight">passionate freelance web developer and designer</span> based in the UK, dedicated to creating stunning digital experiences that captivate and engage audiences. With a keen eye for detail and a love for innovative design, I specialize in web development, graphic design, and 3D/2D animation.</p>
-                        <p>At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer a comprehensive range of services tailored to meet your digital needs. From custom website development and responsive design to SEO optimization and creative animations, I bring your ideas to life with a perfect blend of aesthetics and functionality.</p>
-                    </div>
-                    <div class="freelancer-info-right">
-                        <div class="device-placeholder">
-                            <p>Mobile Device</p>
-                        </div>
-                        <div class="device-placeholder">
-                            <p>Monitor</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <div class="container">
+        <!-- Left Column -->
+        <!-- Update this part of your HTML -->
+<div class="freelancer-info-left">
+    <h2>Joshua Josef Mort</h2>
+    <p class="intro">I'm a <span class="highlight">passionate freelance creative technologist</span> based in the UK, dedicated to creating stunning digital experiences that captivate and engage audiences.</p>
+    <p class="company">At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.</p>
+    <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
+    
+    <h3 class="showcase-title">Recent Web Design Examples</h3> <!-- Added title -->
+    <div class="device-showcase">
+        <div class="device desktop-viewer">
+            <div class="video-container">
+                <video id="desktop-video" autoplay muted loop>
+                    <source src="showcase slideshow videos/1.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        
+        <div class="device mobile-viewer">
+            <div class="video-container">
+                <video id="mobile-video" autoplay muted loop>
+                    <source src="showcase slideshow videos/A.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Streamlined right column -->
+<div class="freelancer-info-right">
+    <h3>Creative Services</h3>
+    <div class="services-grid">
+        <div class="service-category">
+            <h4><i class="fas fa-code"></i> Web Design</h4>
+            <ul>
+                <li>Responsive Websites</li>
+                <li>E-commerce Solutions</li>
+                <li>Custom Web Applications</li>
+                <li>SEO Optimization</li>
+            </ul>
+        </div>
+        
+        <div class="service-category">
+            <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
+            <ul>
+                <li>3D Modeling & Rendering</li>
+                <li>Character Animation</li>
+                <li>Motion Graphics</li>
+                <li>Product Animation</li>
+            </ul>
+        </div>
+        
+        <div class="service-category">
+            <h4><i class="fas fa-robot"></i> AI Solutions</h4>
+            <ul>
+                <li>Custom AI Integration</li>
+                <li>Chatbot Development</li>
+                <li>Automated Systems</li>
+                <li>AI Content Generation</li>
+            </ul>
+        </div>
+        
+        <div class="service-category">
+            <h4><i class="fas fa-print"></i> Print & Design</h4>
+            <ul>
+                <li>Brand Identity Design</li>
+                <li>Marketing Materials</li>
+                <li>Large Format Printing</li>
+                <li>Business Stationery</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+</section>
+
+
+            <!-- Detailed Services Section -->
             <section id="services" class="skills-section section">
                 <h2>My Services</h2>
                 <div class="skills-grid">
+                    <!-- Web Development Skills -->
                     <div class="skill-card">
                         <i class="fas fa-code"></i>
                         <h3>Web Development</h3>
@@ -105,6 +190,7 @@
                             <li>E-commerce Solutions</li>
                         </ul>
                     </div>
+                    <!-- Graphic Design Skills -->
                     <div class="skill-card">
                         <i class="fas fa-paint-brush"></i>
                         <h3>Graphic Design</h3>
@@ -115,6 +201,7 @@
                             <li>Print Design</li>
                         </ul>
                     </div>
+                    <!-- Animation Skills -->
                     <div class="skill-card">
                         <i class="fas fa-film"></i>
                         <h3>3D/2D Animation</h3>
@@ -125,6 +212,7 @@
                             <li>Visual Effects</li>
                         </ul>
                     </div>
+                    <!-- SEO Skills -->
                     <div class="skill-card">
                         <i class="fas fa-search"></i>
                         <h3>SEO Optimization</h3>
@@ -137,10 +225,11 @@
                     </div>
                 </div>
             </section>
-
+            <!-- Animation Showcase Section -->
             <section id="animations" class="animation-showcase section">
                 <h2>Animation Showcase</h2>
                 <div class="animation-grid">
+                    <!-- Animation Card 1 -->
                     <div class="animation-card">
                         <video src="videos/0.mp4" loop muted></video>
                         <div class="animation-card-content">
@@ -149,6 +238,7 @@
                         </div>
                         <div class="play-hint">Click to play</div>
                     </div>
+                    <!-- Animation Card 2 -->
                     <div class="animation-card">
                         <video src="videos/13.mp4" loop muted></video>
                         <div class="animation-card-content">
@@ -157,16 +247,16 @@
                         </div>
                         <div class="play-hint">Click to play</div>
                     </div>
+                    <!-- Animation Card 3 -->
                     <div class="animation-card">
                         <video src="videos/2.mp4" loop muted></video>
                         <div class="animation-card-content">
                             <h3>Space Ship 3D</h3>
                             <p>An intricately designed 3D space ship model with realistic textures and lighting.</p>
                         </div>
-  
-
-<div class="play-hint">Click to play</div>
+                        <div class="play-hint">Click to play</div>
                     </div>
+                    <!-- Animation Card 4 -->
                     <div class="animation-card">
                         <video src="videos/7.mp4" loop muted></video>
                         <div class="animation-card-content">
@@ -176,6 +266,8 @@
                         <div class="play-hint">Click to play</div>
                     </div>
                 </div>
+
+                <!-- Animation Types -->
                 <div class="animation-types">
                     <div class="animation-type">
                         <h4>Character Animation</h4>
@@ -196,51 +288,32 @@
                 </div>
             </section>
 
+            <!-- Testimonials Section -->
             <section id="testimonials" class="testimonials-section section">
                 <h2>Client Testimonials</h2>
                 <div class="testimonials">
+                    <!-- Individual Testimonials -->
                     <div class="testimonial-card">
                         <p>"Joshua's work exceeded our expectations. His attention to detail and creativity brought our vision to life."</p>
                         <span class="testimonial-author">- Jane Doe, CEO of TechStart</span>
                     </div>
-                    <div class="testimonial-card">
-                        <p>"Working with Joshua was a pleasure. He delivered our project on time and with exceptional quality."</p>
-                        <span class="testimonial-author">- John Smith, Marketing Director at InnovateCorp</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Joshua's expertise in web development and design helped us achieve our goals and improve our online presence."</p>
-                        <span class="testimonial-author">- Sarah Johnson, Founder of EcoSolutions</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"The animations Joshua created for our product launch were stunning. They really helped us stand out in the market."</p>
-                        <span class="testimonial-author">- Mike Brown, Product Manager at TechInnovate</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"Joshua's SEO strategies significantly improved our search rankings and drove more organic traffic to our site."</p>
-                        <span class="testimonial-author">- Emily Clark, Digital Marketing Manager at GrowthCo</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"The user interface Joshua designed for our app was intuitive and visually appealing. Our users love it!"</p>
-                        <span class="testimonial-author">- David Lee, CTO of AppMasters</span>
-                    </div>
+                    <!-- Add more testimonial cards as needed -->
                 </div>
             </section>
+
+            <!-- Contact and FAQ Section -->
             <section class="section contact-faq-section" id="contact">
+                <!-- FAQ Column -->
                 <div class="faq-column">
                     <h2>Frequently Asked Questions</h2>
                     <div class="faq-item">
                         <div class="faq-question">What services do you offer?</div>
                         <div class="faq-answer">I offer web development, graphic design, 3D/2D animation, and SEO optimization services.</div>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question">How long does a typical project take?</div>
-                        <div class="faq-answer">Project timelines vary depending on the scope and complexity. A simple website might take 2-4 weeks, while a more complex project could take 2-3 months.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Do you offer ongoing support after project completion?</div>
-                        <div class="faq-answer">Yes, I offer ongoing support and maintenance packages to ensure your website or application continues to perform optimally.</div>
-                    </div>
+                    <!-- More FAQ items -->
                 </div>
+
+                <!-- Contact Form Column -->
                 <div class="contact-column">
                     <h2>Get in Touch</h2>
                     <form class="contact-form">
@@ -253,31 +326,31 @@
             </section>
         </div>
     </main>
+
+    <!-- Footer Section -->
     <footer>
         <div class="footer-content">
+            <!-- Quick Links -->
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#animations">Animations</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <!-- More links -->
                 </ul>
             </div>
+
+            <!-- Services List -->
             <div class="footer-section">
                 <h3>Services</h3>
                 <ul>
                     <li>Web Development</li>
                     <li>Graphic Design</li>
-                    <li>SEO Optimization</li>
-                    <li>2D/3D Animation</li>
-                    <li>Video/Image Editing</li>
-                    <li>Graphic Printing</li>
+                    <!-- More services -->
                 </ul>
             </div>
+
+            <!-- Contact Information -->
             <div class="footer-section">
                 <h3>Contact</h3>
                 <ul>
@@ -293,182 +366,386 @@
         </div>
     </footer>
 <script>
-    const nav = document.querySelector('nav');
-    const main = document.querySelector('main');
-    const splineSceneCubes = document.querySelector('.spline-scene-cubes');
-    const gradientOverlay = document.querySelector('.gradient-overlay');
-    const progressBar = document.querySelector('.progress-bar');
-    const navProgressBar = document.querySelector('.nav-progress-bar');
-    const sections = document.querySelectorAll('.section');
-    const animationCards = document.querySelectorAll('.animation-card');
-    const interactionHint = document.querySelector('.interaction-hint');
-    const scrollHint = document.querySelector('.scroll-hint');
-    const ctaButton = document.querySelector('.cta-button');
 
-    const colors = ['#2d3436', '#6c5ce7', '#00cec9', '#fd79a8'];
+// main.js
 
-    function changeNavColor(sectionId) {
-        if (nav.classList.contains('scrolled')) {
-            switch(sectionId) {
-                case 'hero':
-                case 'about':
-                    nav.style.backgroundColor = colors[0];
-                    break;
-                case 'services':
-                case 'skills':
-                    nav.style.backgroundColor = colors[1];
-                    break;
-                case 'projects':
-                case 'animations':
-                    nav.style.backgroundColor = colors[2];
-                    break;
-                case 'testimonials':
-                case 'contact':
-                    nav.style.backgroundColor = colors[3];
-                    break;
-                default:
-                    nav.style.backgroundColor = colors[0];
-            }
-        }
+/**
+ * Main Website Controller Class
+ * Handles all website functionality and interactions
+ */
+class WebsiteController {
+    /**
+     * Initialize the controller and set up all necessary components
+     */
+    constructor() {
+        this.initializeElements();
+        this.setupEventListeners();
+        this.initializeSplineScene();
+        this.updateCopyrightYear();
+        
+        // Initialize scroll tracking
+        this.lastScroll = 0;
+        
+        // Create progress bar for scroll tracking
+        this.createProgressBar();
     }
 
-    // Scroll effects
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
+    /**
+     * Creates the scroll progress bar element
+     * This shows how far down the page the user has scrolled
+     */
+    createProgressBar() {
+        this.progressBar = document.createElement('div');
+        this.progressBar.className = 'scroll-progress';
+        document.body.appendChild(this.progressBar);
+    }
 
-        if (scrollPosition > 50) {
-            nav.classList.add('scrolled');
-            main.classList.add('scrolled');
-            splineSceneCubes.classList.add('scrolled');
-            gradientOverlay.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-            main.classList.remove('scrolled');
-            splineSceneCubes.classList.remove('scrolled');
-            gradientOverlay.classList.remove('scrolled');
-        }
+    /**
+     * Initialize and cache all DOM elements
+     */
+initializeElements() {
+    this.elements = {
+        nav: document.querySelector('nav'),
+        navProgressBar: document.querySelector('.nav-progress'),
+        main: document.querySelector('main'),
+        // ... rest of your elements
+    };
 
-        // Update progress bar
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollPosition / totalHeight) * 100;
-        progressBar.style.width = `${progress}%`;
-        navProgressBar.style.width = `${progress}%`;
+        // Theme colors
+        this.colors = {
+            primary: '#2d3436',
+            secondary: '#6c5ce7',
+            accent: '#00cec9',
+            highlight: '#fd79a8'
+        };
+    }
 
-        // Check which section is in view
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom >= 100) {
-                changeNavColor(section.id);
+    /**
+     * Set up all event listeners
+     */
+    setupEventListeners() {
+        // Enhanced scroll handling with throttling
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    this.handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
-    });
+        
+        // Your existing event listeners...
+        this.setupSmoothScrolling();
+        this.setupAnimationCards();
+        this.setupCTAButton();
+        this.setupFAQInteractions();
+        this.setupContactForm();
+        this.setupHints();
+    }
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    /**
+/**
+ * Handle scroll events and updates
+ * Controls the navigation bar transformation and progress bar
+ */
+/**
+ * Handle scroll events and updates
+ * Controls the navigation bar transformation and progress bar
+ */
+/**
+ * Handle scroll events and updates
+ * Controls the navigation bar transformation and progress bar
+ */
+handleScroll() {
+    const currentScroll = window.pageYOffset;
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = (currentScroll / totalHeight) * 100;
+
+    // Update main progress bar width based on scroll position
+    if (this.progressBar) {
+        this.progressBar.style.width = `${scrollProgress}%`;
+    }
+
+    // Transform navigation after scrolling past 100px
+    if (currentScroll > 100) {
+        this.elements.nav.classList.add('scrolled');
+        this.elements.main.classList.add('scrolled');
+        
+        // Update nav progress bar
+        if (this.elements.navProgressBar) {
+            this.elements.navProgressBar.style.width = `${scrollProgress}%`;
+        }
+    } else {
+        // Reset navigation to original state
+        this.elements.nav.classList.remove('scrolled');
+        this.elements.main.classList.remove('scrolled');
+    }
+
+    // Update last scroll position
+    this.lastScroll = currentScroll;
+}
+
+
+
+//nothing to do with load and navbar poage loader 
+
+    /**
+     * Set up smooth scrolling for navigation links
+     */
+    setupSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-    });
+    }
 
-    // Play/pause videos on hover
-    animationCards.forEach(card => {
-        const video = card.querySelector('video');
-        card.addEventListener('mouseenter', () => {
-            video.play();
+    /**
+     * Initialize and handle animation cards
+     */
+    setupAnimationCards() {
+        this.elements.animationCards.forEach(card => {
+            const video = card.querySelector('video');
+            if (!video) return;
+
+            card.addEventListener('mouseenter', () => {
+                video.play().catch(err => console.log('Video autoplay failed:', err));
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
         });
-        card.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0;
+    }
+
+    /**
+     * Set up CTA button interactions
+     */
+    setupCTAButton() {
+        const button = this.elements.ctaButton;
+        if (!button) return;
+
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-5px) scale(1.05)';
+            button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
         });
-    });
 
-    // Hide interaction hint after 5 seconds
-    setTimeout(() => {
-        interactionHint.style.opacity = '0';
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0) scale(1)';
+            button.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
+        });
+    }
+
+    /**
+     * Initialize Spline 3D scene
+     */
+    initializeSplineScene() {
+        document.addEventListener('spline-viewer-load', () => {
+            const viewer = document.querySelector('spline-viewer');
+            if (!viewer) return;
+
+            try {
+                const scene = viewer.spline;
+                this.setupSplineInteractions(scene);
+            } catch (error) {
+                console.error('Error initializing Spline scene:', error);
+            }
+        });
+    }
+
+    /**
+     * Set up FAQ interactions
+     */
+    setupFAQInteractions() {
+        this.elements.faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+                
+                // Close all other FAQs
+                this.elements.faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current FAQ
+                item.classList.toggle('active');
+            });
+        });
+    }
+
+    /**
+     * Set up contact form handling
+     */
+    setupContactForm() {
+        const form = this.elements.contactForm;
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            console.log('Form submitted');
+        });
+    }
+
+    /**
+     * Handle UI hints
+     */
+    setupHints() {
+        // Hide interaction hint after delay
         setTimeout(() => {
-            interactionHint.style.display = 'none';
-        }, 500);
-    }, 5000);
+            if (this.elements.interactionHint) {
+                this.elements.interactionHint.style.opacity = '0';
+                setTimeout(() => {
+                    this.elements.interactionHint.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
 
-    // Hide scroll hint when user starts scrolling
-    window.addEventListener('scroll', () => {
-        scrollHint.style.opacity = '0';
-        setTimeout(() => {
-            scrollHint.style.display = 'none';
-        }, 500);
-    }, { once: true });
+        // Hide scroll hint on first scroll
+        window.addEventListener('scroll', () => {
+            if (this.elements.scrollHint) {
+                this.elements.scrollHint.style.opacity = '0';
+                setTimeout(() => {
+                    this.elements.scrollHint.style.display = 'none';
+                }, 500);
+            }
+        }, { once: true });
+    }
 
-    // CTA button hover effect
-    ctaButton.addEventListener('mouseenter', () => {
-        ctaButton.style.transform = 'translateY(-5px) scale(1.05)';
-        ctaButton.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-    });
-    ctaButton.addEventListener('mouseleave', () => {
-        ctaButton.style.transform = 'translateY(0) scale(1)';
-        ctaButton.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
-    });
+    /**
+     * Update copyright year
+     */
+    updateCopyrightYear() {
+        const copyrightElement = document.querySelector('.footer-bottom p');
+        if (copyrightElement) {
+            const currentYear = new Date().getFullYear();
+            copyrightElement.textContent = `© ${currentYear} WebsiteAnimation.co.uk. All rights reserved.`;
+        }
+    }
+}
 
-    // Spline scene interaction
-    document.addEventListener('spline-viewer-load', () => {
-        const viewer = document.querySelector('spline-viewer');
-        const ball = viewer.spline.findObjectByName('Ball');
+// Initialize the website controller when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const website = new WebsiteController();
+});
 
-        if (!ball) {
-            console.error('Ball object not found in the Spline scene');
-            return;
+//freelancer info script section 
+
+// Freelancer info script section
+document.addEventListener('DOMContentLoaded', () => {
+    const desktopVideos = [
+        'showcase slideshow videos/1.mp4',
+        'showcase slideshow videos/2.mp4',
+        'showcase slideshow videos/3.mp4',
+        'showcase slideshow videos/4.mp4',
+        'showcase slideshow videos/5.mp4',
+        'showcase slideshow videos/6.mp4',
+        'showcase slideshow videos/7.mp4'
+    ];
+    
+    const mobileVideos = [
+        'showcase slideshow videos/A.mp4',
+        'showcase slideshow videos/B.mp4',
+        'showcase slideshow videos/C.mp4',
+        'showcase slideshow videos/D.mp4',
+        'showcase slideshow videos/E.mp4',
+        'showcase slideshow videos/F.mp4',
+        'showcase slideshow videos/G.mp4'
+    ];
+
+    let currentDesktopVideo = 0;
+    let currentMobileVideo = 0;
+
+    const desktopVideo = document.getElementById('desktop-video');
+    const mobileVideo = document.getElementById('mobile-video');
+
+    if (desktopVideo && mobileVideo) {
+        // Function to change desktop video
+        function changeDesktopVideo() {
+            currentDesktopVideo = (currentDesktopVideo + 1) % desktopVideos.length;
+            desktopVideo.src = desktopVideos[currentDesktopVideo];
+            desktopVideo.play().catch(e => console.log("Auto-play prevented:", e));
         }
 
-        // Store initial position and scale
-        const initialPosition = { ...ball.position };
-        const initialScale = ball.scale.x;
-
-        // Define target position (top-left of the screen)
-        const targetPosition = {
-            x: -window.innerWidth / 2 + 100,  // 100px from left edge
-            y: window.innerHeight / 2 - 100,  // 100px from top edge
-            z: initialPosition.z  // Keep the same z-position
-        };
-
-        // Define how much larger the ball should be at the end (e.g., 2 times larger)
-        const scaleFactor = 2;
-
-        function updateBallPosition() {
-            const scrollPosition = window.scrollY;
-            const viewportHeight = window.innerHeight;
-
-            // Calculate progress (0 to 1) based on scroll within first 100vh
-            const progress = Math.min(scrollPosition / viewportHeight, 1);
-
-            // Calculate new position
-            const newX = initialPosition.x + (targetPosition.x - initialPosition.x) * progress;
-            const newY = initialPosition.y + (targetPosition.y - initialPosition.y) * progress;
-            const newZ = initialPosition.z + (targetPosition.z - initialPosition.z) * progress;
-
-            // Calculate new scale
-            const newScale = initialScale + (initialScale * (scaleFactor - 1) * progress);
-
-            // Update ball position and scale
-            ball.position.set(newX, newY, newZ);
-            ball.scale.set(newScale, newScale, newScale);
-
-            console.log(`Ball position: (${newX}, ${newY}, ${newZ}), Scale: ${newScale}`);
+        // Function to change mobile video
+        function changeMobileVideo() {
+            currentMobileVideo = (currentMobileVideo + 1) % mobileVideos.length;
+            mobileVideo.src = mobileVideos[currentMobileVideo];
+            mobileVideo.play().catch(e => console.log("Auto-play prevented:", e));
         }
 
-        // Initial update
-        updateBallPosition();
+        // Auto-change videos every 5 seconds
+        setInterval(changeDesktopVideo, 5000);
+        setInterval(changeMobileVideo, 5000);
 
-        // Update on scroll
-        window.addEventListener('scroll', updateBallPosition);
-    });
+        // Add event listeners for video ending
+        desktopVideo.addEventListener('ended', changeDesktopVideo);
+        mobileVideo.addEventListener('ended', changeMobileVideo);
 
-    // Dynamic copyright year
-    const currentYear = new Date().getFullYear();
-    document.querySelector('.footer-bottom p').textContent = `© ${currentYear} WebsiteAnimation.co.uk. All rights reserved.`;
+        // Enhanced fullscreen functionality with overlay
+        const videos = document.querySelectorAll('.video-container video');
+        videos.forEach(video => {
+            video.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    // Create overlay
+                    const overlay = document.createElement('div');
+                    overlay.className = 'fullscreen-overlay';
+                    
+                    // Create video container with appropriate class
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = `fullscreen-video ${video.id === 'desktop-video' ? 'desktop' : 'mobile'}`;
+                    
+                    // Clone the video
+                    const fullscreenVideo = video.cloneNode(true);
+                    fullscreenVideo.play();
+                    
+                    videoContainer.appendChild(fullscreenVideo);
+                    overlay.appendChild(videoContainer);
+                    document.body.appendChild(overlay);
+                    
+                    // Close on overlay click
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            overlay.remove();
+                        }
+                    });
+
+                    // Close on escape key
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            overlay.remove();
+                        }
+                    });
+                }
+            });
+        });
+
+        // Ensure videos start playing
+        desktopVideo.play().catch(e => console.log("Auto-play prevented:", e));
+        mobileVideo.play().catch(e => console.log("Auto-play prevented:", e));
+    }
+});
+
+
+
+
 </script>
-
 
 </body>
 </html>
+

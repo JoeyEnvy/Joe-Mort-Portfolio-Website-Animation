@@ -172,11 +172,12 @@ nav.scrolled .nav-social a {
 main {
     margin-top: 80px;
     padding: 0;
-    opacity: 0;
-    transform: translateX(100%);
-    animation: contentEnter 0.5s ease forwards;
-    animation-delay: 0.3s;
+    /* Remove these properties if they exist:
+    height: 100vh;
+    overflow-y: scroll;
+    */
 }
+
 
 .content-wrapper {
     max-width: 1600px;
@@ -260,7 +261,7 @@ spline-viewer {
 .reels-container {
     display: flex;
     justify-content: space-between;
-    margin: 60px 0;
+    margin: 180px 0; /* Increased from 60px to 180px */
     gap: 40px;
 }
 
@@ -422,9 +423,8 @@ spline-viewer {
 .film-production-container {
     display: flex;
     justify-content: space-between;
-    margin: 60px 0;
+    margin: 180px 0; /* Increased from 60px to 180px */
 }
-
 .film-production-videos, 
 .mobile-projects {
     width: 48%;
@@ -521,7 +521,7 @@ spline-viewer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 60px 0;
+    margin: 180px 0; /* Increased from 60px to 180px */
     gap: 40px;
 }
 
@@ -927,12 +927,14 @@ footer {
 
 /* Main Section Container */
 .sex-pistols-section {
-max-height: 75vh;
+    /* Remove max-height if present */
     width: 100%;
     max-width: 1600px;
     margin: 60px auto;
     padding: 0 40px;
+    /* Remove if present:
     overflow-x: hidden;
+    */
 }
 
 /* Columns Layout */
@@ -1567,9 +1569,10 @@ max-height: 75vh;
     gap: 25px;
     width: 100%;
     margin-bottom: 30px;
-    height: 65vh; /* Increased overall height */
+    /* Remove fixed height:
+    height: 65vh;
+    */
 }
-
 /* Project Items */
 .project-item {
     background: linear-gradient(145deg,
@@ -1857,3 +1860,54 @@ max-height: 75vh;
         height: 160px;
     }
 }
+
+/* Navbar animation on scroll page load from top */
+nav {
+    animation: navSlideDown 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+/* Content elements animation on scroll page load from right */
+.content-wrapper > *,
+.sex-pistols-section,
+.voltpro-section,
+.project-showcase-section,
+.reels-container,
+.film-production-container,
+.details-section {
+    animation: contentSlideIn 0.8s ease forwards;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Define the animations */
+@keyframes navSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contentSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Add animation delays for smoother sequence */
+.sex-pistols-section { animation-delay: 0.2s; }
+.voltpro-section { animation-delay: 0.3s; }
+.project-showcase-section { animation-delay: 0.4s; }
+.reels-container { animation-delay: 0.5s; }
+.film-production-container { animation-delay: 0.6s; }
+.details-section { animation-delay: 0.7s; }
