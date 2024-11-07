@@ -2852,89 +2852,111 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //ANCHOR MENU ON SCROLL AND HOVER BUTTONS BOTTOM RIGHT 
 
+// Fixed Navigation Controls - Isolated Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const anchorMenu = document.querySelector('.anchor-menu');
-    const backToTop = document.querySelector('.back-to-top');
-    
-    // Function to check if device is mobile
-    function isMobileDevice() {
-        return (window.innerWidth <= 768) || 
-               ('ontouchstart' in window) ||
-               (navigator.maxTouchPoints > 0);
-    }
+    // Elements
+    const fixedNav = {
+        anchorMenu: document.querySelector('.anchor-menu'),
+        backToTop: document.querySelector('.back-to-top'),
+        contactButtons: document.querySelector('.fixed-buttons'),
 
-    // Function to calculate page scroll percentage
-    function getScrollPercentage() {
-        const h = document.documentElement;
-        const b = document.body;
-        const st = 'scrollTop';
-        const sh = 'scrollHeight';
-        return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
-    }
+        init: function() {
+            if (!this.anchorMenu || !this.backToTop) return;
+            this.initScrollHandling();
+            this.initClickHandling();
+            this.checkMobileDisplay();
+        },
 
-    // Show/hide elements on scroll
-    window.addEventListener('scroll', function() {
-        if (isMobileDevice()) {
-            anchorMenu?.classList.remove('visible');
-            return;
-        }
+        // Check for mobile device
+        isMobile: function() {
+            return window.innerWidth <= 768;
+        },
 
-        const scrollPercentage = getScrollPercentage();
-        const viewportHeight = window.innerHeight * 0.75; // 75vh trigger point
+        // Handle scroll events
+        initScrollHandling: function() {
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        const scrollPosition = window.scrollY;
+                        const viewportHeight = window.innerHeight * 0.75;
 
-        // Show menu after 75vh scroll
-        if (window.scrollY > viewportHeight) {
-            anchorMenu?.classList.add('visible');
-            backToTop?.classList.add('visible');
-        } else {
-            anchorMenu?.classList.remove('visible');
-            backToTop?.classList.remove('visible');
-        }
+                        // Show/hide menu and back to top button
+                        if (scrollPosition > viewportHeight && !this.isMobile()) {
+                            this.anchorMenu.classList.add('visible');
+                            this.backToTop.classList.add('visible');
+                        } else {
+                            this.anchorMenu.classList.remove('visible');
+                            this.backToTop.classList.remove('visible');
+                        }
 
-        // Update active menu item based on scroll percentage
-        const menuItems = document.querySelectorAll('.anchor-menu a');
-        const sectionCount = menuItems.length;
-        const percentPerSection = 100 / sectionCount;
+                        scrollTimeout = null;
+                    }, 100);
+                }
+            }, { passive: true });
+        },
 
-        menuItems.forEach((item, index) => {
-            const sectionStart = percentPerSection * index;
-            const sectionEnd = percentPerSection * (index + 1);
-            
-            if (scrollPercentage >= sectionStart && scrollPercentage < sectionEnd) {
-                menuItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
+        // Handle click events
+        initClickHandling: function() {
+            // Back to top button
+            this.backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth scroll for anchor links
+            this.anchorMenu.querySelectorAll('a').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = anchor.getAttribute('href')?.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const targetPosition = targetElement.offsetTop - 50;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Contact buttons click tracking (optional)
+            document.querySelector('.whatsapp-btn')?.addEventListener('click', () => {
+                console.log('WhatsApp clicked');
+            });
+
+            document.querySelector('.email-btn')?.addEventListener('click', () => {
+                console.log('Email clicked');
+            });
+
+            document.querySelector('.phone-btn')?.addEventListener('click', () => {
+                console.log('Phone clicked');
+            });
+        },
+
+        // Handle mobile display
+        checkMobileDisplay: function() {
+            if (this.isMobile()) {
+                this.anchorMenu.classList.add('hidden');
+                this.anchorMenu.style.display = 'none';
+            } else {
+                this.anchorMenu.classList.remove('hidden');
+                this.anchorMenu.style.removeProperty('display');
             }
-        });
-    });
+        }
+    };
 
-    // Initial check for mobile
-    if (isMobileDevice()) {
-        anchorMenu?.classList.add('hidden');
-    }
+    // Initialize
+    fixedNav.init();
 
     // Handle resize
     let resizeTimer;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            if (isMobileDevice()) {
-                anchorMenu?.classList.add('hidden');
-                anchorMenu?.classList.remove('visible');
-            } else {
-                anchorMenu?.classList.remove('hidden');
-                if (window.scrollY > window.innerHeight * 0.75) {
-                    anchorMenu?.classList.add('visible');
-                }
-            }
-        }, 250);
-    });
-
-    // Back to top functionality
-    backToTop?.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        resizeTimer = setTimeout(() => fixedNav.checkMobileDisplay(), 250);
     });
 });
 </script>

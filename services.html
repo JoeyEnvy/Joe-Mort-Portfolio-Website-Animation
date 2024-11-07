@@ -23,10 +23,10 @@
             <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </nav>
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
-
+<!-- Add this right after the nav element -->
+<div class="progress-container">
+    <div class="progress-bar"></div>
+</div>
     <main>
         <div class="mini-services">
             <div class="mini-services-content">
@@ -62,13 +62,6 @@
                     <p>Eye-catching visuals and high-quality print materials to elevate your brand and marketing materials.</p>
                 </div>
             </div>
-        </section>
-
-        <section class="service-menu">
-            <a href="#web-design" class="service-item">Web Design</a>
-            <a href="#animation" class="service-item">Animation</a>
-            <a href="#film-production" class="service-item">Film Production</a>
-            <a href="#graphic-design" class="service-item">Graphic Design</a>
         </section>
 
         <section id="web-design" class="service-section" data-aos="fade-right">
@@ -364,6 +357,51 @@
                     behavior: 'smooth'                });
             });
         });
+
+//scroll navbar and page loader animation and anchor 
+
+// Updated services.js
+document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    const progressContainer = document.querySelector('.progress-container');
+    const progressBar = document.querySelector('.progress-bar');
+    const mainContent = document.querySelector('main');
+    const sections = document.querySelectorAll('.service-section');
+    const anchorMenu = document.createElement('div');
+    
+    // Create anchor menu
+    anchorMenu.className = 'anchor-menu hidden';
+    anchorMenu.innerHTML = `
+        <div class="anchor-menu-content">
+            <ul>
+                ${Array.from(sections).map(section => `
+                    <li><a href="#${section.id}">${section.querySelector('h2').textContent}</a></li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+    document.body.appendChild(anchorMenu);
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / totalHeight) * 100;
+        
+        if (scrollTop > window.innerHeight * 0.3) {
+            nav.classList.add('nav-fixed');
+            progressContainer.classList.add('progress-fixed');
+            anchorMenu.classList.remove('hidden');
+            mainContent.classList.add('nav-fixed-margin');
+        } else {
+            nav.classList.remove('nav-fixed');
+            progressContainer.classList.remove('progress-fixed');
+            anchorMenu.classList.add('hidden');
+            mainContent.classList.remove('nav-fixed-margin');
+        }
+        
+        progressBar.style.width = `${scrollPercent}%`;
+    });
+});
     </script>
 </body>
 </html>

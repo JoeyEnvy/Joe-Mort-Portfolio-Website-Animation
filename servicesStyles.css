@@ -1,468 +1,469 @@
+/* ===============================
+   CORE VARIABLES AND SETUP
+   =============================== */
 
+/* Define main colors and styles that we'll use throughout the website
+   These variables make it easy to change colors everywhere at once */
+:root {
+    --primary-color: #6c5ce7;    /* Main purple shade */
+    --secondary-color: #00cec9;  /* Turquoise accent */
+    --accent-color: #fd79a8;     /* Pink highlight */
+    --background-color: #f9f9f9; /* Light grey background */
+    --text-color: #2d3436;       /* Dark grey text */
+    --nav-bg: #2d3436;          /* Dark navigation background */
+}
 
-        :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #00cec9;
-            --accent-color: #fd79a8;
-            --background-color: #f9f9f9;
-            --text-color: #2d3436;
-            --nav-bg: #2d3436;
-        }
+/* Reset all elements to have consistent spacing
+   This prevents browsers from adding their own margins and padding */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* Set up the basic page styling
+   This affects the entire website's general appearance */
+body {
+    font-family: 'Raleway', sans-serif; /* Modern, clean font */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6; /* Comfortable line spacing */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
 
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+/* ===============================
+   NAVIGATION STYLES
+   =============================== */
 
-        nav {
-            width: 250px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background-color: var(--nav-bg);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            transition: background-color 0.5s ease, transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        }
+/* Main navigation sidebar styling
+   This creates the fixed sidebar on the left */
+nav {
+    width: 250px; /* Fixed width */
+    height: 100vh; /* Full screen height */
+    position: fixed; /* Stays in place when scrolling */
+    left: 0;
+    top: 0;
+    background-color: var(--nav-bg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between;
+    z-index: 1000; /* Ensures nav appears above other content */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Subtle shadow effect */
+    /* Smooth transition for all changes */
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-        nav.hidden {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
+/* Style for hidden navigation
+   Used when transitioning between pages */
+nav.hidden {
+    transform: translateX(-100%); /* Slides off screen to the left */
+    opacity: 0;
+}
 
-        nav ul {
-            list-style-type: none;
-        }
+/* Style for fixed navigation at top
+   Appears after scrolling down */
+nav.nav-fixed {
+    width: 100%; /* Full width of screen */
+    height: 60px; /* Shorter height when fixed */
+    top: 0;
+    left: 0;
+    flex-direction: row; /* Items side by side */
+    align-items: center;
+    padding: 0 20px;
+}
 
-        nav li {
-            margin-bottom: 20px;
-        }
+/* Navigation list styling */
+nav ul {
+    list-style-type: none; /* Removes bullet points */
+}
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 5px;
-        }
+nav li {
+    margin-bottom: 20px; /* Space between menu items */
+}
 
-        nav a i {
-            margin-right: 10px;
-            font-size: 20px;
-        }
+/* Navigation link styling */
+nav a {
+    color: #fff;
+    text-decoration: none; /* Removes underline */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease; /* Smooth hover effect */
+    padding: 10px;
+    border-radius: 5px;
+}
 
-        nav a:hover, nav a.active {
-            color: var(--secondary-color);
-            background-color: rgba(255,255,255,0.1);
-            transform: translateX(5px);
-        }
+/* Icon styling in navigation */
+nav a i {
+    margin-right: 10px;
+    font-size: 20px;
+}
 
-        .nav-social {
-            display: flex;
-            justify-content: space-around;
-        }
+/* Hover and active state effects for navigation links */
+nav a:hover, 
+nav a.active {
+    color: var(--secondary-color);
+    background-color: rgba(255,255,255,0.1); /* Subtle highlight */
+    transform: translateX(5px); /* Slight shift right */
+}
 
-        .nav-social a {
-            color: #fff;
-            font-size: 24px;
-            transition: all 0.3s ease;
-        }
+/* ===============================
+   PROGRESS BAR AND MAIN CONTENT
+   =============================== */
 
-        .nav-social a:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
+/* Main content area styling
+   This is where all the page content lives */
+main {
+    margin-left: 250px; /* Matches navigation width */
+    padding: 0;
+    /* Smooth transitions for page changes */
+    transition: transform 0.5s ease-in-out, 
+                opacity 0.5s ease-in-out;
+}
 
-        main {
-            margin-left: 250px;
-            padding: 0;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        }
+/* Style for shifted main content
+   Used during page transitions */
+main.shifted {
+    transform: translateX(-250px);
+    opacity: 0;
+}
 
-        main.shifted {
-            transform: translateX(-250px);
-            opacity: 0;
-        }
+/* Progress bar container
+   Sits at the top of the page */
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001; /* Stays above other content */
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: #ccc;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1001;
-        }
+/* The actual progress bar that fills as you scroll */
+.progress-bar {
+    height: 4px;
+    background: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
 
-        .progress-bar {
-            height: 4px;
-            background: var(--accent-color);
-            width: 0%;
-        }
+/* Progress bar positioning when nav is fixed */
+.progress-container.progress-fixed {
+    top: 60px; /* Matches fixed nav height */
+}
 
-        .mini-services {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 24px;
-            white-space: nowrap;
-            overflow: hidden;
-        }
+/* ===============================
+   SERVICES BANNER AND SLIDESHOW
+   =============================== */
 
-        .mini-services-content {
-            display: inline-block;
-            padding-left: 100%;
-            animation: slide 20s linear infinite;
-        }
+/* Mini services banner with sliding text */
+.mini-services {
+    background: linear-gradient(135deg, 
+                var(--primary-color), 
+                var(--secondary-color));
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
-        @keyframes slide {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(-100%, 0);
-            }
-        }
+/* Content container for sliding text */
+.mini-services-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: slide 20s linear infinite;
+}
 
-        .slideshow {
-            width: 100%;
-            height: 400px;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
+/* Sliding animation for services banner */
+@keyframes slide {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
 
-        .slideshow::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(249,249,249,1), rgba(249,249,249,0));
-        }
+/* Slideshow section styling */
+.slideshow {
+    width: 100%;
+    height: 400px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
 
-        .service-menu {
-            display: flex;
-            justify-content: space-around;
-            margin: 50px 0;
-            overflow-x: auto;
-            padding: 20px 0;
-        }
+/* Gradient overlay for slideshow
+   Creates a fade effect at the bottom */
+.slideshow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(
+        to top,
+        rgba(249,249,249,1),
+        rgba(249,249,249,0)
+    );
+}
 
-        .service-item {
-            flex: 0 0 200px;
-            height: 150px;
-            background-color: var(--primary-color);
-            margin: 0 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+/* ===============================
+   ANCHOR MENU
+   =============================== */
 
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255,255,255,0.1);
-            transform: rotate(45deg);
-            transition: all 0.3s ease;
-        }
+/* Side anchor menu styling */
+.anchor-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: var(--nav-bg);
+    padding: 80px 20px 20px;
+    z-index: 998;
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
 
-        .service-item:hover::before {
-            top: -100%;
-            left: -100%;
-        }
+/* Hidden state for anchor menu */
+.anchor-menu.hidden {
+    transform: translateX(-100%);
+}
 
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+/* Visible state for anchor menu */
+.anchor-menu:not(.hidden) {
+    transform: translateX(0);
+}
 
-        .service-section {
-            padding: 70px;
-            margin-bottom: 70px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+/* Scrollable content area in anchor menu */
+.anchor-menu-content {
+    height: 100%;
+    overflow-y: auto;
+}
 
-        .service-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-            font-size: 2.5em;
-        }
+/* Anchor menu list styling */
+.anchor-menu ul {
+    list-style: none;
+    padding: 0;
+}
 
-        .service-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50%;
-            height: 2px;
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
+.anchor-menu li {
+    margin: 15px 0;
+}
 
-        .service-section:hover h2::after {
-            width: 100%;
-        }
+/* Anchor menu links */
+.anchor-menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
+/* Hover effect for anchor menu links */
+.anchor-menu a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--accent-color);
+}
 
-        .service-card {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+/* ===============================
+   SERVICE SECTIONS
+   =============================== */
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+/* Main service section container
+   Holds individual service descriptions */
+.service-section {
+    padding: 70px;
+    margin-bottom: 70px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* Animation properties for scroll effects */
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease-out, 
+                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-        .service-card i {
-            font-size: 48px;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
+/* Section headers styling */
+.service-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    font-size: 2.5em;
+}
 
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
+/* Animated underline for section headers
+   Creates expanding line effect on hover */
+.service-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
 
-        .pricing-table {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
+/* Expand underline on hover */
+.service-section:hover h2::after {
+    width: 100%;
+}
 
-        .pricing-item {
-            flex: 0 0 calc(33.333% - 20px);
-            background-color: #f0f0f0;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
+/* ===============================
+   SERVICE CARDS GRID
+   =============================== */
 
-        .pricing-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+/* Grid layout for service cards
+   Creates responsive grid of cards */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
 
-        .pricing-item h3 {
-            color: var(--secondary-color);
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
+/* Individual service card styling */
+.service-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, 
+                box-shadow 0.3s ease;
+}
 
-        .example-section {
-            margin-top: 50px;
-            padding: 30px;
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-        }
+/* Hover effect for service cards */
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
-        .example-section::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.3;
-        }
+/* Icons in service cards */
+.service-card i {
+    font-size: 48px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
 
-        .icon-section {
-            text-align: center;
-            padding: 100px 0;
-            background-color: #f0f0f0;
-        }
+/* Service card headers */
+.service-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
 
-        .icon-section i {
-            font-size: 200px;
-            color: var(--primary-color);
-        }
+/* ===============================
+   PRICING TABLES
+   =============================== */
 
-        .contact-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 100px 50px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+/* Pricing table container */
+.pricing-table {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
 
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255,255,255,0.1);
-            transform: rotate(45deg);
-        }
+/* Individual pricing item */
+.pricing-item {
+    flex: 0 0 calc(33.333% - 20px);
+    background-color: #f0f0f0;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
 
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: rgba(255,255,255,0.1);
-            padding: 50px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
+/* Hover effect for pricing items */
+.pricing-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(255,255,255,0.2);
-            color: #fff;
-            font-size: 16px;
-        }
+/* Pricing item headers */
+.pricing-item h3 {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
 
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255,255,255,0.7);
-        }
+/* ===============================
+   EXAMPLE SECTIONS
+   =============================== */
 
-        .contact-form button {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            font-weight: bold;
-        }
+/* Example work section styling */
+.example-section {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
 
-        .contact-form button:hover {
-            background-color: #e84393;
-            transform: translateY(-3px);
-        }
+.example-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
 
-        footer {
-            background-color: var(--nav-bg);
-            color: #fff;
-            padding: 50px;
-            margin-left: 250px;
-        }
+/* Example section hover effect */
+.example-section:hover {
+    background-color: rgba(0,0,0,0.08);
+    transition: background-color 0.3s ease;
+}
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* ===============================
+   CONTACT SECTION
+   =============================== */
 
-        .footer-section h3 {
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-        }
+/* Main contact section container
+   Features gradient background and overlay effect */
+.contact-section {
+    background: linear-gradient(135deg, 
+                var(--primary-color), 
+                var(--secondary-color));
+    color: #fff;
+    padding: 100px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .footer-section ul {
-            list-style-type: none;
-        }
+/* Decorative background element
+   Creates diagonal overlay pattern */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.1);
+    transform: rotate(45deg);
+}
 
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section ul li a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                width: 100%;
-                height: auto;
-                position: static;
-            }
-            main {
-                margin-left: 0;
-            }
-            .service-item {
-                flex: 0 0 150px;
-            }
-            .pricing-item {
-                flex: 0 0 100%;
-            }
-            footer {
-                margin-left: 0;
-            }
-        }
+/* Contact form container
+   Features frosted glass effect */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,0.1);
+    padding: 50px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px); /* Creates frosted glass effect */

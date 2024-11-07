@@ -4280,13 +4280,14 @@ tr:hover td {
     }
 }
 
-/* Fixed Anchor Menu */
+/* Fixed Anchor Menu and fixed buttons */
+/* Fixed Anchor Menu - Corrected Position */
 .anchor-menu {
     position: fixed;
-    right: 30px; /* Keep right alignment */
-    bottom: 280px; /* Position above contact buttons */
-    left: auto; /* Remove any left positioning */
-    top: auto; /* Remove any top positioning */
+    right: 30px; /* Fixed distance from right edge */
+    bottom: 350px;
+    left: auto;
+    top: auto;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
@@ -4299,8 +4300,8 @@ tr:hover td {
     overflow-y: auto;
     width: 160px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    transform: none; /* Remove any transform that might affect positioning */
 }
+
 .anchor-menu.visible {
     opacity: 0.7;
     visibility: visible;
@@ -4366,7 +4367,7 @@ tr:hover td {
 /* Fixed Contact Buttons */
 .fixed-buttons {
     position: fixed;
-    right: 30px;
+    right: 30px; /* Matching right edge alignment */
     bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -4444,6 +4445,37 @@ tr:hover td {
     left: -85px;
 }
 
+/* Responsive Design */
+@media screen and (min-width: 1921px) {
+    .anchor-menu {
+        right: 30px; /* Maintain consistent right edge */
+    }
+}
+
+@media screen and (max-width: 1920px) {
+    .anchor-menu {
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .anchor-menu {
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .anchor-menu {
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .anchor-menu {
+        right: 30px;
+    }
+}
+
 /* Hide on Mobile */
 @media (max-width: 768px) {
     .anchor-menu {
@@ -4460,6 +4492,20 @@ tr:hover td {
         width: 50px;
         height: 50px;
         font-size: 20px;
+    }
+}
+
+/* Additional Mobile Optimization */
+@media screen and (max-height: 700px) {
+    .anchor-menu {
+        max-height: 350px;
+    }
+}
+
+/* Ensure menu is hidden when printing */
+@media print {
+    .anchor-menu {
+        display: none !important;
     }
 }
 
