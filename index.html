@@ -2834,7 +2834,148 @@ document.addEventListener('DOMContentLoaded', function() {
         this.submit();
     });
 });
+
+//ai trailer part 
+document.addEventListener('DOMContentLoaded', function() {
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    const video = document.querySelector('.preview-video');
+    const playButton = document.querySelector('.play-button');
+
+    if(videoPlaceholder && video && playButton) {
+        playButton.addEventListener('click', function() {
+            videoPlaceholder.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+    }
+});
+
+//ANCHOR MENU ON SCROLL AND HOVER BUTTONS BOTTOM RIGHT 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const anchorMenu = document.querySelector('.anchor-menu');
+    const backToTop = document.querySelector('.back-to-top');
+    
+    // Function to check if device is mobile
+    function isMobileDevice() {
+        return (window.innerWidth <= 768) || 
+               ('ontouchstart' in window) ||
+               (navigator.maxTouchPoints > 0);
+    }
+
+    // Function to calculate page scroll percentage
+    function getScrollPercentage() {
+        const h = document.documentElement;
+        const b = document.body;
+        const st = 'scrollTop';
+        const sh = 'scrollHeight';
+        return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+    }
+
+    // Show/hide elements on scroll
+    window.addEventListener('scroll', function() {
+        if (isMobileDevice()) {
+            anchorMenu?.classList.remove('visible');
+            return;
+        }
+
+        const scrollPercentage = getScrollPercentage();
+        const viewportHeight = window.innerHeight * 0.75; // 75vh trigger point
+
+        // Show menu after 75vh scroll
+        if (window.scrollY > viewportHeight) {
+            anchorMenu?.classList.add('visible');
+            backToTop?.classList.add('visible');
+        } else {
+            anchorMenu?.classList.remove('visible');
+            backToTop?.classList.remove('visible');
+        }
+
+        // Update active menu item based on scroll percentage
+        const menuItems = document.querySelectorAll('.anchor-menu a');
+        const sectionCount = menuItems.length;
+        const percentPerSection = 100 / sectionCount;
+
+        menuItems.forEach((item, index) => {
+            const sectionStart = percentPerSection * index;
+            const sectionEnd = percentPerSection * (index + 1);
+            
+            if (scrollPercentage >= sectionStart && scrollPercentage < sectionEnd) {
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Initial check for mobile
+    if (isMobileDevice()) {
+        anchorMenu?.classList.add('hidden');
+    }
+
+    // Handle resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (isMobileDevice()) {
+                anchorMenu?.classList.add('hidden');
+                anchorMenu?.classList.remove('visible');
+            } else {
+                anchorMenu?.classList.remove('hidden');
+                if (window.scrollY > window.innerHeight * 0.75) {
+                    anchorMenu?.classList.add('visible');
+                }
+            }
+        }, 250);
+    });
+
+    // Back to top functionality
+    backToTop?.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
 </script>
+
+
+<!-- Fixed Anchor Menu -->
+<!-- Fixed Anchor Menu -->
+<nav class="anchor-menu">
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#freelancer-info">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#spline-mobile-animate">Animation</a></li>
+        <li><a href="#pro-animation-showcase">Showcase</a></li>
+        <li><a href="#digital-media">Digital Media</a></li>
+        <li><a href="#print-design">Print Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Fixed Contact Buttons -->
+<div class="fixed-buttons">
+    <a href="https://wa.me/447478773451" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="tooltip">WhatsApp</span>
+    </a>
+    <a href="mailto:joe@websiteanimation.co.uk" class="email-btn">
+        <i class="fas fa-envelope"></i>
+        <span class="tooltip">Email</span>
+    </a>
+    <a href="tel:+447478773451" class="phone-btn">
+        <i class="fas fa-phone"></i>
+        <span class="tooltip">Call</span>
+    </a>
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="tooltip">Top</span>
+    </button>
+</div>
 
 </body>
 </html>

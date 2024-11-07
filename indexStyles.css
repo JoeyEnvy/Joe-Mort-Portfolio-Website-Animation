@@ -4279,3 +4279,196 @@ tr:hover td {
         font-size: 1em;
     }
 }
+
+/* Fixed Anchor Menu */
+.anchor-menu {
+    position: fixed;
+    right: 30px; /* Keep right alignment */
+    bottom: 280px; /* Position above contact buttons */
+    left: auto; /* Remove any left positioning */
+    top: auto; /* Remove any top positioning */
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    background: rgba(45, 52, 54, 0.85);
+    padding: 12px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    max-height: 450px;
+    overflow-y: auto;
+    width: 160px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transform: none; /* Remove any transform that might affect positioning */
+}
+.anchor-menu.visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.anchor-menu:hover {
+    opacity: 1;
+    transform: translateX(-5px);
+}
+
+.anchor-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.anchor-menu li {
+    margin: 0;
+}
+
+.anchor-menu a {
+    display: block;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.anchor-menu a:hover {
+    background: #6c5ce7;
+    opacity: 1;
+    transform: translateX(-3px);
+}
+
+.anchor-menu a.active {
+    background: #6c5ce7;
+    opacity: 1;
+}
+
+/* Custom Scrollbar */
+.anchor-menu::-webkit-scrollbar {
+    width: 5px;
+}
+
+.anchor-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.anchor-menu::-webkit-scrollbar-thumb {
+    background: #6c5ce7;
+    border-radius: 3px;
+}
+
+/* Fixed Contact Buttons */
+.fixed-buttons {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.fixed-buttons a,
+.fixed-buttons button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.whatsapp-btn {
+    background: #25D366;
+}
+
+.email-btn {
+    background: #fd79a8;
+}
+
+.phone-btn {
+    background: #6c5ce7;
+}
+
+.back-to-top {
+    background: #00cec9;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.fixed-buttons a:hover,
+.fixed-buttons button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Tooltips */
+.tooltip {
+    position: absolute;
+    left: -100px;
+    background: #2d3436;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.fixed-buttons a:hover .tooltip,
+.fixed-buttons button:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    left: -85px;
+}
+
+/* Hide on Mobile */
+@media (max-width: 768px) {
+    .anchor-menu {
+        display: none !important;
+    }
+    
+    .fixed-buttons {
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .fixed-buttons a,
+    .fixed-buttons button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .anchor-menu,
+    .fixed-buttons a,
+    .fixed-buttons button,
+    .tooltip {
+        transition: none;
+    }
+}
