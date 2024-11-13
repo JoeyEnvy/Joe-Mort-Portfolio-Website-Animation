@@ -1,136 +1,150 @@
-/* ===============================
+/* ====================================
    CORE VARIABLES AND SETUP
-   =============================== */
-
-/* Define main colors and styles that we'll use throughout the website
-   These variables make it easy to change colors everywhere at once */
+   ==================================== */
 :root {
-    --primary-color: #6c5ce7;    /* Main purple shade */
-    --secondary-color: #00cec9;  /* Turquoise accent */
+    --primary-color: #6c5ce7;    /* Main purple */
+    --secondary-color: #00cec9;  /* Teal accent */
     --accent-color: #fd79a8;     /* Pink highlight */
-    --background-color: #f9f9f9; /* Light grey background */
-    --text-color: #2d3436;       /* Dark grey text */
-    --nav-bg: #2d3436;          /* Dark navigation background */
+    --nav-bg: #2d3436;          /* Dark navigation */
+    --background-color: #f9f9f9; /* Light background */
+    --text-color: #2d3436;      /* Main text color */
+    --whatsapp-color: #25D366;   /* WhatsApp brand color */
 }
 
-/* Reset all elements to have consistent spacing
-   This prevents browsers from adding their own margins and padding */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Set up the basic page styling
-   This affects the entire website's general appearance */
-body {
-    font-family: 'Raleway', sans-serif; /* Modern, clean font */
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6; /* Comfortable line spacing */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
-/* ===============================
-   NAVIGATION STYLES
-   =============================== */
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-/* Main navigation sidebar styling
-   This creates the fixed sidebar on the left */
+/* ====================================
+   NAVIGATION STYLES
+   ==================================== */
 nav {
-    width: 250px; /* Fixed width */
-    height: 100vh; /* Full screen height */
-    position: fixed; /* Stays in place when scrolling */
+    width: 250px;
+    height: 100vh;
+    position: fixed;
     left: 0;
     top: 0;
     background-color: var(--nav-bg);
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between;
-    z-index: 1000; /* Ensures nav appears above other content */
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Subtle shadow effect */
-    /* Smooth transition for all changes */
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform, background-color;
+}
+
+nav.nav-fixed {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+    background-color: var(--primary-color);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* Style for hidden navigation
-   Used when transitioning between pages */
-nav.hidden {
-    transform: translateX(-100%); /* Slides off screen to the left */
-    opacity: 0;
-}
-
-/* Style for fixed navigation at top
-   Appears after scrolling down */
-nav.nav-fixed {
-    width: 100%; /* Full width of screen */
-    height: 60px; /* Shorter height when fixed */
-    top: 0;
-    left: 0;
-    flex-direction: row; /* Items side by side */
-    align-items: center;
-    padding: 0 20px;
-}
-
-/* Navigation list styling */
-nav ul {
-    list-style-type: none; /* Removes bullet points */
+nav.nav-fixed ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
 }
 
 nav li {
-    margin-bottom: 20px; /* Space between menu items */
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 
-/* Navigation link styling */
+nav.nav-fixed li {
+    margin-bottom: 0;
+}
+
 nav a {
     color: #fff;
-    text-decoration: none; /* Removes underline */
+    text-decoration: none;
     font-size: 18px;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease; /* Smooth hover effect */
+    transition: all 0.3s ease;
     padding: 10px;
     border-radius: 5px;
 }
 
-/* Icon styling in navigation */
 nav a i {
     margin-right: 10px;
     font-size: 20px;
 }
 
-/* Hover and active state effects for navigation links */
 nav a:hover, 
 nav a.active {
     color: var(--secondary-color);
-    background-color: rgba(255,255,255,0.1); /* Subtle highlight */
-    transform: translateX(5px); /* Slight shift right */
+    background-color: rgba(255,255,255,0.1);
+    transform: translateX(5px);
 }
 
-/* ===============================
-   PROGRESS BAR AND MAIN CONTENT
-   =============================== */
+/* UPDATED Social Icons Positioning */
+.nav-social {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+    padding: 20px 0;
+    justify-content: center;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
 
-/* Main content area styling
-   This is where all the page content lives */
-main {
-    margin-left: 250px; /* Matches navigation width */
+nav.nav-fixed .nav-social {
+    margin-top: 0;
+    margin-left: auto;
     padding: 0;
-    /* Smooth transitions for page changes */
-    transition: transform 0.5s ease-in-out, 
-                opacity 0.5s ease-in-out;
+    position: static;
 }
 
-/* Style for shifted main content
-   Used during page transitions */
-main.shifted {
-    transform: translateX(-250px);
-    opacity: 0;
+.nav-social a {
+    color: #fff;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
-/* Progress bar container
-   Sits at the top of the page */
+.nav-social a:hover {
+    transform: translateY(-3px);
+    color: var(--secondary-color);
+}
+
+.nav-social .fa-whatsapp {
+    color: var(--whatsapp-color);
+}
+
+/* ====================================
+   PROGRESS BAR AND ANCHOR MENU
+   ==================================== */
 .progress-container {
     width: 100%;
     height: 4px;
@@ -138,11 +152,14 @@ main.shifted {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1001; /* Stays above other content */
+    z-index: 1001;
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* The actual progress bar that fills as you scroll */
+.progress-container.progress-fixed {
+    top: 60px;
+}
+
 .progress-bar {
     height: 4px;
     background: var(--accent-color);
@@ -150,111 +167,38 @@ main.shifted {
     transition: width 0.3s ease;
 }
 
-/* Progress bar positioning when nav is fixed */
-.progress-container.progress-fixed {
-    top: 60px; /* Matches fixed nav height */
-}
-
-/* ===============================
-   SERVICES BANNER AND SLIDESHOW
-   =============================== */
-
-/* Mini services banner with sliding text */
-.mini-services {
-    background: linear-gradient(135deg, 
-                var(--primary-color), 
-                var(--secondary-color));
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 24px;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-/* Content container for sliding text */
-.mini-services-content {
-    display: inline-block;
-    padding-left: 100%;
-    animation: slide 20s linear infinite;
-}
-
-/* Sliding animation for services banner */
-@keyframes slide {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(-100%, 0);
-    }
-}
-
-/* Slideshow section styling */
-.slideshow {
-    width: 100%;
-    height: 400px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Gradient overlay for slideshow
-   Creates a fade effect at the bottom */
-.slideshow::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(
-        to top,
-        rgba(249,249,249,1),
-        rgba(249,249,249,0)
-    );
-}
-
-/* ===============================
-   ANCHOR MENU
-   =============================== */
-
-/* Side anchor menu styling */
 .anchor-menu {
     position: fixed;
     left: 0;
     top: 0;
     height: 100vh;
     width: 250px;
-    background-color: var(--nav-bg);
+    background-color: rgba(45, 52, 54, 0.95);
     padding: 80px 20px 20px;
     z-index: 998;
     transform: translateX(-100%);
     transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(5px);
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
-/* Hidden state for anchor menu */
-.anchor-menu.hidden {
-    transform: translateX(-100%);
-}
-
-/* Visible state for anchor menu */
-.anchor-menu:not(.hidden) {
+.anchor-menu.visible {
     transform: translateX(0);
 }
 
-/* Scrollable content area in anchor menu */
-.anchor-menu-content {
-    height: 100%;
-    overflow-y: auto;
+.anchor-menu-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid var(--secondary-color);
 }
 
-/* Anchor menu list styling */
 .anchor-menu ul {
     list-style: none;
     padding: 0;
@@ -262,208 +206,1387 @@ main.shifted {
 
 .anchor-menu li {
     margin: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Anchor menu links */
 .anchor-menu a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
-    display: block;
+    padding: 15px;
+    display: flex;
+    align-items: center;
     transition: all 0.3s ease;
     border-radius: 5px;
 }
 
-/* Hover effect for anchor menu links */
+.anchor-menu i {
+    margin-right: 15px;
+    font-size: 20px;
+    color: var(--secondary-color);
+    width: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
 .anchor-menu a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: var(--accent-color);
+    transform: translateX(5px);
+    color: var(--secondary-color);
 }
 
-/* ===============================
-   SERVICE SECTIONS
-   =============================== */
-
-/* Main service section container
-   Holds individual service descriptions */
-.service-section {
-    padding: 70px;
-    margin-bottom: 70px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    /* Animation properties for scroll effects */
-    opacity: 0;
-    transform: translateX(100px);
-    transition: opacity 0.8s ease-out, 
-                transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+.anchor-menu a:hover i {
+    transform: scale(1.2);
 }
 
-/* Section headers styling */
-.service-section h2 {
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    font-size: 2.5em;
+/* ====================================
+   MAIN CONTENT LAYOUT
+   ==================================== */
+main {
+    margin-left: 250px;
+    padding: 0;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: calc(100% - 250px);
 }
 
-/* Animated underline for section headers
-   Creates expanding line effect on hover */
-.service-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50%;
-    height: 2px;
-    background-color: var(--secondary-color);
-    transition: width 0.3s ease;
-}
-
-/* Expand underline on hover */
-.service-section:hover h2::after {
+main.nav-fixed-margin {
+    margin-left: 0;
+    margin-top: 60px;
     width: 100%;
 }
 
-/* ===============================
-   SERVICE CARDS GRID
-   =============================== */
-
-/* Grid layout for service cards
-   Creates responsive grid of cards */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
+main.anchor-visible {
+    margin-left: 250px;
+    width: calc(100% - 250px);
 }
 
-/* Individual service card styling */
-.service-card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 30px;
+/* Mini Services Banner */
+.mini-services {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    padding: 20px 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, 
-                box-shadow 0.3s ease;
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
 }
 
-/* Hover effect for service cards */
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.mini-services-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: slide 20s linear infinite;
 }
 
-/* Icons in service cards */
-.service-card i {
-    font-size: 48px;
+/* ====================================
+  Top slide show section as an anchor 
+   ==================================== */
+
+/* Hero Slideshow Styles */
+.hero-slideshow {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 40vh); /* Reduced from 100vh - 30vh to 100vh - 40vh */
+    overflow: hidden;
+}
+
+/* Slide Container */
+.slide-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual Slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    background: #000;
+}
+.slide.active {
+    opacity: 1;
+}
+
+/* Slide Images */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+/* Slide Content */
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    width: 80%;
+    max-width: 800px;
+}
+
+.slide-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.slide-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Explore Button */
+.explore-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.explore-btn:hover {
+    background: transparent;
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Navigation Arrows */
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 3;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.prev-slide {
+    left: 20px;
+}
+
+.next-slide {
+    right: 20px;
+}
+
+.slide-arrow:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Slide Indicators */
+.slide-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+
+/* ====================================
+   SERVICE SECTIONS AND CARDS / ANIMATION SECTIONS
+   ==================================== */
+.service-section {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    width: 100%;
+}
+
+.animate-title {
+    color: var(--primary-color);
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-title strong {
+    font-weight: 700;
+}
+
+.animate-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--secondary-color);
+    animation: lineGrow 0.8s ease-out 0.6s forwards;
+}
+
+/* ====================================
+   TWO-COLUMN LAYOUT
+   ==================================== */
+.animation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    position: relative;
+    margin-top: 30px;
+}
+
+/* Left Column Styling */
+.animation-info {
+    padding: 25px;
+    background: rgba(45, 52, 54, 0.02);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-section {
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+}
+
+.info-section h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-section h3 i {
     color: var(--secondary-color);
-    margin-bottom: 20px;
 }
 
-/* Service card headers */
-.service-card h3 {
+.info-section h3 strong {
+    font-weight: 700;
+}
+
+/* Service Items */
+.service-item {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-color);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.service-item:last-child {
+    margin-bottom: 0;
+}
+
+.service-item h4 {
+    font-size: 1.3em;
     margin-bottom: 15px;
     color: var(--primary-color);
 }
 
-/* ===============================
-   PRICING TABLES
-   =============================== */
+.service-item h4 strong {
+    font-weight: 700;
+}
 
-/* Pricing table container */
+.service-item i {
+    color: var(--secondary-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.feature-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    font-weight: 500;
+}
+
+.feature-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+.feature-list li strong {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ====================================
+   PRICE TAG STYLING
+   ==================================== */
+.price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--secondary-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+}
+
+.service-item:hover .price-tag {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ====================================
+   SOFTWARE SECTION STYLING
+   ==================================== */
+.software-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.software-category {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.software-category h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.2em;
+}
+
+.software-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.software-category li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(45, 52, 54, 0.1);
+}
+
+.software-category li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.software-category li strong {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+/* ====================================
+   SPLINE VIEWER STYLING
+   ==================================== */
+.animation-viewer-container {
+    position: relative;
+    height: 100%;
+}
+
+.animation-viewer {
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 160px);
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.9s forwards;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ====================================
+   HOVER EFFECTS AND ANIMATIONS
+   ==================================== */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out 0.3s forwards;
+}
+
+.fade-in-delay {
+    animation: fadeInUp 0.6s ease-out 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60%;
+    }
+}
+
+/* ====================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ==================================== */
+
+/* Large Screens (1400px and up) */
+@media screen and (min-width: 1400px) {
+    .service-section {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .animation-viewer {
+        height: calc(100vh - 180px);
+    }
+
+    .service-item {
+        padding: 30px;
+    }
+}
+
+/* Standard Desktop (1200px and down) */
+@media screen and (max-width: 1200px) {
+    .service-section {
+        padding: 30px;
+    }
+
+    .animation-content {
+        gap: 25px;
+    }
+
+    .software-grid {
+        gap: 15px;
+    }
+
+    .animation-viewer {
+        height: calc(100vh - 140px);
+        min-height: 450px;
+    }
+
+    .animate-title {
+        font-size: 2em;
+    }
+}
+
+/* Tablets and Smaller Desktops (992px and down) */
+@media screen and (max-width: 992px) {
+    .animation-content {
+        grid-template-columns: 1fr;
+    }
+
+    .animation-info {
+        padding: 20px;
+    }
+
+    .animation-viewer-container {
+        order: -1; /* Moves viewer to top on tablet */
+    }
+
+    .animation-viewer {
+        position: relative;
+        top: 0;
+        height: 500px;
+        min-height: auto;
+        margin-bottom: 30px;
+    }
+
+    .service-item {
+        padding: 20px;
+    }
+
+    .price-tag {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        margin-top: 15px;
+        opacity: 1;
+        transform: none;
+    }
+
+    .info-section h3 {
+        font-size: 1.6em;
+    }
+}
+
+/* Tablets (768px and down) */
+@media screen and (max-width: 768px) {
+    .service-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .animate-title {
+        font-size: 1.8em;
+    }
+
+    .software-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .animation-viewer {
+        height: 400px;
+    }
+
+    .info-section {
+        margin-bottom: 25px;
+    }
+
+    .service-item {
+        margin-bottom: 15px;
+    }
+
+    .feature-list li {
+        padding-left: 20px;
+    }
+
+    /* Adjust animations for better mobile performance */
+    .hover-lift:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Large Phones (576px and down) */
+@media screen and (max-width: 576px) {
+    .service-section {
+        padding: 15px;
+    }
+
+    .animate-title {
+        font-size: 1.6em;
+    }
+
+    .animation-info {
+        padding: 15px;
+    }
+
+    .service-item {
+        padding: 15px;
+    }
+
+    .service-item i {
+        font-size: 20px;
+    }
+
+    .animation-viewer {
+        height: 300px;
+    }
+
+    .info-section h3 {
+        font-size: 1.4em;
+    }
+
+    .software-category {
+        padding: 15px;
+    }
+}
+
+/* Small Phones (400px and down) */
+@media screen and (max-width: 400px) {
+    .animate-title {
+        font-size: 1.4em;
+    }
+
+    .service-item h4 {
+        font-size: 1.1em;
+    }
+
+    .animation-viewer {
+        height: 250px;
+    }
+
+    .price-tag {
+        font-size: 0.8em;
+    }
+
+    .feature-list li {
+        font-size: 0.9em;
+    }
+}
+
+/* Landscape Mode Optimization */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    .animation-viewer {
+        height: 200px;
+    }
+
+    .service-section {
+        padding: 10px;
+    }
+}
+
+/* ====================================
+   PERFORMANCE OPTIMIZATIONS
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+    .service-section,
+    .animate-title,
+    .info-section,
+    .service-item,
+    .animation-viewer {
+        animation: none;
+        transition: none;
+    }
+
+    .hover-lift:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .animation-viewer-container {
+        display: none;
+    }
+
+    .animation-content {
+        grid-template-columns: 1fr;
+    }
+
+    .service-section {
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
+/* ====================================
+   PRICING TABLES
+   ==================================== */
 .pricing-table {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 50px;
+    gap: 20px;
+    width: 100%;
 }
 
-/* Individual pricing item */
 .pricing-item {
     flex: 0 0 calc(33.333% - 20px);
-    background-color: #f0f0f0;
+    background-color: #fff;
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Hover effect for pricing items */
+.pricing-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
 .pricing-item:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Pricing item headers */
 .pricing-item h3 {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-size: 1.5em;
     margin-bottom: 15px;
 }
 
-/* ===============================
-   EXAMPLE SECTIONS
-   =============================== */
-
-/* Example work section styling */
-.example-section {
-    margin-top: 40px;
-    padding: 30px;
-    background-color: rgba(0,0,0,0.05);
-    border-radius: 10px;
+.pricing-item p {
+    margin: 10px 0;
 }
 
-.example-section h3 {
-    color: var(--primary-color);
+.pricing-item p:first-of-type {
+    font-size: 2em;
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* ====================================
+   FIXED CONTACT FORM
+   ==================================== */
+.fixed-contact {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 300px;
+    transform: translateY(calc(100% - 40px));
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.fixed-contact.active {
+    transform: translateY(0);
+}
+
+.fixed-contact-header {
+    padding: 15px 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fixed-contact-header span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fixed-contact-header i:last-child {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.fixed-contact.active .fixed-contact-header i:last-child {
+    transform: rotate(180deg);
+}
+
+.fixed-contact-body {
+    padding: 20px;
+}
+
+.fixed-contact-form input,
+.fixed-contact-form textarea {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
-/* Example section hover effect */
-.example-section:hover {
-    background-color: rgba(0,0,0,0.08);
-    transition: background-color 0.3s ease;
+.fixed-contact-form input:focus,
+.fixed-contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
 }
 
-/* ===============================
-   CONTACT SECTION
-   =============================== */
-
-/* Main contact section container
-   Features gradient background and overlay effect */
-.contact-section {
-    background: linear-gradient(135deg, 
-                var(--primary-color), 
-                var(--secondary-color));
-    color: #fff;
-    padding: 100px 50px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+.fixed-contact-form button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-/* Decorative background element
-   Creates diagonal overlay pattern */
-.contact-section::before {
-    content: '';
+.fixed-contact-form button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ====================================
+   FLOATING ACTION BUTTONS
+   ==================================== */
+/* UPDATED Back to Top Button with fixed positioning */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: opacity, transform;
+}
+
+/* UPDATED Back to Top Icon positioning */
+.back-to-top i {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255,255,255,0.1);
-    transform: rotate(45deg);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Contact form container
-   Features frosted glass effect */
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: rgba(255,255,255,0.1);
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px) translateZ(0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.whatsapp-chat {
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    background: var(--whatsapp-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-chat:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.whatsapp-chat i {
+    font-size: 24px;
+}
+
+/* ====================================
+   FOOTER STYLES
+   ==================================== */
+footer {
+    background-color: var(--nav-bg);
+    color: #fff;
     padding: 50px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px); /* Creates frosted glass effect */
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+footer.nav-fixed-margin {
+    margin-left: 0;
+    width: 100%;
+}
+
+footer.anchor-visible {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+/* ====================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ==================================== */
+/* For 4K and large displays */
+@media (min-width: 2560px) {
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 2000px;
+        margin: 0 auto;
+    }
+
+    .container {
+        max-width: 2000px;
+        margin: 0 auto;
+    }
+}
+
+/* For laptops and small desktops */
+@media (max-width: 1366px) {
+    .footer-content {
+        padding: 0 20px;
+    }
+
+    .service-section {
+        padding: 50px;
+    }
+}
+
+/* For tablets and smaller laptops */
+@media (max-width: 992px) {
+    .fixed-contact {
+        width: 300px;
+    }
+
+    .back-to-top,
+    .whatsapp-chat {
+        right: 20px;
+    }
+
+    .back-to-top {
+        bottom: 80px;
+    }
+
+    .whatsapp-chat {
+        bottom: 140px;
+    }
+
+    .pricing-item {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+/* For tablets and large phones */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: 60px;
+        bottom: 0;
+        top: auto;
+        flex-direction: row;
+    }
+
+    nav.nav-fixed {
+        top: 0;
+        bottom: auto;
+    }
+
+    .nav-social {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav.nav-fixed .nav-social {
+        position: static;
+        margin-left: auto;
+    }
+
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    nav.active ul {
+        display: flex;
+    }
+
+.anchor-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: rgba(45, 52, 54, 0.95);
+    padding: 80px 20px 20px;
+    z-index: 998;
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(5px);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .anchor-menu {
+        width: 100%;
+        height: auto;
+        max-height: 30vh; /* Reduced from 60vh to 45vh */
+        top: 60px;
+        padding: 12px; /* Slightly reduced padding */
+        overflow-y: auto;
+    }
+
+    .anchor-menu-header {
+        position: sticky;
+        top: 0;
+        padding: 8px; /* Slightly reduced from 10px */
+        font-size: 15px;
+    }
+
+    .anchor-menu ul {
+        margin: 0;
+        padding: 8px 0; /* Slightly reduced padding */
+    }
+
+    .anchor-menu li {
+        margin: 4px 0; /* Slightly reduced margin */
+    }
+
+    .anchor-menu a {
+        padding: 8px; /* Slightly reduced padding */
+        font-size: 15px;
+    }
+
+    .anchor-menu i {
+        font-size: 18px;
+        margin-right: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .anchor-menu {
+        max-height: 40vh; /* Slightly reduced from 50vh */
+    }
+}
+    main,
+    main.anchor-visible,
+    main.nav-fixed-margin,
+    footer,
+    footer.anchor-visible {
+        margin-left: 0;
+        width: 100%;
+        padding: 60px 20px;
+    }
+
+    .fixed-contact {
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .service-section {
+        padding: 30px;
+    }
+
+    .pricing-item {
+        flex: 0 0 100%;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .service-section h2 {
+        font-size: 1.8em;
+    }
+
+    .fixed-contact-header {
+        padding: 10px;
+    }
+
+    .back-to-top,
+    .whatsapp-chat {
+        width: 35px;
+        height: 35px;
+    }
+
+    .back-to-top i,
+    .whatsapp-chat i {
+        font-size: 16px;
+    }
+
+    .mini-services {
+        font-size: 18px;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .service-card i {
+        font-size: 36px;
+    }
+
+    .footer-section {
+        padding: 0 15px;
+    }
+}
+
+/* For mobile landscape mode */
+@media (max-height: 480px) and (orientation: landscape) {
+    nav {
+        height: 50px;
+    }
+
+    .fixed-contact {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .service-section {
+        padding: 20px;
+    }
+
+    .pricing-table {
+        padding: 10px;
+    }
+}
+
+/* ====================================
+   ANIMATIONS
+   ==================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+/* ====================================
+   UTILITY CLASSES
+   ==================================== */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.opacity-0 {
+    opacity: 0 !important;
+}
+
+.opacity-100 {
+    opacity: 1 !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Margin utilities */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.my-1 { margin-top: 1rem; margin-bottom: 1rem; }
+.my-2 { margin-top: 2rem; margin-bottom: 2rem; }
+.my-3 { margin-top: 3rem; margin-bottom: 3rem; }
+
+/* Padding utilities */
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-3 { padding: 3rem; }
+.py-1 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-2 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-3 { padding-top: 3rem; padding-bottom: 3rem; }
+.px-1 { padding-left: 1rem; padding-right: 1rem; }
+.px-2 { padding-left: 2rem; padding-right: 2rem; }
+.px-3 { padding-left: 3rem; padding-right: 3rem; }
+
+/* Flex utilities */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Text utilities */
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+.text-white { color: white; }
+
+/* Background utilities */
+.bg-primary { background-color: var(--primary-color); }
+.bg-secondary { background-color: var(--secondary-color); }
+.bg-accent { background-color: var(--accent-color); }

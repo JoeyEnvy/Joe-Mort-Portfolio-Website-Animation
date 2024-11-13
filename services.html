@@ -2,406 +2,877 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Services - Joe Mort's Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="servicesStyles.css">
-    </head>
+
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.37/build/spline-viewer.js"></script>
+</head>
 <body>
+    <!-- Main Navigation -->
     <nav>
         <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li>
-            <li><a href="services.html" class="active"><i class="fas fa-cogs"></i> Services</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="Home.html"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="About.html"><i class="fas fa-user"></i>About</a></li>
+            <li><a href="Showcase.html"><i class="fas fa-briefcase"></i>Showcase</a></li>
+            <li><a href="Services.html" class="active"><i class="fas fa-cogs"></i>Services</a></li>
+            <li><a href="Contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
         </ul>
         <div class="nav-social">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/447478773451" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
-<!-- Add this right after the nav element -->
-<div class="progress-container">
-    <div class="progress-bar"></div>
-</div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Anchor Menu -->
+    <div class="anchor-menu">
+        <div class="anchor-menu-header">
+            <i class="fas fa-list"></i> Quick Navigation
+        </div>
+        <ul>
+            <li><a href="#animation"><i class="fas fa-film"></i>Animation</a></li>
+            <li><a href="#web-design"><i class="fas fa-code"></i>Web Design</a></li>
+            <li><a href="#ai-production"><i class="fas fa-robot"></i>AI Production</a></li>
+            <li><a href="#graphic-design"><i class="fas fa-palette"></i>Graphic Design</a></li>
+            <li><a href="#pricing"><i class="fas fa-tags"></i>Pricing</a></li>
+        </ul>
+    </div>
+
+    <!-- Fixed Contact Form -->
+    <div class="fixed-contact">
+        <div class="fixed-contact-header">
+            <span><i class="fas fa-envelope"></i> Contact Me</span>
+            <i class="fas fa-chevron-up"></i>
+        </div>
+        <div class="fixed-contact-body">
+            <form class="fixed-contact-form" action="mailto:joe@websiteanimation.co.uk" method="POST">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- WhatsApp Chat Button -->
+    <a href="https://wa.me/447478773451" class="whatsapp-chat" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Main Content -->
     <main>
+        <!-- Services Banner -->
         <div class="mini-services">
             <div class="mini-services-content">
-                Web Design | Animation | Film Production | Graphic Design | Web Design | Animation | Film Production | Graphic Design
+                Web Development • Animation • AI Production • Graphic Design • Printing Services
             </div>
         </div>
 
-        <div class="slideshow">
-            Slideshow Placeholder
+<!-- Hero Slideshow Section -->
+<section class="hero-slideshow">
+    <div class="slide-container">
+        <!-- Slides -->
+        <div class="slide active" data-section="ai-production">
+            <img src="ai-production.jpg" alt="AI Video Production">
+            <div class="slide-content">
+                <h2>AI Video & Image Production</h2>
+                <p>Cutting-edge AI solutions for content creation</p>
+                <a href="#ai-section" class="explore-btn">Explore Now</a>
+            </div>
         </div>
 
-        <section class="content-section" data-aos="fade-right">
-            <h1>My Services</h1>
+        <div class="slide" data-section="design">
+            <img src="design.jpg" alt="Print & Logo Design">
+            <div class="slide-content">
+                <h2>Print & Logo Design</h2>
+                <p>Professional branding solutions</p>
+                <a href="#design-section" class="explore-btn">Explore Now</a>
+            </div>
+        </div>
+
+        <div class="slide" data-section="web">
+            <img src="web.jpg" alt="Web Design">
+            <div class="slide-content">
+                <h2>Web Design & Development</h2>
+                <p>Custom website solutions</p>
+                <a href="#web-section" class="explore-btn">Explore Now</a>
+            </div>
+        </div>
+
+        <div class="slide" data-section="animation">
+            <img src="animation.jpg" alt="Animation">
+            <div class="slide-content">
+                <h2>2D & 3D Animation</h2>
+                <p>Professional animation services</p>
+                <a href="#animation-section" class="explore-btn">Explore Now</a>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="slide-arrow prev-slide">&lt;</button>
+        <button class="slide-arrow next-slide">&gt;</button>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicators"></div>
+    </div>
+</section>
+
+        <!-- Service Section ANIMATION SECTION Animations Really -->
+<section id="animation" class="service-section" data-aos="fade-right">
+    <h2 class="animate-title"><strong>2D & 3D Animation Services</strong></h2>
+    
+    <div class="animation-content">
+        <!-- Left Column -->
+        <div class="animation-info">
+            <div class="info-section fade-in">
+                <h3><i class="fas fa-star"></i> <strong>Professional Animation Services</strong></h3>
+                <div class="service-list">
+                    <div class="service-item hover-lift">
+                        <i class="fas fa-film"></i>
+                        <h4><strong>Character Animation</strong></h4>
+                        <p>Professional character animation for games and films. <strong>Specializing in:</strong></p>
+                        <ul class="feature-list">
+                            <li><strong>2D Character Rigging</strong></li>
+                            <li><strong>3D Character Animation</strong></li>
+                            <li><strong>Motion Capture Integration</strong></li>
+                        </ul>
+                        <span class="price-tag">£50-£200/s</span>
+                    </div>
+
+                    <div class="service-item hover-lift">
+                        <i class="fas fa-cube"></i>
+                        <h4><strong>3D Modeling & Animation</strong></h4>
+                        <p><strong>Including:</strong></p>
+                        <ul class="feature-list">
+                            <li><strong>Product Visualization</strong></li>
+                            <li><strong>Architectural Renders</strong></li>
+                            <li><strong>Game Asset Creation</strong></li>
+                        </ul>
+                        <span class="price-tag">£500-£3000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software Section -->
+            <div class="info-section software-section fade-in-delay">
+                <h3><i class="fas fa-tools"></i> <strong>Industry-Standard Tools</strong></h3>
+                <div class="software-grid">
+                    <div class="software-category hover-lift">
+                        <h4><strong>2D Animation</strong></h4>
+                        <ul>
+                            <li><strong>Adobe Suite</strong> - Industry standard</li>
+                            <li><strong>Toon Boom</strong> - Professional animation</li>
+                            <li><strong>After Effects</strong> - Motion graphics</li>
+                        </ul>
+                    </div>
+                    <div class="software-category hover-lift">
+                        <h4><strong>3D Animation</strong></h4>
+                        <ul>
+                            <li><strong>Blender</strong> - Full 3D pipeline</li>
+                            <li><strong>Cinema 4D</strong> - Motion graphics</li>
+                            <li><strong>Maya</strong> - Industry standard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Fixed Spline Viewer -->
+        <div class="animation-viewer-container">
+            <div class="animation-viewer fade-in">
+                <spline-viewer 
+                    hint 
+                    loading-anim-type="spinner-small-dark" 
+                    url="https://prod.spline.design/7NBjyNTEHxT4RDAF/scene.splinecode">
+                </spline-viewer>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- WEB DESIGN Section -->
+        <section id="web-design" class="service-section" data-aos="fade-right">
+            <h2>Web Design & Development</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>Custom-built websites tailored to your specific needs and goals, ensuring a seamless user experience and stunning design.</p>
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Custom Websites</h3>
+                    <p>Bespoke website design and development tailored to your specific needs and brand identity.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-film"></i>
-                    <h3>Animation & Filmmaking</h3>
-                    <p>Captivating animations and professional video production to bring your stories and ideas to life on screen.</p>
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first approach ensuring your website looks great on all devices.</p>
                 </div>
+                <div class="service-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>E-Commerce</h3>
+                    <p>Full-featured online stores with secure payment integration and inventory management.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-production" class="service-section" data-aos="fade-right">
+            <h2>AI Video & Image Production</h2>
+            <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-robot"></i>
-                    <h3>AI Production</h3>
-                    <p>Leveraging cutting-edge AI technologies to create innovative solutions and enhance your digital presence.</p>
+                    <h3>AI Enhanced Video</h3>
+                    <p>Utilizing cutting-edge AI technology to enhance and transform video content.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Graphic Design & Printing</h3>
-                    <p>Eye-catching visuals and high-quality print materials to elevate your brand and marketing materials.</p>
+                    <i class="fas fa-image"></i>
+                    <h3>AI Image Generation</h3>
+                    <p>Creating unique images and artwork using advanced AI algorithms.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="web-design" class="service-section" data-aos="fade-right">
-            <h2>Web Design</h2>
-            <p>We offer cutting-edge web design services tailored to your needs. Our expertise includes:</p>
-            <ul>
-                <li>Responsive design for all devices (mobile, tablet, desktop)</li>
-                <li>E-commerce solutions with secure payment gateways</li>
-                <li>SEO optimization to improve your search engine rankings</li>
-                <li>Custom CMS development for easy content management</li>
-                <li>Progressive Web Apps (PWAs) for enhanced user experience</li>
-                <li>Web accessibility compliance (WCAG 2.1)</li>
-                <li>Performance optimization for fast loading times</li>
-                <li>Integration with third-party APIs and services</li>
-                <li>User experience (UX) design and user interface (UI) development</li>
-                <li>Website maintenance and support packages</li>
-            </ul>
-            <div class="pricing-table">
-                <div class="pricing-item">
-                    <h3>Basic</h3>
-                    <p>$999</p>
-                    <p>5-page responsive website</p>
-                    <p>Basic SEO optimization</p>
-                    <p>Contact form integration</p>
-                    <p>1 month of support</p>
+                <div class="service-card">
+                    <i class="fas fa-magic"></i>
+                    <h3>AI Post-Processing</h3>
+                    <p>Enhancing images and videos with AI-powered editing tools.</p>
                 </div>
-                <div class="pricing-item">
-                    <h3>Standard</h3>
-                    <p>$2499</p>
-                    <p>10-page responsive website</p>
-                    <p>E-commerce functionality (up to 50 products)</p>
-                    <p>Advanced SEO package</p>
-                    <p>Social media integration</p>
-                    <p>3 months of support</p>
-                </div>
-                <div class="pricing-item">
-                    <h3>Premium</h3>
-                    <p>$4999+</p>
-                    <p>Custom website with advanced features</p>
-                    <p>Unlimited pages and products</p>
-                    <p>Custom CMS development</p>
-                    <p>Progressive Web App (PWA) functionality</p>
-                    <p>6 months of priority support</p>
-                </div>
-            </div>
-            <div class="example-section">
-                <h3>Example Work</h3>
-                <p>Check out our latest web design project for XYZ Company, featuring a fully responsive e-commerce platform with cutting-edge UX design and seamless payment integration.</p>
-            </div>
-        </section>
-
-        <section id="animation" class="service-section" data-aos="fade-right">
-            <h2>Animation</h2>
-            <p>Bring your ideas to life with our animation services:</p>
-            <ul>
-                <li>2D animation (traditional and digital)</li>
-                <li>3D animation and modeling</li>
-                <li>Character design and rigging</li>
-                <li>Motion graphics and kinetic typography</li>
-                <li>Explainer videos and infographics</li>
-                <li>VFX and compositing</li>
-                <li>Animated logos and branding</li>
-                <li>Storyboarding and concept art</li>
-                <li>Animated short films and series</li>
-                <li>Interactive animations for web and mobile</li>
-            </ul>
-            <div class="pricing-table">
-                <div class="pricing-item">
-                    <h3>Basic</h3>
-                    <p>$1499</p>
-                    <p>30-second 2D animation</p>
-                    <p>2 character designs</p>
-                    <p>Basic background art</p>
-                    <p>2 rounds of revisions</p>
-                </div>
-                <div class="pricing-item">
-                    <h3>Standard</h3>
-                    <p>$2999</p>
-                    <p>60-second 2D animation or 30-second 3D animation</p>
-                    <p>4 character designs</p>
-                    <p>Detailed background art</p>
-                    <p>Custom sound design</p>
-                    <p>3 rounds of revisions</p>
-                </div>
-                <div class="pricing-item">
-                    <h3>Premium</h3>
-                    <p>$5999+</p>
-                    <p>Custom animation project</p>
-                    <p>Complex character rigging</p>
-                    <p>Advanced VFX and compositing</p>
-                    <p>Full creative control</p>
-                    <p>Unlimited revisions</p>
-                </div>
-            </div>
-            <div class="example-section">
-                <h3>Example Work</h3>
-                <p>View our award-winning animated short "Dream Catcher", which showcases our expertise in character animation, storytelling, and visual effects.</p>
-            </div>
-        </section>
-
-        <section id="film-production" class="service-section" data-aos="fade-right">
-            <h2>Film Production & Editing</h2>
-            <p>From concept to final cut, we handle all aspects of film production:</p>
-            <ul>
-                <li>Scriptwriting and storyboarding</li>
-                <li>Pre-production planning and location scouting</li>
-                <li>Cinematography and lighting design</li>
-                <li>Sound recording and audio engineering</li>
-                <li>Post-production editing and color grading</li>
-                <li>Visual effects (VFX) and compositing</li>
-                <li>Music composition and sound design</li>
-                <li>Voice-over recording and ADR</li>
-                <li>Aerial videography using drones</li>
-                <li>360° and VR video production</li>
-            </ul>
-            <div class="pricing-table">
-                <div class="pricing-item">
-                    <h3>Basic</h3>
-                    <p>$2999</p>
-                    <p>1-minute promotional video</p>
-                    <p>1-day shoot</p>
-                    <p>Basic editing and color correction</p>
-                    <p>Royalty-free music</p>
-                </div>
-                <div class="pricing-item">
-                    <h3>Standard</h3>
-                    <p>$5999</p>
-                    <p>5-minute corporate video or short film</p>
-                    <p>2-day shoot</p>
-                    <p>Advanced editing and color grading</p>
-                    <p>Custom music and sound design</p>
-                    <p>Basic VFX and motion graphics</p>
-                </div>
-                <div class="pricing-item">
-                    <h3>Premium</h3>
-                    <p>$9999+</p>
-                    <p>Custom film production</p>
-                    <p>Multi-day shoot with full crew</p>
-                    <p>Advanced VFX and compositing</p>
-                    <p>Aerial videography</p>
-                    <p>Full post-production package</p>
-                </div>
-            </div>
-            <div class="example-section">
-                <h3>Example Work</h3>
-                <p>Watch the trailer for our latest short film "Urban Legends", which showcases our cinematography, storytelling, and post-production capabilities.</p>
             </div>
         </section>
 
         <section id="graphic-design" class="service-section" data-aos="fade-right">
-            <h2>Graphic Design & Printing</h2>
-            <p>We create stunning visuals for both digital and print media:</p>
-            <ul>
-                <li>Logo design and brand identity development</li>
-                <li>Marketing materials (brochures, flyers, posters, billboards)</li>
-                <li>Packaging design for products</li>
-                <li>Book and magazine layout design</li>
-                <li>Infographic design and data visualization</li>
-                <li>Social media graphics and templates</li>
-                <li>Trade show and exhibition graphics</li>
-                <li>Vehicle wrap designs</li>
-                <li>Signage and environmental graphics</li>
-                <li>High-quality printing services for all materials</li>
-            </ul>
+            <h2>Graphic Design & Logo Creation</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Logo Design</h3>
+                    <p>Creating unique and memorable logos that represent your brand identity.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Brand Identity</h3>
+                    <p>Comprehensive brand design including color schemes and typography.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-print"></i>
+                    <h3>Print Design</h3>
+                    <p>Professional design for business cards, brochures, and marketing materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="service-section" data-aos="fade-up">
+            <h2>Pricing Plans</h2>
             <div class="pricing-table">
                 <div class="pricing-item">
-                    <h3>Basic</h3>
-                    <p>$499</p>
-                    <p>Logo design</p>
-                    <p>3 initial concepts</p>
-                    <p>Business card design</p>
-                    <p>2 rounds of revisions</p>
+                    <h3>Basic Package</h3>
+                    <p>£499</p>
+                    <ul>
+                        <li>Basic Website Design</li>
+                        <li>Simple Animation</li>
+                        <li>Logo Design</li>
+                        <li>5 AI Generated Images</li>
+                    </ul>
                 </div>
                 <div class="pricing-item">
-                    <h3>Standard</h3>
-                    <p>$999</p>
-                    <p>Branding package (logo, business cards, letterhead)</p>
-                    <p>Social media kit</p>
-                    <p>Basic style guide</p>
-                    <p>3 rounds of revisions</p>
+                    <h3>Professional</h3>
+                    <p>£999</p>
+                    <ul>
+                        <li>Advanced Website Design</li>
+                        <li>Complex Animation</li>
+                        <li>Full Brand Identity</li>
+                        <li>15 AI Generated Images</li>
+                    </ul>
                 </div>
                 <div class="pricing-item">
-                    <h3>Premium</h3>
-                    <p>$1999+</p>
-                    <p>Custom graphic design project</p>
-                    <p>Comprehensive brand guidelines</p>
-                    <p>Marketing collateral design</p>
-                    <p>Packaging or product design</p>
-                    <p>Unlimited revisions</p>
+                    <h3>Enterprise</h3>
+                    <p>Custom</p>
+                    <ul>
+                        <li>Custom Solutions</li>
+                        <li>3D Animation</li>
+                        <li>Complete Brand Package</li>
+                        <li>Unlimited AI Content</li>
+                    </ul>
                 </div>
             </div>
-            <div class="example-section">
-                <h3>Example Work</h3>
-                <p>See our branding work for the eco-friendly startup "GreenLife", including logo design, packaging, and marketing materials that effectively communicate their sustainable mission.</p>
-            </div>
-        </section>
-
-        <section class="icon-section" data-aos="zoom-in">
-            <i class="fas fa-laptop"></i>
-        </section>
-
-        <section id="contact" class="contact-section" data-aos="fade-up">
-            <h2>Get in Touch</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +44 7478 773451</li>
+                    <li><i class="fas fa-envelope"></i> joe@websiteanimation.co.uk</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Swansea, Neath Port Talbot, Crewe UK - Worldwide Customers</li>
+                </ul>
+            </div>
+            <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="showcase.html">Showcase</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="Showcase.html">Showcase</a></li>
+                    <li><a href="Services.html">Services</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Services</h3>
-                <ul>
-                    <li>Web Development</li>
-                    <li>Animation & Filmmaking</li>
-                    <li>AI Production</li>
-                    <li>Graphic Design & Printing</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li>Email: joe@joemort.com</li>
-                    <li>Phone: (123) 456-7890</li>
-                    <li>Address: 123 Web St, Digital City, 12345</li>
-                </ul>
+                <h3>Follow Me</h3>
+                <div class="nav-social">
+                    <a href="https://wa.me/447478773451" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 Joe Mort. All rights reserved.</p>
+            <p>&copy; 2024 Joe Mort. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 200,
+        /* ===============================
+           INITIALIZATION AND SETUP
+           =============================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Core element selections
+            const nav = document.querySelector('nav');
+            const progressContainer = document.querySelector('.progress-container');
+            const progressBar = document.querySelector('.progress-bar');
+            const mainContent = document.querySelector('main');
+            const footer = document.querySelector('footer');
+            const sections = document.querySelectorAll('.service-section');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const fixedContact = document.querySelector('.fixed-contact');
+            const fixedContactHeader = document.querySelector('.fixed-contact-header');
+            const backToTop = document.querySelector('.back-to-top');
+            const anchorMenu = document.querySelector('.anchor-menu');
+
+            // Set initial nav state
+            nav.classList.add('initial-state');
+            setTimeout(() => {
+                nav.classList.remove('initial-state');
+            }, 100);
+
+
+            /* ===============================
+               SCROLL HANDLING
+               =============================== */
+            let lastScroll = 0;
+            let scrollTimeout;
+
+            const handleScroll = () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / totalHeight) * 100;
+                
+                // Prevent rapid color changes during small scroll movements
+                if (Math.abs(lastScroll - scrollTop) < 50) return;
+
+                // Transform navigation at 50vh
+                if (scrollTop > window.innerHeight * 0.5) {
+                    requestAnimationFrame(() => {
+                        nav.style.backgroundColor = 'var(--primary-color)';
+                        nav.classList.add('nav-fixed');
+                        progressContainer.classList.add('progress-fixed');
+                        anchorMenu.classList.add('visible');
+                        mainContent.classList.add('nav-fixed-margin');
+                        footer.classList.add('nav-fixed-margin');
+                        mainContent.classList.add('anchor-visible');
+                    });
+                } else {
+                    requestAnimationFrame(() => {
+                        nav.style.backgroundColor = 'var(--nav-bg)';
+                        nav.classList.remove('nav-fixed');
+                        progressContainer.classList.remove('progress-fixed');
+                        anchorMenu.classList.remove('visible');
+                        mainContent.classList.remove('nav-fixed-margin');
+                        footer.classList.remove('nav-fixed-margin');
+                        mainContent.classList.remove('anchor-visible');
+                    });
+                }
+                
+                // Update progress bar
+                progressBar.style.width = `${scrollPercent}%`;
+
+                // Show/hide back to top button
+                if (scrollTop > 600) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Animate sections
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.75) {
+                        section.classList.add('section-visible');
+                    }
+                });
+
+                lastScroll = scrollTop;
+            };
+
+            // Throttled scroll handler
+            window.addEventListener('scroll', () => {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        handleScroll();
+                        scrollTimeout = null;
+                    }, 16); // Approximately 60fps
+                }
+            });
+
+            /* ===============================
+               MOBILE MENU HANDLING
+               =============================== */
+            hamburgerMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            /* ===============================
+               CONTACT FORM AND NAVIGATION
+               =============================== */
+            // Close menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Toggle fixed contact form
+            fixedContactHeader.addEventListener('click', () => {
+                fixedContact.classList.toggle('active');
+                // Store state in localStorage
+                localStorage.setItem('contactFormOpen', fixedContact.classList.contains('active'));
+            });
+
+            // Handle form submission
+            const fixedContactForm = document.querySelector('.fixed-contact-form');
+            fixedContactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(fixedContactForm);
+                const submitButton = fixedContactForm.querySelector('button');
+                
+                try {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    
+                    // Add your form submission logic here
+                    // await submitForm(formData);
+                    
+                    // Success message
+                    showNotification('Message sent successfully!', 'success');
+                    fixedContactForm.reset();
+                } catch (error) {
+                    showNotification('Failed to send message. Please try again.', 'error');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                }
+            });
+
+            /* ===============================
+               BACK TO TOP AND SMOOTH SCROLL
+               =============================== */
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        nav.classList.remove('active');
+                        document.body.style.overflow = '';
+
+                        // Calculate offset based on navigation height
+                        const navHeight = nav.classList.contains('nav-fixed') ? 60 : 0;
+                        const targetPosition = targetElement.offsetTop - navHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without jumping
+                        window.history.pushState(null, null, targetId);
+                    }
+                });
+            });
+
+            /* ===============================
+               NOTIFICATION SYSTEM
+               =============================== */
+            function showNotification(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Trigger animation
+                setTimeout(() => notification.classList.add('show'), 10);
+                
+                // Remove notification after delay
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            /* ===============================
+               INTERSECTION OBSERVER
+               =============================== */
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: '0px'
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            /* ===============================
+               PERFORMANCE OPTIMIZATIONS
+               =============================== */
+            // Debounce function
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Handle window resize
+            const resizeHandler = debounce(() => {
+                updateLayoutMetrics();
+            }, 250);
+
+            window.addEventListener('resize', resizeHandler);
+
+            function updateLayoutMetrics() {
+                const viewportWidth = window.innerWidth;
+                if (viewportWidth <= 768) {
+                    handleMobileLayout();
+                } else {
+                    handleDesktopLayout();
+                }
+            }
+
+            function handleMobileLayout() {
+                nav.classList.add('mobile');
+                anchorMenu.classList.add('mobile');
+            }
+
+            function handleDesktopLayout() {
+                nav.classList.remove('mobile');
+                anchorMenu.classList.remove('mobile');
+            }
+
+            /* ===============================
+               INITIALIZATION
+               =============================== */
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: false,
+                offset: 200,
+                delay: 100,
+                disable: 'mobile',
+                easing: 'ease-out',
+                mirror: true
+            });
+
+            // Restore contact form state
+            if (localStorage.getItem('contactFormOpen') === 'true') {
+                fixedContact.classList.add('active');
+            }
+
+            // Initial setup
+            updateLayoutMetrics();
+            document.body.classList.add('loaded');
         });
 
-        // Scroll progress bar
-        window.onscroll = function() {myFunction()};
+        /* ===============================
+           ERROR HANDLING
+           =============================== */
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo);
+            return false;
+        };
 
-        function myFunction() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("myBar").style.width = scrolled + "%";
+        window.onunhandledrejection = function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+        };
 
-            // Change navbar color on scroll
-            if (winScroll > 100) {
-                document.querySelector('nav').style.backgroundColor = '#4a69bd';
+        // Add page load complete handler
+        window.addEventListener('load', () => {
+            document.body.classList.add('page-loaded');
+        });
+
+// Slideshow functionality
+class HeroSlideshow {
+    constructor() {
+        // Initialize elements
+        this.slideContainer = document.querySelector('.slide-container');
+        this.slides = document.querySelectorAll('.slide');
+        this.prevButton = document.querySelector('.prev-slide');
+        this.nextButton = document.querySelector('.next-slide');
+        this.indicatorsContainer = document.querySelector('.slide-indicators');
+        
+        // Configuration
+        this.currentSlide = 0;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 5000; // 5 seconds
+        this.isTransitioning = false;
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+
+        // Initialize the slideshow
+        this.initialize();
+    }
+
+    initialize() {
+        if (!this.slideContainer || this.slides.length === 0) return;
+        
+        // Create indicators
+        this.createIndicators();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+        
+        // Preload images for smooth transitions
+        this.preloadImages();
+        
+        // Start autoplay
+        this.startAutoPlay();
+        
+        // Show first slide
+        this.showSlide(0);
+    }
+
+    preloadImages() {
+        this.slides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (img) {
+                const newImg = new Image();
+                newImg.src = img.src;
+            }
+        });
+    }
+
+    createIndicators() {
+        this.indicatorsContainer.innerHTML = '';
+        for (let i = 0; i < this.slides.length; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            indicator.dataset.slide = i;
+            if (i === 0) indicator.classList.add('active');
+            this.indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    setupEventListeners() {
+        // Navigation buttons with debounce
+        this.prevButton.addEventListener('click', this.debounce(() => this.prevSlide(), 300));
+        this.nextButton.addEventListener('click', this.debounce(() => this.nextSlide(), 300));
+
+        // Indicators
+        this.indicatorsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('indicator')) {
+                const index = parseInt(e.target.dataset.slide);
+                if (!isNaN(index)) this.showSlide(index);
+            }
+        });
+
+        // Mouse events
+        this.slideContainer.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.slideContainer.addEventListener('mouseleave', () => this.startAutoPlay());
+
+        // Touch events for mobile
+        this.slideContainer.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.stopAutoPlay();
+        });
+
+        this.slideContainer.addEventListener('touchmove', (e) => {
+            this.touchEndX = e.touches[0].clientX;
+        });
+
+        this.slideContainer.addEventListener('touchend', () => {
+            this.handleTouchEnd();
+            this.startAutoPlay();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.prevSlide();
+            if (e.key === 'ArrowRight') this.nextSlide();
+        });
+
+        // Visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stopAutoPlay();
             } else {
-                document.querySelector('nav').style.backgroundColor = '#2d3436';
+                this.startAutoPlay();
+            }
+        });
+    }
+
+    handleTouchEnd() {
+        const touchDiff = this.touchStartX - this.touchEndX;
+        const minSwipeDistance = 50;
+
+        if (Math.abs(touchDiff) > minSwipeDistance) {
+            if (touchDiff > 0) {
+                this.nextSlide();
+            } else {
+                this.prevSlide();
             }
         }
+    }
 
-        // Page transitions
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                document.querySelector('nav').classList.add('hidden');
-                document.querySelector('main').classList.add('shifted');
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 500);
-            });
-        });
+    showSlide(index) {
+        if (this.isTransitioning || index === this.currentSlide) return;
+        this.isTransitioning = true;
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // Remove active classes
+        this.slides[this.currentSlide].classList.remove('active');
+        document.querySelectorAll('.indicator')[this.currentSlide].classList.remove('active');
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'                });
-            });
-        });
+        // Update current slide
+        this.currentSlide = index;
 
-//scroll navbar and page loader animation and anchor 
+        // Add active classes
+        this.slides[this.currentSlide].classList.add('active');
+        document.querySelectorAll('.indicator')[this.currentSlide].classList.add('active');
 
-// Updated services.js
-document.addEventListener('DOMContentLoaded', () => {
-    const nav = document.querySelector('nav');
-    const progressContainer = document.querySelector('.progress-container');
-    const progressBar = document.querySelector('.progress-bar');
-    const mainContent = document.querySelector('main');
-    const sections = document.querySelectorAll('.service-section');
-    const anchorMenu = document.createElement('div');
-    
-    // Create anchor menu
-    anchorMenu.className = 'anchor-menu hidden';
-    anchorMenu.innerHTML = `
-        <div class="anchor-menu-content">
-            <ul>
-                ${Array.from(sections).map(section => `
-                    <li><a href="#${section.id}">${section.querySelector('h2').textContent}</a></li>
-                `).join('')}
-            </ul>
-        </div>
-    `;
-    document.body.appendChild(anchorMenu);
+        // Reset transition lock after animation
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, 800); // Match this with CSS transition duration
+    }
 
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / totalHeight) * 100;
-        
-        if (scrollTop > window.innerHeight * 0.3) {
-            nav.classList.add('nav-fixed');
-            progressContainer.classList.add('progress-fixed');
-            anchorMenu.classList.remove('hidden');
-            mainContent.classList.add('nav-fixed-margin');
-        } else {
-            nav.classList.remove('nav-fixed');
-            progressContainer.classList.remove('progress-fixed');
-            anchorMenu.classList.add('hidden');
-            mainContent.classList.remove('nav-fixed-margin');
+    nextSlide() {
+        if (this.isTransitioning) return;
+        const next = (this.currentSlide + 1) % this.slides.length;
+        this.showSlide(next);
+    }
+
+    prevSlide() {
+        if (this.isTransitioning) return;
+        const prev = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.showSlide(prev);
+    }
+
+    startAutoPlay() {
+        if (this.autoPlayInterval) return;
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoPlayDelay);
+    }
+
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
         }
-        
-        progressBar.style.width = `${scrollPercent}%`;
+    }
+
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Public method to destroy the slideshow
+    destroy() {
+        this.stopAutoPlay();
+        this.slideContainer.removeEventListener('mouseenter', () => this.stopAutoPlay());
+        this.slideContainer.removeEventListener('mouseleave', () => this.startAutoPlay());
+        // Remove all event listeners...
+    }
+}
+
+// Initialize slideshow when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const slideshow = new HeroSlideshow();
+
+    // Optional: Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            slideshow.destroy();
+            new HeroSlideshow();
+        }, 250);
     });
 });
+
     </script>
 </body>
 </html>
