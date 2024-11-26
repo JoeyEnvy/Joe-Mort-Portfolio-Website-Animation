@@ -80,6 +80,93 @@ p {
     color: var(--text-color);
 }
 
+/* Hero Section Styles */
+.hero-section {
+    height: 30vh;
+    background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.light-bulb {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: #fff;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.light-bulb:hover {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.1);
+}
+
+.light-bulb.active {
+    color: #ffd700;
+    text-shadow: 0 0 20px #ffd700;
+    opacity: 1;
+}
+
+.hero-text {
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+}
+
+.hero-text .tagline {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    opacity: 0;
+}
+
+.hero-text .description {
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0;
+}
+
+.reveal-text {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.reveal-text.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #fff; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 30px var(--primary-color); }
+    100% { text-shadow: 0 0 5px #fff; }
+}
+
+.hero-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 /* =========================================
    Navigation Styles
    ========================================= */

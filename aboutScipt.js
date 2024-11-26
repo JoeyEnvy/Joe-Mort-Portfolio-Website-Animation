@@ -17,8 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
         contactBox: document.querySelector('.contact-box'),
         skillItems: document.querySelectorAll('.skill-item'),
         timelineItems: document.querySelectorAll('.timeline-item'),
-        projectCards: document.querySelectorAll('.project-card')
+        projectCards: document.querySelectorAll('.project-card'),
+        // Light bulb elements
+        lightBulb: document.querySelector('.light-bulb'),
+        heroText: document.querySelector('.hero-text'),
+        revealTexts: document.querySelectorAll('.reveal-text')
     };
+
+    let isRevealed = false;
 
     // =========================================
     // Page Transition System
@@ -64,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-
     // =========================================
     // Navigation System
     // =========================================
@@ -81,6 +86,75 @@ document.addEventListener('DOMContentLoaded', () => {
             changePage(targetId);
         });
     });
+    // =========================================
+    // Light Bulb Hero Section
+    // =========================================
+    if (elements.lightBulb) {
+        console.log('Light bulb element found:', elements.lightBulb);
+        console.log('Reveal texts found:', elements.revealTexts.length);
+        console.log('Hero text element found:', elements.heroText);
+
+        elements.lightBulb.addEventListener('click', () => {
+            console.log('Light bulb clicked');
+            if (!isRevealed) {
+                console.log('Starting reveal sequence');
+                // Activate light bulb
+                elements.lightBulb.classList.add('active');
+                console.log('Light bulb activated');
+                
+                // Reveal text elements sequentially
+                elements.revealTexts.forEach((text, index) => {
+                    console.log('Setting up reveal for text:', index);
+                    setTimeout(() => {
+                        text.classList.add('active');
+                        console.log('Text revealed:', index);
+                    }, index * 200);
+                });
+
+                // Add glow effect to hero section
+                elements.heroText.classList.add('active');
+                console.log('Hero text activated');
+                
+                isRevealed = true;
+                console.log('Reveal completed');
+
+                // Optional: Add ambient light effect
+                gsap.to('.hero-section', {
+                    backgroundColor: 'rgba(45, 52, 54, 0.9)',
+                    duration: 1,
+                    ease: 'power2.out',
+                    onComplete: () => console.log('Background animation completed')
+                });
+            }
+        });
+
+        // Optional: Add hover effect on light bulb
+        elements.lightBulb.addEventListener('mouseenter', () => {
+            console.log('Light bulb hover enter');
+            if (!isRevealed) {
+                gsap.to(elements.lightBulb, {
+                    scale: 1.1,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    onComplete: () => console.log('Hover enter animation completed')
+                });
+            }
+        });
+
+        elements.lightBulb.addEventListener('mouseleave', () => {
+            console.log('Light bulb hover leave');
+            if (!isRevealed) {
+                gsap.to(elements.lightBulb, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    onComplete: () => console.log('Hover leave animation completed')
+                });
+            }
+        });
+    } else {
+        console.error('Light bulb element not found in DOM');
+    }
 
     // =========================================
     // Animation Initializations
@@ -197,6 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Initialize animations
+    initializeAnimations();
+
     // =========================================
     // Scroll-Based UI Updates
     // =========================================
@@ -276,19 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', optimizedScroll);
 
     // =========================================
-    // Error Handling
-    // =========================================
-    window.addEventListener('error', (e) => {
-        console.error('Animation Error:', e);
-        // Fallback animations if GSAP fails
-        document.querySelectorAll('.animate-on-scroll').forEach(element => {
-            element.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            element.style.opacity = '1';
-            element.style.transform = 'none';
-        });
-    });
-
-    // =========================================
     // Intersection Observer for Lazy Loading
     // =========================================
     const observerOptions = {
@@ -309,17 +373,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lazy-load').forEach(element => {
         observer.observe(element);
     });
-});
-
 
     // =========================================
     // Error Handling
     // =========================================
     window.addEventListener('error', (e) => {
         console.error('Animation Error:', e);
-        // Fallback to basic transitions if GSAP fails
-        sections.forEach(section => {
-            section.style.transition = 'opacity 0.3s ease';
+        // Fallback animations if GSAP fails
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            element.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'none';
         });
     });
 });
