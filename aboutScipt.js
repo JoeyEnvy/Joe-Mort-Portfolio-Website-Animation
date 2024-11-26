@@ -206,6 +206,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+   // Add this new scroll effect code
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        const backToTop = document.querySelector('.back-to-top');
+        
+        // Navbar effect
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+            backToTop.style.display = 'block';
+        } else {
+            nav.classList.remove('scrolled');
+            backToTop.style.display = 'none';
+        }
+    });
+
+    // Back to top functionality
+    document.querySelector('.back-to-top').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+
     // =========================================
     // Error Handling
     // =========================================

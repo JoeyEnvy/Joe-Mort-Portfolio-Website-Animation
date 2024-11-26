@@ -419,6 +419,61 @@ footer {
     }
 }
 
+
+/* Fixed Buttons Styles - Add at the end of your CSS file */
+.back-to-top, .whatsapp-button, .contact-box {
+    position: fixed;
+    right: 20px;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.back-to-top {
+    bottom: 140px;
+    display: none;
+}
+
+.whatsapp-button {
+    bottom: 80px;
+    background: #25D366;
+}
+
+.contact-box {
+    bottom: 20px;
+    border-radius: 25px;
+    background: var(--secondary-color);
+    padding: 10px 20px;
+}
+
+.contact-box a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Update the nav-brand img styles in your existing nav styles */
+.nav-brand img {
+    width: 180px;
+    height: auto;
+    padding: 10px;
+}
+
+/* Add navbar scroll effect styles */
+nav.scrolled {
+    background: rgba(45, 52, 54, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
 /* =========================================
    Utility Classes
    ========================================= */
