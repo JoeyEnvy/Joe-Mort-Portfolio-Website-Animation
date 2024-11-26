@@ -4,33 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
 
     // DOM Elements
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('nav a');
-    const loader = document.querySelector('.loader');
-    const projectCards = document.querySelectorAll('.project-card');
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const skillItems = document.querySelectorAll('.skill-item');
+    const elements = {
+        nav: document.querySelector('nav'),
+        navLinks: document.querySelectorAll('nav a'),
+        sections: document.querySelectorAll('.section'),
+        expertiseCards: document.querySelectorAll('.expertise-card'),
+        portfolioItems: document.querySelectorAll('.portfolio-item'),
+        techLists: document.querySelectorAll('.tech-list li'),
+        experienceItems: document.querySelectorAll('.experience-item'),
+        benefitItems: document.querySelectorAll('.benefit-item'),
+        backToTop: document.querySelector('.back-to-top'),
+        contactBox: document.querySelector('.contact-box'),
+        skillItems: document.querySelectorAll('.skill-item'),
+        timelineItems: document.querySelectorAll('.timeline-item'),
+        projectCards: document.querySelectorAll('.project-card')
+    };
 
     // =========================================
-    // Loading State Management
-    // =========================================
-    window.addEventListener('load', () => {
-        if (loader) {
-            gsap.to(loader, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                    loader.style.display = 'none';
-                    initializeAnimations();
-                }
-            });
-        } else {
-            initializeAnimations();
-        }
-    });
-
-    // =========================================
-    // Page Transition Function
+    // Page Transition System
     // =========================================
     function changePage(targetId) {
         const currentSection = document.querySelector('.section.active');
@@ -73,16 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+
     // =========================================
-    // Navigation Event Handlers
+    // Navigation System
     // =========================================
-    navLinks.forEach(link => {
+    elements.navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             
             // Update active nav link
-            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            elements.navLinks.forEach(navLink => navLink.classList.remove('active'));
             link.classList.add('active');
 
             // Trigger page transition
@@ -94,9 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animation Initializations
     // =========================================
     function initializeAnimations() {
+        // Expertise Cards Animation
+        elements.expertiseCards.forEach((card, index) => {
+            gsap.fromTo(card,
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: index * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
         // Timeline Items Animation
-        if (timelineItems.length) {
-            timelineItems.forEach((item, index) => {
+        if (elements.timelineItems.length) {
+            elements.timelineItems.forEach((item, index) => {
                 gsap.fromTo(item,
                     { 
                         x: -50,
@@ -119,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Project Cards Animation
-        if (projectCards.length) {
-            projectCards.forEach((card, index) => {
+        if (elements.projectCards.length) {
+            elements.projectCards.forEach((card, index) => {
                 gsap.fromTo(card,
                     {
                         y: 50,
@@ -159,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Skills Items Animation
-        if (skillItems.length) {
-            skillItems.forEach((item, index) => {
+        // Skills Animation
+        if (elements.skillItems.length) {
+            elements.skillItems.forEach((item, index) => {
                 gsap.fromTo(item,
                     {
                         scale: 0,
@@ -184,50 +198,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // Scroll To Top Functionality
+    // Scroll-Based UI Updates
     // =========================================
-    const scrollTopBtn = document.createElement('button');
-    scrollTopBtn.className = 'scroll-top-btn';
-    scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(scrollTopBtn);
+    let lastScroll = 0;
+    const scrollThreshold = 500;
 
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('show');
+        const currentScroll = window.pageYOffset;
+
+        // Back to Top Button Visibility
+        if (currentScroll > scrollThreshold) {
+            elements.backToTop.classList.add('visible');
         } else {
-            scrollTopBtn.classList.remove('show');
+            elements.backToTop.classList.remove('visible');
         }
+
+        // Navbar Hide/Show on Scroll
+        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+            elements.nav.style.transform = 'translateY(-100%)';
+        } else {
+            elements.nav.style.transform = 'translateY(0)';
+        }
+
+        lastScroll = currentScroll;
     });
 
-    scrollTopBtn.addEventListener('click', () => {
+    // =========================================
+    // Interactive Elements
+    // =========================================
+    // Back to Top Functionality
+    elements.backToTop?.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     });
 
-   // Add this new scroll effect code
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        const backToTop = document.querySelector('.back-to-top');
-        
-        // Navbar effect
-        if (window.scrollY > 100) {
-            nav.classList.add('scrolled');
-            backToTop.style.display = 'block';
-        } else {
-            nav.classList.remove('scrolled');
-            backToTop.style.display = 'none';
-        }
-    });
+    // Expertise Cards Hover Effect
+    elements.expertiseCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                scale: 1.02,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
 
-    // Back to top functionality
-    document.querySelector('.back-to-top').addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
         });
     });
+
+    // =========================================
+    // Performance Optimization
+    // =========================================
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Optimize scroll event
+    const optimizedScroll = debounce(() => {
+        // Scroll-based calculations
+    }, 16);
+
+    window.addEventListener('scroll', optimizedScroll);
+
+    // =========================================
+    // Error Handling
+    // =========================================
+    window.addEventListener('error', (e) => {
+        console.error('Animation Error:', e);
+        // Fallback animations if GSAP fails
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            element.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'none';
+        });
+    });
+
+    // =========================================
+    // Intersection Observer for Lazy Loading
+    // =========================================
+    const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.lazy-load').forEach(element => {
+        observer.observe(element);
+    });
+});
 
 
     // =========================================
