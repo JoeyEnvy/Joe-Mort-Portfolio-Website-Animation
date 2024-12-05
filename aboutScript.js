@@ -1,5 +1,7 @@
 // Wait for DOM and all resources to load
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
+    
     // Initialize GSAP
     gsap.registerPlugin(ScrollTrigger);
 
@@ -18,11 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
         skillItems: document.querySelectorAll('.skill-item'),
         timelineItems: document.querySelectorAll('.timeline-item'),
         projectCards: document.querySelectorAll('.project-card'),
-        // Light bulb elements
-        lightBulb: document.querySelector('.light-bulb'),
+        lightBulb: document.querySelector('.light-bulb-container'),
         heroText: document.querySelector('.hero-text'),
         revealTexts: document.querySelectorAll('.reveal-text')
     };
+
+    console.log('Initial checks:');
+    console.log('Light bulb element:', elements.lightBulb);
+    console.log('Hero text:', elements.heroText);
+    console.log('Reveal texts:', elements.revealTexts);
 
     let isRevealed = false;
 
@@ -86,57 +92,71 @@ document.addEventListener('DOMContentLoaded', () => {
             changePage(targetId);
         });
     });
+
     // =========================================
     // Light Bulb Hero Section
     // =========================================
     if (elements.lightBulb) {
-        console.log('Light bulb element found:', elements.lightBulb);
-        console.log('Reveal texts found:', elements.revealTexts.length);
-        console.log('Hero text element found:', elements.heroText);
-
+        console.log('Light bulb element found and initialized');
+        
         elements.lightBulb.addEventListener('click', () => {
             console.log('Light bulb clicked');
+            const bulbIcon = elements.lightBulb.querySelector('.light-bulb');
+            
             if (!isRevealed) {
+                // Activate and move left
                 console.log('Starting reveal sequence');
-                // Activate light bulb
+                bulbIcon.classList.add('active');
                 elements.lightBulb.classList.add('active');
-                console.log('Light bulb activated');
                 
                 // Reveal text elements sequentially
                 elements.revealTexts.forEach((text, index) => {
-                    console.log('Setting up reveal for text:', index);
                     setTimeout(() => {
                         text.classList.add('active');
-                        console.log('Text revealed:', index);
-                    }, index * 200);
+                    }, index * 200 + 400);
                 });
 
-                // Add glow effect to hero section
                 elements.heroText.classList.add('active');
-                console.log('Hero text activated');
-                
                 isRevealed = true;
-                console.log('Reveal completed');
 
-                // Optional: Add ambient light effect
+                // Background effect
                 gsap.to('.hero-section', {
                     backgroundColor: 'rgba(45, 52, 54, 0.9)',
                     duration: 1,
-                    ease: 'power2.out',
-                    onComplete: () => console.log('Background animation completed')
+                    ease: 'power2.out'
+                });
+            } else {
+                // Deactivate and move back
+                console.log('Reversing animation');
+                bulbIcon.classList.remove('active');
+                elements.lightBulb.classList.remove('active');
+                
+                // Hide text elements
+                elements.revealTexts.forEach(text => {
+                    text.classList.remove('active');
+                });
+
+                elements.heroText.classList.remove('active');
+                isRevealed = false;
+
+                // Reverse background effect
+                gsap.to('.hero-section', {
+                    backgroundColor: 'rgba(45, 52, 54, 1)',
+                    duration: 1,
+                    ease: 'power2.out'
                 });
             }
         });
 
-        // Optional: Add hover effect on light bulb
+        // Hover effects for light bulb
         elements.lightBulb.addEventListener('mouseenter', () => {
             console.log('Light bulb hover enter');
             if (!isRevealed) {
-                gsap.to(elements.lightBulb, {
+                const bulbIcon = elements.lightBulb.querySelector('.light-bulb');
+                gsap.to(bulbIcon, {
                     scale: 1.1,
                     duration: 0.3,
-                    ease: 'power2.out',
-                    onComplete: () => console.log('Hover enter animation completed')
+                    ease: 'power2.out'
                 });
             }
         });
@@ -144,11 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.lightBulb.addEventListener('mouseleave', () => {
             console.log('Light bulb hover leave');
             if (!isRevealed) {
-                gsap.to(elements.lightBulb, {
+                const bulbIcon = elements.lightBulb.querySelector('.light-bulb');
+                gsap.to(bulbIcon, {
                     scale: 1,
                     duration: 0.3,
-                    ease: 'power2.out',
-                    onComplete: () => console.log('Hover leave animation completed')
+                    ease: 'power2.out'
                 });
             }
         });
@@ -285,17 +305,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Back to Top Button Visibility
         if (currentScroll > scrollThreshold) {
-            elements.backToTop.classList.add('visible');
+            elements.backToTop?.classList.add('visible');
         } else {
-            elements.backToTop.classList.remove('visible');
+            elements.backToTop?.classList.remove('visible');
         }
 
-        // Navbar Hide/Show on Scroll
-        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
-            elements.nav.style.transform = 'translateY(-100%)';
-        } else {
-            elements.nav.style.transform = 'translateY(0)';
-        }
+        // Keep navbar visible and stable
+        elements.nav.style.transform = 'translateY(0)';
+        elements.nav.style.opacity = '1';
 
         lastScroll = currentScroll;
     });
@@ -373,6 +390,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lazy-load').forEach(element => {
         observer.observe(element);
     });
+
+// for the hero divider 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const splitContainer = document.getElementById('splitContainer');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                splitContainer.classList.add('visible');
+                observer.unobserve(splitContainer);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(splitContainer);
+});
 
     // =========================================
     // Error Handling

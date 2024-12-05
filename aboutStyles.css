@@ -81,8 +81,10 @@ p {
 }
 
 /* Hero Section Styles */
+/* Main Hero Section Container */
+/* Main Hero Section Container */
 .hero-section {
-    height: 30vh;
+    height: 50vh;
     background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%);
     display: flex;
     align-items: center;
@@ -92,81 +94,271 @@ p {
     padding: 2rem;
 }
 
-.light-bulb {
+/* Animated background effect */
+.hero-section::before {
+    content: '';
     position: absolute;
-    top: 20%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(108, 92, 231, 0.1),
+        rgba(0, 206, 201, 0.1));
+    animation: gradientBG 15s ease infinite;
+}
+
+/* Container for the light bulb - this is what moves */
+.light-bulb-container {
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 2.5rem;
-    color: #fff;
-    opacity: 0.3;
+    transform: translate(-50%, -50%);
     cursor: pointer;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.light-bulb:hover {
-    opacity: 0.8;
-    transform: translateX(-50%) scale(1.1);
+/* When light bulb container is clicked */
+.light-bulb-container.active {
+    left: 15%;
+    transform: translate(0, -50%);
 }
 
+/* The circular area around the bulb */
+.light-bulb {
+    position: relative;
+    font-size: 3.5rem;
+    color: #fff;
+    opacity: 0.5;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 4rem;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Light bulb when activated */
 .light-bulb.active {
     color: #ffd700;
-    text-shadow: 0 0 20px #ffd700;
+    text-shadow: 
+        0 0 20px #ffd700,
+        0 0 40px #ffd700,
+        0 0 60px #ffd700;
     opacity: 1;
+    background: rgba(255,215,0,0.1);
 }
 
+/* Main text container */
 .hero-text {
+    position: relative;
     text-align: center;
     color: #fff;
+    z-index: 2;
+    visibility: hidden;
     opacity: 0;
     transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Text container when active */
+.hero-text.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Main heading style */
 .hero-text h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff, #ffd700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    opacity: 0;
 }
 
+/* Tagline style */
 .hero-text .tagline {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--secondary-color);
-    opacity: 0;
 }
 
+/* Description text style */
 .hero-text .description {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #fff;
-    opacity: 0;
 }
 
+/* Individual text elements that reveal */
 .reveal-text {
+    visibility: hidden;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Revealed text state */
 .reveal-text.active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.8s ease;
-}
-
-@keyframes glow {
-    0% { text-shadow: 0 0 5px #fff; }
-    50% { text-shadow: 0 0 20px #fff, 0 0 30px var(--primary-color); }
-    100% { text-shadow: 0 0 5px #fff; }
-}
-
-.hero-text.active {
+    visibility: visible;
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Click hint text */
+.click-hint {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
 
+/* Hide hint when active */
+.light-bulb-container.active .click-hint {
+    opacity: 0;
+}
+
+/* Spline Viewer Container */
+.spline-viewer-container {
+    position: absolute;
+    top: 50%;
+    right: 50px; /* Adjust this value to position it 50px or 200px to the right */
+    transform: translateY(-50%);
+}
+
+/* Large Spline Viewer */
+.large-spline-viewer {
+    width: 50vh !important; /* Ensure it overrides any other styles */
+    height: calc(50vh - 60px) !important; /* Adjust height to account for footer */
+}
+
+/* Spline Viewer Hint */
+.spline-viewer-hint {
+    position: absolute;
+    bottom: 60px; /* Adjusted to be above the footer */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border: 1px solid #444; /* Optional border */
+    z-index: 11; /* Higher z-index to ensure visibility */
+}
+
+/* Spline Viewer Footer */
+.spline-viewer-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%);
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+    border: 1px solid #333; /* Optional border */
+    z-index: 10; /* Higher z-index to ensure it's on top of other elements */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow for better visibility */
+}
+
+
+
+/* Background animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Pulsing animation for initial state */
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255,215,0,0.7);
+        transform: scale(1.05);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        transform: scale(1);
+    }
+}
+
+/* Fade in/out animation for hint text */
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 3rem;        /* Smaller heading on mobile */
+    }
+    
+    .hero-text .tagline {
+        font-size: 1.5rem;      /* Smaller tagline on mobile */
+    }
+    
+    .hero-text .description {
+        font-size: 1rem;        /* Smaller description on mobile */
+    }
+
+    .light-bulb {
+        width: 150px;           /* Smaller circle on mobile */
+        height: 150px;
+        font-size: 2.5rem;      /* Smaller bulb icon on mobile */
+    }
+
+    .light-bulb-container.active {
+        left: 10%;              /* Closer to edge on mobile */
+    }
+
+    .spline-viewer-container {
+        right: 20px;            /* Adjusted for mobile */
+        top: 0;                 /* Full height on mobile */
+        transform: none;        /* No need for vertical centering on mobile */
+    }
+
+    .large-spline-viewer {
+        width: 100% !important; /* Full width on mobile */
+        height: calc(100% - 60px) !important; /* Adjust height to account for footer */
+    }
+
+    .spline-viewer-footer {
+        height: 60px;           /* Maintain footer height on mobile */
+    }
+}
+
+/* Additional accessibility features */
+@media (prefers-reduced-motion: reduce) {
+    .light-bulb-container,
+    .hero-text,
+    .reveal-text {
+        transition: none;       /* Removes animations for users who prefer reduced motion */
+    }
+    
+    @keyframes gradientBG {
+        0%, 100% {
+            background-position: 0% 50%;  /* Static background for reduced motion */
+        }
+    }
+}
 /* =========================================
    Navigation Styles
    ========================================= */
@@ -398,6 +590,281 @@ main {
     font-size: 1.3rem;
 }
 
+/* hero divider */
+
+.expertise-overview {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+  max-height: 30vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.expertise-overview .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.expertise-overview h2 {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+  color: white;
+}
+
+.expertise-overview p {
+  font-size: 0.9rem;
+  max-width: 800px;
+  margin: 0 auto 1rem;
+}
+
+.expertise-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.expertise-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expertise-icon i {
+  font-size: 2.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.expertise-icon span {
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .expertise-overview {
+    padding: 1rem 0;
+  }
+  
+  .expertise-overview h2 {
+    font-size: 1.8rem;
+  }
+  
+  .expertise-icons {
+    gap: 1rem;
+  }
+  
+  .expertise-icon i {
+    font-size: 2.5rem;
+  }
+}
+
+/* left column WITH ALL FIVE SECTION OR 6 TECHNICALLY */ 
+
+/* Main column styling */
+.left-column {
+    padding: 20px;
+    background-color: #2d3436; /* Dark grey background */
+    color: #ffffff; /* White text */
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the column */
+}
+
+/* Section title styling */
+.section-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Common styling for all service sections */
+.service-section {
+    margin-bottom: 40px;
+    padding: 25px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.service-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.service-section h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.service-section p, .service-section li {
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Individual service section colors */
+.web-design { background-color: #6c5ce7; }
+.animation { background-color: #00cec9; }
+.ai-production { background-color: #fd79a8; }
+.print-design { background-color: #6c5ce7; }
+.video-editing { background-color: #00cec9; }
+
+/* Call-to-action button styling */
+.cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #2d3436;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.cta-button:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+}
+
+/* FAQ section styling */
+.faq-section {
+    background-color: #2d3436; /* Dark grey background */
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.faq-section h3 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h4 {
+    color: #fd79a8; /* Pink color for question */
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.faq-item p {
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Web Design Section Styles
+   This CSS specifically targets the web design service section,
+   creating a unique and professional appearance. */
+
+/* Main container for the web design section */
+/* Web Design Section Styles */
+.service-section.web-design {
+    background-color: #2d3436;
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-section.web-design h3 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #00cec9;
+    text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.service-section.web-design p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.service-section.web-design .web-design-packages,
+.service-section.web-design .web-design-services {
+    background-color: rgba(108, 92, 231, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 35px;
+    border: 2px solid #6c5ce7;
+}
+
+.service-section.web-design h4 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #fd79a8;
+    font-weight: 800;
+    text-align: center;
+}
+
+.service-section.web-design ul li {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.service-section.web-design ul li:before {
+    content: "•";
+    color: #00cec9;
+    position: absolute;
+    left: 0;
+    font-size: 24px;
+    top: -2px;
+}
+
+.service-section.web-design .price {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fd79a8;
+    display: block;
+    margin: 10px 0;
+}
+
+.service-section.web-design .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #00cec9;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.service-section.web-design .cta-button:hover {
+    background-color: #fd79a8;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
+}
+
 /* =========================================
    Portfolio Grid and Items
    ========================================= */
@@ -620,6 +1087,10 @@ main {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
+
+/* section divider hero section etc */
+
+
 
 /* =========================================
    Animations and Transitions
@@ -911,6 +1382,109 @@ footer {
     .expertise-card {
         break-inside: avoid;
         page-break-inside: avoid;
+    }
+}
+
+/* left column */ 
+
+.showcase-section {
+    padding: 20px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    gap: 20px;
+}
+
+.project-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 150px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    padding: 0 20px;
+}
+
+.project-description {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.technologies-used {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.technologies-used span {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.project-links {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #666;
+    color: #fff;
+}
+
+.cta-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .project-grid {
+        grid-template-columns: 1fr;
     }
 }
 

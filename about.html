@@ -51,56 +51,244 @@
     <main>
 
 <!-- Add this right after your <main> opening tag -->
-<!-- Add this right after your <main> opening tag -->
 <div class="hero-section">
-    <div class="light-bulb">
-        <i class="fas fa-lightbulb"></i>
+    <div class="light-bulb-container">
+        <div class="light-bulb">
+            <i class="fas fa-lightbulb"></i>
+            <span class="click-hint">Click to Illuminate</span>
+        </div>
     </div>
     <div class="hero-text">
         <h1 class="reveal-text">Digital Innovation</h1>
         <div class="tagline reveal-text">Web Design • 3D Animation • AI Solutions</div>
         <p class="description reveal-text">Transforming Ideas into Digital Excellence</p>
     </div>
+    <div class="spline-viewer-container">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/idbTdGEBiDcAEYqd/scene.splinecode" class="large-spline-viewer"></spline-viewer>
+        <div class="spline-viewer-hint">
+            <span>Click or Tap to Interact</span>
+        </div>
+        <div class="spline-viewer-footer"></div>
+    </div>
 </div>
-        <div class="split-container">
-            <!-- Left Column - Portfolio Showcase -->
-            <div class="left-column">
-                <div class="showcase-section">
-                    <h2><i class="fas fa-star"></i> Featured Work</h2>
-                    
-                    <div class="portfolio-grid">
-                        <div class="portfolio-item">
-                            <div class="portfolio-preview">
-                                <i class="fas fa-laptop-code"></i>
-                                <h3>Web Development</h3>
-                                <p>Interactive & Responsive Websites</p>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-preview">
-                                <i class="fas fa-cube"></i>
-                                <h3>3D Animation</h3>
-                                <p>Dynamic Visual Experiences</p>
-                            </div>
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-preview">
-                                <i class="fas fa-paint-brush"></i>
-                                <h3>Graphic Design</h3>
-                                <p>Creative Visual Solutions</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="cta-button-container">
-                        <a href="showcase.html" class="cta-button">
-                            <i class="fas fa-eye"></i>
-                            View Full Portfolio
-                        </a>
-                    </div>
-                </div>
-            </div>
+<section class="expertise-overview">
+  <div class="container">
+    <h2>Innovating Digital Experiences</h2>
+    <p>Leveraging cutting-edge technologies to bring your vision to life across web, animation, design, and AI-driven solutions.</p>
+    <div class="expertise-icons">
+      <div class="expertise-icon">
+        <i class="fas fa-code"></i>
+        <span>Web Development</span>
+      </div>
+      <div class="expertise-icon">
+        <i class="fas fa-cube"></i>
+        <span>3D Animation</span>
+      </div>
+      <div class="expertise-icon">
+        <i class="fas fa-paint-brush"></i>
+        <span>Graphic Design</span>
+      </div>
+      <div class="expertise-icon">
+        <i class="fas fa-film"></i>
+        <span>AI Film Production</span>
+      </div>
+      <div class="expertise-icon">
+        <i class="fas fa-robot"></i>
+        <span>AI Website Generator</span>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- Rest of the page content here -->
+<div class="split-container">
+    <!-- Left Column - Services -->
+<div class="left-column">
+    <h2 class="section-title">Services</h2>
+
+    <!-- Web Design Section -->
+<section class="service-section web-design">
+    <h3><i class="fas fa-code"></i> Web Design</h3>
+    <p>We create custom, responsive websites that drive engagement and results. Our web design solutions are tailored to your unique business needs, ensuring a perfect fit for your brand and goals.</p>
+    
+<div class="web-design-packages">
+    <h4>Web Design Packages</h4>
+    <ul>
+        <li>
+            <strong>Basic Package:</strong> <span class="price">£250</span>
+            <p>5-page responsive website, basic SEO, contact form</p>
+        </li>
+        <li>
+            <strong>Professional Package:</strong> <span class="price">£500</span>
+            <p>10-page responsive website, advanced SEO, custom forms, basic e-commerce integration</p>
+        </li>
+        <li>
+            <strong>E-commerce Package:</strong> <span class="price">£1250</span>
+            <p>Fully-featured online store, product management, payment gateway integration, advanced SEO</p>
+        </li>
+        <li>
+            <strong>Custom Enterprise Solution:</strong> <span class="price">Contact for pricing</span>
+            <p>Tailored web solutions for large businesses, including custom functionality and integrations</p>
+        </li>
+    </ul>
+</div>
+    <div class="web-design-services">
+        <h4>Our Services Include</h4>
+        <ul>
+            <li>Responsive Design for all devices</li>
+            <li>SEO Optimization</li>
+            <li>Content Management Systems (WordPress, Shopify, etc.)</li>
+            <li>E-commerce Integration</li>
+            <li>Custom Functionality Development</li>
+            <li>Website Maintenance and Support</li>
+        </ul>
+    </div>
+
+    <div class="project-showcase">
+        <h4>Featured Projects</h4>
+        <div class="project-item">
+            <h5>Modern Plumber's Website</h5>
+            <p class="client">Client: Joe's Plumbing Solutions</p>
+            <ul class="features">
+                <li>Appointment booking system</li>
+                <li>Interactive service area map</li>
+                <li>Customer testimonials</li>
+            </ul>
+            <p class="outcome"><strong>Outcome:</strong> Increased online bookings by 40% within the first month.</p>
+        </div>
+
+        <div class="project-item">
+            <h5>Chic Hair Salon Website</h5>
+            <p class="client">Client: Luxe Locks Studio</p>
+            <ul class="features">
+                <li>Style galleries</li>
+                <li>Integrated e-commerce for hair products</li>
+                <li>Instagram feed integration</li>
+            </ul>
+            <p class="outcome"><strong>Outcome:</strong> Improved online visibility and customer engagement.</p>
+        </div>
+
+        <div class="project-item">
+            <h5>Corporate Website for a Logistics Firm</h5>
+            <p class="client">Client: Swift Movers Ltd.</p>
+            <ul class="features">
+                <li>Dynamic service pages</li>
+                <li>Real-time delivery tracking</li>
+                <li>Team introduction videos</li>
+            </ul>
+            <p class="outcome"><strong>Outcome:</strong> Streamlined customer inquiries and enhanced brand authority.</p>
+        </div>
+    </div>
+
+    <a href="contact.html" class="cta-button">Start Your Web Project</a>
+</section>
+
+
+    <!-- 3D/2D Animation Section -->
+    <section class="service-section animation">
+        <h3><i class="fas fa-cube"></i> 3D/2D Animation</h3>
+        <p>Bringing ideas to life through dynamic animations.</p>
+        <ul>
+            <li>Character Animation</li>
+            <li>Motion Graphics</li>
+            <li>Explainer Videos</li>
+        </ul>
+        <a href="contact.html" class="cta-button">Animate Your Ideas</a>
+    </section>
+
+    <!-- AI Video and Image Production Section -->
+    <section class="service-section ai-production">
+        <h3><i class="fas fa-robot"></i> AI Video and Image Production</h3>
+        <p>Cutting-edge AI-powered media creation.</p>
+        <ul>
+            <li>AI-Generated Content</li>
+            <li>Style Transfer</li>
+            <li>Automated Video Editing</li>
+        </ul>
+        <a href="contact.html" class="cta-button">Explore AI Solutions</a>
+    </section>
+
+    <!-- Printing and Logo Design Section -->
+    <section class="service-section print-design">
+        <h3><i class="fas fa-print"></i> Printing and Logo Design</h3>
+        <p>Professional branding and print solutions.</p>
+        <ul>
+            <li>Logo Creation</li>
+            <li>Business Cards</li>
+            <li>Brochures and Flyers</li>
+        </ul>
+        <a href="contact.html" class="cta-button">Design Your Brand</a>
+    </section>
+
+    <!-- Video/Image Editing Section -->
+    <section class="service-section video-editing">
+        <h3><i class="fas fa-film"></i> Video/Image Editing</h3>
+        <p>Professional editing to enhance your visual content.</p>
+        <ul>
+            <li>Color Correction</li>
+            <li>Special Effects</li>
+            <li>Audio Mixing</li>
+        </ul>
+        <a href="contact.html" class="cta-button">Edit Your Content</a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+        
+        <!-- Web Design FAQ -->
+        <div class="faq-item">
+            <h4>What platforms do you use for web design?</h4>
+            <p>We specialize in WordPress, Webflow, and custom HTML/CSS/JavaScript solutions, tailoring our approach to your specific needs.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do you offer e-commerce solutions?</h4>
+            <p>Yes, we provide full e-commerce website development using platforms like WooCommerce and Shopify.</p>
+        </div>
+
+        <!-- 3D/2D Animation FAQ -->
+        <div class="faq-item">
+            <h4>What software do you use for 3D/2D animation?</h4>
+            <p>We primarily use Blender for 3D animation and Adobe After Effects for 2D animation, ensuring high-quality results.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can you create animated explainer videos?</h4>
+            <p>Absolutely! We specialize in creating engaging explainer videos that effectively communicate your message.</p>
+        </div>
+
+        <!-- AI Video and Image Production FAQ -->
+        <div class="faq-item">
+            <h4>How does AI enhance video and image production?</h4>
+            <p>AI technologies allow for advanced editing, style transfer, and even content generation, significantly speeding up the production process.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Is AI-generated content copyright-free?</h4>
+            <p>While AI-generated content is a grey area in copyright law, we ensure all our deliverables are original and tailored to your needs.</p>
+        </div>
+
+        <!-- Printing and Logo Design FAQ -->
+        <div class="faq-item">
+            <h4>What file formats do you provide for logo designs?</h4>
+            <p>We provide logos in various formats including AI, EPS, PDF, PNG, and JPG to ensure compatibility across all platforms.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do you offer business card printing services?</h4>
+            <p>Yes, we offer full business card design and printing services, using high-quality materials and finishes.</p>
+        </div>
+
+        <!-- Video/Image Editing FAQ -->
+        <div class="faq-item">
+            <h4>Can you edit videos shot on smartphones?</h4>
+            <p>Absolutely! We can enhance and edit videos from any source, including smartphones, to create professional-looking content.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do you offer color grading services?</h4>
+            <p>Yes, we provide advanced color grading services to give your videos and images a polished, professional look.</p>
+        </div>
+    </section>
+</div>
             <!-- Right Column - Technical Expertise -->
             <div class="right-column">
                 <section class="expertise-section">
