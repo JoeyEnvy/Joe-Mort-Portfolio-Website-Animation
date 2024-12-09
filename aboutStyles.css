@@ -823,10 +823,6 @@ main {
 }
 
 /* Web Design Section Styles
-   This CSS specifically targets the web design service section,
-   creating a unique and professional appearance. */
-
-/* Main container for the web design section */
 /* Web Design Section Styles */
 .service-section.web-design {
     background-color: #2d3436;
@@ -890,30 +886,104 @@ main {
 .service-section.web-design .price {
     font-size: 24px;
     font-weight: 800;
-    color: #fd79a8;
-    display: block;
-    margin: 10px 0;
+    color: #fd79a8; 
 }
 
 .service-section.web-design .cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #00cec9;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    margin-top: 30px;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+     display: inline-block; 
+     padding: 15px 30px; 
+     background-color: #00cec9; 
+     color: #ffffff; 
+     text-decoration: none; 
+     border-radius: 8px; 
+     font-weight: 700; 
+     margin-top: 30px; 
 }
 
 .service-section.web-design .cta-button:hover {
-    background-color: #fd79a8;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
+     background-color: #fd79a8; 
+     transform: translateY(-3px); 
+     box-shadow: 0 5px 15px rgba(253,121,168,0.4);
+}
+
+/* VitalFit Showcase Styles */
+.vitalfit-showcase {
+     margin-top: 40px; 
+     background-color: rgba(255,255,255,0.1); 
+     padding: 20px; 
+     border-radius: 10px; 
+}
+
+.vitalfit-showcase h2 {
+     font-size: 28px; 
+     color: #00cec9; 
+     text-align:center; 
+}
+
+.vitalfit-showcase .hero-banner {
+     position: relative; 
+     margin-bottom :20px; 
+}
+
+.vitalfit-showcase video {
+     width :100%; /* Responsive video */
+     border-radius :10px; /* Rounded corners */
+}
+
+.vitalfit-showcase .features,
+.vitalfit-showcase .gallery,
+.vitalfit-showcase .testimonials {
+     margin-bottom :30px; 
+}
+
+.vitalfit-showcase .gallery img {
+     width:auto; /* Responsive images */
+     max-width : calc(25% -10px); /* Adjust according to layout */
+     margin-right :10px; /* Space between images */
+     border-radius :5px; /* Rounded corners */
+}
+
+.vitalfit-showcase .gallery img:last-child {
+     margin-right :0; /* Remove right margin on last image */
+}
+
+.vitalfit-showcase .cta {
+     text-align:center; 
+}
+
+/* Other Websites Links Styles */
+.other-websites {
+   margin-top :40px; /* Space above the section */
+   background-color :rgba(255,255,255,0.1); /* Light background for contrast */
+   padding :20px; /* Padding inside the section */
+   border-radius :10px; /* Rounded corners */
+}
+
+.other-websites h4 {
+   font-size :26px; /* Heading size */
+   color :#fd79a8; /* Color for heading */
+   text-align:center; /* Centered heading */
+   margin-bottom :15px; /* Space below heading */
+}
+
+.website-links {
+   list-style-type:none; /* Remove default list styling */
+   padding-left :0; /* Remove left padding */
+}
+
+.website-links li {
+   margin-bottom :10px; /* Space between links */
+   text-align:center; /* Centered text for links */
+}
+
+.website-links a {
+   color:#00cec9; /* Link color */
+   text-decoration:none; /* Remove underline from links */
+   transition :color 0.3s ease ; /* Smooth transition on hover */
+}
+
+.website-links a:hover {
+   color:#fd79a8 ; /* Change color on hover */
 }
 
 /* =========================================

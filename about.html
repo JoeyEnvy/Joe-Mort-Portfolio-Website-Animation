@@ -109,32 +109,32 @@
 <div class="left-column">
     <h2 class="section-title">Services</h2>
 
-    <!-- Web Design Section -->
 <section class="service-section web-design">
     <h3><i class="fas fa-code"></i> Web Design</h3>
     <p>We create custom, responsive websites that drive engagement and results. Our web design solutions are tailored to your unique business needs, ensuring a perfect fit for your brand and goals.</p>
-    
-<div class="web-design-packages">
-    <h4>Web Design Packages</h4>
-    <ul>
-        <li>
-            <strong>Basic Package:</strong> <span class="price">£250</span>
-            <p>5-page responsive website, basic SEO, contact form</p>
-        </li>
-        <li>
-            <strong>Professional Package:</strong> <span class="price">£500</span>
-            <p>10-page responsive website, advanced SEO, custom forms, basic e-commerce integration</p>
-        </li>
-        <li>
-            <strong>E-commerce Package:</strong> <span class="price">£1250</span>
-            <p>Fully-featured online store, product management, payment gateway integration, advanced SEO</p>
-        </li>
-        <li>
-            <strong>Custom Enterprise Solution:</strong> <span class="price">Contact for pricing</span>
-            <p>Tailored web solutions for large businesses, including custom functionality and integrations</p>
-        </li>
-    </ul>
-</div>
+
+    <div class="web-design-packages">
+        <h4>Web Design Packages</h4>
+        <ul>
+            <li>
+                <strong>Basic Package:</strong> <span class="price">£250</span>
+                <p>5-page responsive website, basic SEO, contact form</p>
+            </li>
+            <li>
+                <strong>Professional Package:</strong> <span class="price">£500</span>
+                <p>10-page responsive website, advanced SEO, custom forms, basic e-commerce integration</p>
+            </li>
+            <li>
+                <strong>E-commerce Package:</strong> <span class="price">£1250</span>
+                <p>Fully-featured online store, product management, payment gateway integration, advanced SEO</p>
+            </li>
+            <li>
+                <strong>Custom Enterprise Solution:</strong> <span class="price">Contact for pricing</span>
+                <p>Tailored web solutions for large businesses, including custom functionality and integrations</p>
+            </li>
+        </ul>
+    </div>
+
     <div class="web-design-services">
         <h4>Our Services Include</h4>
         <ul>
@@ -147,44 +147,85 @@
         </ul>
     </div>
 
-    <div class="project-showcase">
-        <h4>Featured Projects</h4>
-        <div class="project-item">
-            <h5>Modern Plumber's Website</h5>
-            <p class="client">Client: Joe's Plumbing Solutions</p>
-            <ul class="features">
-                <li>Appointment booking system</li>
-                <li>Interactive service area map</li>
-                <li>Customer testimonials</li>
-            </ul>
-            <p class="outcome"><strong>Outcome:</strong> Increased online bookings by 40% within the first month.</p>
+    <!-- VitalFit Showcase Section -->
+    <div class="vitalfit-showcase">
+        <h2>Discover VitalFit</h2>
+        <div class="hero-banner">
+            <!-- Video showcasing VitalFit -->
+            <video id="vitalfit-video" controls></video>
+            <h3>Empowering Your Fitness Journey</h3>
         </div>
 
-        <div class="project-item">
-            <h5>Chic Hair Salon Website</h5>
-            <p class="client">Client: Luxe Locks Studio</p>
-            <ul class="features">
-                <li>Style galleries</li>
-                <li>Integrated e-commerce for hair products</li>
-                <li>Instagram feed integration</li>
+        <!-- JavaScript to load video -->
+        <script>
+            const videoElement = document.getElementById('vitalfit-video');
+            videoElement.src = 'website_template_content/VitalFit eCommerce/1.mp4';
+        </script>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h4>Key Features of VitalFit</h4>
+            <ul>
+                <li><i class="fas fa-check"></i> User-friendly interface</li>
+                <li><i class="fas fa-check"></i> Mobile optimization</li>
+                <li><i class="fas fa-check"></i> Secure payment processing</li>
+                <li><i class="fas fa-check"></i> Personalized shopping experience</li>
             </ul>
-            <p class="outcome"><strong>Outcome:</strong> Improved online visibility and customer engagement.</p>
         </div>
 
-        <div class="project-item">
-            <h5>Corporate Website for a Logistics Firm</h5>
-            <p class="client">Client: Swift Movers Ltd.</p>
-            <ul class="features">
-                <li>Dynamic service pages</li>
-                <li>Real-time delivery tracking</li>
-                <li>Team introduction videos</li>
-            </ul>
-            <p class="outcome"><strong>Outcome:</strong> Streamlined customer inquiries and enhanced brand authority.</p>
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <h4>Screenshots of VitalFit</h4>
+            <!-- Adding images A.png to D.png -->
+            <div class="image-grid">
+                <!-- Ensure these paths are correct -->
+                <!-- Example image paths -->
+                <img src="website_template_content/VitalFit eCommerce/Images/A.png" alt="VitalFit Screenshot A" onerror="this.onerror=null; this.src='placeholder.png';">
+                <img src="website_template_content/VitalFit eCommerce/Images/B.png" alt="VitalFit Screenshot B" onerror="this.onerror=null; this.src='placeholder.png';">
+                <!-- Add other images similarly -->
+
+                <!-- Additional images from 1.png to 26.png -->
+                <% for (let i = 1; i <= 26; i++) { %>
+                    <img src="website_template_content/VitalFit eCommerce/Images/<%= i %>.png" alt="VitalFit Screenshot <%=% i %>%"
+                         onerror="this.onerror=null; this.src='placeholder.png';"> <!-- Placeholder for missing images -->
+                <% } %>
+
+            </div>
         </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials">
+            <h4>What Our Customers Say</h4>
+            <!-- Testimonial video -->
+            <!-- JavaScript to load testimonial video -->
+            <video id="testimonial-video" controls></video>
+
+            <!-- Load testimonial video source -->
+            <script>
+                const testimonialVideo = document.getElementById('testimonial-video');
+                testimonialVideo.src = 'website_template_content/VitalFit eCommerce/2.mp4';
+            </script>
+
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <p>Ready to elevate your fitness journey? Explore VitalFit today!</p>
+            <!-- Link to your e-commerce site -->
+            <a href="https://vitalfit.com" class="cta-button">Visit VitalFit</a>
+        </div>
+
     </div>
 
-    <a href="contact.html" class="cta-button">Start Your Web Project</a>
+    <!-- Links to Other Websites Section -->
+    ... (same as before)
+
+    <!-- Call to Action -->
+    ...
+    
 </section>
+
+
 
 
     <!-- 3D/2D Animation Section -->
