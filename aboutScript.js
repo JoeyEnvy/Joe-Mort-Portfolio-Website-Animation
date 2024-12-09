@@ -1,7 +1,7 @@
 // Wait for DOM and all resources to load
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded');
-    
+
     // Initialize GSAP
     gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCards: document.querySelectorAll('.project-card'),
         lightBulb: document.querySelector('.light-bulb-container'),
         heroText: document.querySelector('.hero-text'),
-        revealTexts: document.querySelectorAll('.reveal-text')
+        revealTexts: document.querySelectorAll('.reveal-text'),
+        main: document.querySelector('main')
     };
 
     console.log('Initial checks:');
@@ -32,13 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isRevealed = false;
 
-    // =========================================
     // Page Transition System
-    // =========================================
     function changePage(targetId) {
         const currentSection = document.querySelector('.section.active');
         const targetSection = document.querySelector(targetId);
-        
+
         if (currentSection === targetSection) return;
 
         // Create transition overlay
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 0.3
             })
             .call(() => {
-                sections.forEach(section => {
+                elements.sections.forEach(section => {
                     section.classList.remove('previous', 'active');
                 });
                 targetSection.classList.add('active');
@@ -76,49 +75,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // =========================================
     // Navigation System
-    // =========================================
     elements.navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-            
             // Update active nav link
             elements.navLinks.forEach(navLink => navLink.classList.remove('active'));
             link.classList.add('active');
-
             // Trigger page transition
             changePage(targetId);
         });
     });
 
-    // =========================================
     // Light Bulb Hero Section
-    // =========================================
     if (elements.lightBulb) {
         console.log('Light bulb element found and initialized');
-        
         elements.lightBulb.addEventListener('click', () => {
             console.log('Light bulb clicked');
             const bulbIcon = elements.lightBulb.querySelector('.light-bulb');
-            
             if (!isRevealed) {
                 // Activate and move left
                 console.log('Starting reveal sequence');
                 bulbIcon.classList.add('active');
                 elements.lightBulb.classList.add('active');
-                
                 // Reveal text elements sequentially
                 elements.revealTexts.forEach((text, index) => {
                     setTimeout(() => {
                         text.classList.add('active');
                     }, index * 200 + 400);
                 });
-
                 elements.heroText.classList.add('active');
                 isRevealed = true;
-
                 // Background effect
                 gsap.to('.hero-section', {
                     backgroundColor: 'rgba(45, 52, 54, 0.9)',
@@ -130,15 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Reversing animation');
                 bulbIcon.classList.remove('active');
                 elements.lightBulb.classList.remove('active');
-                
                 // Hide text elements
                 elements.revealTexts.forEach(text => {
                     text.classList.remove('active');
                 });
-
                 elements.heroText.classList.remove('active');
                 isRevealed = false;
-
                 // Reverse background effect
                 gsap.to('.hero-section', {
                     backgroundColor: 'rgba(45, 52, 54, 1)',
@@ -176,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Light bulb element not found in DOM');
     }
 
-    // =========================================
     // Animation Initializations
-    // =========================================
     function initializeAnimations() {
         // Expertise Cards Animation
         elements.expertiseCards.forEach((card, index) => {
@@ -294,32 +277,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize animations
     initializeAnimations();
 
-    // =========================================
-    // Scroll-Based UI Updates
-    // =========================================
-    let lastScroll = 0;
-    const scrollThreshold = 500;
+    // Performance Optimization
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+    // Scroll effect for navbar and progress bar
+    const progressBar = document.querySelector('.scroll-progress-bar');
+const scrollThreshold = window.innerHeight * 0.1; // Changed from 0.3 to 0.2 (20vh instead of 30vh)
 
-        // Back to Top Button Visibility
-        if (currentScroll > scrollThreshold) {
-            elements.backToTop?.classList.add('visible');
-        } else {
-            elements.backToTop?.classList.remove('visible');
-        }
+const handleScroll = () => {
+    const scrollPosition = window.pageYOffset;
+    const scrollPercentage = (scrollPosition / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  
+    if (scrollPosition > scrollThreshold) {
+        elements.nav.classList.add('nav-scrolled');
+        elements.main.classList.add('nav-scrolled');
+    } else {
+        elements.nav.classList.remove('nav-scrolled');
+        elements.main.classList.remove('nav-scrolled');
+        // Force a reflow to ensure the nav height is recalculated
+        elements.nav.offsetHeight;
+    }
+  
+    progressBar.style.width = `${scrollPercentage}%`;
 
-        // Keep navbar visible and stable
-        elements.nav.style.transform = 'translateY(0)';
-        elements.nav.style.opacity = '1';
+    // Back to Top Button Visibility
+    if (scrollPosition > scrollThreshold) {
+        elements.backToTop?.classList.add('visible');
+    } else {
+        elements.backToTop?.classList.remove('visible');
+    }
+};
 
-        lastScroll = currentScroll;
-    });
+    const optimizedScroll = debounce(handleScroll, 16);
 
-    // =========================================
+    window.addEventListener('scroll', optimizedScroll);
+
     // Interactive Elements
-    // =========================================
     // Back to Top Functionality
     elements.backToTop?.addEventListener('click', () => {
         window.scrollTo({
@@ -347,31 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =========================================
-    // Performance Optimization
-    // =========================================
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    // Optimize scroll event
-    const optimizedScroll = debounce(() => {
-        // Scroll-based calculations
-    }, 16);
-
-    window.addEventListener('scroll', optimizedScroll);
-
-    // =========================================
     // Intersection Observer for Lazy Loading
-    // =========================================
     const observerOptions = {
         root: null,
         rootMargin: '50px',
@@ -391,39 +370,22 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 
-// for the hero divider 
-
-document.addEventListener('DOMContentLoaded', function() {
+    // For the hero divider 
     const splitContainer = document.getElementById('splitContainer');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                splitContainer.classList.add('visible');
-                observer.unobserve(splitContainer);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    observer.observe(splitContainer);
-});
+    if (splitContainer) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    splitContainer.classList.add('visible');
+                    observer.unobserve(splitContainer);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(splitContainer);
+    }
 
-
-//navbar scroll effect 
-
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.padding = "30px 10px";
-    document.getElementById("logo").style.fontSize = "25px";
-  } else {
-    document.getElementById("navbar").style.padding = "80px 10px";
-    document.getElementById("logo").style.fontSize = "35px";
-  }
-}
-    // =========================================
     // Error Handling
-    // =========================================
     window.addEventListener('error', (e) => {
         console.error('Animation Error:', e);
         // Fallback animations if GSAP fails
