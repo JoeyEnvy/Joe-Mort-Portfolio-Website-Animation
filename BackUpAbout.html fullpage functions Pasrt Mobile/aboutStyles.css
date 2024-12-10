@@ -39,6 +39,7 @@
 html, body {
     height: 100%;
     overflow: hidden; /* Prevents default scrolling */
+scroll-behavior: smooth;
 }
 
 body {
@@ -120,6 +121,12 @@ nav.top-nav {
     align-items: center;
     background-color: #6c5ce7 !important;
     padding: 0 2rem;
+}
+
+.nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .nav-links {
@@ -323,11 +330,11 @@ footer {
 }
 
 .back-to-top {
-    bottom: 14rem !important; /* Increased from 9rem to 15rem (approximately 75px higher) */
+    bottom: 14rem !important;
     right: 2.5rem !important;
     width: 55px !important;
     height: 55px !important;
-    background: var(--primary-color) !important; /* Changed to primary color */
+    background: var(--primary-color) !important;
     color: white !important;
     border: none !important;
     border-radius: 50% !important;
@@ -342,8 +349,8 @@ footer {
 }
 
 .back-to-top:hover {
-    background: var(--secondary-color) !important; /* Changed hover color */
-    color: var(--text-color) !important; /* Changed text color on hover */
+    background: var(--secondary-color) !important;
+    color: var(--text-color) !important;
 }
 
 .back-to-top.visible {
@@ -390,11 +397,11 @@ footer {
 .contact-box a, 
 .contact-box:hover, 
 .contact-box a:hover {
-    color: #ffffff !important; /* Ensures white text always */
+    color: #ffffff !important;
 }
 
 .contact-box:hover {
-    background: #5649c0 !important; /* Darker background on hover */
+    background: #5649c0 !important;
 }
 
 /* Bottom arrow hint */
@@ -481,5 +488,93 @@ footer {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+/* Base styles for larger screens */
+:root {
+    --nav-width: 200px; /* Default width for larger screens */
+}
+
+nav {
+    width: var(--nav-width);
+    height: 100vh; /* Full height for left-hand navbar */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 1rem 0; /* Vertical padding only */
+    background-color: var(--nav-bg);
+    position: fixed; /* Fix navbar to the left */
+    top: 0; /* No gap at the top */
+    left: 0; /* Align to the left edge of the viewport */
+}
+
+.nav-links {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+.nav-links li {
+    margin: 1rem 0; /* Space between links */
+}
+
+/* Hide text on mobile */
+.nav-text {
+    margin-left: 8px; /* Space between icon and text */
+}
+
+/* Media query for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+    p { font-size: 1rem; }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 780px) {
+    :root {
+        --nav-width: 100px; /* Set navbar width to 100px */
+    }
+
+    nav {
+        width: var(--nav-width); /* Apply new width */
+        height: 100vh; /* Ensure full height */
+        padding-top: 0; /* Remove unnecessary padding */
+        justify-content: center; /* Center content vertically */
+    }
+
+    .nav-links li {
+        display: flex;
+        justify-content: center; /* Center icons horizontally */
+        align-items: center; /* Center icons vertically */
+        width: 100%; /* Full width of navbar for easier clicking */
+    }
+
+    .nav-text {
+        display: none; /* Hide text on mobile devices */
+    }
+
+    .nav-social {
+        display: none; /* Optionally hide social links on mobile if needed */
+    }
+}
+
+/* Additional styles for very small screens (480px and below) */
+@media screen and (max-width: 480px) {
+    :root {
+        --nav-width: 80px; /* Set navbar width to even smaller size at this breakpoint */
+    }
+
+    nav {
+        width: var(--nav-width); /* Apply new width for very small screens */
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0; /* Reduce space between links for smaller screens */
     }
 }
