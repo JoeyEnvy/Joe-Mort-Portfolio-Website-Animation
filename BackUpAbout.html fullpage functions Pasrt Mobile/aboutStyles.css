@@ -171,14 +171,14 @@ nav a.active {
 .nav-social {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 1rem 0;
+gap: 1.5rem; /* Adjusts space between icons */
+    padding: 1rem 0; /* Existing padding */
 }
 
 .nav-social a {
     color: #fff;
     font-size: 1.8rem;
-    padding: 0.8rem;
+    padding: 0.25rem;
     transition: all var(--transition-speed) ease;
 }
 
