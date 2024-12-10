@@ -7,10 +7,7 @@
     <meta name="keywords" content="website animation, web design, 3D animation, digital media, Joe Mort, Wales">
     <title>About - Website Animation | Joe Mort</title>
 
-    <!-- Favicon -->
-    <link rel="favicon" href="favicon.ico" type="image/x-icon">
-
-    <!-- Font Awesome -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Google Fonts -->
@@ -18,16 +15,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="aboutStyles.css">
-
-    <!-- GSAP Animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-
-    <!-- Navigation -->
     <nav>
-
         <ul class="nav-links">
             <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="about.html" class="active"><i class="fas fa-user"></i>About</a></li>
@@ -43,573 +33,82 @@
         </div>
     </nav>
 
-<div class="scroll-progress-container">
-  <div class="scroll-progress-bar"></div>
+    <div id="fullpage-container">
+        <main id="fullpage">
+
+<div class="top-arrow-hint">
+    <i class="fas fa-chevron-up"></i>
 </div>
 
+            <section class="section">
+                <h2>Section 1</h2>
+                <p>Content for section 1</p>
+            </section>
+            <section class="section">
+                <h2>Section 2</h2>
+                <p>Content for section 2</p>
+            </section>
+            <!-- Add more sections as needed -->
+        </main>
 
-    <!-- Main Content -->
-    <main>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i>Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i>About</a></li>
+                        <li><a href="showcase.html"><i class="fas fa-chevron-right"></i>Showcase</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i>Services</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i>Contact</a></li>
+                    </ul>
+                </div>
 
-<!-- Add this right after your <main> opening tag -->
-<div class="hero-section">
-    <div class="light-bulb-container">
-        <div class="light-bulb">
-            <i class="fas fa-lightbulb"></i>
-            <span class="click-hint">Click to Illuminate</span>
-        </div>
-    </div>
-    <div class="hero-text">
-        <h1 class="reveal-text">Digital Innovation</h1>
-        <div class="tagline reveal-text">Web Design • 3D Animation • AI Solutions</div>
-        <p class="description reveal-text">Transforming Ideas into Digital Excellence</p>
-    </div>
-    <div class="spline-viewer-container">
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
-        <spline-viewer url="https://prod.spline.design/idbTdGEBiDcAEYqd/scene.splinecode" class="large-spline-viewer"></spline-viewer>
-        <div class="spline-viewer-hint">
-            <span>Click or Tap to Interact</span>
-        </div>
-        <div class="spline-viewer-footer"></div>
-    </div>
-</div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><a href="mailto:joe@websiteanimation.co.uk">
+                            <i class="fas fa-envelope"></i>joe@websiteanimation.co.uk
+                        </a></li>
+                        <li><a href="tel:+447478773451">
+                            <i class="fas fa-phone"></i>+44 7478773451
+                        </a></li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>Neath, Swansea, UK Wales
+                        </li>
+                    </ul>
+                </div>
 
-<section class="expertise-overview">
-  <div class="container">
-    <h2>Innovating Digital Experiences</h2>
-    <p>Leveraging cutting-edge technologies to bring your vision to life across web, animation, design, and AI-driven solutions.</p>
-    <div class="expertise-icons">
-      <div class="expertise-icon">
-        <i class="fas fa-code"></i>
-        <span>Web Development</span>
-      </div>
-      <div class="expertise-icon">
-        <i class="fas fa-cube"></i>
-        <span>3D Animation</span>
-      </div>
-      <div class="expertise-icon">
-        <i class="fas fa-paint-brush"></i>
-        <span>Graphic Design</span>
-      </div>
-      <div class="expertise-icon">
-        <i class="fas fa-film"></i>
-        <span>AI Film Production</span>
-      </div>
-      <div class="expertise-icon">
-        <i class="fas fa-robot"></i>
-        <span>AI Website Generator</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Rest of the page content here -->
-<div class="split-container">
-    <!-- Left Column - Services -->
-<div class="left-column">
-    <h2 class="section-title">Services</h2>
-
-<section class="service-section web-design">
-    <h3><i class="fas fa-code"></i> Web Design</h3>
-    <p>We create custom, responsive websites that drive engagement and results. Our web design solutions are tailored to your unique business needs, ensuring a perfect fit for your brand and goals.</p>
-
-    <div class="web-design-packages">
-        <h4>Web Design Packages</h4>
-        <ul>
-            <li>
-                <strong>Basic Package:</strong> <span class="price">£250</span>
-                <p>5-page responsive website, basic SEO, contact form</p>
-            </li>
-            <li>
-                <strong>Professional Package:</strong> <span class="price">£500</span>
-                <p>10-page responsive website, advanced SEO, custom forms, basic e-commerce integration</p>
-            </li>
-            <li>
-                <strong>E-commerce Package:</strong> <span class="price">£1250</span>
-                <p>Fully-featured online store, product management, payment gateway integration, advanced SEO</p>
-            </li>
-            <li>
-                <strong>Custom Enterprise Solution:</strong> <span class="price">Contact for pricing</span>
-                <p>Tailored web solutions for large businesses, including custom functionality and integrations</p>
-            </li>
-        </ul>
-    </div>
-
-    <div class="web-design-services">
-        <h4>Our Services Include</h4>
-        <ul>
-            <li>Responsive Design for all devices</li>
-            <li>SEO Optimization</li>
-            <li>Content Management Systems (WordPress, Shopify, etc.)</li>
-            <li>E-commerce Integration</li>
-            <li>Custom Functionality Development</li>
-            <li>Website Maintenance and Support</li>
-        </ul>
-    </div>
-
-    <!-- VitalFit Showcase Section -->
-    <div class="vitalfit-showcase">
-        <h2>Discover VitalFit</h2>
-        <div class="hero-banner">
-            <!-- Video showcasing VitalFit -->
-            <video id="vitalfit-video" controls></video>
-            <h3>Empowering Your Fitness Journey</h3>
-        </div>
-
-        <!-- JavaScript to load video -->
-        <script>
-            const videoElement = document.getElementById('vitalfit-video');
-            videoElement.src = 'website_template_content/VitalFit eCommerce/1.mp4';
-        </script>
-
-        <!-- Features Section -->
-        <div class="features">
-            <h4>Key Features of VitalFit</h4>
-            <ul>
-                <li><i class="fas fa-check"></i> User-friendly interface</li>
-                <li><i class="fas fa-check"></i> Mobile optimization</li>
-                <li><i class="fas fa-check"></i> Secure payment processing</li>
-                <li><i class="fas fa-check"></i> Personalized shopping experience</li>
-            </ul>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="gallery">
-            <h4>Screenshots of VitalFit</h4>
-            <!-- Adding images A.png to D.png -->
-            <div class="image-grid">
-                <!-- Ensure these paths are correct -->
-                <!-- Example image paths -->
-                <img src="website_template_content/VitalFit eCommerce/Images/A.png" alt="VitalFit Screenshot A" onerror="this.onerror=null; this.src='placeholder.png';">
-                <img src="website_template_content/VitalFit eCommerce/Images/B.png" alt="VitalFit Screenshot B" onerror="this.onerror=null; this.src='placeholder.png';">
-                <!-- Add other images similarly -->
-
-                <!-- Additional images from 1.png to 26.png -->
-                <% for (let i = 1; i <= 26; i++) { %>
-                    <img src="website_template_content/VitalFit eCommerce/Images/<%= i %>.png" alt="VitalFit Screenshot <%=% i %>%"
-                         onerror="this.onerror=null; this.src='placeholder.png';"> <!-- Placeholder for missing images -->
-                <% } %>
-
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <div class="footer-social">
+                        <a href="#" target="_blank" aria-label="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="Follow on Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" aria-label="Contact on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Testimonials Section -->
-        <div class="testimonials">
-            <h4>What Our Customers Say</h4>
-            <!-- Testimonial video -->
-            <!-- JavaScript to load testimonial video -->
-            <video id="testimonial-video" controls></video>
-
-            <!-- Load testimonial video source -->
-            <script>
-                const testimonialVideo = document.getElementById('testimonial-video');
-                testimonialVideo.src = 'website_template_content/VitalFit eCommerce/2.mp4';
-            </script>
-
-        </div>
-
-        <!-- Call to Action -->
-        <div class="cta">
-            <p>Ready to elevate your fitness journey? Explore VitalFit today!</p>
-            <!-- Link to your e-commerce site -->
-            <a href="https://vitalfit.com" class="cta-button">Visit VitalFit</a>
-        </div>
-
+            <div class="footer-bottom">
+                <p>
+                    <span class="copyright-year">© 2024</span>
+                    <span class="company-name">Website Animation</span>.
+                    <span class="rights-reserved">All rights reserved</span>.
+                </p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Links to Other Websites Section -->
-    ... (same as before)
-
-    <!-- Call to Action -->
-    ...
-    
-</section>
-
-
-
-
-    <!-- 3D/2D Animation Section -->
-    <section class="service-section animation">
-        <h3><i class="fas fa-cube"></i> 3D/2D Animation</h3>
-        <p>Bringing ideas to life through dynamic animations.</p>
-        <ul>
-            <li>Character Animation</li>
-            <li>Motion Graphics</li>
-            <li>Explainer Videos</li>
-        </ul>
-        <a href="contact.html" class="cta-button">Animate Your Ideas</a>
-    </section>
-
-    <!-- AI Video and Image Production Section -->
-    <section class="service-section ai-production">
-        <h3><i class="fas fa-robot"></i> AI Video and Image Production</h3>
-        <p>Cutting-edge AI-powered media creation.</p>
-        <ul>
-            <li>AI-Generated Content</li>
-            <li>Style Transfer</li>
-            <li>Automated Video Editing</li>
-        </ul>
-        <a href="contact.html" class="cta-button">Explore AI Solutions</a>
-    </section>
-
-    <!-- Printing and Logo Design Section -->
-    <section class="service-section print-design">
-        <h3><i class="fas fa-print"></i> Printing and Logo Design</h3>
-        <p>Professional branding and print solutions.</p>
-        <ul>
-            <li>Logo Creation</li>
-            <li>Business Cards</li>
-            <li>Brochures and Flyers</li>
-        </ul>
-        <a href="contact.html" class="cta-button">Design Your Brand</a>
-    </section>
-
-    <!-- Video/Image Editing Section -->
-    <section class="service-section video-editing">
-        <h3><i class="fas fa-film"></i> Video/Image Editing</h3>
-        <p>Professional editing to enhance your visual content.</p>
-        <ul>
-            <li>Color Correction</li>
-            <li>Special Effects</li>
-            <li>Audio Mixing</li>
-        </ul>
-        <a href="contact.html" class="cta-button">Edit Your Content</a>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
-        
-        <!-- Web Design FAQ -->
-        <div class="faq-item">
-            <h4>What platforms do you use for web design?</h4>
-            <p>We specialize in WordPress, Webflow, and custom HTML/CSS/JavaScript solutions, tailoring our approach to your specific needs.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Do you offer e-commerce solutions?</h4>
-            <p>Yes, we provide full e-commerce website development using platforms like WooCommerce and Shopify.</p>
-        </div>
-
-        <!-- 3D/2D Animation FAQ -->
-        <div class="faq-item">
-            <h4>What software do you use for 3D/2D animation?</h4>
-            <p>We primarily use Blender for 3D animation and Adobe After Effects for 2D animation, ensuring high-quality results.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Can you create animated explainer videos?</h4>
-            <p>Absolutely! We specialize in creating engaging explainer videos that effectively communicate your message.</p>
-        </div>
-
-        <!-- AI Video and Image Production FAQ -->
-        <div class="faq-item">
-            <h4>How does AI enhance video and image production?</h4>
-            <p>AI technologies allow for advanced editing, style transfer, and even content generation, significantly speeding up the production process.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Is AI-generated content copyright-free?</h4>
-            <p>While AI-generated content is a grey area in copyright law, we ensure all our deliverables are original and tailored to your needs.</p>
-        </div>
-
-        <!-- Printing and Logo Design FAQ -->
-        <div class="faq-item">
-            <h4>What file formats do you provide for logo designs?</h4>
-            <p>We provide logos in various formats including AI, EPS, PDF, PNG, and JPG to ensure compatibility across all platforms.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Do you offer business card printing services?</h4>
-            <p>Yes, we offer full business card design and printing services, using high-quality materials and finishes.</p>
-        </div>
-
-        <!-- Video/Image Editing FAQ -->
-        <div class="faq-item">
-            <h4>Can you edit videos shot on smartphones?</h4>
-            <p>Absolutely! We can enhance and edit videos from any source, including smartphones, to create professional-looking content.</p>
-        </div>
-        <div class="faq-item">
-            <h4>Do you offer color grading services?</h4>
-            <p>Yes, we provide advanced color grading services to give your videos and images a polished, professional look.</p>
-        </div>
-    </section>
-</div>
-            <!-- Right Column - Technical Expertise -->
-            <div class="right-column">
-                <section class="expertise-section">
-                    <header class="section-header">
-                        <h1>Technical Expertise & Solutions</h1>
-                        <p class="lead-text">Welcome to WebsiteAnimation.co.uk</p>
-                    </header>
-
-                    <div class="intro-text">
-                        <p>As a creative and driven professional, I specialize in delivering comprehensive technical and IT solutions for businesses and individuals. My expertise spans graphic design, web development, animation, video production, and AI-driven media creation, bringing innovative solutions to elevate your brand and projects.</p>
-                    </div>
-
-                    <!-- Expertise Grid -->
-                    <div class="expertise-grid">
-
-                        <!-- Web Development Expertise -->
-                        <div class="expertise-card">
-                            <div class="card-header">
-                                <i class="fas fa-code"></i>
-                                <h2>Web Design & Development</h2>
-                            </div>
-                            <div class="card-content">
-                                <h3>Platforms & Technologies:</h3>
-                                <ul class="tech-list">
-                                    <li><i class="fab fa-webflow"></i> Webflow Development</li>
-                                    <li><i class="fab fa-wordpress"></i> WordPress Solutions</li>
-                                    <li><i class="fab fa-wix"></i> Wix Development</li>
-                                    <li><i class="fas fa-mobile-alt"></i> Responsive Design</li>
-                                    <li><i class="fas fa-search"></i> SEO Optimization</li>
-                                    <li><i class="fas fa-paint-brush"></i> UI/UX Design</li>
-                                </ul>
-                                <div class="cta-button-container">
-                                    <a href="contact.html" class="cta-button">
-                                        <i class="fas fa-rocket"></i>
-                                        Start Your Web Project
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 3D & Animation Expertise -->
-                        <div class="expertise-card">
-                            <div class="card-header">
-                                <i class="fas fa-cube"></i>
-                                <h2>3D & 2D Animation</h2>
-                            </div>
-                            <div class="card-content">
-                                <h3>Animation Services:</h3>
-                                <ul class="tech-list">
-                                    <li><i class="fas fa-cube"></i> Blender 3D Modeling</li>
-                                    <li><i class="fas fa-film"></i> Animation Production</li>
-                                    <li><i class="fas fa-box"></i> Product Visualization</li>
-                                    <li><i class="fas fa-vector-square"></i> Motion Graphics</li>
-                                    <li><i class="fas fa-video"></i> Explainer Videos</li>
-                                    <li><i class="fas fa-chart-line"></i> Business Presentations</li>
-                                </ul>
-                                <div class="cta-button-container">
-                                    <a href="contact.html" class="cta-button">
-                                        <i class="fas fa-film"></i>
-                                        Animate Your Ideas
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Graphic Design Expertise -->
-                        <div class="expertise-card">
-                            <div class="card-header">
-                                <i class="fas fa-palette"></i>
-                                <h2>Graphic Design & Branding</h2>
-                            </div>
-                            <div class="card-content">
-                                <h3>Design Services:</h3>
-                                <ul class="tech-list">
-                                    <li><i class="fas fa-pen-nib"></i> Logo Design & Branding</li>
-                                    <li><i class="fas fa-print"></i> Print Design Services</li>
-                                    <li><i class="fas fa-signs-post"></i> Signage Design</li>
-                                    <li><i class="fas fa-object-group"></i> Custom Illustrations</li>
-                                    <li><i class="fas fa-ruler-combined"></i> AutoCAD Expertise</li>
-                                    <li><i class="fas fa-swatchbook"></i> Brand Guidelines</li>
-                                </ul>
-                                <div class="cta-button-container">
-                                    <a href="contact.html" class="cta-button">
-                                        <i class="fas fa-palette"></i>
-                                        Design Your Brand
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Video & Image Editing -->
-                        <div class="expertise-card">
-                            <div class="card-header">
-                                <i class="fas fa-film"></i>
-                                <h2>Video & Image Production</h2>
-                            </div>
-                            <div class="card-content">
-                                <h3>Production Services:</h3>
-                                <ul class="tech-list">
-                                    <li><i class="fab fa-adobe"></i> Adobe Premiere Pro Editing</li>
-                                    <li><i class="fas fa-music"></i> Logic Pro & Cubase Audio</li>
-                                    <li><i class="fas fa-video"></i> Corporate Videos</li>
-                                    <li><i class="fas fa-image"></i> Professional Photo Editing</li>
-                                    <li><i class="fas fa-share-nodes"></i> Social Media Content</li>
-                                    <li><i class="fas fa-camera"></i> Product Photography</li>
-                                </ul>
-                                <div class="cta-button-container">
-                                    <a href="contact.html" class="cta-button">
-                                        <i class="fas fa-video"></i>
-                                        Create Your Content
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- AI Media Solutions -->
-                        <div class="expertise-card">
-                            <div class="card-header">
-                                <i class="fas fa-robot"></i>
-                                <h2>AI Media Solutions</h2>
-                            </div>
-                            <div class="card-content">
-                                <h3>AI-Powered Services:</h3>
-                                <ul class="tech-list">
-                                    <li><i class="fas fa-wand-magic-sparkles"></i> AI-Generated Content</li>
-                                    <li><i class="fas fa-pen-to-square"></i> Script-Based Animation</li>
-                                    <li><i class="fas fa-clock"></i> Real-Time Video Editing</li>
-                                    <li><i class="fas fa-image"></i> Custom AI Imagery</li>
-                                    <li><i class="fas fa-arrows-rotate"></i> Style Transfer</li>
-                                    <li><i class="fas fa-layer-group"></i> AI-Enhanced Graphics</li>
-                                </ul>
-                                <div class="cta-button-container">
-                                    <a href="contact.html" class="cta-button">
-                                        <i class="fas fa-robot"></i>
-                                        Explore AI Solutions
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Experience Section -->
-                        <div class="expertise-card experience-highlight">
-                            <div class="card-header">
-                                <i class="fas fa-star"></i>
-                                <h2>Professional Experience</h2>
-                            </div>
-                            <div class="card-content">
-                                <div class="experience-item">
-                                    <h3><i class="fas fa-building"></i> Select Signs Ltd</h3>
-                                    <p class="role">Graphic Designer & CAD Specialist</p>
-                                    <ul class="achievement-list">
-                                        <li>Led custom design development using AutoCAD and Adobe Suite</li>
-                                        <li>Managed large-format printing projects and material optimization</li>
-                                        <li>Created innovative signage solutions for major clients</li>
-                                        <li>Implemented efficient production workflows</li>
-                                        <li>Collaborated with installation teams for perfect execution</li>
-                                    </ul>
-                                </div>
-
-                                <div class="experience-item">
-                                    <h3><i class="fas fa-globe"></i> James Brothers</h3>
-                                    <p class="role">Digital Media Manager</p>
-                                    <ul class="achievement-list">
-                                        <li>Developed and executed comprehensive digital media strategies</li>
-                                        <li>Managed multiple social media channels with proven engagement growth</li>
-                                        <li>Implemented SEO strategies resulting in improved rankings</li>
-                                        <li>Created and optimized content for various digital platforms</li>
-                                        <li>Conducted analytics reporting and performance optimization</li>
-                                    </ul>
-                                </div>
-
-                                <div class="experience-item">
-                                    <h3><i class="fas fa-video"></i> Freelance Projects</h3>
-                                    <p class="role">Media Production Specialist</p>
-                                    <ul class="achievement-list">
-                                        <li>Delivered high-quality video production and editing services</li>
-                                        <li>Created professional motion graphics and animations</li>
-                                        <li>Produced engaging content for social media campaigns</li>
-                                        <li>Managed audio production and sound design projects</li>
-                                        <li>Collaborated with clients to achieve their creative vision</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Contact Section -->
-                    <section class="contact-section">
-                        <h2><i class="fas fa-handshake"></i> Ready to Transform Your Digital Presence?</h2>
-                        <p>Let's create something extraordinary together</p>
-                        <div class="contact-info">
-                            <div class="contact-info-item">
-                                <i class="fas fa-phone"></i>
-                                <span>+44 7478773451</span>
-                            </div>
-                            <div class="contact-info-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>joe@websiteanimation.co.uk</span>
-                            </div>
-                            <div class="contact-info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Neath, Swansea, UK Wales</span>
-                            </div>
-                        </div>
-                        <div class="cta-button-container">
-                            <a href="contact.html" class="cta-button">
-                                <i class="fas fa-paper-plane"></i>
-                                Start Your Project Today
-                            </a>
-                        </div>
-                    </section>
-
-                    <!-- Why Choose Me Section -->
-                    <div class="why-choose-me">
-
-                        <h2><i class="fas fa-check-circle"></i> Why Choose Me?</h2>
-                        <div class="benefits-grid">
-                            <div class="benefit-item">
-                                <i class="fas fa-rocket"></i>
-                                <h3>Innovation</h3>
-                                <p>Cutting-edge solutions using the latest technologies to keep you ahead of the competition</p>
-                                <ul class="benefit-list">
-                                    <li>Modern Tech Stack</li>
-                                    <li>Creative Solutions</li>
-                                    <li>Future-Proof Design</li>
-                                </ul>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-handshake"></i>
-                                <h3>Reliability</h3>
-                                <p>Committed to delivering quality results on time, every time</p>
-                                <ul class="benefit-list">
-                                    <li>On-Time Delivery</li>
-                                    <li>Clear Communication</li>
-                                    <li>Quality Assurance</li>
-                                </ul>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-users"></i>
-                                <h3>Client Focus</h3>
-                                <p>Tailored solutions to meet your specific needs and goals</p>
-                                <ul class="benefit-list">
-                                    <li>Custom Solutions</li>
-                                    <li>Personal Attention</li>
-                                    <li>Ongoing Support</li>
-                                </ul>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-chart-line"></i>
-                                <h3>Growth</h3>
-                                <p>Helping your business reach new heights through digital excellence</p>
-                                <ul class="benefit-list">
-                                    <li>Scalable Solutions</li>
-                                    <li>Performance Tracking</li>
-                                    <li>Growth Strategy</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="cta-button-container mt-4">
-                            <a href="contact.html" class="cta-button">
-                                <i class="fas fa-comments"></i>
-                                Let's Discuss Your Goals
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
-
-    <!-- Fixed Contact Elements -->
+    <!-- Fixed elements -->
+    <div class="arrow-hint">
+        <i class="fas fa-chevron-down"></i>
+    </div>
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
     <a href="https://wa.me/447478773451" class="whatsapp-button" target="_blank" aria-label="Contact on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-
     <div class="contact-box">
         <a href="mailto:joe@websiteanimation.co.uk">
             <i class="fas fa-envelope"></i>
@@ -617,57 +116,7 @@
         </a>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i>Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-chevron-right"></i>About</a></li>
-                    <li><a href="showcase.html"><i class="fas fa-chevron-right"></i>Showcase</a></li>
-                    <li><a href="services.html"><i class="fas fa-chevron-right"></i>Services</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i>Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <ul>
-                    <li><a href="mailto:joe@websiteanimation.co.uk">
-                        <i class="fas fa-envelope"></i>joe@websiteanimation.co.uk
-                    </a></li>
-                    <li><a href="tel:+447478773451">
-                        <i class="fas fa-phone"></i>+44 7478773451
-                    </a></li>
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i>Neath, Swansea, UK Wales
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Connect With Me</h3>
-                <div class="footer-social">
-                    <a href="#" target="_blank" aria-label="Follow on Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" aria-label="Follow on Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" target="_blank" aria-label="Contact on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-
-  <div class="footer-bottom">
-    <p>
-        <span class="copyright-year">© 2024</span>
-        <span class="company-name">Website Animation</span>.
-        <span class="rights-reserved">All rights reserved</span>.
-    </p>
-</div>
-
-    </footer>
-
     <!-- Custom JavaScript -->
     <script src="aboutScript.js"></script>
 </body>
 </html>
-
