@@ -11,6 +11,14 @@
     --nav-bg: #2d3436;           /* Grey */
     --card-bg: #ffffff;
     
+    /* New color variables */
+    --color-light: #f0f0f0;
+    --color-dark: #2c3e50;
+    --color-accent1: #3498db;
+    --color-accent2: #e74c3c;
+    --color-text-light: #ecf0f1;
+    --color-text-dark: #34495e;
+    
     /* Transition speed for hover effects */
     --transition-speed: 0.3s;
     
@@ -28,6 +36,7 @@
     --nav-width: 250px;
 }
 
+
 /* Reset default browser styles */
 * {
     box-sizing: border-box;
@@ -44,7 +53,7 @@ scroll-behavior: smooth;
 
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: var(--background-color);
+ background-color: var(--nav-bg);
     color: var(--text-color);
     line-height: 1.6;
 }
@@ -94,6 +103,38 @@ p {
     font-size: 1.1rem;
     color: var(--text-color);
 }
+
+/* page loader */
+
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--nav-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+#loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--primary-color); /* Blue border */
+  border-top: 3px solid var(--accent-color); /* Orange top border */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 
 /* =========================================
    Navigation Styles
@@ -207,12 +248,14 @@ gap: 1.5rem; /* Adjusts space between icons */
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     margin-left: var(--nav-width);
-    transition: margin-left 0.5s ease, padding-top 0.5s ease;
+    transition: margin-left 0.5s ease, padding-top 0.5s ease, background-color 0.5s ease;
+ background-color: var(--nav-bg);
+color: var(--background-color);
 }
 
 #fullpage-container.top-nav-active {
     margin-left: 0;
-    padding-top: 60px; /* Height of the top navbar */
+    padding-top: 60px;
 }
 
 #fullpage {
@@ -224,17 +267,338 @@ gap: 1.5rem; /* Adjusts space between icons */
     height: 100vh;
     scroll-snap-align: start;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    color: var(--color-text-light);
 }
 
-/* Footer is also treated as a section for scrolling */
-footer {
-    scroll-snap-align: start;
-    min-height: 100vh;
+/* Updated styles for section 1 */
+#section1 {
+    background-color: var(--color-dark); /* Changed to dark background */
+    color: var(--color-text-light); /* Changed to light text */
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+    padding-left: 0px; /* Added left padding */
+    padding-right: 800px;
 }
+
+#section2 {
+    background-color: var(--color-dark);
+    flex-direction: row;
+}
+
+/* Updated content wrapper styles */
+.content-wrapper {
+    flex: 1;
+    padding-right: 2rem;
+    z-index: 2;
+    max-width: 600px; /* Changed from 50% to fixed width */
+}
+
+.content-wrapper h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent1);
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+padding-right: 300px;
+padding-bottom: 50px;
+}
+
+.bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: var(--color-dark);
+    z-index: 3;
+}
+
+.content-wrapper h2 {
+    font-size: 2rem;
+    color: var(--color-accent2);
+    margin-bottom: 1rem;
+}
+
+/* Updated info-services styles */
+.info-services {
+    font-size: 1.1rem;
+    color: var(--color-text-light); /* Changed to light text */
+}
+
+.info-services p, .info-services ul {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.info-services h3 {
+    color: var(--color-accent2);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-services ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.info-services li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.info-services p {
+    color: #ffffff; /* Make the top paragraph white */
+}
+
+.info-services li::before {
+    content: "•";
+    color: var(--color-accent1);
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+}
+
+/* Spline container styles */
+.spline-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+
+.column {
+    flex: 1;
+    padding: 2rem;
+}
+
+.column h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-accent1);
+}
+
+.column ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.column li {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.column li::before {
+    content: "→";
+    color: var(--color-accent2);
+    position: absolute;
+    left: 0;
+}
+
+.service-item {
+    margin-bottom: 1.5rem;
+}
+
+.service-item h3 {
+    font-size: 1.3rem;
+    color: var(--color-accent2);
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    #section1, #section2 {
+        flex-direction: column;
+        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .content-wrapper, .column {
+        padding: 0.5rem;
+        max-width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .spline-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .content-wrapper h1 {
+        font-size: 2.5rem;
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.6rem;
+    }
+
+    .info-services {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --nav-width: 60px;
+    }
+
+    nav {
+        width: var(--nav-width);
+    }
+
+    .nav-links li {
+        margin: 0.3rem 0;
+    }
+
+    .content-wrapper h1 {
+        font-size: 2rem;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.3rem;
+    }
+
+    .info-services {
+        font-size: 0.9rem;
+    }
+
+    .info-services li {
+        margin-bottom: 0.3rem;
+    }
+
+    .spline-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+}
+
+@media screen and (max-width: 1145px) and (max-height: 480px) {
+    #section1 {
+        height: 100vh;
+        padding: 1rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .spline-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        padding-right: 1rem;
+        overflow-y: auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .content-wrapper h1 {
+        font-size: 2rem;
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.3rem;
+    }
+
+    .info-services {
+        font-size: 0.9rem;
+    }
+
+    .info-services li {
+        margin-bottom: 0.2rem;
+    }
+}
+
+@media screen and (max-width: 360px) and (min-height: 800px) {
+    #section1 {
+        height: 100vh;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .spline-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        padding: 1rem 0;
+        overflow-y: auto;
+        max-height: 100vh;
+        position: relative;
+        z-index: 2;
+    }
+
+    .content-wrapper h1 {
+        font-size: 1.8rem;
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.2rem;
+    }
+
+    .info-services {
+        font-size: 0.9rem;
+    }
+
+    .info-services li {
+        margin-bottom: 0.2rem;
+    }
+
+    .bottom-bar {
+        height: 50px;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+
 
 /* =========================================
    Footer Styles
@@ -243,6 +607,8 @@ footer {
     background-color: rgba(45, 52, 54, 0.85);
     color: #ffffff;
     padding: 2rem 1.5rem;
+scroll-snap-align: start;
+    min-height: 100vh;
 }
 
 .footer-content {

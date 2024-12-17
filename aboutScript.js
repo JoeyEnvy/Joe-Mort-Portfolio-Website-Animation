@@ -25,6 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    function changeBackgroundColor(index) {
+        const colors = ['#2d3436', '#6c5ce7', '#00cec9', '#fd79a8', '#ffffff'];
+        fullpageContainer.style.backgroundColor = colors[index % colors.length];
+    }
+
+    function moveSplineScene(scrollPosition) {
+        const splineContainer = document.querySelector('.spline-container');
+        if (splineContainer) {
+            const scrollThreshold = window.innerHeight * 0.1;
+if (scrollPosition > scrollThreshold) {
+            const translateX = (scrollPosition - scrollThreshold) * 1.5; // Increase movement speed
+                splineContainer.style.transform = `translateX(${translateX}px)`;
+            } else {
+                splineContainer.style.transform = 'translateX(0)';
+            }
+        }
+    }
+
     function goToSection(index) {
         if (isAnimating) return;
         isAnimating = true;
@@ -34,10 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             top: targetPosition,
             behavior: 'smooth'
         });
+        
+        changeBackgroundColor(index);
+        
         setTimeout(() => {
             isAnimating = false;
             updateArrowVisibility();
-        }, 1000);
+        }, 500);
     }
 
     const goToNextSection = debounce(() => {
@@ -117,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollPosition = fullpageContainer.scrollTop;
 
         handleNavbarTransition();
+        moveSplineScene(scrollPosition);
 
         const maxScroll = fullpageContainer.scrollHeight - fullpageContainer.clientHeight;
         const scrollPercentage = (scrollPosition / maxScroll) * 100;
@@ -133,6 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             fullpageContainer.classList.remove('scrolled');
         }
+
+        const currentSectionIndex = Math.floor(scrollPosition / window.innerHeight);
+        changeBackgroundColor(currentSectionIndex);
     }, 10));
 
     navToggle.addEventListener("click", () => {
@@ -141,4 +166,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateArrowVisibility();
     handleNavbarTransition();
+    changeBackgroundColor(0);
 });
+
+
+//page loader 
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader-wrapper');
+    loader.style.transform = 'translateY(-100%)';
+    loader.addEventListener('transitionend', () => {
+      loader.style.display = 'none';
+    });
+  }, 1750);
+//1750 are the seconds 
+});
+
+
+
+
