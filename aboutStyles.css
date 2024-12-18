@@ -1,28 +1,28 @@
-/* =========================================
-   Root Variables and Basic Setup
+/* ========================================= 
+   Root Variables and Basic Setup 
    ========================================= */
 :root {
     /* Color palette */
-    --primary-color: #6c5ce7;    /* Blue dark */
-    --secondary-color: #00cec9;  /* Teal */
-    --accent-color: #fd79a8;     /* Pink */
-    --text-color: #2d3436;       /* Grey */
-    --background-color: #ffffff; /* White */
-    --nav-bg: #2d3436;           /* Grey */
-    --card-bg: #ffffff;
+    --primary-color: #6c5ce7;    /* Main blue color */
+    --secondary-color: #00cec9;  /* Teal accent color */
+    --accent-color: #fd79a8;     /* Pink highlight color */
+    --text-color: #2d3436;       /* Dark grey for text */
+    --background-color: #ffffff; /* White background */
+    --nav-bg: #2d3436;           /* Dark grey for navigation */
+    --card-bg: #ffffff;          /* White background for cards */
     
-    /* New color variables */
-    --color-light: #f0f0f0;
-    --color-dark: #2c3e50;
-    --color-accent1: #3498db;
-    --color-accent2: #e74c3c;
-    --color-text-light: #ecf0f1;
-    --color-text-dark: #34495e;
+    /* Additional color variables for flexibility */
+    --color-light: #f0f0f0;      /* Light grey */
+    --color-dark: #2c3e50;       /* Dark blue */
+    --color-accent1: #3498db;    /* Light blue accent */
+    --color-accent2: #e74c3c;    /* Red accent */
+    --color-text-light: #ecf0f1; /* Very light grey for text on dark backgrounds */
+    --color-text-dark: #34495e;  /* Dark blue for text on light backgrounds */
     
     /* Transition speed for hover effects */
     --transition-speed: 0.3s;
     
-    /* Shadow effects */
+    /* Shadow effects for depth */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-sm: 0 2px 4px rgba(45, 52, 54, 0.1);
     --shadow-lg: 0 10px 15px rgba(45, 52, 54, 0.2);
@@ -32,10 +32,9 @@
     --gradient-2: linear-gradient(135deg, #00cec9, #fd79a8);
 
     /* Other design variables */
-    --border-radius: 10px;
-    --nav-width: 250px;
+    --border-radius: 10px;  /* Rounded corners */
+    --nav-width: 250px;     /* Width of the navigation bar */
 }
-
 
 /* Reset default browser styles */
 * {
@@ -47,15 +46,17 @@
 /* Set up basic page structure */
 html, body {
     height: 100%;
-    overflow: hidden; /* Prevents default scrolling */
-scroll-behavior: smooth;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
 }
 
 body {
     font-family: 'Raleway', sans-serif;
- background-color: var(--nav-bg);
+    background-color: var(--nav-bg);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* =========================================
@@ -83,6 +84,7 @@ h2 {
     padding-bottom: 0.5rem;
 }
 
+/* Add a decorative line under h2 elements */
 h2::after {
     content: '';
     position: absolute;
@@ -104,37 +106,37 @@ p {
     color: var(--text-color);
 }
 
-/* page loader */
-
+/* =========================================
+   Page Loader Styles
+   ========================================= */
 #loader-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--nav-bg);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 #loader {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--primary-color); /* Blue border */
-  border-top: 3px solid var(--accent-color); /* Orange top border */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--primary-color);
+    border-top: 3px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
+/* Animation for the loader */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-
-
 
 /* =========================================
    Navigation Styles
@@ -155,6 +157,7 @@ nav {
     transition: all 0.5s ease;
 }
 
+/* Styles for top navigation (if used) */
 nav.top-nav {
     width: 100%;
     height: 60px;
@@ -212,8 +215,8 @@ nav a.active {
 .nav-social {
     display: flex;
     justify-content: center;
-gap: 1.5rem; /* Adjusts space between icons */
-    padding: 1rem 0; /* Existing padding */
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
 .nav-social a {
@@ -244,16 +247,26 @@ gap: 1.5rem; /* Adjusts space between icons */
    ========================================= */
 #fullpage-container {
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    width: calc(100% - var(--nav-width));
     margin-left: var(--nav-width);
-    transition: margin-left 0.5s ease, padding-top 0.5s ease, background-color 0.5s ease;
- background-color: var(--nav-bg);
-color: var(--background-color);
+    transition: margin-left 0.5s ease, padding-top 0.5s ease;
+    color: var(--background-color);
+    background: linear-gradient(to bottom, var(--color-dark), var(--color-accent1), var(--color-accent2));
+    background-size: 100% 300%;
+    animation: gradientShift 10s ease infinite;
+}
+
+/* Animation for the background gradient */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0 0; }
+    50% { background-position: 0 100%; }
 }
 
 #fullpage-container.top-nav-active {
+    width: 100%;
     margin-left: 0;
     padding-top: 60px;
 }
@@ -271,30 +284,35 @@ color: var(--background-color);
     align-items: center;
     padding: 2rem;
     color: var(--color-text-light);
+    overflow: hidden;
 }
 
-/* Updated styles for section 1 */
+/* Styles for the first section */
 #section1 {
-    background-color: var(--color-dark); /* Changed to dark background */
-    color: var(--color-text-light); /* Changed to light text */
+    background: linear-gradient(to bottom, var(--color-accent1), var(--color-light));
+    color: var(--color-text-light);
     flex-direction: row;
     position: relative;
     overflow: hidden;
-    padding-left: 0px; /* Added left padding */
-    padding-right: 800px;
+    padding-left: calc(var(--nav-width) + 2rem);
+    padding-top: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 10rem;
+    z-index: 10;
 }
 
+/* Styles for the second section */
 #section2 {
-    background-color: var(--color-dark);
+    background: linear-gradient(to bottom, var(--color-dark), var(--color-accent2));
     flex-direction: row;
 }
 
-/* Updated content wrapper styles */
+/* Content wrapper styles */
 .content-wrapper {
     flex: 1;
     padding-right: 2rem;
     z-index: 2;
-    max-width: 600px; /* Changed from 50% to fixed width */
+    max-width: 600px;
 }
 
 .content-wrapper h1 {
@@ -305,8 +323,8 @@ color: var(--background-color);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-padding-right: 300px;
-padding-bottom: 50px;
+    padding-right: 300px;
+    padding-bottom: 25px;
 }
 
 .bottom-bar {
@@ -325,10 +343,10 @@ padding-bottom: 50px;
     margin-bottom: 1rem;
 }
 
-/* Updated info-services styles */
+/* Styles for information and services */
 .info-services {
     font-size: 1.1rem;
-    color: var(--color-text-light); /* Changed to light text */
+    color: var(--color-text-light);
 }
 
 .info-services p, .info-services ul {
@@ -350,11 +368,11 @@ padding-bottom: 50px;
 .info-services li {
     margin-bottom: 0.5rem;
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 25px;
 }
 
 .info-services p {
-    color: #ffffff; /* Make the top paragraph white */
+    color: #ffffff;
 }
 
 .info-services li::before {
@@ -365,22 +383,32 @@ padding-bottom: 50px;
     font-size: 1.2em;
 }
 
-/* Spline container styles */
-.spline-container {
+/* Spline container styles for section1 */
+#section1 .spline-container {
     position: absolute;
-    right: 0;
     top: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    transition: transform 0.5s ease;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
 }
 
-spline-viewer {
+#section1 spline-viewer {
     width: 100%;
     height: 100%;
 }
 
+/* Spline container styles for services-section */
+#services-section .spline-container {
+    width: 50vw;
+    height: 100vh;
+    z-index: 500;
+}
+
+#services-section spline-viewer {
+    width: 100%;
+    height: 100%;
+}
 
 .column {
     flex: 1;
@@ -421,185 +449,6 @@ spline-viewer {
     margin-bottom: 0.5rem;
 }
 
-@media screen and (max-width: 768px) {
-    #section1, #section2 {
-        flex-direction: column;
-        padding: 1rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .content-wrapper, .column {
-        padding: 0.5rem;
-        max-width: 100%;
-        position: relative;
-        z-index: 2;
-    }
-
-    .spline-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-
-    .content-wrapper h1 {
-        font-size: 2.5rem;
-        padding-right: 0;
-        padding-bottom: 20px;
-    }
-
-    .content-wrapper h2 {
-        font-size: 1.6rem;
-    }
-
-    .info-services {
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    :root {
-        --nav-width: 60px;
-    }
-
-    nav {
-        width: var(--nav-width);
-    }
-
-    .nav-links li {
-        margin: 0.3rem 0;
-    }
-
-    .content-wrapper h1 {
-        font-size: 2rem;
-    }
-
-    .content-wrapper h2 {
-        font-size: 1.3rem;
-    }
-
-    .info-services {
-        font-size: 0.9rem;
-    }
-
-    .info-services li {
-        margin-bottom: 0.3rem;
-    }
-
-    .spline-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-}
-
-@media screen and (max-width: 1145px) and (max-height: 480px) {
-    #section1 {
-        height: 100vh;
-        padding: 1rem;
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        position: relative;
-    }
-
-    .spline-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-
-    .content-wrapper {
-        width: 100%;
-        padding-right: 1rem;
-        overflow-y: auto;
-        position: relative;
-        z-index: 2;
-    }
-
-    .content-wrapper h1 {
-        font-size: 2rem;
-        padding-right: 0;
-        padding-bottom: 10px;
-    }
-
-    .content-wrapper h2 {
-        font-size: 1.3rem;
-    }
-
-    .info-services {
-        font-size: 0.9rem;
-    }
-
-    .info-services li {
-        margin-bottom: 0.2rem;
-    }
-}
-
-@media screen and (max-width: 360px) and (min-height: 800px) {
-    #section1 {
-        height: 100vh;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .spline-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-
-    .content-wrapper {
-        width: 100%;
-        padding: 1rem 0;
-        overflow-y: auto;
-        max-height: 100vh;
-        position: relative;
-        z-index: 2;
-    }
-
-    .content-wrapper h1 {
-        font-size: 1.8rem;
-        padding-right: 0;
-        padding-bottom: 10px;
-    }
-
-    .content-wrapper h2 {
-        font-size: 1.2rem;
-    }
-
-    .info-services {
-        font-size: 0.9rem;
-    }
-
-    .info-services li {
-        margin-bottom: 0.2rem;
-    }
-
-    .bottom-bar {
-        height: 50px;
-        position: relative;
-        z-index: 2;
-    }
-}
-
-
-
 /* =========================================
    Footer Styles
    ========================================= */
@@ -607,7 +456,7 @@ footer {
     background-color: rgba(45, 52, 54, 0.85);
     color: #ffffff;
     padding: 2rem 1.5rem;
-scroll-snap-align: start;
+    scroll-snap-align: start;
     min-height: 100vh;
 }
 
@@ -928,6 +777,16 @@ nav {
     .nav-social {
         display: none; /* Optionally hide social links on mobile if needed */
     }
+
+    #section1, #section2 {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .spline-container {
+        width: 100%;
+        height: 50vh; /* Adjust height for mobile */
+    }
 }
 
 /* Additional styles for very small screens (480px and below) */
@@ -943,4 +802,36 @@ nav {
     .nav-links li {
         margin: 0.5rem 0; /* Reduce space between links for smaller screens */
     }
+}
+
+/* Styles for landscape orientation on small screens */
+@media screen and (max-width: 1145px) and (max-height: 480px) {
+    #section1 {
+        height: 100vh;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .spline-container {
+        width: 50%;
+        height: 100%;
+    }
+}
+
+/* Styles for second section */
+#section2 .left-column,
+#section2 .right-column {
+    flex: 1;
+    height: 100%;
+}
+
+#section2 .left-column {
+    position: relative;
+}
+
+#section2 .spline-container {
+    width: 50vw;
+    height: 100vh;
+    z-index: 500;
 }

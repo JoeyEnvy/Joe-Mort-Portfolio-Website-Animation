@@ -184,5 +184,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+//section 2 java 
+
+function handleServicesAnimation() {
+  const servicesSection = document.getElementById('services-section');
+  const servicesLeft = servicesSection.querySelector('.services-left');
+  const servicesRight = servicesSection.querySelector('.services-right');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        servicesLeft.classList.add('animate-in');
+        servicesRight.classList.add('animate-in');
+      } else {
+        servicesLeft.classList.remove('animate-in');
+        servicesRight.classList.remove('animate-in');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(servicesSection);
+}
+
+// Call the function when the page loads
+window.addEventListener('load', handleServicesAnimation);
 
 
