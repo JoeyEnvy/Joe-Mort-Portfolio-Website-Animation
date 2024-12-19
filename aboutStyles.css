@@ -75,21 +75,7 @@ h2 {
     transition: width 0.1s ease;
 }
 
-.gradient-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(135deg, 
-        rgba(45, 52, 54, 0.25), 
-        rgba(108, 92, 231, 0.25), 
-        rgba(0, 206, 201, 0.25), 
-        rgba(253, 121, 168, 0.25));
-    z-index: 2;
-    pointer-events: none;
-    transition: all 0.5s ease;
-}
+/* Removed .gradient-overlay class */
 
 /* ==========================================================================
    Navigation Styles
@@ -254,8 +240,10 @@ main.nav-scrolled {
     color: var(--white);
     text-align: center;
     position: relative;
+    transition: background-color 0.5s ease; /* Added transition for smooth color change */
 }
 
+/* Modified side opacity left and right 100px bars */
 .section::before,
 .section::after {
     content: '';
@@ -263,8 +251,10 @@ main.nav-scrolled {
     top: 0;
     bottom: 0;
     width: 100px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
+    pointer-events: none; /* Ensures these don't interfere with interactions */
 }
 
 .section::before {
@@ -281,38 +271,7 @@ main.nav-scrolled {
     z-index: 2;
 }
 
-.hero-section {
-    background: linear-gradient(135deg, #6c5ce7, #00cec9);
-}
-
-.about-section {
-    background: linear-gradient(135deg, #2d3436, #6c5ce7);
-}
-
-.web-design-section {
-    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
-    color: var(--text-color);
-}
-
-.animation-section {
-    background: linear-gradient(135deg, #00cec9, #fd79a8);
-}
-
-.ai-production-section {
-    background: linear-gradient(135deg, #fd79a8, #6c5ce7);
-}
-
-.printing-section {
-    background: linear-gradient(135deg, #6c5ce7, #2d3436);
-}
-
-.editing-section {
-    background: linear-gradient(135deg, #2d3436, #00cec9);
-}
-
-.contact-section {
-    background: linear-gradient(135deg, #00cec9, #2d3436);
-}
+/* Removed individual section background styles */
 
 .contact-form {
     background: rgba(255, 255, 255, 0.1);
