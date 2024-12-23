@@ -23,24 +23,55 @@
 
 html {
     font-size: 16px;
+    scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    color: var(--white);
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color); /* Start with primary color */
+    transition: background-color 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.section.active .section-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ==========================================================================
    Typography
    ========================================================================== */
 h1, h2, h3 {
-    color: var(--primary-color);
+    color: var(--white);
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -68,14 +99,12 @@ h2 {
     position: fixed;
     top: 0;
     left: 0;
-    width: 0;
+    width: 100vw;
     height: 4px;
     background: linear-gradient(to right, var(--accent-color), var(--primary-color));
     z-index: 1001;
     transition: width 0.1s ease;
 }
-
-/* Removed .gradient-overlay class */
 
 /* ==========================================================================
    Navigation Styles
@@ -104,6 +133,7 @@ nav.scrolled {
     padding: 0 1rem;
     top: 0;
     left: 0;
+    z-index: 1000;
     justify-content: flex-start;
 }
 
@@ -114,6 +144,11 @@ nav.scrolled {
     gap: 1rem;
     flex-grow: 1;
 }
+
+#navbar {
+    transition: all 0.2s ease; /* Reduced from 0.5s to 0.3s for faster animation */
+}
+
 
 nav.scrolled .nav-links {
     flex-direction: row;
@@ -155,6 +190,11 @@ nav.scrolled .nav-links li {
     transform: translateX(5px);
 }
 
+nav.scrolled .nav-links a:hover,
+nav.scrolled .nav-links a.active {
+    transform: none;
+}
+
 .nav-social {
     display: flex;
     justify-content: center;
@@ -185,10 +225,18 @@ nav.scrolled .nav-social {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 3px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
+    height: 4px;
+    background-color: #fd79a8;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 2000; /* Ensure it's above other elements */
 }
+
+nav.scrolled .nav-progress {
+    opacity: 1;
+}
+
+
 
 @media (max-width: 768px) {
     nav {
@@ -240,7 +288,6 @@ main.nav-scrolled {
     color: var(--white);
     text-align: center;
     position: relative;
-    transition: background-color 0.5s ease; /* Added transition for smooth color change */
 }
 
 /* Modified side opacity left and right 100px bars */
@@ -254,7 +301,7 @@ main.nav-scrolled {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
-    pointer-events: none; /* Ensures these don't interfere with interactions */
+    pointer-events: none;
 }
 
 .section::before {
@@ -270,8 +317,6 @@ main.nav-scrolled {
     width: 100%;
     z-index: 2;
 }
-
-/* Removed individual section background styles */
 
 .contact-form {
     background: rgba(255, 255, 255, 0.1);
@@ -328,9 +373,13 @@ main.nav-scrolled {
 footer {
     background-color: var(--nav-bg);
     color: var(--white);
-    padding: 3rem 1rem 1.5rem;
-    width: 100%;
+    width: 100vw;
+    min-height: 100vh; /* Changed from height to min-height */
     font-family: 'Raleway', sans-serif;
+    z-index: 1000;
+    margin-top: auto; /* Ensures footer sticks to bottom if flexbox is used */
+  margin-bottom: -50px;
+  padding-bottom: 0;
 }
 
 .footer-content {
@@ -377,7 +426,6 @@ footer {
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 1.5rem;
-    font-size: 0.9rem;
 }
 
 /* ==========================================================================
@@ -398,6 +446,15 @@ footer {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 1000;
     right: 30px;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 #backToTop {

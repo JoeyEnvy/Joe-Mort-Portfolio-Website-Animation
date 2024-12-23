@@ -1,68 +1,107 @@
-// Array of colors for the section backgrounds
-const sectionColors = [
-    '#6c5ce7',  // Dark Blue
-    '#00cec9',  // Teal
-    '#f9f9f9',  // Light Grey
-    '#fd79a8',  // Pink
-    '#ffffff',  // White
-    '#2d3436',  // Dark Grey
-    '#00cec9',  // Teal
-    '#2d3436'   // Dark Grey
-];
-
-// Main scroll event listener
-window.addEventListener('scroll', () => {
-    // Get references to important elements
+document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
-    const main = document.querySelector('main');
     const navProgress = document.querySelector('.nav-progress');
+    const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
+    const colors = ['#fd79a8', '#6c5ce7', '#00cec9', '#2d3436', '#ffffff'];
+    let currentSection = 0;
+    let isScrolling = false;
 
-    // Get current scroll position and window dimensions
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-
-    // Navbar transformation
-    if (scrollPosition > 50) {
-        navbar.classList.add('scrolled');
-        main.classList.add('nav-scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-        main.classList.remove('nav-scrolled');
-    }
-
-    // Update progress bar width based on scroll percentage
-    const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
-    navProgress.style.width = `${scrollPercentage}%`;
-
-    // Change section background colors based on scroll position
-    sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        if (scrollPosition >= sectionTop - windowHeight / 2 && 
-            scrollPosition < sectionTop + sectionHeight - windowHeight / 2) {
-            section.style.backgroundColor = sectionColors[index % sectionColors.length];
+    function updateNavbar() {
+        const scrollPosition = window.pageYOffset;
+        if (scrollPosition > 50) {
+            navbar.classList.add('scrolled');
+            if (navProgress) navProgress.style.opacity = '1';
+        } else {
+            navbar.classList.remove('scrolled');
+            if (navProgress) navProgress.style.opacity = '0';
         }
-    });
-
-    // Show or hide the back-to-top button
-    var backToTopButton = document.getElementById('backToTop');
-    if (scrollPosition > 300) {
-        backToTopButton.style.display = 'flex';
-    } else {
-        backToTopButton.style.display = 'none';
     }
-});
 
-// Function to scroll back to the top of the page smoothly
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    function updateProgressBar() {
+        if (navProgress) {
+            const scrollPosition = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollPercentage = (scrollPosition / (documentHeight - windowHeight)) * 100;
+            navProgress.style.width = `${scrollPercentage}%`;
+        }
+    }
+
+    function updateBackToTopButton() {
+        if (currentSection >= 1) {
+            backToTopButton.style.display = 'block';
+            setTimeout(() => backToTopButton.style.opacity = '1', 50);
+        } else {
+            backToTopButton.style.opacity = '0';
+            setTimeout(() => backToTopButton.style.display = 'none', 500);
+        }
+    }
+
+    function changeBackgroundColor() {
+        document.body.style.transition = 'background-color 0.5s ease';
+        document.body.style.backgroundColor = colors[currentSection % colors.length];
+    }
+
+    function setActiveSection() {
+        sections.forEach((section, index) => {
+            if (index === currentSection) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+    }
+
+    function smoothScrollToSection(targetSection) {
+        isScrolling = true;
+        sections[targetSection].scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            isScrolling = false;
+            changeBackgroundColor();
+            setActiveSection();
+            updateNavbar();
+            updateProgressBar();
+            updateBackToTopButton();
+        }, 500);
+    }
+
+    function handleScroll() {
+        if (!isScrolling) {
+            const scrollPosition = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            currentSection = Math.floor(scrollPosition / windowHeight);
+            updateNavbar();
+            updateProgressBar();
+            updateBackToTopButton();
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        
+        if (isScrolling) return;
+
+        if (e.deltaY > 0 && currentSection < sections.length - 1) {
+            currentSection++;
+        } else if (e.deltaY < 0 && currentSection > 0) {
+            currentSection--;
+        }
+
+        smoothScrollToSection(currentSection);
+    }, { passive: false });
+
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentSection = 0;
+        smoothScrollToSection(currentSection);
     });
-}
 
-// Add click event listener to the back-to-top button
-document.getElementById('backToTop').addEventListener('click', scrollToTop);
+    // Initialize
+    handleScroll();
+    changeBackgroundColor();
+    setActiveSection();
+});
 
