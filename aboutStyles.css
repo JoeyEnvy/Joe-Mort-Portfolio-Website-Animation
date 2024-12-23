@@ -6,7 +6,7 @@
     --primary-color: #6c5ce7;    /* Dark Blue */
     --secondary-color: #00cec9;  /* Teal */
     --accent-color: #fd79a8;     /* Pink */
-    --background-color: #f9f9f9; /* Light Grey */
+    --background-color: #2d3436; /* Dark Grey */
     --text-color: #2d3436;       /* Dark Grey */
     --nav-bg: #2d3436;           /* Dark Grey (for navigation) */
     --white: #ffffff;            /* White */
@@ -41,8 +41,21 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background-color: var(--primary-color); /* Start with primary color */
-    transition: background-color 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background-size: 300% 300%;
+    transition: background-image 2s ease-in-out;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .section {
@@ -59,7 +72,7 @@ body {
 .section-content {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .section.active .section-content {
@@ -73,24 +86,46 @@ body {
 h1, h2, h3 {
     color: var(--white);
     font-family: 'Orbitron', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+}
+
+h3 {
     font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     h2 {
+        font-size: 2rem;
+    }
+    h3 {
         font-size: 1.75rem;
     }
+    p {
+        font-size: 1rem;
+    }
 }
+
+
 
 /* ==========================================================================
    Utility Classes and Common Elements
@@ -146,9 +181,16 @@ nav.scrolled {
 }
 
 #navbar {
-    transition: all 0.2s ease; /* Reduced from 0.5s to 0.3s for faster animation */
+    transition: all 0.2s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
+#navbar.scrolled {
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 nav.scrolled .nav-links {
     flex-direction: row;
@@ -173,7 +215,7 @@ nav.scrolled .nav-links li {
     align-items: center;
     padding: 0.75rem;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .nav-links a i {
@@ -227,7 +269,7 @@ nav.scrolled .nav-social {
     width: 0;
     height: 4px;
     background-color: #fd79a8;
-    transition: width 0.3s ease, opacity 0.3s ease;
+    transition: width 0.2s ease, opacity 0.3s ease;
     opacity: 0;
     z-index: 2000; /* Ensure it's above other elements */
 }
@@ -367,19 +409,18 @@ main.nav-scrolled {
     }
 }
 
-/* ==========================================================================
+==========================================================================
    Footer Styles
    ========================================================================== */
 footer {
-    background-color: var(--nav-bg);
+    background-color: #2d3436; /* Grey */
     color: var(--white);
-    width: 100vw;
-    min-height: 100vh; /* Changed from height to min-height */
-    font-family: 'Raleway', sans-serif;
-    z-index: 1000;
-    margin-top: auto; /* Ensures footer sticks to bottom if flexbox is used */
-  margin-bottom: -50px;
-  padding-bottom: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
 }
 
 .footer-content {
@@ -392,14 +433,13 @@ footer {
 
 .footer-section {
     margin-bottom: 2rem;
-    flex: 1 1 250px;
-    max-width: 300px;
+    flex-basis: calc(33% - 20px);
 }
+
 
 .footer-section h3 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
 }
 
 .footer-section ul {
@@ -414,7 +454,6 @@ footer {
     color: var(--white);
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 1rem;
 }
 
 .footer-section a:hover {
@@ -424,14 +463,12 @@ footer {
 .footer-bottom {
     text-align: center;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 1.5rem;
 }
 
 /* ==========================================================================
    Button Styles
    ========================================================================== */
-#backToTop, .whatsapp-button, .contact-box {
+#backToTop, .whatsapp-button, .contact-box, .anchor-bottom {
     position: fixed;
     width: 60px;
     height: 60px;
@@ -443,18 +480,7 @@ footer {
     text-decoration: none;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
     right: 30px;
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
 }
 
 #backToTop {
@@ -462,13 +488,18 @@ footer {
     background-color: var(--primary-color);
 }
 
-.whatsapp-button {
+.anchor-bottom {
     bottom: 100px;
+    background-color: var(--accent-color);
+}
+
+.whatsapp-button {
+    bottom: 170px;
     background-color: #25D366;
 }
 
 .contact-box {
-    bottom: 170px;
+    bottom: 240px;
     background-color: var(--secondary-color);
     width: 180px;
     height: 60px;
@@ -477,35 +508,24 @@ footer {
 }
 
 .contact-box i {
-    margin-right: 10px;
+   margin-right :10px; 
 }
 
 #backToTop:hover, .whatsapp-button:hover, .contact-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+   transform :translateY(-5px); 
 }
 
-@media (max-width: 768px) {
-    #backToTop, .whatsapp-button, .contact-box {
-        width: 50px;
-        height: 50px;
-        font-size: 1.25rem;
-        right: 20px;
-    }
+/* Media Queries for Responsive Design */
+@media (max-width :768px) {
+   #backToTop, .whatsapp-button, .contact-box {
+       width :50px; 
+       height :50px; 
+       font-size :1.25rem; 
+       right :20px; 
+   }
 
-    #backToTop {
-        bottom: 20px;
-    }
-
-    .whatsapp-button {
-        bottom: 80px;
-    }
-
-    .contact-box {
-        bottom: 140px;
-        width: 150px;
-        font-size: 0.9rem;
-    }
+   .footer-section {
+       flex-basis :100%; /* Stack footer sections on smaller screens */
+       text-align:center; /* Center align text on smaller screens */
+   }
 }
-
-
