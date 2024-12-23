@@ -145,9 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
     const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
     const darkGreyBar = document.querySelector('.dark-grey-bar');
     let lastScrollTop = 0;
     let scrollThreshold = 50;
+
+    // Initial load animations
+    setTimeout(() => {
+        heroRight.classList.add('loaded');
+        heroLeft.classList.add('loaded');
+    }, 100);
 
     window.addEventListener('scroll', () => {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -162,12 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     }, false);
-
-    // Initial animation
-    setTimeout(() => {
-        heroSection.classList.add('animate-in');
-    }, 100);
 });
+
 
 
 
