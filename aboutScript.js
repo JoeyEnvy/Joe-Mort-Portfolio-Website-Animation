@@ -4,15 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
     const gradients = [
-        'linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #00cec9 100%)', // Dark grey to dark blue to teal
-        'linear-gradient(45deg, #2d3436 0%, #fd79a8 50%, #00cec9 100%)', // Dark grey to pink to teal
-        'radial-gradient(circle at top left, #6c5ce7, #2d3436)', // Dark blue to dark grey radial
-        'linear-gradient(to right, #2d3436, #00cec9, #6c5ce7)', // Dark grey to teal to dark blue
-        'linear-gradient(to bottom right, #fd79a8, #6c5ce7, #2d3436)', // Pink to dark blue to dark grey
-        'radial-gradient(circle at bottom right, #00cec9, #2d3436)', // Teal to dark grey radial
-        'linear-gradient(45deg, #2d3436 0%, #6c5ce7 25%, #00cec9 50%, #fd79a8 75%, #ffffff 100%)', // Rainbow gradient
-        'linear-gradient(to right, #2d3436 0%, #6c5ce7 100%)' // Dark grey to dark blue
-    ];
+    'linear-gradient(135deg, #1a1c1d 0%, #4a3b9f 50%, #6c5ce7 100%)', // Dark grey to dark purple to dark blue (unchanged)
+    'linear-gradient(45deg, #2d3436 0%, #1e0f30 50%, #f0f0f0 100%)', // Dark grey to very dark purple to off-white
+    'radial-gradient(circle at top left, #6c5ce7, #2d3436)', // Dark blue to dark grey radial
+    'linear-gradient(to right, #2d3436, #00cec9, #6c5ce7)', // Dark grey to teal to dark blue
+    'linear-gradient(to bottom right, #fd79a8, #6c5ce7, #2d3436)', // Pink to dark blue to dark grey
+    'radial-gradient(circle at bottom right, #00cec9, #2d3436)', // Teal to dark grey radial
+    'linear-gradient(45deg, #2d3436 0%, #6c5ce7 25%, #00cec9 50%, #fd79a8 75%, #ffffff 100%)', // Rainbow gradient
+    'linear-gradient(to right, #2d3436 0%, #6c5ce7 100%)' // Dark grey to dark blue
+];
+
     let currentSection = 0;
     let isScrolling = false;
     let isChangingGradient = false;
@@ -138,4 +139,36 @@ document.addEventListener('DOMContentLoaded', () => {
     changeBackgroundGradient(0);
     setActiveSection();
 });
+
+//hero section 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.getElementById('hero');
+    const heroLeft = document.querySelector('.hero-left');
+    const darkGreyBar = document.querySelector('.dark-grey-bar');
+    let lastScrollTop = 0;
+    let scrollThreshold = 50;
+
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+            heroSection.classList.remove('animate-in');
+            heroSection.classList.add('animate-out');
+        } else if (scrollTop <= scrollThreshold) {
+            heroSection.classList.remove('animate-out');
+            heroSection.classList.add('animate-in');
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
+
+    // Initial animation
+    setTimeout(() => {
+        heroSection.classList.add('animate-in');
+    }, 100);
+});
+
+
+
 
