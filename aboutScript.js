@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
     const gradients = [
-        'linear-gradient(135deg, #2d3436 0%, #6c5ce7 100%)', // Dark grey to dark blue
-        'linear-gradient(135deg, #2d3436 0%, #00cec9 100%)', // Dark grey to teal
-        'linear-gradient(135deg, #ffffff 0%, #00cec9 100%)', // White to teal (web design section)
-        'linear-gradient(135deg, #2d3436 0%, #fd79a8 100%)', // Dark grey to pink
-        'linear-gradient(135deg, #6c5ce7 0%, #2d3436 100%)', // Dark blue to dark grey
-        'linear-gradient(135deg, #00cec9 0%, #2d3436 100%)', // Teal to dark grey
-        'linear-gradient(135deg, #fd79a8 0%, #2d3436 100%)', // Pink to dark grey
-        'linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #00cec9 100%)' // Dark grey to dark blue to teal
+        'linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #00cec9 100%)', // Dark grey to dark blue to teal
+        'linear-gradient(45deg, #2d3436 0%, #fd79a8 50%, #00cec9 100%)', // Dark grey to pink to teal
+        'radial-gradient(circle at top left, #6c5ce7, #2d3436)', // Dark blue to dark grey radial
+        'linear-gradient(to right, #2d3436, #00cec9, #6c5ce7)', // Dark grey to teal to dark blue
+        'linear-gradient(to bottom right, #fd79a8, #6c5ce7, #2d3436)', // Pink to dark blue to dark grey
+        'radial-gradient(circle at bottom right, #00cec9, #2d3436)', // Teal to dark grey radial
+        'linear-gradient(45deg, #2d3436 0%, #6c5ce7 25%, #00cec9 50%, #fd79a8 75%, #ffffff 100%)', // Rainbow gradient
+        'linear-gradient(to right, #2d3436 0%, #6c5ce7 100%)' // Dark grey to dark blue
     ];
     let currentSection = 0;
     let isScrolling = false;
-
+    let isChangingGradient = false;
 
     function updateNavbar() {
         const scrollPosition = window.pageYOffset;
@@ -49,10 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function changeBackgroundGradient(targetSection) {
+        if (isChangingGradient) return;
+        isChangingGradient = true;
+
         const body = document.body;
         const targetGradient = gradients[targetSection % gradients.length];
 
+        body.classList.add('gradient-transition');
         body.style.backgroundImage = targetGradient;
+
+        setTimeout(() => {
+            body.classList.remove('gradient-transition');
+            isChangingGradient = false;
+        }, 1000);
     }
 
     function setActiveSection() {
@@ -129,5 +138,4 @@ document.addEventListener('DOMContentLoaded', () => {
     changeBackgroundGradient(0);
     setActiveSection();
 });
-
 
