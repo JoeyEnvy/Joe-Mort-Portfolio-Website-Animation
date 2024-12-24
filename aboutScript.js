@@ -208,6 +208,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //web design section animations 
 
+//bottom right images web design 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const galleries = document.querySelectorAll('.gallery-item');
+    
+    galleries.forEach(gallery => {
+        const previewImages = gallery.querySelectorAll('.image-preview img');
+        const allImages = [...gallery.querySelectorAll('img')];
+        let currentIndex = 0;
+        
+        function slideImages() {
+            previewImages.forEach((img, index) => {
+                const nextIndex = (currentIndex + index) % allImages.length;
+                
+                // Create temporary image to preload
+                const tempImg = new Image();
+                tempImg.src = allImages[nextIndex].src;
+                
+                // Once preloaded, update the source
+                tempImg.onload = () => {
+                    img.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        img.src = tempImg.src;
+                        img.style.opacity = '1';
+                        
+                        // Reapply hover functionality
+                        img.style.zIndex = '1';
+                        img.addEventListener('mouseenter', () => {
+                            img.style.zIndex = '100';
+                        });
+                        img.addEventListener('mouseleave', () => {
+                            setTimeout(() => {
+                                img.style.zIndex = '1';
+                            }, 300);
+                        });
+                    }, 300);
+                };
+            });
+            
+            currentIndex = (currentIndex + 1) % (allImages.length - 2);
+        }
+        
+        // Start sliding every 4 seconds
+        setInterval(slideImages, 4000);
+        
+        // Initial hover setup
+        previewImages.forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                img.style.zIndex = '100';
+            });
+            img.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    img.style.zIndex = '1';
+                }, 300);
+            });
+        });
+    });
+});
 
 
 
