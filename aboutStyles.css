@@ -137,7 +137,7 @@ p {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: none; /* Remove any background */
+    background: none;
 }
 
 #about .spline-container {
@@ -227,28 +227,39 @@ p {
 }
 
 #about .cta-buttons {
+    position: absolute;
+    bottom: 5vh;
+    left: calc(25% - 0px); /* Moved 300px back to the right */
+    transform: translateX(-50%);
     display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
-    margin-top: 2rem;
+    justify-content: center;
+    gap: 1.5rem; /* Slightly reduced gap between buttons */
+    z-index: 3;
 }
 
 #about .cta-button {
     display: inline-block;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1.6rem; /* Slightly reduced padding for smaller buttons */
     background-color: #ff79c6;
     color: #282a36;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     transition: all 0.3s ease;
     font-weight: bold;
-    z-index: 3; /* Ensure buttons are above other elements */
+    font-size: 1rem; /* Reduced font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #about .cta-button:hover {
     background-color: #bd93f9;
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#about .cta-button .fas {
+    margin-right: 0.5rem;
 }
 
 /* Animation classes */
