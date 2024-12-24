@@ -758,6 +758,93 @@ spline-viewer {
     border-radius: 10px;
 }
 
+/* web design section top right info */
+
+#tr-web-design-2024 {
+    position: absolute;
+    top: 40vh;
+    left: 45vw;
+    width: 45vw;
+    height: 40vh;
+    overflow-y: auto;
+    background-color: #2d3436;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    z-index: 100;
+}
+
+#tr-web-design-2024 * {
+    box-sizing: border-box;
+}
+
+#tr-web-design-2024 h2 {
+    color: #fd79a8;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#tr-web-design-2024 h3 {
+    color: #00cec9;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#tr-web-design-2024 h4 {
+    color: #6c5ce7;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#tr-web-design-2024 p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+#tr-web-design-2024 ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+
+#tr-web-design-2024 ul li {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+}
+
+#tr-web-design-2024 ul li::before {
+    content: "•";
+    color: #00cec9;
+    position: absolute;
+    left: 0;
+}
+
+#tr-web-design-2024 .highlight {
+    color: #fd79a8;
+    font-weight: bold;
+}
+
+#tr-web-design-2024 .contact-button {
+    display: inline-block;
+    background-color: #6c5ce7;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#tr-web-design-2024 .contact-button:hover {
+    background-color: #fd79a8;
+}
 
 
 /* ==========================================================================
