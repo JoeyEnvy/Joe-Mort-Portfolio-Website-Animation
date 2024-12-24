@@ -4,19 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
     const gradients = [
-    'linear-gradient(135deg, #1a1c1d 0%, #4a3b9f 50%, #6c5ce7 100%)', // Dark grey to dark purple to dark blue (unchanged)
-    'linear-gradient(45deg, #2d3436 0%, #1e0f30 50%, #f0f0f0 100%)', // Dark grey to very dark purple to off-white
-    'radial-gradient(circle at top left, #6c5ce7, #2d3436)', // Dark blue to dark grey radial
-    'linear-gradient(to right, #2d3436, #00cec9, #6c5ce7)', // Dark grey to teal to dark blue
-    'linear-gradient(to bottom right, #fd79a8, #6c5ce7, #2d3436)', // Pink to dark blue to dark grey
-    'radial-gradient(circle at bottom right, #00cec9, #2d3436)', // Teal to dark grey radial
-    'linear-gradient(45deg, #2d3436 0%, #6c5ce7 25%, #00cec9 50%, #fd79a8 75%, #ffffff 100%)', // Rainbow gradient
-    'linear-gradient(to right, #2d3436 0%, #6c5ce7 100%)' // Dark grey to dark blue
+        'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue
+        'linear-gradient(to right, #2d3436, #fd79a8)', // Grey to Pink
+        'linear-gradient(to right, #ffffff, #00cec9)', // White to Teal
+        'linear-gradient(to right, #2d3436, #6c5ce7, #00cec9, #fd79a8, #ffffff)', // All 5 colors
+        'linear-gradient(to right, #fd79a8, #6c5ce7)', // Pink to Dark Blue
+        'linear-gradient(to right, #00cec9, #ffffff)', // Teal to White
+        'linear-gradient(to right, #6c5ce7, #2d3436)', // Dark Blue to Grey
+        'linear-gradient(to right, #ffffff, #fd79a8)' // White to Pink
     ];
 
     let currentSection = 0;
     let isScrolling = false;
-    let isChangingGradient = false;
 
     function updateNavbar() {
         const scrollPosition = window.pageYOffset;
@@ -50,20 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function changeBackgroundGradient(targetSection) {
-        if (isChangingGradient) return;
-        isChangingGradient = true;
-
-        const body = document.body;
-        const targetGradient = gradients[targetSection % gradients.length];
-
-        // Start the transition immediately
-        body.style.transition = 'background-image 3s ease'; // Increased duration for smoother effect
-        body.style.backgroundImage = targetGradient;
-
-        setTimeout(() => {
-            body.style.transition = ''; // Remove the transition after it's complete
-            isChangingGradient = false;
-        }, 3000); // Match this with the transition duration
+        document.body.style.backgroundImage = gradients[targetSection % gradients.length];
     }
 
     function setActiveSection() {
@@ -80,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isScrolling || targetSection === currentSection) return;
         isScrolling = true;
         
-        // Change background gradient immediately when scrolling starts
         changeBackgroundGradient(targetSection);
-        
         sections[targetSection].scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
             isScrolling = false;
@@ -101,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const windowHeight = window.innerHeight;
         const newSection = Math.floor(scrollPosition / windowHeight);
         if (newSection !== currentSection) {
-            changeBackgroundGradient(newSection);
             currentSection = newSection;
+            changeBackgroundGradient(newSection);
             setActiveSection();
         }
         updateNavbar();
@@ -139,10 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize
-    handleScroll();
     changeBackgroundGradient(0);
+    handleScroll();
     setActiveSection();
 });
+
+
+
 
 
 //hero section 
