@@ -3,16 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const navProgress = document.querySelector('.nav-progress');
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
-    const gradients = [
-        'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue
-        'linear-gradient(to right, #2d3436, #fd79a8)', // Grey to Pink
-        'linear-gradient(to right, #ffffff, #00cec9)', // White to Teal
-        'linear-gradient(to right, #2d3436, #6c5ce7, #00cec9, #fd79a8, #ffffff)', // All 5 colors
-        'linear-gradient(to right, #fd79a8, #6c5ce7)', // Pink to Dark Blue
-        'linear-gradient(to right, #00cec9, #ffffff)', // Teal to White
-        'linear-gradient(to right, #6c5ce7, #2d3436)', // Dark Blue to Grey
-        'linear-gradient(to right, #ffffff, #fd79a8)' // White to Pink
-    ];
+const gradients = [
+    'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue
+    'linear-gradient(to right, #2d3436, #fd79a8)', // Grey to Pink
+    'linear-gradient(to right, #ffffff, #e0f7fa, #00cec9)', // More white to Teal
+    'linear-gradient(to right, #2d3436, #4b4b6a, #6c5ce7)', // Grey to Dark Purple
+    'linear-gradient(to right, #fd79a8, #6c5ce7)', // Pink to Dark Blue
+    'linear-gradient(to right, #00cec9, #ffffff)', // Teal to White
+    'linear-gradient(to right, #6c5ce7, #2d3436)', // Dark Blue to Grey
+    'linear-gradient(to right, #ffffff, #fd79a8)' // White to Pink
+];
+
 
     let currentSection = 0;
     let isScrolling = false;

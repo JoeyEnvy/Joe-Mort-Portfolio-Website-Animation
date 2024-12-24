@@ -28,6 +28,7 @@ html {
     overflow-y: scroll;
     scrollbar-width: none; /* Hides scrollbar for Firefox */
     -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
+
 }
 
 /* Hides scrollbar for Webkit browsers (Chrome, Safari) */
@@ -93,6 +94,7 @@ p {
     color: var(--white);
     text-align: center;
     background: transparent;
+
 }
 
 /* Remove the side opacity bars */
@@ -102,7 +104,8 @@ p {
 }
 
 .section-content {
-    max-width: 1200px;
+    min-width: 100vw;
+min-height: 100vh;
     width: 100%;
     z-index: 2;
     opacity: 0;
@@ -395,62 +398,7 @@ main.nav-scrolled {
     padding-top: 60px;
     width: 100%;
 }
-/* ==========================================================================
-   7. Contact Form Styles
-   ========================================================================== */
-.contact-form {
-    background: rgba(45, 52, 54, 0.9); /* Dark grey with opacity */
-    padding: 2rem;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
-    font-family: 'Raleway', sans-serif;
-    margin: 0 auto; /* Center the form */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.contact-form h2 { /* Added this for the contact form title */
-    font-family: 'Raleway', sans-serif;
-    margin-bottom: 1.5rem;
-}
-
-.contact-form input,
-.contact-form textarea,
-.contact-form button {
-    font-family: 'Raleway', sans-serif;
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.5rem;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    transition: background-color 0.3s ease;
-}
-
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    background: rgba(255, 255, 255, 0.2);
-    outline: none;
-}
-
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.contact-form button {
-    background-color: var(--accent-color);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    font-weight: bold;
-}
-
-.contact-form button:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-}
 
 /* hero section */
 
@@ -673,117 +621,96 @@ spline-viewer {
     }
 }
 
-/* ==========================================================================
-   8. Footer Styles
-   ========================================================================== */
-footer {
-    background-color: var(--nav-bg);
-    color: var(--white);
-    width: 150vw;
-    margin-top: 100px; 
-    margin-left: -800px;
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 4rem 2rem; /* Increased padding for better spacing */
-    font-family: 'Raleway', sans-serif;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 10;
-    left: 0;
-    right: 0;
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow at the top */
-}
+/* web design section */
 
-.footer-content {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1400px; /* Increased max-width for better spacing */
-    margin: 0 auto;
-    width: 100%;
-}
-
-.footer-section {
-    margin-bottom: 2rem;
-    flex-basis: calc(25% - 30px); /* Changed to 4 columns */
-    padding: 0 15px; /* Added padding for better spacing */
-}
-
-.footer-section h3 {
-    font-family: 'Raleway', sans-serif;
-    color: var(--secondary-color);
-    margin-bottom: 1.5rem; /* Increased margin */
-    font-size: 1.2em; /* Increased font size */
-    position: relative;
-    padding-bottom: 10px; /* Added padding for underline */
-}
-
-.footer-section h3::after {
-    content: '';
+.gallery-quadrant {
     position: absolute;
-    left: 0;
     bottom: 0;
-    width: 50px;
-    height: 2px;
-    background-color: var(--accent-color);
+    right: 0;
+    width: 50vw;
+    height: 50vh;
+    overflow: hidden;
+    background: transparent;
 }
 
-.footer-section ul {
-    list-style-type: none;
-    padding-left: 0; /* Remove default padding */
+.gallery-container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    overflow-x: auto;
+    height: 100%;
 }
 
-.footer-section li {
-    margin-bottom: 1rem; /* Increased margin */
+.gallery-item {
+    min-width: 300px;
+    background: transparent;
+    border-radius: 15px;
+    padding: 1rem;
 }
 
-.footer-section a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
-    display: inline-block; /* Allow transform on inline element */
+.image-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.footer-section a:hover {
-    color: var(--accent-color);
-    transform: translateX(5px); /* Move link slightly on hover */
+.image-preview img {
+    width: 25%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem; /* Increased padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: auto;
-    font-size: 0.9em; /* Slightly smaller font size */
-    color: rgba(255, 255, 255, 0.7); /* Slightly dimmed text */
+.image-preview .center-image {
+    width: 35%;
+    transform: scale(1.1);
 }
 
-/* Add responsive design */
-@media (max-width: 1200px) {
-    .footer-section {
-        flex-basis: calc(33.333% - 30px);
-    }
+.image-preview img:hover {
+    transform: scale(1.05);
 }
 
-@media (max-width: 900px) {
-    .footer-section {
-        flex-basis: calc(50% - 30px);
-    }
+.image-preview .center-image:hover {
+    transform: scale(1.15);
 }
 
-@media (max-width: 600px) {
-    .footer-section {
-        flex-basis: 100%;
-    }
-    
-    footer {
-        width: 100vw;
-        margin-left: 0;
-        padding: 3rem 1rem;
-    }
+.image-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
 }
+
+.image-scroll img {
+    height: 80px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.image-scroll img:hover {
+    transform: translateY(-5px);
+}
+
+/* Hide scrollbar but keep functionality */
+.image-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.image-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.image-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+
 
 /* ==========================================================================
    9. Utility Classes and Common Elements
