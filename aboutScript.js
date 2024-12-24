@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'radial-gradient(circle at bottom right, #00cec9, #2d3436)', // Teal to dark grey radial
     'linear-gradient(45deg, #2d3436 0%, #6c5ce7 25%, #00cec9 50%, #fd79a8 75%, #ffffff 100%)', // Rainbow gradient
     'linear-gradient(to right, #2d3436 0%, #6c5ce7 100%)' // Dark grey to dark blue
-];
+    ];
 
     let currentSection = 0;
     let isScrolling = false;
@@ -56,13 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const body = document.body;
         const targetGradient = gradients[targetSection % gradients.length];
 
-        body.classList.add('gradient-transition');
+        // Start the transition immediately
+        body.style.transition = 'background-image 3s ease'; // Increased duration for smoother effect
         body.style.backgroundImage = targetGradient;
 
         setTimeout(() => {
-            body.classList.remove('gradient-transition');
+            body.style.transition = ''; // Remove the transition after it's complete
             isChangingGradient = false;
-        }, 1000);
+        }, 3000); // Match this with the transition duration
     }
 
     function setActiveSection() {
@@ -78,11 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function smoothScrollToSection(targetSection) {
         if (isScrolling || targetSection === currentSection) return;
         isScrolling = true;
+        
+        // Change background gradient immediately when scrolling starts
+        changeBackgroundGradient(targetSection);
+        
         sections[targetSection].scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
             isScrolling = false;
             if (currentSection !== targetSection) {
-                changeBackgroundGradient(targetSection);
                 currentSection = targetSection;
                 setActiveSection();
             }
@@ -140,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveSection();
 });
 
+
 //hero section 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -172,6 +177,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+//about section joe mort 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                section.classList.add('active');
+                section.classList.remove('exit');
+            } else {
+                section.classList.remove('active');
+                section.classList.add('exit');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(section);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('#about.section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                section.classList.add('active');
+                section.classList.remove('exit');
+            } else {
+                section.classList.remove('active');
+                section.classList.add('exit');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(section);
+});
 
 
 
