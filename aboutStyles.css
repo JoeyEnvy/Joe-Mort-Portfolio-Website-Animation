@@ -623,68 +623,90 @@ spline-viewer {
 
 /* web design section */
 
-/* Main section layout */
-#web-design {
+ #web-design {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
 }
 
-/* Gallery quadrant */
 .gallery-quadrant {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 50vw;
     height: 50vh;
-    padding: 2rem 6rem 2rem 2rem;
+    padding: 2rem;
     overflow: hidden;
 }
 
-/* Gallery container */
 .gallery-container {
     display: flex;
-    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
     height: 100%;
-    padding-right: 6rem; /* Increased padding to prevent cutoff */
 }
 
-/* Gallery items */
 .gallery-item {
-    min-width: 300px;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-/* Title styling */
 .gallery-item h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #ffffff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-align: center;
 }
 
-/* Image preview section */
 .image-preview {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .image-preview img {
-    width: 25%;
-    height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.image-preview .center-image {
+/* Hide the image-scroll divs */
+.image-scroll {
+    display: none;
+}
+
+/* Specific styles for each gallery item */
+.vitalfit-item, .quantumleap-item {
+    width: calc(50% - 1rem);
+}
+
+.vitalfit-item .image-preview img, .quantumleap-item .image-preview img {
+    width: 25%;
+    height: auto;
+}
+
+.vitalfit-item .image-preview .center-image, .quantumleap-item .image-preview .center-image {
+    width: 35%;
+}
+
+.trademasters-item {
+    width: 100%;
+}
+
+.trademasters-item .image-preview img {
+    width: 25%;
+    height: auto;
+}
+
+.trademasters-item .image-preview .center-image {
     width: 35%;
 }
 
@@ -695,12 +717,7 @@ spline-viewer {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Store additional images but hide them */
-.image-scroll {
-    display: none;
-}
-
-/* Fullscreen view */
+/* Fullscreen view styles */
 .fullscreen-view {
     position: fixed;
     top: 0;
@@ -713,11 +730,13 @@ spline-viewer {
     justify-content: center;
     z-index: 1000;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
 .fullscreen-view.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .fullscreen-view img {
@@ -726,8 +745,6 @@ spline-viewer {
     object-fit: contain;
     border-radius: 10px;
 }
-
-
 
 
 
