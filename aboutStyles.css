@@ -42,21 +42,11 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background-size: 400% 400%; /* Increased from 300% to 400% */
-    transition: background-image 1s ease; /* Changed from 2s to 1s */
+    background-size: 100% 100%; /* Changed from 400% 400% */
+    transition: background-image 0.5s ease; /* Changed from 1s to 0.5s */
 }
 
-/* Updated Background gradient animation */
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Apply the animation to the body */
-body {
-    animation: gradientAnimation 15s ease infinite; /* Changed from 10s to 15s */
-}
+/* Removed Background gradient animation */
 
 /* ==========================================================================
    3. Typography
@@ -85,14 +75,8 @@ p {
     p { font-size: 1rem; }
 }
 
-/* New styles for smooth gradient transitions */
-.gradient-transition {
-    transition: background-image 1s ease;
-}
+/* Removed .gradient-transition class */
 
-/* ==========================================================================
-   4. Layout and Section Styles
-   ========================================================================== */
 /* ==========================================================================
    4. Layout and Section Styles
    ========================================================================== */
@@ -108,7 +92,7 @@ p {
     padding: 2rem;
     color: var(--white);
     text-align: center;
-background: transparent;
+    background: transparent;
 }
 
 /* Remove the side opacity bars */
@@ -130,6 +114,7 @@ background: transparent;
     opacity: 1;
     transform: translateY(0);
 }
+
 
 /* about section joe mort */
 

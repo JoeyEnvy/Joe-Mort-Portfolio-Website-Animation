@@ -66,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isScrolling || targetSection === currentSection) return;
         isScrolling = true;
         
-        changeBackgroundGradient(targetSection);
         sections[targetSection].scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
             isScrolling = false;
             if (currentSection !== targetSection) {
                 currentSection = targetSection;
+                changeBackgroundGradient(targetSection);
                 setActiveSection();
             }
             updateNavbar();
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleScroll() {
         const scrollPosition = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        const newSection = Math.floor(scrollPosition / windowHeight);
+        const newSection = Math.floor((scrollPosition + windowHeight * 0.25) / windowHeight);
         if (newSection !== currentSection) {
             currentSection = newSection;
             changeBackgroundGradient(newSection);
@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
     setActiveSection();
 });
+
 
 
 

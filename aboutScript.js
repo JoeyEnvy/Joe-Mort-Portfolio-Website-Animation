@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleScroll() {
         const scrollPosition = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        const newSection = Math.floor((scrollPosition + windowHeight * 0.7) / windowHeight);
+        const newSection = Math.floor((scrollPosition + windowHeight * 0.25) / windowHeight);
         if (newSection !== currentSection) {
             currentSection = newSection;
             changeBackgroundGradient(newSection);
