@@ -132,11 +132,21 @@ min-height: 100vh;
 #about .spline-container {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%; /* Start off-screen to the left */
     width: 100vw;
     height: 100vh;
     z-index: 1;
+    transition: left 0.5s ease; /* Modern duration and easing */
 }
+
+#about .spline-container.active {
+    left: 0; /* Move to default position when active */
+}
+
+#about .spline-container.exit {
+    left: -100%; /* Move off-screen to the left when exiting */
+}
+
 
 #about .right-column {
     position: absolute;

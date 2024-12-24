@@ -169,10 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//about section joe mort 
-
+// About section Joe Mort
 document.addEventListener('DOMContentLoaded', () => {
     const section = document.querySelector('.section');
+    const aboutSection = document.querySelector('#about.section');
+    const splineScene = document.querySelector('.spline-container'); // Assuming your spline scene is in this container
+
+    // Observer for the general section (if needed)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -185,26 +188,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.5 });
 
-    observer.observe(section);
-});
+    observer.observe(section); // Observe the general section
 
-document.addEventListener('DOMContentLoaded', () => {
-    const section = document.querySelector('#about.section');
-    const observer = new IntersectionObserver((entries) => {
+    // Observer specifically for the About section
+    const aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                section.classList.add('active');
-                section.classList.remove('exit');
+                // When the About section is in view
+                splineScene.classList.add('active');
+                splineScene.classList.remove('exit');
             } else {
-                section.classList.remove('active');
-                section.classList.add('exit');
+                // When the About section is out of view
+                splineScene.classList.remove('active');
+                splineScene.classList.add('exit');
             }
         });
     }, { threshold: 0.5 });
 
-    observer.observe(section);
+    aboutObserver.observe(aboutSection); // Start observing the About section
 });
-
 
 //web design section animations 
 
