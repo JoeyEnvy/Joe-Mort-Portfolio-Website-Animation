@@ -208,3 +208,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //web design section animations 
 
+//bottom right images web design 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const webDesignSection = document.getElementById('web-design');
+    const galleryContainer = document.querySelector('.gallery-container');
+    const fullscreenView = document.querySelector('.fullscreen-view');
+    const fullscreenImage = fullscreenView.querySelector('img');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    let animationFrameId = null;
+    let targetTranslateX = 100; // Start off-screen
+
+    function animate() {
+        const currentTranslateX = parseFloat(galleryContainer.style.transform.replace('translateX(', '').replace('%)', '') || 100);
+        const diff = targetTranslateX - currentTranslateX;
+        const newTranslateX = currentTranslateX + diff * 0.15; // Reduced to 0.15 for a slightly longer animation duration
+
+        galleryContainer.style.transform = `translateX(${newTranslateX}%)`;
+
+        if (Math.abs(diff) > 0.1) {
+            animationFrameId = requestAnimationFrame(animate);
+        } else {
+            galleryContainer.style.transform = `translateX(${targetTranslateX}%)`;
+            animationFrameId = null;
+        }
+    }
+
+    function handleScroll() {
+        const sectionRect = webDesignSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionBottom = sectionRect.bottom;
+        const viewportHeight = window.innerHeight;
+
+        // Keep the early start and early finish
+        if (sectionTop <= viewportHeight * 2.5 && sectionBottom >= viewportHeight * 0.5) {
+            const progress = Math.min(1, (viewportHeight * 2.5 - sectionTop) / (viewportHeight * 2));
+            targetTranslateX = 100 - progress * 100;
+        } else {
+            targetTranslateX = 100; // Reset to off-screen position
+        }
+
+        if (!animationFrameId) {
+            animationFrameId = requestAnimationFrame(animate);
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Rest of your code (openFullscreenView, closeFullscreenView, startEnhancedSlider, etc.) remains the same
+
+    // Initial call to set the correct position
+    handleScroll();
+});
+
+

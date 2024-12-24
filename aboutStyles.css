@@ -623,7 +623,7 @@ spline-viewer {
 
 /* web design section */
 
- #web-design {
+#web-design {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -637,7 +637,7 @@ spline-viewer {
     width: 50vw;
     height: 50vh;
     padding: 2rem;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .gallery-container {
@@ -647,6 +647,7 @@ spline-viewer {
     align-items: flex-start;
     gap: 2rem;
     height: 100%;
+    transition: transform 0.3s ease-out;
 }
 
 .gallery-item {
@@ -669,6 +670,8 @@ spline-viewer {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .image-preview img {
@@ -678,12 +681,10 @@ spline-viewer {
     cursor: pointer;
 }
 
-/* Hide the image-scroll divs */
 .image-scroll {
     display: none;
 }
 
-/* Specific styles for each gallery item */
 .vitalfit-item, .quantumleap-item {
     width: calc(50% - 1rem);
 }
@@ -710,14 +711,12 @@ spline-viewer {
     width: 35%;
 }
 
-/* Hover effects */
 .image-preview img:hover {
     transform: scale(3);
     z-index: 100;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Fullscreen view styles */
 .fullscreen-view {
     position: fixed;
     top: 0;
@@ -733,6 +732,19 @@ spline-viewer {
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
+
+.vitalfit-item .image-preview img:hover, .quantumleap-item .image-preview img:hover {
+    transform: scale(3);
+    z-index: 100;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.trademasters-item .image-preview img:hover {
+    transform: scale(2); /* Reduced scale for trademasters */
+    z-index: 100;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 
 .fullscreen-view.active {
     opacity: 1;
