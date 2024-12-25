@@ -28,7 +28,6 @@ html {
     overflow-y: scroll;
     scrollbar-width: none; /* Hides scrollbar for Firefox */
     -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
-
 }
 
 /* Hides scrollbar for Webkit browsers (Chrome, Safari) */
@@ -43,11 +42,8 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background-size: 100% 100%; /* Changed from 400% 400% */
-    transition: background-image 0.5s ease; /* Changed from 1s to 0.5s */
+    transition: background 0.5s ease;
 }
-
-/* Removed Background gradient animation */
 
 /* ==========================================================================
    3. Typography
@@ -76,8 +72,6 @@ p {
     p { font-size: 1rem; }
 }
 
-/* Removed .gradient-transition class */
-
 /* ==========================================================================
    4. Layout and Section Styles
    ========================================================================== */
@@ -94,18 +88,11 @@ p {
     color: var(--white);
     text-align: center;
     background: transparent;
-
-}
-
-/* Remove the side opacity bars */
-.section::before,
-.section::after {
-    content: none; /* This removes the pseudo-elements */
 }
 
 .section-content {
     min-width: 100vw;
-min-height: 100vh;
+    min-height: 100vh;
     width: 100%;
     z-index: 2;
     opacity: 0;

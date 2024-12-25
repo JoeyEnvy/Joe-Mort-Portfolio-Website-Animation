@@ -1,22 +1,18 @@
-//image bacgkround change and nav effects
-
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
     const navProgress = document.querySelector('.nav-progress');
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
-const gradients = [
-    'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue
-    'linear-gradient(to right, #2d3436, #fd79a8)', // Grey to Pink
-'linear-gradient(to right, #0f0f0f, #1a2a40, #3d5470, #4e657b)', // Black to Slate
-
-    'linear-gradient(to right, #2d3436, #4b4b6a, #6c5ce7)', // Grey to Dark Purple
-    'linear-gradient(to right, #fd79a8, #6c5ce7)', // Pink to Dark Blue
-    'linear-gradient(to right, #00cec9, #ffffff)', // Teal to White
-    'linear-gradient(to right, #6c5ce7, #2d3436)', // Dark Blue to Grey
-    'linear-gradient(to right, #ffffff, #fd79a8)' // White to Pink
-];
-
+    const gradients = [
+        'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue gradient (exception)
+        '#2d3436', // Grey
+        '#ffffff', // White
+        '#6c5ce7', // Dark Blue
+        '#fd79a8', // Pink
+        '#00cec9', // Teal
+        '#2d3436', // Grey
+        '#ffffff'  // White
+    ];
 
     let currentSection = 0;
     let isScrolling = false;
@@ -52,8 +48,8 @@ const gradients = [
         }
     }
 
-    function changeBackgroundGradient(targetSection) {
-        document.body.style.backgroundImage = gradients[targetSection % gradients.length];
+    function updateBackgroundColor() {
+        document.body.style.background = gradients[currentSection % gradients.length];
     }
 
     function setActiveSection() {
@@ -75,7 +71,7 @@ const gradients = [
             isScrolling = false;
             if (currentSection !== targetSection) {
                 currentSection = targetSection;
-                changeBackgroundGradient(targetSection);
+                updateBackgroundColor();
                 setActiveSection();
             }
             updateNavbar();
@@ -87,10 +83,10 @@ const gradients = [
     function handleScroll() {
         const scrollPosition = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        const newSection = Math.floor((scrollPosition + windowHeight * 0.25) / windowHeight);
+        const newSection = Math.round(scrollPosition / windowHeight);
         if (newSection !== currentSection) {
             currentSection = newSection;
-            changeBackgroundGradient(newSection);
+            updateBackgroundColor();
             setActiveSection();
         }
         updateNavbar();
@@ -127,7 +123,7 @@ const gradients = [
     });
 
     // Initialize
-    changeBackgroundGradient(0);
+    updateBackgroundColor();
     handleScroll();
     setActiveSection();
 });
