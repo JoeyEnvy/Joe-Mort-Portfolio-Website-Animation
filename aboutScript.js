@@ -260,4 +260,55 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
 });
 
+//top and bottom right animate in and out 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const webDesignSection = document.getElementById('web-design');
+    const topRightQuadrant = document.getElementById('tr-web-design-2024');
+    const bottomRightQuadrant = document.querySelector('.gallery-quadrant');
+    const fullscreenView = document.querySelector('.fullscreen-view');
+    const fullscreenImage = fullscreenView.querySelector('img');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    function handleScroll() {
+        const sectionRect = webDesignSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionBottom = sectionRect.bottom;
+        const viewportHeight = window.innerHeight;
+
+        if (sectionTop <= viewportHeight * 0.5 && sectionBottom >= viewportHeight * 0.5) {
+            topRightQuadrant.classList.add('visible');
+            bottomRightQuadrant.classList.add('visible');
+        } else {
+            topRightQuadrant.classList.remove('visible');
+            bottomRightQuadrant.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Fullscreen view functionality
+    function openFullscreenView(imageSrc) {
+        fullscreenImage.src = imageSrc;
+        fullscreenView.classList.add('active');
+    }
+
+    function closeFullscreenView() {
+        fullscreenView.classList.remove('active');
+    }
+
+    galleryItems.forEach(item => {
+        const images = item.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('click', () => openFullscreenView(img.src));
+        });
+    });
+
+    fullscreenView.addEventListener('click', closeFullscreenView);
+
+    // Initial call to set the correct position
+    handleScroll();
+});
+
+
 
