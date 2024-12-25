@@ -620,6 +620,7 @@ spline-viewer {
 
 /* web design section */
 
+/* Main container styles */
 #web-design {
     position: relative;
     width: 100vw;
@@ -627,6 +628,7 @@ spline-viewer {
     overflow: hidden;
 }
 
+/* Quadrant positioning */
 .quadrant {
     position: absolute;
     width: 50vw;
@@ -638,17 +640,17 @@ spline-viewer {
     left: 0;
 }
 
-.bottom-right {
-    bottom: 0;
+.top-right {
+    top: 0;
     right: 0;
 }
 
-/* Top Left Quadrant Styles */
+/* Top Left Quadrant Styles - Web Design Services */
 #web-design .top-left #tl-web-design-2024 {
     position: absolute;
     top: 80px;
-    left: 50vw; /* Changed from 50px to 50vw */
-margin-left: 25px;
+    left: 50vw;
+    margin-left: 25px;
     width: 50vw;
     height: 67.5vh;
     overflow: auto;
@@ -668,64 +670,12 @@ margin-left: 25px;
     transform: translateX(0);
 }
 
+/* Typography for top-left quadrant */
 #web-design .top-left #tl-web-design-2024 h2,
 #web-design .top-left #tl-web-design-2024 h3,
 #web-design .top-left #tl-web-design-2024 h4 {
     color: #1D63FF;
     text-shadow: none;
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-list {
-    background-color: #E6F3FF;
-    padding: 15px;
-    border-radius: 10px;
-    list-style-type: none;
-    margin-bottom: 20px;
-    border: 1px solid #B3D4FF;
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-list li {
-    color: #1D3557;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-highlight {
-    font-weight: bold;
-    color: #00ABE4;
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-button {
-    display: inline-block;
-    background-color: #1D63FF;
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 6px rgba(29, 99, 255, 0.2);
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-button:hover {
-    background-color: #00ABE4;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 171, 228, 0.3);
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-left {
-    flex: 1;
-    padding-right: 25px;
-}
-
-#web-design .top-left #tl-web-design-2024 .tr-web-design-right {
-    flex: 1;
-    padding-left: 25px;
-    border-left: 2px solid #E6F3FF;
 }
 
 #web-design .top-left #tl-web-design-2024 .tr-web-design-title {
@@ -767,30 +717,75 @@ margin-left: 25px;
     color: #1D63FF;
 }
 
-/* Gallery Quadrant Styles */
-.gallery-quadrant {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50vw;
-    height: 50vh;
-    padding: 2rem;
-    overflow: visible;
+/* List styles for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-list {
+    background-color: #E6F3FF;
+    padding: 15px;
+    border-radius: 10px;
+    list-style-type: none;
+    margin-bottom: 20px;
+    border: 1px solid #B3D4FF;
 }
 
-#web-design .bottom-right {
+#web-design .top-left #tl-web-design-2024 .tr-web-design-list li {
+    color: #1D3557;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-highlight {
+    font-weight: bold;
+    color: #00ABE4;
+}
+
+/* Button styles for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-button {
+    display: inline-block;
+    background-color: #1D63FF;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(29, 99, 255, 0.2);
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-button:hover {
+    background-color: #00ABE4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 171, 228, 0.3);
+}
+
+/* Layout for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-left {
+    flex: 1;
+    padding-right: 25px;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-right {
+    flex: 1;
+    padding-left: 25px;
+    border-left: 2px solid #E6F3FF;
+}
+
+/* Top Right Quadrant Styles - Gallery */
+#web-design .top-right.gallery-quadrant {
     position: absolute;
-    bottom: 0;
+    top: 80px; /* Added top margin to move it down under the navbar */
     right: 0;
     width: 50vw;
-    height: 50vh;
+    height: calc(50vh - 80px); /* Adjusted height to account for top margin */
     padding: 2rem;
     overflow: flow;
     z-index: 300;
 }
 
-
-.gallery-container {
+#web-design .top-right .gallery-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -800,14 +795,14 @@ margin-left: 25px;
     transition: transform 0.8s ease-out;
 }
 
-.gallery-item {
+#web-design .top-right .gallery-item {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.gallery-item h3 {
+#web-design .top-right .gallery-item h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     color: #1D3557;
@@ -815,7 +810,7 @@ margin-left: 25px;
     text-align: center;
 }
 
-.image-preview {
+#web-design .top-right .image-preview {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -824,40 +819,43 @@ margin-left: 25px;
     z-index: 1;
 }
 
-.image-preview img {
+#web-design .top-right .image-preview img {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.vitalfit-item, .quantumleap-item {
+#web-design .top-right .vitalfit-item,
+#web-design .top-right .quantumleap-item {
     width: calc(50% - 1rem);
 }
 
-.vitalfit-item .image-preview img, .quantumleap-item .image-preview img {
+#web-design .top-right .vitalfit-item .image-preview img,
+#web-design .top-right .quantumleap-item .image-preview img {
     width: 25%;
     height: auto;
 }
 
-.vitalfit-item .image-preview .center-image, .quantumleap-item .image-preview .center-image {
+#web-design .top-right .vitalfit-item .image-preview .center-image,
+#web-design .top-right .quantumleap-item .image-preview .center-image {
     width: 35%;
 }
 
-.trademasters-item {
+#web-design .top-right .trademasters-item {
     width: 100%;
 }
 
-.trademasters-item .image-preview img {
+#web-design .top-right .trademasters-item .image-preview img {
     width: 25%;
     height: auto;
 }
 
-.trademasters-item .image-preview .center-image {
+#web-design .top-right .trademasters-item .image-preview .center-image {
     width: 35%;
 }
 
-.image-preview img:hover {
+#web-design .top-right .image-preview img:hover {
     transform: scale(3);
     z-index: 100;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -908,7 +906,6 @@ margin-left: 25px;
         margin-top: 25px;
     }
 }
-
 
 /* ==========================================================================
    9. Utility Classes and Common Elements
