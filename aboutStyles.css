@@ -648,7 +648,7 @@ spline-viewer {
 /* Top Left Quadrant Styles - Web Design Services */
 #web-design .top-left #tl-web-design-2024 {
     position: absolute;
-    top: 80px;
+    top: 50px;
     left: 50vw;
     margin-left: 25px;
     width: 50vw;
@@ -656,7 +656,7 @@ spline-viewer {
     overflow: auto;
     background-color: #FFFFFF;
     color: #1D3557;
-    padding: 30px;
+    padding: 23px;
     border-radius: 15px;
     font-family: 'Roboto', Arial, sans-serif;
     z-index: 100;
@@ -925,8 +925,9 @@ spline-viewer {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 #web-design .bottom-right .mobile-showcase,
@@ -941,18 +942,18 @@ spline-viewer {
 }
 
 #web-design .bottom-right .mobile-border {
-    width: 120px;
-    height: 240px;
-    border: 5px solid #333;
-    border-radius: 20px;
+    width: 180px;
+    height: 360px;
+    border: 7.5px solid #333;
+    border-radius: 30px;
     overflow: hidden;
 }
 
 #web-design .bottom-right .monitor-border {
-    width: 320px;
-    height: 180px;
-    border: 5px solid #333;
-    border-radius: 5px;
+    width: 480px;
+    height: 270px;
+    border: 7.5px solid #333;
+    border-radius: 7.5px;
     overflow: hidden;
 }
 
@@ -987,24 +988,66 @@ spline-viewer {
     transform: translateX(-50%);
     display: flex;
     gap: 20px;
+    z-index: 2010;
 }
 
 .fullscreen-controls button {
-    padding: 10px 20px;
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 30px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
 }
 
 .close-fullscreen {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: fixed;
+    top: -800px;
+    right: -700px;
     color: #fff;
-    font-size: 24px;
+    font-size: 36px;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+    z-index: 2010;
 }
+
+.close-fullscreen:hover {
+    transform: scale(1.1);
+}
+
+.fullscreen-view {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+}
+
+.fullscreen-view img {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+
 
 
 

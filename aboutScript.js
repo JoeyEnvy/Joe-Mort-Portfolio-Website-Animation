@@ -320,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.prev-video');
     const nextButton = document.querySelector('.next-video');
     const closeButton = document.querySelector('.close-fullscreen');
+    const deviceShowcase = document.querySelector('.device-showcase');
 
     const mobileVideos = ['A.mp4', 'B.mp4', 'C.mp4', 'D.mp4', 'E.mp4', 'F.mp4', 'G.mp4', 'H.mp4'];
     const monitorVideos = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4', '6.mp4', '7.mp4', '8.mp4'];
@@ -391,6 +392,20 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileVideo.addEventListener('error', (e) => console.error("Mobile video error:", e));
     monitorVideo.addEventListener('error', (e) => console.error("Monitor video error:", e));
     fullscreenVideo.addEventListener('error', (e) => console.error("Fullscreen video error:", e));
+
+    // Slide-in and slide-out effect
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                deviceShowcase.style.transform = 'translateX(0)';
+            } else {
+                deviceShowcase.style.transform = 'translateX(100%)';
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+    observer.observe(document.querySelector('#web-design .bottom-right'));
 });
+
 
 
