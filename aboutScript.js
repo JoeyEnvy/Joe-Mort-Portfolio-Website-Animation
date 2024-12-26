@@ -407,5 +407,15 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(document.querySelector('#web-design .bottom-right'));
 });
 
+//pricing link to bottom of the page contact section on web design 
+
+document.querySelectorAll('.get-started-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelector('#contact').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
 
 
