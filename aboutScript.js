@@ -312,5 +312,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //web design bottom right 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileVideo = document.querySelector('.mobile-video');
+    const monitorVideo = document.querySelector('.monitor-video');
+    const fullscreenShowcase = document.querySelector('.fullscreen-showcase');
+    const fullscreenVideo = document.querySelector('.fullscreen-video');
+    const prevButton = document.querySelector('.prev-video');
+    const nextButton = document.querySelector('.next-video');
+    const closeButton = document.querySelector('.close-fullscreen');
+
+    const mobileVideos = ['A.mp4', 'B.mp4', 'C.mp4', 'D.mp4', 'E.mp4', 'F.mp4', 'G.mp4', 'H.mp4'];
+    const monitorVideos = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4', '6.mp4', '7.mp4', '8.mp4'];
+    let currentMobileIndex = 0;
+    let currentMonitorIndex = 0;
+
+    function changeVideo(video, videoList, index) {
+        return new Promise((resolve, reject) => {
+            video.src = `showcase slideshow videos/${videoList[index]}`;
+            video.load();
+            video.oncanplay = () => {
+                video.play().then(resolve).catch(reject);
+            };
+            video.onerror = (e) => reject(new Error(`Video load error: ${e.target.error.message}`));
+        });
+    }
+
+    function nextVideo(video, videoList, indexVar) {
+        indexVar = (indexVar + 1) % videoList.length;
+        changeVideo(video, videoList, indexVar).catch(e => console.error("Next video error:", e));
+        return indexVar;
+    }
+
+    function prevVideo(video, videoList, indexVar) {
+        indexVar = (indexVar - 1 + videoList.length) % videoList.length;
+        changeVideo(video, videoList, indexVar).catch(e => console.error("Previous video error:", e));
+        return indexVar;
+    }
+
+    // Auto-change videos
+    setInterval(() => {
+        currentMobileIndex = nextVideo(mobileVideo, mobileVideos, currentMobileIndex);
+    }, 5000);
+
+    setInterval(() => {
+        currentMonitorIndex = nextVideo(monitorVideo, monitorVideos, currentMonitorIndex);
+    }, 5000);
+
+    // Fullscreen functionality
+    function openFullscreen(video, videoList, index) {
+        fullscreenShowcase.style.display = 'block';
+        changeVideo(fullscreenVideo, videoList, index).catch(e => console.error("Fullscreen video error:", e));
+    }
+
+    mobileVideo.addEventListener('click', () => openFullscreen(fullscreenVideo, mobileVideos, currentMobileIndex));
+    monitorVideo.addEventListener('click', () => openFullscreen(fullscreenVideo, monitorVideos, currentMonitorIndex));
+
+    closeButton.addEventListener('click', () => {
+        fullscreenShowcase.style.display = 'none';
+    });
+
+    // Fullscreen navigation
+    let isFullscreenMobile = true;
+    let fullscreenIndex = 0;
+
+    prevButton.addEventListener('click', () => {
+        fullscreenIndex = prevVideo(fullscreenVideo, isFullscreenMobile ? mobileVideos : monitorVideos, fullscreenIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        fullscreenIndex = nextVideo(fullscreenVideo, isFullscreenMobile ? mobileVideos : monitorVideos, fullscreenIndex);
+    });
+
+    // Initialize videos
+    changeVideo(mobileVideo, mobileVideos, currentMobileIndex).catch(e => console.error("Initial mobile video error:", e));
+    changeVideo(monitorVideo, monitorVideos, currentMonitorIndex).catch(e => console.error("Initial monitor video error:", e));
+
+    // Error handling
+    mobileVideo.addEventListener('error', (e) => console.error("Mobile video error:", e));
+    monitorVideo.addEventListener('error', (e) => console.error("Monitor video error:", e));
+    fullscreenVideo.addEventListener('error', (e) => console.error("Fullscreen video error:", e));
+});
 
 

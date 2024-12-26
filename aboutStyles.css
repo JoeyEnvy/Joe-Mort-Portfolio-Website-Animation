@@ -909,7 +909,6 @@ spline-viewer {
 
 /* Existing styles remain unchanged */
 
-/* Bottom Right Quadrant Styles - Device Showcase */
 #web-design .bottom-right {
     position: absolute;
     bottom: 0;
@@ -933,20 +932,26 @@ spline-viewer {
 #web-design .bottom-right .mobile-showcase,
 #web-design .bottom-right .monitor-showcase {
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+#web-design .bottom-right .mobile-showcase:hover,
+#web-design .bottom-right .monitor-showcase:hover {
+    transform: scale(1.1);
 }
 
 #web-design .bottom-right .mobile-border {
-    width: 100px;
-    height: 200px;
+    width: 120px;
+    height: 240px;
     border: 5px solid #333;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
 }
 
 #web-design .bottom-right .monitor-border {
-    width: 200px;
-    height: 150px;
-    border: 10px solid #333;
+    width: 320px;
+    height: 180px;
+    border: 5px solid #333;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -958,7 +963,6 @@ spline-viewer {
     object-fit: cover;
 }
 
-/* Fullscreen Showcase Styles */
 .fullscreen-showcase {
     display: none;
     position: fixed;
@@ -993,14 +997,15 @@ spline-viewer {
     cursor: pointer;
 }
 
-/* Adjust existing styles */
-#web-design .top-right.gallery-quadrant {
-    z-index: 200; /* Reduced z-index to be below fullscreen-showcase */
+.close-fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-.fullscreen-view {
-    z-index: 2000; /* Increased z-index to be on par with fullscreen-showcase */
-}
 
 
 /* ==========================================================================
