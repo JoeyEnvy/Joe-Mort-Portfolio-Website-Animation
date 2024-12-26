@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //web design section animations 
 
-//bottom right images web design 
+//top right  images web design 
 
 document.addEventListener('DOMContentLoaded', () => {
     const webDesignSection = document.getElementById('web-design');
@@ -309,6 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial call to set the correct position
     handleScroll();
 });
+
+//web design bottom right 
 
 
 
