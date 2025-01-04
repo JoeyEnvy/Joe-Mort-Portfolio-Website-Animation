@@ -1172,312 +1172,220 @@ spline-viewer {
 
 /* animation section */
 
-/* Main container for the animation section */
 #animation {
     max-width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
-    color: #C0C0C0; /* Neutral Silver */
-    
-    /* Set background color to transparent to ensure no background */
-    background-color: transparent; /* No background color */
-
-    overflow: hidden; /* Prevents scrollbars */
+    color: #C0C0C0;
+    background-color: transparent;
+    overflow: hidden;
 }
 
-/* Wrapper for the two main columns (info and pricing) */
 .columns-wrapper {
-    /* Use flexbox to arrange columns side by side */
     display: flex;
-
-    /* Set width to fill the viewport */
     width: 100vw;
-
-    /* Set height for columns */
     height: 70vh;
-
-    /* Adjust margin from top to reduce gap with navbar */
-    margin-top: 40px; /* Adjusted for navbar space (30px - 60px) */
+    margin-top: 30px; /* Adjusted for navbar space */
 }
 
-/* Styles for both info and pricing columns */
 #animation .animation-info,
 #animation .animation-pricing {
-    /* Each column takes half of the available width */
     width: 50vw;
-
-    /* Set height for columns */
     height: 70vh;
-
-    /* Add padding inside each column for spacing */
     padding: 20px;
-
-    /* Hide overflow content */
     overflow: hidden;
-
-    /* Add shadow effect for depth */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-
-    /* Round corners of the boxes */
     border-radius: 10px;
-
-    /* Add margin between columns */
     margin: 0 10px;
-
-    /* Set background color to Light Gray with transparency */
-    background-color: rgba(211, 211, 211, 0.1); /* Light Gray with transparency */
+    background-color: rgba(211, 211, 211, 0.1);
 }
 
-/* Main heading styles within the animation section */
 #animation h2 {
-    font-family: 'Poppins', sans-serif; /* Font family for headings */
-
-    font-size: 2.5rem; /* Size of the heading text */
-
-    margin-bottom: 20px; /* Space below heading */
-
-    color: #FFFFFF; /* Pure White for main headings */
-
-    font-weight: bold; /* Make text bold */
-
-    text-transform: uppercase; /* Transform text to uppercase */
-
-    letter-spacing: 2px; /* Space between letters */
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #FFFFFF; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
 }
 
-/* Subheading styles within the animation section */
 #animation h3 {
-    font-family: 'Poppins', sans-serif; /* Font family for subheadings */
-
-    font-size: 1.6rem; /* Size of subheading text */
-
-    margin: 20px 0 15px; /* Space above and below subheadings */
-
-    color: #fd79a8; /* Pink for subheadings */
-
-    font-weight: bold; /* Make text bold */
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.6rem; 
+    margin: 20px 0 15px; 
+    color: #fd79a8; 
+    font-weight: bold; 
 }
 
-/* Container for software icons list */
 #animation .software-list {
-    display: flex;          /* Use flexbox layout for horizontal alignment */
-    
-   flex-wrap: nowrap;     /* Prevent wrapping of items to keep them in one line */
-
-   gap: 15px;             /* Space between icons */
+    display: flex;          
+    flex-wrap: nowrap;     
+    gap: 15px;             
 }
 
-/* Individual software item styles */
 #animation .software-item {
-   display: flex;         /* Use flexbox layout for items */
-
-   flex-direction: column;/* Align items vertically within each icon */
-
-   align-items: center;   /* Center align items horizontally */
-
-   padding: 15px;        /* Padding around each icon item */
-
-   border-radius: 8px;   /* Round corners of each icon item box */
+   display: flex;         
+   flex-direction: column; 
+   align-items: center;   
+   padding: 15px;        
+   border-radius: 8px;   
 }
 
-/* Hover effect for software items when mouse is over them */
 #animation .software-item:hover {
-   transform: translateY(-5px);/* Move item slightly upwards on hover */
+   transform: translateY(-5px);
 }
 
-/* Custom icon styles for larger size and white color (for all except Blender and After Effects)*/
 #animation .software-item i {
-   font-size: 50px;      /* Increased size for all icons except Blender and After Effects */
-
-   color:#FFFFFF;        /* White color for icons to ensure visibility against dark background */
+   font-size: 50px;      
+   color:#FFFFFF;        
 }
 
-/* Space between icon and its label text below it */
 #animation .software-item span {
-   margin-top :5px;      /* Space between icon and text label */
-
-   color:#FFFFFF;        /* Pure White text color for software names */
+   margin-top :5px;      
+   color:#FFFFFF;        
 }
 
-/* Blender icon styles - maintain original size and style*/
 #animation .blender-icon {
    background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg'); 
-   width :40px;          /* Fixed size for Blender icon */ 
-   height :40px;         /* Fixed size for Blender icon */ 
+   width :40px;          
+   height :40px;         
    background-size :contain ; 
    background-repeat:no-repeat ; 
 }
 
-/* After Effects icon styles - maintain original size and style*/
 #animation .after-effects-icon {
    background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg'); 
-   width :35px;          /* Fixed size for After Effects icon */ 
-   height :35px;         /* Fixed size for After Effects icon */ 
+   width :35px;          
+   height :35px;         
    background-size :contain ; 
    background-repeat:no-repeat ; 
 }
 
-/* General list styles (for unordered lists) within animation section*/
 #animation ul {
-   list-style-type:none ;/* Remove bullet points from lists */
-
-   padding-left :0 ;     /* Remove left padding from lists */
-
-   font-size :0.9rem ;   /* Font size for list items */
-
-   color:#FFFFFF;        /* Pure White for list items to ensure visibility against dark background */
+   list-style-type:none ;
+   padding-left :0 ;     
+   font-size :0.9rem ;   
+   color:#FFFFFF;        
 }
 
-/* List item styles within animation section*/
 #animation li {
-   margin-bottom :10px ;/* Space below each list item */
-
-   display:flex ;       /* Use flexbox layout to align items in a row */
-
-   align-items:center ;/* Center align items vertically within each list item */
-
-   font-weight :500 ;   /* Medium weight text style */
-
-   transition :transform .3s ease ;/* Smooth transition effect on hover or interaction*/
+   margin-bottom :10px ;
+   display:flex ;
+   align-items:center ;
+   font-weight :500 ;
+   transition :transform .3s ease ;
 }
 
-/* Hover effect for list items when mouse is over them*/
 #animation li:hover {
-   transform :translateX(5px) ;/* Move item slightly to right on hover*/
-
-   color:#fd79a8 ;/* Change color to pink on hover*/
+   transform :translateX(5px) ;
+   color:#fd79a8 ;
 }
 
-/* Icon styles within list items (for icons next to list text)*/
 #animation li i {
-   margin-right :8px ;/* Space between icon and text in list items*/
-
-   color:#00cec9 ;/* Changed to new teal color for icons in list items*/
-
-   font-size :2rem ;/* Font size of icons in list items*/
+   margin-right :8px ;
+   color:#00cec9 ;
+   font-size :2rem ;
 }
 
-/* Grid layout styles for animation packages section*/
 #animation .packages-grid {
-   display:grid ;       /* Use grid layout to arrange packages*/
-
-   grid-template-columns :repeat(2 ,1fr) ;/* Two columns in grid layout*/
-
-   gap :20px ;         /* Space between grid items (packages)*/
+   display:grid ;       
+   grid-template-columns :repeat(2 ,1fr) ;
+   gap :20px ;         
 }
 
-/* Individual package styles within animation section*/
 #animation .package {
-   border :1px solid rgba(255 ,255 ,255 ,0.2) ;/* Light border around package boxes*/
-
-   border-radius :8px ;/* Round corners of package boxes*/
-
-   padding :15px ;     /* Padding inside each package box*/
-
-   transition :transform .3s ease ;/* Smooth transition effect on hover or interaction*/
-
-   background-color :rgba(192,192,192,0.1);/* Light Gray with transparency as package background*/
+   border :1px solid rgba(255 ,255 ,255 ,0.2) ;
+   border-radius :8px ;
+   padding :15px ;     
+   transition :transform .3s ease ;
+   background-color :rgba(192,192,192,0.1);
 }
 
-/* Hover effect for packages when mouse is over them*/
 #animation .package:hover {
-   transform :translateY(-5px) ;/* Move package box slightly upwards on hover*/
+   transform :translateY(-5px) ;
 }
 
-/* Package heading styles within animation section*/
 #animation .package h3 {
-   font-size :1.4rem ;/* Font size of package headings*/
-
-   margin-bottom :10px ;/* Space below each package heading*/
-
-   color:#00cec9 ;/* Changed to new teal color for package headings*/
+   font-size :1.4rem ;
+   margin-bottom :10px ;
+   color:#00cec9 ;
 }
 
-/* Package price styles within animation section*/
 #animation .package .price {
-   font-size :1.6rem ;/* Font size of package prices*/
-
-   font-weight:bold ;/* Make price text bold*/
-
-   margin-bottom :15px ;/* Space below each price text*/
-
-   color:#FFFFFF ;/* Pure White for prices to ensure visibility against dark background*/
+   font-size :1.6rem ;
+   font-weight:bold ;
+   margin-bottom :15px ;
+   color:#FFFFFF ;
 }
 
-/* Video slider container styles within animation section*/
+/* Video slider container styles */
 .video-slider {
-   width :100vw;       /* Full width of viewport */ 
-
-   height :25vh ;     /* Set height to match requirements*/
-
-   display:flex ;     /* Use flexbox layout to arrange videos horizontally*/
-
- align-items:center ;/* Center align videos vertically within slider*/ 
-
- justify-content:center ;/* Center content horizontally within slider*/ 
-
- gap :0;            /* No gap between videos */ 
-
- padding-left :50px;/* Left padding for alignment*/ 
-
- padding-right :50px;/* Right padding for alignment*/ 
-
- position :relative ;/* Position relative allows absolute positioning of children if needed*/ 
+    width: 100vw;       
+    height: 20vh;      /* Reduced height by 5vh */
+    display:flex;      
 }
 
-.video-slider video {
-     height :100%;     /* Set height of videos to fill container */ 
-
-     flex:auto ;       /* Allow videos to grow and fill available space */ 
-
-     border-radius :8px ;/* Round corners of video elements*/ 
-
-     box-shadow :rgba(255 ,255 ,255 ,0.3) ;/* Light shadow effect around videos*/ 
-
-     border: 2px solid #fd79a8;/* Pink border around videos*/ 
+/* Column styles */
+.video-column {
+    width: 42.5vw; /* Width for left and right columns */
+    display: flex;
+    flex-direction: row; /* Arrange videos horizontally */
+    align-items: center;
+    justify-content: flex-start; /* Align items to start of the column */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
 }
- 
-/* Call-to-action button styles within animation section*/
+
+/* Middle column for the CTA button */
+.middle-column {
+    width: 15vw; /* Width for the middle column */
+    display: flex;
+    justify-content: center;
+}
+
+/* Video element styles */
+.video-column video {
+     height: auto; /* Maintain aspect ratio */
+     max-height: calc(100% - 1px); /* Fit within column height */
+     width: calc(42.5vw / 3); /* Allow at least three videos in a row */
+     border-radius:8px;
+     box-shadow:rgba(255 ,255 ,255 ,0.3); 
+     border:2px solid #fd79a8;
+     margin-right: 1px; /* Small gap between videos */
+}
+
+/* CTA button styles */
 .cta-button { 
-     padding :15px ;      // Padding around button content
+     padding: 10px 20px; /* Adjust padding if needed */
+margin-top: 50px;
+     font-size: 1.0rem; /* Font size */
+     font-weight: thin; /* Change to normal weight */
+     text-transform: uppercase;  
+     border: none;  
+     border-radius: 30px;  
+     cursor: pointer;  
+     background-color: #00cec9; /* Set default color to teal */
+     color: #FFFFFF;  
+     height: 7.5vh; /* Set height to 7.5vh */
+     box-shadow: rgba(255, 255, 255, 0.3);  
+     transition: all ease, transform .3s ease;  
+     font-family: 'Poppins', sans-serif;  
+}
 
-     font-size :1.5rem ; // Font size of button text
-
-     font-weight:bold ; // Make button text bold
-
-     text-transform :uppercase ; // Transform button text to uppercase
-
-     border:none ; // Remove default button border
-
-     border-radius :30px ; // Round corners of button
-
-     cursor:pointer ; // Change cursor style on hover
-
-     background-color:#00cec9; // New default teal color
-
-     color:#FFFFFF; // Pure White text color
-
-     box-shadow :'rgba(255 ,255 ,255 ,0.3)' ; // Light shadow effect on button
-
-     transition :'all' ease ; // Smooth transition effect on hover or interaction
-} 
-
-/* Hover effect for CTA button when mouse is over it*/ 
+/* Hover effect for CTA button */ 
 .cta-button:hover { 
-      transform :'translateY(-3px)' ; // Move button slightly upwards on hover
+      transform: translateY(-3px); 
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+}
 
-      box-shadow :'rgba(255 ,255 ,255 ,' ) ;
-} 
-
-/* Ensure content doesn't overflow in specified sections */  
+/* Overflow management */
 #animation .animation-info,
 #animation .animation-pricing,
 .video-slider {  
-      overflow:hidden; // Hide any overflowing content
+      overflow:hidden;
 }
-
 
 
 /* ==========================================================================
