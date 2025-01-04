@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
     const gradients = [
-        'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue gradient (exception)
-        '#2d3436', // Grey
-        '#ffffff', // White
-        '#333333', // Dark 
-        '#fd79a8', // Pink
-        '#00cec9', // Teal
-        '#2d3436', // Grey
-        '#ffffff'  // White
+        'linear-gradient(to right, #00cec9, #6c5ce7)',
+        '#2d3436',
+        '#ffffff',
+        '#333333',
+        '#fd79a8',
+        '#00cec9',
+        '#2d3436',
+        '#ffffff'
     ];
 
     let currentSection = 0;
@@ -80,25 +80,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    function handleScroll() {
-        const scrollPosition = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const newSection = Math.round(scrollPosition / windowHeight);
-        if (newSection !== currentSection) {
-            currentSection = newSection;
-            updateBackgroundColor();
-            setActiveSection();
-        }
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    const handleScroll = debounce(() => {
         updateNavbar();
         updateProgressBar();
         updateBackToTopButton();
-    }
+    }, 10);
 
-    window.addEventListener('scroll', () => {
-        if (!isScrolling) {
-            window.requestAnimationFrame(handleScroll);
-        }
-    });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                const index = Array.from(sections).indexOf(entry.target);
+                if (index !== currentSection) {
+                    currentSection = index;
+                    updateBackgroundColor();
+                    setActiveSection();
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => observer.observe(section));
+
+    window.addEventListener('scroll', handleScroll);
 
     window.addEventListener('wheel', (e) => {
         e.preventDefault();
@@ -127,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
     setActiveSection();
 });
-
 
 
 //image bacgkround change and nav effects END HERE
