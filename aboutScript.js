@@ -417,5 +417,9 @@ document.querySelectorAll('.get-started-btn').forEach(button => {
     });
 });
 
+//animation section 
+
+
+
 
 

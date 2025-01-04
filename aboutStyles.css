@@ -1154,6 +1154,266 @@ spline-viewer {
 
 
 
+/* animation section */
+
+/* animation section */
+
+
+
+
+/* animation section */
+
+/* animation section */
+
+
+/* animation section */
+
+
+
+/* animation section */
+
+
+/* Main container for the animation section */
+#animation {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    background-color: rgba(108, 92, 231, 0); /* Fully transparent */
+    overflow: hidden; /* Prevents scrollbars */
+}
+
+/* Wrapper for the two main columns */
+.columns-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 70vh;
+    margin-top: 30px; /* Adjusted for navbar space */
+}
+
+/* Styles for both info and pricing columns */
+#animation .animation-info,
+#animation .animation-pricing {
+    width: 50vw;
+    height: 70vh;
+    padding: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Main heading styles */
+#animation h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Subheading styles */
+#animation h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    margin: 20px 0 15px;
+    color: #ffd700; /* Gold color for subheadings */
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Software list container */
+#animation .software-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22.5px; /* Increased gap between icons */
+    margin-bottom: 20px;
+}
+
+/* Individual software item */
+#animation .software-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for software items */
+#animation .software-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom icon styles */
+#animation .custom-icon {
+    width: auto; /* Allow auto sizing based on content */
+}
+
+#animation .software-item i {
+   font-size: inherit; /* Use inherited size for custom icons */
+   color:#ffffff; /* Optional color adjustment for icons */
+}
+
+/* Add margin to create space between icon and text */
+#animation .software-item span {
+   margin-top :5px; /* Space between icon and text */
+}
+
+/* Blender icon - Placeholder URL (replace with actual icon URL) */
+#animation .blender-icon {
+   background-image:url('https://example.com/path/to/blender_icon.svg'); /* Replace with new Blender icon URL */
+   width :80px; /* Size for Blender icon */
+   height :80px; /* Size for Blender icon */
+}
+
+/* After Effects icon - Placeholder URL (replace with actual icon URL) */
+#animation .after-effects-icon {
+   background-image:url('https://example.com/path/to/after_effects_icon.svg'); /* Replace with new After Effects icon URL */
+   width :70px; /* Size for After Effects icon */
+   height :70px; /* Size for After Effects icon */
+}
+
+/* Ensure background images scale correctly */
+#animation .blender-icon,
+#animation .after-effects-icon {
+   background-size :contain ; /* Ensures images scale correctly within their containers */
+   background-repeat:no-repeat ; /* Prevents repeating of the image */
+}
+
+/* General list styles */
+#animation ul {
+   list-style-type:none ;
+   padding-left :0 ;
+   font-size :0.9rem ;
+}
+
+/* List item styles */
+#animation li {
+   margin-bottom :10 px ;
+   display:flex ;
+   align-items:center ;
+   font-weight :500 ;
+   letter-spacing :0.5 px ;
+   text-shadow :0 ,0 ,5 rgba(0 ,0 ,0 ,0.15) ;
+   transition :all ,ease ;
+}
+
+/* Hover effect for list items */
+#animation li:hover {
+   transform :translateX(5 px) ;
+   color:#00ffff ;
+}
+
+/* Icon styles for list items */
+#animation li i {
+   margin-right :8 px ;
+   color:#ffd700 ;
+   font-size :1rem ;
+}
+
+/* Grid for animation packages */
+#animation .packages-grid {
+   display:grid ;
+   grid-template-columns :repeat(2 ,1fr) ;
+   gap :20 px ;
+   margin-bottom :20 px ;
+}
+
+/* Individual package styles */
+#animation .package {
+   border :1 px solid rgba(255 ,255 ,255 ,0.2) ;
+   border-radius :8 px ;
+   padding :15 px ;
+   transition :all ease ;
+   background-color :rgba(255 ,255 ,255 ,0.1) ;
+}
+
+/* Hover effect for packages */
+#animation .package:hover {
+   transform :translateY(-5 px) ;
+   box-shadow :0 ,8 px ,15 rgba(0 ,0 ,0 ,0.3) ;
+}
+
+/* Package heading styles */
+#animation .package h3 {
+   font-size :1.4 rem ;
+   margin-bottom :10 px ;
+   color:#ffd700 ;
+}
+
+/* Package price styles */
+#animation .package .price {
+   font-size :1.6 rem ;
+   font-weight:bold ;
+   margin-bottom :15 px ;
+   color:#00ffff ;
+}
+
+/* Video slider container with margins on left and right sides*/
+.video-slider {
+   width :100vw; /* Full width of viewport */
+   height :25vh ; /* Set height to match requirements*/
+   display:flex ;
+ align-items:center ; 
+ justify-content:center ; 
+ gap :300 px; /* Space between videos and button*/
+ padding-left :50 px; /* Left padding for alignment*/
+ padding-right :50 px; /* Right padding for alignment*/
+ position :relative ; 
+}
+
+.video-slider video {
+     height :90% ; 
+     flex:auto ; 
+     border-radius :8 px ; 
+     box-shadow :rgba(255 ,255 ,255 ,0.3) ; 
+}
+ 
+/* Call-to-action button styles with increased size and improved styling*/
+.cta-button { 
+     padding :30 px ; 
+     font-size :2 rem ; 
+     font-weight:bold ; 
+     text-transform :uppercase ; 
+     border:none ; 
+     border-radius :30 px ; 
+     cursor:pointer ; 
+     background-color:#00ffff; /* Solid color as a base */ 
+     background-image:url('path/to/gradient/image'); /* Gradient can be added here */ 
+     color:#6c5ce7; 
+     box-shadow :rgba(255 ,255 ,255 ,0.3) ; 
+     transition :'all' ease ; 
+     position:absolute ; 
+     left:'50%' ; 
+     transform :'translateX(-50%)' ; 
+     z-index :'10' ; 
+} 
+
+/* Hover effect for CTA button */ 
+.cta-button:hover { 
+      transform :'translateX(-50%) translateY(-3 px)' ; 
+      box-shadow :'rgba(255 ,255 ,255 ,' ) ; 
+} 
+
+/* Ensure content doesn't overflow */  
+#animation .animation-info,
+#animation .animation-pricing,
+.video-slider {  
+      overflow:hidden;  
+}
+
+
+
 /* ==========================================================================
    9. Utility Classes and Common Elements
    ========================================================================== */
