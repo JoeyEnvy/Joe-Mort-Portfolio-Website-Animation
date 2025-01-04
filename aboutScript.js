@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'linear-gradient(to right, #00cec9, #6c5ce7)', // Teal to Dark Blue gradient (exception)
         '#2d3436', // Grey
         '#ffffff', // White
-        '#6c5ce7', // Dark Blue
+        '#333333', // Dark 
         '#fd79a8', // Pink
         '#00cec9', // Teal
         '#2d3436', // Grey
