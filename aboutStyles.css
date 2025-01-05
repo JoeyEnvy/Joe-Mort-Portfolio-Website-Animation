@@ -1387,6 +1387,62 @@ margin-top: 50px;
       overflow:hidden;
 }
 
+.animation-pricing {
+    width: 50vw; /* Width of the right column */
+    height: 65vh; /* Total height for all content */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+.animation-pricing h2 {
+    font-size: 2rem; /* Adjust heading size */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.packages-grid {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 10px; /* Space between packages */
+}
+
+.package {
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Reduced padding */
+    transition: transform .3s ease; 
+    background-color: rgba(192, 192, 192, 0.1); /* Background color */
+}
+
+.package:hover {
+    transform: translateY(-5px); /* Hover effect */
+}
+
+.package h3 {
+    font-size: 1.2rem; /* Adjusted size */
+    margin-bottom: 5px; /* Space below heading */
+}
+
+.package .price {
+    font-size: 1.4rem; /* Adjusted size */
+    font-weight: bold; 
+    margin-bottom: 10px; /* Space below price */
+}
+
+.animation-explanation {
+    margin-top: 20px; /* Space above explanation section */
+}
+
+.animation-explanation h3 {
+    font-size: 1.5rem; /* Heading size for explanation */
+    margin-bottom: 10px; /* Space below heading */
+}
+
+.animation-explanation p {
+    font-size: 0.9rem; /* Font size for explanation text */
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
 
 /* ==========================================================================
    9. Utility Classes and Common Elements
