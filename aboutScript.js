@@ -4,14 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
     const sections = document.querySelectorAll('.section');
     const gradients = [
-        'linear-gradient(to right, #00cec9, #6c5ce7)',
-        '#2d3436',
-        '#ffffff',
-        '#333333',
-        '#fd79a8',
-        '#00cec9',
-        '#2d3436',
-        '#ffffff'
+        'linear-gradient(to right, #00cec9, #6c5ce7)', // First section
+        '#2d3436', // Second section
+        '#ffffff', // Third section
+        '#333333', // Fourth section
+        '#ffffff', // Fifth section
+        '#333333', // Sixth section
+        '#2d3436', // Seventh section
+        '#ffffff', // Eighth section
+        '#ff5733'  // New color for the new section (e.g., vibrant orange)
     ];
 
     let currentSection = 0;
@@ -433,7 +434,76 @@ document.querySelectorAll('.get-started-btn').forEach(button => {
 
 //animation section 
 
+// Select all video elements in both columns
+const videos = document.querySelectorAll('.video-column video');
 
+// Function to get a random time within the video's duration
+function getRandomTime(video) {
+    return Math.random() * video.duration;
+}
 
+// Function to autoplay videos without sound when entering the section
+function autoplayVideos() {
+    videos.forEach(video => {
+        video.muted = true;
+        video.currentTime = getRandomTime(video);
+        video.play();
+    });
+}
 
+// Function to enter fullscreen mode
+function openFullscreen(video) {
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) { // Safari
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { // IE11
+        video.msRequestFullscreen();
+    }
+}
+
+// Add event listeners for hover effect, sound, and fullscreen
+videos.forEach(video => {
+    video.addEventListener('mouseenter', () => {
+        video.volume = 1; // Turn on sound
+        video.play(); // Ensure video is playing
+        video.style.transform = 'scale(1.1)'; // Make video slightly larger
+    });
+
+    video.addEventListener('mouseleave', () => {
+        video.volume = 0; // Mute the video
+        video.style.transform = 'scale(1)'; // Return to original size
+    });
+
+    // Fullscreen functionality on click
+    video.addEventListener('click', () => {
+        openFullscreen(video);
+    });
+});
+
+// Function to scroll left column
+function scrollLeft() {
+    const leftColumn = document.querySelector('.left-column');
+    leftColumn.scrollBy({
+        left: -leftColumn.offsetWidth / 2, // Scroll by one video width (half the column)
+        behavior: 'smooth' // Smooth scrolling effect
+    });
+}
+
+// Function to scroll right column
+function scrollRight() {
+    const rightColumn = document.querySelector('.right-column');
+    rightColumn.scrollBy({
+        left: rightColumn.offsetWidth / 2, // Scroll by one video width (half the column)
+        behavior: 'smooth' // Smooth scrolling effect
+    });
+}
+
+// Start autoplay when entering the video gallery section
+document.getElementById('video-gallery').addEventListener('mouseenter', autoplayVideos);
+
+// Pause videos when leaving the section to save resources
+document.getElementById('video-gallery').addEventListener('mouseleave', () => {
+    videos.forEach(video => video.pause());
+});
 
