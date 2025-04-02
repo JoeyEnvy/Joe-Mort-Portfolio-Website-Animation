@@ -1,0 +1,907 @@
+/* ==========================================================================
+   1. CSS Variables and Root Settings
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --primary-color: #6c5ce7;    /* Dark Blue */
+    --secondary-color: #00cec9;  /* Teal */
+    --accent-color: #fd79a8;     /* Pink */
+    --background-color: #2d3436; /* Dark Grey */
+    --text-color: #2d3436;       /* Dark Grey */
+    --nav-bg: #2d3436;           /* Dark Grey (for navigation) */
+    --white: #ffffff;            /* White */
+}
+
+/* ==========================================================================
+   2. Base Styles and Reset
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
+}
+
+/* Hides scrollbar for Webkit browsers (Chrome, Safari) */
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%; /* Changed from 400% 400% */
+    transition: background-image 0.5s ease; /* Changed from 1s to 0.5s */
+}
+
+/* Removed Background gradient animation */
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+h1, h2, h3 {
+    color: var(--white);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h1 { font-size: 3rem; margin-bottom: 1rem; }
+h2 { font-size: 2.5rem; margin-bottom: 0.8rem; }
+h3 { font-size: 2rem; margin-bottom: 0.6rem; }
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    p { font-size: 1rem; }
+}
+
+/* Removed .gradient-transition class */
+
+/* ==========================================================================
+   4. Layout and Section Styles
+   ========================================================================== */
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    color: var(--white);
+    text-align: center;
+    background: transparent;
+}
+
+/* Remove the side opacity bars */
+.section::before,
+.section::after {
+    content: none; /* This removes the pseudo-elements */
+}
+
+.section-content {
+    max-width: 1200px;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section.active .section-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* about section joe mort */
+
+#about.section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: none;
+}
+
+#about .spline-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#about .right-column {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%) translateX(100%);
+    width: 45vw;
+    max-height: 85vh;
+    z-index: 2;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+#about .content-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 2rem;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#about .content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#about .about-content {
+    margin: 1rem;
+}
+
+#about section {
+    margin-bottom: 2rem;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ff79c6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #bd93f9;
+}
+
+#about h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #50fa7b;
+}
+
+#about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #f8f8f2;
+}
+
+#about ul, #about ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#about li {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: #f8f8f2;
+}
+
+#about .fas {
+    margin-right: 0.5rem;
+    color: #ff79c6;
+}
+
+#about .cta-buttons {
+    position: absolute;
+    bottom: 5vh;
+    left: calc(25% - 0px); /* Moved 300px back to the right */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Slightly reduced gap between buttons */
+    z-index: 3;
+}
+
+#about .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.6rem; /* Slightly reduced padding for smaller buttons */
+    background-color: #ff79c6;
+    color: #282a36;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem; /* Reduced font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#about .cta-button:hover {
+    background-color: #bd93f9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#about .cta-button .fas {
+    margin-right: 0.5rem;
+}
+
+/* Animation classes */
+#about.section.active .right-column {
+    transform: translateY(-50%) translateX(0);
+}
+
+#about.section.exit .right-column {
+    transform: translateY(-50%) translateX(100%);
+}
+
+
+/* ==========================================================================
+   5. Navigation Styles
+   ========================================================================== */
+nav {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--nav-bg);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Styles for scrolled navigation */
+nav.scrolled {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: flex-start;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+nav.scrolled .nav-links {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.nav-links li { margin-bottom: 0.5rem; }
+nav.scrolled .nav-links li { margin: 0 1rem 0 0; }
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-links a i {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--secondary-color);
+    background-color: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+nav.scrolled .nav-links a:hover,
+nav.scrolled .nav-links a.active {
+    transform: none;
+}
+
+.nav-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+nav.scrolled .nav-social {
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.nav-social a {
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-social a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* Navigation progress bar */
+.nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent-color);
+    transition: width 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 2000;
+}
+
+nav.scrolled .nav-progress { opacity: 1; }
+
+/* ==========================================================================
+   6. Main Content Styles
+   ========================================================================== */
+main {
+    margin-left: 250px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: calc(100% - 250px);
+    overflow-x: hidden;
+    position: relative; /* Added this */
+    z-index: 1; /* Added this */
+}
+
+main.nav-scrolled {
+    margin-left: 0;
+    padding-top: 60px;
+    width: 100%;
+}
+/* ==========================================================================
+   7. Contact Form Styles
+   ========================================================================== */
+.contact-form {
+    background: rgba(45, 52, 54, 0.9); /* Dark grey with opacity */
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    font-family: 'Raleway', sans-serif;
+    margin: 0 auto; /* Center the form */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 { /* Added this for the contact form title */
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+    font-family: 'Raleway', sans-serif;
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: background-color 0.3s ease;
+}
+
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form button {
+    background-color: var(--accent-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.contact-form button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* hero section */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@600&display=swap');
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.section-content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-left {
+    width: 40vw;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: 3;
+}
+
+.hero-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease, transform 0.5s ease;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00cec9;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.service-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00cec9;
+}
+
+.service-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.service-item p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.service-item:last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.cta-button, .showcase-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background: #fd79a8;
+    color: #ffffff;
+}
+
+.cta-button:hover {
+    background: #ff5e94;
+}
+
+.showcase-button {
+    background: #00cec9;
+    color: #ffffff;
+}
+
+.showcase-button:hover {
+    background: #00a8a8;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+.dark-grey-bar {
+    background-color: #2d3436;
+    height: 75px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    transition: opacity 0.2s ease;
+}
+
+/* Animation for scroll-out effect */
+.animate-out .hero-left,
+.animate-out .hero-right {
+    transform: translateX(100vw);
+}
+
+.animate-out .dark-grey-bar {
+    opacity: 0;
+}
+
+/* Animation for scroll-in effect */
+.animate-in .hero-left {
+    transform: translateX(300px);
+}
+
+.animate-in .hero-right {
+    transform: translateX(0);
+}
+
+.animate-in .dark-grey-bar {
+    opacity: 1;
+}
+
+/* Initial load animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(300px); }
+}
+
+.hero-right.loaded {
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero-left.loaded {
+    animation: slideInFromLeft 0.8s ease forwards;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .hero-left {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-left {
+        width: 80vw;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   8. Footer Styles
+   ========================================================================== */
+footer {
+    background-color: var(--nav-bg);
+    color: var(--white);
+    width: 150vw;
+    margin-top: 100px; 
+    margin-left: -800px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem 2rem; /* Increased padding for better spacing */
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow at the top */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1400px; /* Increased max-width for better spacing */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.footer-section {
+    margin-bottom: 2rem;
+    flex-basis: calc(25% - 30px); /* Changed to 4 columns */
+    padding: 0 15px; /* Added padding for better spacing */
+}
+
+.footer-section h3 {
+    font-family: 'Raleway', sans-serif;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem; /* Increased margin */
+    font-size: 1.2em; /* Increased font size */
+    position: relative;
+    padding-bottom: 10px; /* Added padding for underline */
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.footer-section li {
+    margin-bottom: 1rem; /* Increased margin */
+}
+
+.footer-section a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    display: inline-block; /* Allow transform on inline element */
+}
+
+.footer-section a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px); /* Move link slightly on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem; /* Increased padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: rgba(255, 255, 255, 0.7); /* Slightly dimmed text */
+}
+
+/* Add responsive design */
+@media (max-width: 1200px) {
+    .footer-section {
+        flex-basis: calc(33.333% - 30px);
+    }
+}
+
+@media (max-width: 900px) {
+    .footer-section {
+        flex-basis: calc(50% - 30px);
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-section {
+        flex-basis: 100%;
+    }
+    
+    footer {
+        width: 100vw;
+        margin-left: 0;
+        padding: 3rem 1rem;
+    }
+}
+
+/* ==========================================================================
+   9. Utility Classes and Common Elements
+   ========================================================================== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    z-index: 1001;
+    transition: width 0.1s ease;
+}
+
+/* ==========================================================================
+   10. Button Styles
+   ========================================================================== */
+#backToTop, .whatsapp-button, .contact-box, .anchor-bottom {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    right: 30px;
+    z-index: 5000;
+}
+
+#backToTop {
+    bottom: 30px;
+    background-color: var(--primary-color);
+}
+
+.anchor-bottom {
+    bottom: 100px;
+    background-color: var(--accent-color);
+}
+
+.whatsapp-button {
+    bottom: 170px;
+    background-color: #25D366;
+}
+
+.contact-box {
+    bottom: 240px;
+    background-color: var(--secondary-color);
+    width: 180px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 1rem;
+}
+
+.contact-box i {
+   margin-right: 10px; 
+}
+
+#backToTop:hover, .whatsapp-button:hover, .contact-box:hover {
+   transform: translateY(-5px); 
+}
+
+/* ==========================================================================
+   11. Media Queries for Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+
+    nav.scrolled {
+        position: fixed;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 0;
+    }
+
+    .nav-links li {
+        margin-bottom: 0;
+    }
+
+    .nav-social {
+        display: none;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .section::before,
+    .section::after {
+        width: 50px;
+    }
+
+    #backToTop, .whatsapp-button, .contact-box {
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.25rem; 
+        right: 20px; 
+    }
+
+    footer {
+        padding: 2rem 0.5rem; /* Reduce padding on smaller screens */
+    }
+
+    .footer-section {
+        flex-basis: 100%;
+        text-align: center;
+        padding: 0 1rem; /* Add some horizontal padding */
+    }
+}

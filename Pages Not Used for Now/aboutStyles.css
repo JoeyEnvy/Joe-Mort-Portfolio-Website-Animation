@@ -1,0 +1,1720 @@
+/* ==========================================================================
+   1. CSS Variables and Root Settings
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --primary-color: #6c5ce7;    /* Dark Blue */
+    --secondary-color: #00cec9;  /* Teal */
+    --accent-color: #fd79a8;     /* Pink */
+    --background-color: #2d3436; /* Dark Grey */
+    --text-color: #2d3436;       /* Dark Grey */
+    --nav-bg: #2d3436;           /* Dark Grey (for navigation) */
+    --white: #ffffff;            /* White */
+}
+
+/* ==========================================================================
+   2. Base Styles and Reset
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer and Edge */
+}
+
+/* Hides scrollbar for Webkit browsers (Chrome, Safari) */
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    transition: background 0.5s ease;
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+h1, h2, h3 {
+    color: var(--white);
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h1 { font-size: 3rem; margin-bottom: 1rem; }
+h2 { font-size: 2.5rem; margin-bottom: 0.8rem; }
+h3 { font-size: 2rem; margin-bottom: 0.6rem; }
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    p { font-size: 1rem; }
+}
+
+/* ==========================================================================
+   4. Layout and Section Styles
+   ========================================================================== */
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    color: var(--white);
+    text-align: center;
+    background: transparent;
+}
+
+.section-content {
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section.active .section-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* about section joe mort */
+
+#about.section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: none;
+}
+
+#about .spline-container {
+    position: absolute;
+    top: 0;
+    left: -200%; /* Start off-screen to the left */
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 1.25s ease; /* Modern duration and easing */
+}
+
+#about .spline-container.active {
+    left: 0; /* Move to default position when active */
+}
+
+#about .spline-container.exit {
+    left: -100%; /* Move off-screen to the left when exiting */
+}
+
+
+#about .right-column {
+    position: absolute;
+    top: 50%;
+    right: 10rem;
+    transform: translateY(-50%) translateX(100%);
+    width: 35vw;
+    max-height: 85vh;
+    z-index: 0;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+#about .content-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 2rem;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#about .content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#about .about-content {
+    margin: 1rem;
+}
+
+#about section {
+    margin-bottom: 2rem;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ff79c6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #bd93f9;
+}
+
+#about h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #50fa7b;
+}
+
+#about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #f8f8f2;
+}
+
+#about ul, #about ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#about li {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: #f8f8f2;
+}
+
+#about .fas {
+    margin-right: 0.5rem;
+    color: #ff79c6;
+}
+
+#about .cta-buttons {
+    position: absolute;
+    bottom: 5vh;
+    left: calc(25% - 0px); /* Moved 300px back to the right */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Slightly reduced gap between buttons */
+    z-index: 3;
+}
+
+#about .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.6rem; /* Slightly reduced padding for smaller buttons */
+    background-color: #ff79c6;
+    color: #282a36;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem; /* Reduced font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#about .cta-button:hover {
+    background-color: #bd93f9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#about .cta-button .fas {
+    margin-right: 0.5rem;
+}
+
+/* Animation classes */
+#about.section.active .right-column {
+    transform: translateY(-50%) translateX(0);
+}
+
+#about.section.exit .right-column {
+    transform: translateY(-50%) translateX(100%);
+}
+
+
+/* ==========================================================================
+   5. Navigation Styles
+   ========================================================================== */
+nav {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--nav-bg);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Styles for scrolled navigation */
+nav.scrolled {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: flex-start;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+nav.scrolled .nav-links {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.nav-links li { margin-bottom: 0.5rem; }
+nav.scrolled .nav-links li { margin: 0 1rem 0 0; }
+
+.nav-links a {
+
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-links a i {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--secondary-color);
+    background-color: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+nav.scrolled .nav-links a:hover,
+nav.scrolled .nav-links a.active {
+    transform: none;
+}
+
+.nav-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+nav.scrolled .nav-social {
+margin-top: 20px;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.nav-social a {
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-social a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* Navigation progress bar */
+.nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent-color);
+    transition: width 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 2000;
+}
+
+nav.scrolled .nav-progress { opacity: 1; }
+
+/* ==========================================================================
+   6. Main Content Styles
+   ========================================================================== */
+main {
+    margin-left: 250px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: calc(100% - 250px);
+    overflow-x: hidden;
+    position: relative; /* Added this */
+    z-index: 1; /* Added this */
+}
+
+main.nav-scrolled {
+    margin-left: 0;
+    padding-top: 60px;
+    width: 100%;
+}
+
+
+/* hero section */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@600&display=swap');
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.section-content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-left {
+    width: 40vw;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: 3;
+}
+
+.hero-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease, transform 0.5s ease;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00cec9;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.service-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00cec9;
+}
+
+.service-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.service-item p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+.service-item:last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.cta-button, .showcase-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background: #fd79a8;
+    color: #ffffff;
+}
+
+.cta-button:hover {
+    background: #ff5e94;
+}
+
+.showcase-button {
+    background: #00cec9;
+    color: #ffffff;
+}
+
+.showcase-button:hover {
+    background: #00a8a8;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+.dark-grey-bar {
+    background-color: #2d3436;
+    height: 75px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    transition: opacity 0.2s ease;
+}
+
+/* Animation for scroll-out effect */
+.animate-out .hero-left,
+.animate-out .hero-right {
+    transform: translateX(100vw);
+}
+
+.animate-out .dark-grey-bar {
+    opacity: 0;
+}
+
+/* Animation for scroll-in effect */
+.animate-in .hero-left {
+    transform: translateX(300px);
+}
+
+.animate-in .hero-right {
+    transform: translateX(0);
+}
+
+.animate-in .dark-grey-bar {
+    opacity: 1;
+}
+
+/* Initial load animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(300px); }
+}
+
+.hero-right.loaded {
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero-left.loaded {
+    animation: slideInFromLeft 0.8s ease forwards;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .hero-left {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-left {
+        width: 80vw;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* web design section */
+
+/* Main container styles */
+#web-design {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Quadrant positioning */
+.quadrant {
+    position: absolute;
+    width: 50vw;
+    height: 50vh;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+/* Top Left Quadrant Styles - Web Design Services */
+#web-design .top-left #tl-web-design-2024 {
+    position: absolute;
+    top: 50px;
+    left: 50vw;
+    margin-left: 25px;
+    width: 50vw;
+    height: 67.5vh;
+    overflow: auto;
+    background-color: #FFFFFF;
+    color: #1D3557;
+    padding: 23px;
+    border-radius: 15px;
+    font-family: 'Roboto', Arial, sans-serif;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.8s ease-out;
+    display: flex;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#web-design .top-left #tl-web-design-2024.visible {
+    transform: translateX(0);
+}
+
+/* Typography for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 h2,
+#web-design .top-left #tl-web-design-2024 h3,
+#web-design .top-left #tl-web-design-2024 h4 {
+    color: #1D63FF;
+    text-shadow: none;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1D3557;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-subtitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #00ABE4;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #1D63FF;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #1D3557;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-cta {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    color: #1D63FF;
+}
+
+/* List styles for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-list {
+    background-color: #E6F3FF;
+    padding: 15px;
+    border-radius: 10px;
+    list-style-type: none;
+    margin-bottom: 20px;
+    border: 1px solid #B3D4FF;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-list li {
+    color: #1D3557;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-highlight {
+    font-weight: bold;
+    color: #00ABE4;
+}
+
+/* Button styles for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-button {
+    display: inline-block;
+    background-color: #1D63FF;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(29, 99, 255, 0.2);
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-button:hover {
+    background-color: #00ABE4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 171, 228, 0.3);
+}
+
+/* Layout for top-left quadrant */
+#web-design .top-left #tl-web-design-2024 .tr-web-design-left {
+    flex: 1;
+    padding-right: 25px;
+}
+
+#web-design .top-left #tl-web-design-2024 .tr-web-design-right {
+    flex: 1;
+    padding-left: 25px;
+    border-left: 2px solid #E6F3FF;
+}
+
+/* Top Right Quadrant Styles - Gallery */
+#web-design .top-right.gallery-quadrant {
+    position: absolute;
+    top: 80px; /* Added top margin to move it down under the navbar */
+    right: 0;
+    width: 50vw;
+    height: calc(50vh - 80px); /* Adjusted height to account for top margin */
+    padding: 2rem;
+    overflow: flow;
+    z-index: 300;
+}
+
+#web-design .top-right .gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    height: 100%;
+    transition: transform 0.8s ease-out;
+}
+
+#web-design .top-right .gallery-item {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#web-design .top-right .gallery-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    color: #1D3557;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#web-design .top-right .image-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+#web-design .top-right .image-preview img {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#web-design .top-right .vitalfit-item,
+#web-design .top-right .quantumleap-item {
+    width: calc(50% - 1rem);
+}
+
+#web-design .top-right .vitalfit-item .image-preview img,
+#web-design .top-right .quantumleap-item .image-preview img {
+    width: 25%;
+    height: auto;
+}
+
+#web-design .top-right .vitalfit-item .image-preview .center-image,
+#web-design .top-right .quantumleap-item .image-preview .center-image {
+    width: 35%;
+}
+
+#web-design .top-right .trademasters-item {
+    width: 100%;
+}
+
+#web-design .top-right .trademasters-item .image-preview img {
+    width: 25%;
+    height: auto;
+}
+
+#web-design .top-right .trademasters-item .image-preview .center-image {
+    width: 35%;
+}
+
+#web-design .top-right .image-preview img:hover {
+    transform: scale(3);
+    z-index: 100;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Fullscreen View Styles */
+.fullscreen-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-view.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fullscreen-view img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    #web-design .top-left #tl-web-design-2024 {
+        flex-direction: column;
+        width: calc(50vw - 100px);
+        height: 70vh;
+    }
+
+    #web-design .top-left #tl-web-design-2024 .tr-web-design-right {
+        border-left: none;
+        border-top: 2px solid #E6F3FF;
+        padding-left: 0;
+        padding-top: 25px;
+        margin-top: 25px;
+    }
+}
+
+/* Existing styles remain unchanged */
+
+#web-design .bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50vw;
+    height: 50vh;
+    overflow: hidden;
+}
+
+#web-design .bottom-right .device-showcase {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#web-design .bottom-right .mobile-showcase,
+#web-design .bottom-right .monitor-showcase {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+#web-design .bottom-right .mobile-showcase:hover,
+#web-design .bottom-right .monitor-showcase:hover {
+    transform: scale(1.1);
+}
+
+#web-design .bottom-right .mobile-border {
+    width: 180px;
+    height: 360px;
+    border: 7.5px solid #333;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#web-design .bottom-right .monitor-border {
+    width: 480px;
+    height: 270px;
+    border: 7.5px solid #333;
+    border-radius: 7.5px;
+    overflow: hidden;
+}
+
+#web-design .bottom-right .mobile-video,
+#web-design .bottom-right .monitor-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fullscreen-showcase {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+}
+
+.fullscreen-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fullscreen-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 2010;
+}
+
+.fullscreen-controls button {
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.close-fullscreen {
+    position: fixed;
+    top: -800px;
+    right: -700px;
+    color: #fff;
+    font-size: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+    z-index: 2010;
+}
+
+.close-fullscreen:hover {
+    transform: scale(1.1);
+}
+
+.fullscreen-view {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+}
+
+.fullscreen-view img {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+
+/* web design bottom left */
+#web-design .bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50vw;
+    height: 25vh;
+    overflow: visible;
+    z-index: 1000;
+    margin-bottom: 50px;
+}
+
+#pricing-section {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.pricing-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.pricing-column {
+    background-color: #1D3557;
+    color: #F1FAEE;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 25vh;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-column.featured {
+    height: 30vh;
+    transform: translateY(-5vh);
+}
+
+.pricing-column:hover {
+    transform: scale(1.05);
+}
+
+.pricing-column.featured:hover {
+    transform: translateY(-5vh) scale(1.05);
+}
+
+.pricing-column i {
+    font-size: 24px;
+    margin-bottom: 4px;
+    color: #A8DADC;
+}
+
+.pricing-column h3 {
+    font-size: 16px;
+    margin: 0 0 4px;
+    color: #F1FAEE;
+}
+
+.pricing-column .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #E63946;
+}
+
+.pricing-column ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pricing-column li {
+    margin-bottom: 2px;
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pricing-column {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+/* animation section */
+
+/* animation section */
+
+
+
+
+/* animation section */
+
+/* animation section */
+
+
+/* animation section */
+
+
+
+/* animation section */
+
+/* Main animation section styles */
+#animation {
+
+    max-width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    color: #C0C0C0;
+    background-color: transparent;
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Wrapper for columns */
+.columns-wrapper {
+    display: flex;
+    width: 100vw; /* Full width of the viewport */
+    height: 70vh; /* Height for the columns wrapper */
+    margin-top: 75px; /* Adjusted for navbar space */
+}
+
+/* Left column (Animation Info) styles */
+#animation .animation-info {
+    width: 50vw; /* Each column takes half the width */
+    height: 70vh; /* Set height to fit within total area */
+    padding: 10px; /* Reduced padding for more space */
+    overflow: hidden; /* Prevent scrollbars */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 10px; /* Margin between columns */
+    background-color: rgba(211, 211, 211, 0.1);
+}
+
+/* Heading styles in left column */
+#animation .animation-info h2 {
+    font-size: 2rem; /* Reduced size for better fit */
+    margin-bottom: 10px; /* Reduced spacing below heading */
+    color: #FFFFFF; 
+}
+
+#animation .animation-info h3 {
+    font-size: 1.4rem; /* Further reduced size for subheadings */
+    margin: 8px 0; /* Reduced spacing above and below */
+    color: #fd79a8; 
+}
+
+/* Software list styles in left column */
+#animation .animation-info .software-list {
+    display: flex;          
+    flex-wrap: nowrap; /* Prevent wrapping for icons */
+    gap: 10px; /* Reduced gap between items */
+}
+
+/* Individual software item styles in left column */
+#animation .animation-info .software-item {
+   display: flex;         
+   flex-direction: column; 
+   align-items: center;   
+   padding: 5px; /* Further reduced padding for items */
+   border-radius: 8px;   
+}
+
+#animation .animation-info .software-item i {
+   font-size: 40px; /* Reduced icon size for better fit */
+   color:#FFFFFF;        
+}
+
+#animation .animation-info .software-item span {
+   margin-top :5px;      
+   color:#FFFFFF;        
+}
+
+/* List styles in left column */
+#animation .animation-info ul {
+   list-style-type:none ; /* Remove default list styling */
+   padding-left :0 ;     
+   font-size :0.8rem ; /* Reduced font size for list items */
+   color:#FFFFFF;        
+}
+
+/* List item styles in left column */
+#animation .animation-info li {
+   margin-bottom :5px ; /* Further reduced margin between list items */
+   display:flex ;
+   align-items:center ;
+   font-weight :500 ;
+   transition :transform .3s ease ;
+}
+
+#animation .animation-info li:hover {
+   transform :translateX(5px) ;
+   color:#fd79a8 ;
+}
+
+#animation .animation-info li i {
+   margin-right :5px ; /* Reduced margin between icon and text */
+   color:#00cec9 ;
+   font-size :1.5rem ; /* Adjusted icon size for clarity */
+}
+
+/* Right column (Animation Pricing) styles */
+#animation .animation-pricing {
+    width: 50vw; /* Width of the right column */
+    height: 70vh; /* Total height for all content */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scrollbars in this section as well */
+}
+
+/* Package grid layout styles in right column */
+#animation .packages-grid {
+   display:grid ;       
+   grid-template-columns :repeat(2 ,1fr) ; /* Two columns in grid layout */
+   gap :15px ; /* Adjusted gap between packages for more space */
+}
+
+/* Individual package styles in right column */
+#animation .package {
+   border :1px solid rgba(255 ,255 ,255 ,0.2) ; /* Light border around packages */
+   border-radius :8px ; /* Rounded corners for packages */
+   padding :10px; /* Further reduced padding for packages to fit better*/
+   transition :transform .3s ease ; 
+   background-color :rgba(192,192,192,0.1); /* Light background color for packages */
+}
+
+#animation .package:hover {
+    transform :translateY(-5px); /* Hover effect for packages */ 
+}
+
+#animation .package h3 {
+    font-size :1.3rem ; /* Adjusted size for package titles to fit better*/
+    margin-bottom :5px ; 
+}
+
+#animation .package .price {
+    font-size :1.4rem ; /* Adjusted size for package prices to fit better*/
+    font-weight:bold ;
+    margin-bottom :5px ; /* Reduced margin below price text*/
+}
+
+/* Animation Explanation Styles in right column (below packages)*/
+.animation-explanation {
+    margin-top: 20px; /* Space above explanation section */
+}
+
+.animation-explanation h3 {
+    font-size: 1.2rem; /* Adjusted heading size for explanation section to fit better*/
+}
+
+.animation-explanation p {
+    font-size: 0.85rem; /* Adjusted font size for explanation text to fit better within area*/
+}
+
+/* Blender Icon Styles - Preserved from original input*/
+#animation .blender-icon {
+   background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg'); 
+   width :40px;          
+   height :40px;         
+   background-size :contain ; 
+   background-repeat:no-repeat ; 
+}
+
+/* After Effects Icon Styles - Preserved from original input*/
+#animation .after-effects-icon {
+   background-image:url('https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg'); 
+   width :35px;          
+   height :35px;         
+   background-size :contain ; 
+   background-repeat:no-repeat ; 
+}
+
+
+
+
+
+
+
+
+
+#video-gallery {
+    max-width: 100vw;
+    height: 25vh;
+}
+
+.video-slider {
+    margin-top: 0px;
+    width: 100vw;
+    height: 25vh; /* Increased from 20vh to 25vh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative; /* Added for absolute positioning of scroll buttons */
+    z-index: 500;
+}
+
+.video-column {
+    width: 37.5vw; /* Reduced from 42.5vw to show 2 videos */
+    max-height: 25vh; /* Increased from 20vh to 25vh */
+    overflow-x: scroll;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    z-index: 1000;
+}
+
+.video-column::-webkit-scrollbar {
+    display: none;
+}
+
+.middle-column {
+    width: 25vw;
+    max-height: 25vh; /* Increased from 20vh to 25vh */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.video-wrapper {
+    flex: 0 0 calc(50% - 10px); /* Changed to 50% to show 2 videos */
+    margin-right: 10px;
+    scroll-snap-align: start;
+}
+
+.video-column video {
+    width: 100%;
+    height: calc(20vh + 5vh); /* Increased height by 5vh */
+    border-radius: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.video-wrapper:hover video {
+    transform: scale(1.1); /* Increased from 1.05 to 1.1 */
+}
+
+.scroll-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.scroll-button.left {
+    left: calc(50% - 75px - 100px); /* 75px outside the left of the button */
+}
+
+.scroll-button.right {
+    right: calc(50% - 75px - 100px); /* 75px outside the right of the button */
+}
+#animation .middle-column .cta-button {   
+    padding: 10px 20px;
+    margin-top: 70px;
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #00cec9;
+    color: #FFFFFF;
+    height: auto;
+    font-weight: 300;
+}   
+
+#animation .middle-column .cta-button:hover { 
+    transform: translateY(-3px);
+    background-color: #009b9a;
+}
+
+
+/* ai production section */ 
+
+/* ai production section */ 
+
+/* ai production section */ 
+
+/* ai production section */ 
+
+/* ai production section */ 
+
+/* ai production section */ 
+
+
+/* Unique Tagging for AI Production Section */
+.ai-production-section {
+    width: 100vw;
+    height: calc(100vh - 40px); /* Adjust height for margins */
+    background-color: #ffffff; /* White background for light theme */
+    display: flex;
+    flex-direction: row; /* Change to row for side-by-side columns */
+    align-items: flex-start; /* Align items at the top */
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 5vh; /* Margin at the top */
+}
+
+/* Left Column Styles */
+.ai-production-left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the start */
+    align-items: center;
+    padding-top: 40px; /* Space moved up by 40px */
+}
+
+/* Section Title Style */
+.ai-section-title {
+    font-size: 2em; /* Title size */
+    color: #6c5ce7; /* Blue color for title */
+    margin-bottom: 20px; /* Space below title */
+}
+
+/* Large Video Placeholder Styles */
+.ai-large-video-placeholder {
+    width: 100%; /* Full width of left column */
+    height: 25%; /* Quarter of left column height */
+    background-color: #6c5ce7; /* Dark Blue */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Small Video Placeholders */
+.ai-small-video-placeholders {
+    display: flex;
+    justify-content: space-between; /* Space out small videos */
+}
+
+.ai-small-video-placeholder {
+    width: 30%; /* Small video width */
+    height: 15%; /* Height for small videos */
+    background-color: #00cec9; /* Teal */
+    border-radius: 10px;
+}
+
+/* Right Column Styles */
+.ai-production-right-column {
+    flex: 1;
+    padding-left: 20px; /* Space between columns */
+}
+
+/* Right Column Video Placeholder Styles */
+.ai-right-video-placeholder {
+    width: 100%; /* Full width of right column */
+    height: 25%; /* Similar height as large video placeholder on left */
+    background-color: #6c5ce7; /* Dark Blue for consistency */
+    border-radius: 10px;
+}
+
+/* Star in Movies Title Style */
+.ai-star-in-movies-title {
+    font-size: 2em;
+}
+
+/* Descriptions with Icons */
+.ai-description {
+    font-size: 1.2em;
+}
+
+/* Smaller Headings Styles */
+.technological-innovations-title,
+.applications-ai-title,
+.pricing-title,
+.user-testimonials-title,
+.future-trends-title {
+   font-size: 1.5em; 
+   color:#2d3436; 
+   margin-top:20px; 
+}
+
+/* Pricing Section Styles */
+.ai-pricing-section {
+   margin-top:30px; 
+}
+
+.ai-trailer-title {
+   font-size:1.8em; 
+}
+
+.ai-price {
+   font-size:1.5em; 
+}
+
+.ai-trailer-details li {
+   list-style-type:none; 
+}
+
+/* Order Now Button Style */
+.ai-order-now-button {
+   display:inline-block; 
+   padding:10px 20px; 
+   background-color:#fd79a8; 
+   color:white; 
+   border-radius:5px; 
+   text-decoration:none; 
+   transition:bg-color .3s ease, transform .3s ease-in-out;
+   margin-top:15px; 
+}
+
+.ai-order-now-button:hover {
+   background-color:#6c5ce7;
+   transform:translateY(-2px); 
+}
+
+/* User Testimonials Blockquote Style */
+blockquote {
+   font-style:italic; 
+   color:#2d3436; 
+   margin-top:10px; 
+   padding-left:15px; 
+   border-left:4px solid #fd79a8;
+}
+
+
+
+
+
+
+/* ==========================================================================
+   9. Utility Classes and Common Elements
+   ========================================================================== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    z-index: 1001;
+    transition: width 0.1s ease;
+}
+
+/* ==========================================================================
+   10. Button Styles
+   ========================================================================== */
+#backToTop, .whatsapp-button, .contact-box, .anchor-bottom {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    right: 30px;
+    z-index: 5000;
+}
+
+#backToTop {
+    bottom: 30px;
+    background-color: var(--primary-color);
+}
+
+.anchor-bottom {
+    bottom: 100px;
+    background-color: var(--accent-color);
+}
+
+.whatsapp-button {
+    bottom: 170px;
+    background-color: #25D366;
+}
+
+.contact-box {
+    bottom: 240px;
+    background-color: var(--secondary-color);
+    width: 180px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 1rem;
+}
+
+.contact-box i {
+   margin-right: 10px; 
+}
+
+#backToTop:hover, .whatsapp-button:hover, .contact-box:hover {
+   transform: translateY(-5px); 
+}
+
+/* ==========================================================================
+   11. Media Queries for Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+
+    nav.scrolled {
+        position: fixed;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem 0;
+    }
+
+    .nav-links li {
+        margin-bottom: 0;
+    }
+
+    .nav-social {
+        display: none;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .section::before,
+    .section::after {
+        width: 50px;
+    }
+
+    #backToTop, .whatsapp-button, .contact-box {
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.25rem; 
+        right: 20px; 
+    }
+
+    footer {
+        padding: 2rem 0.5rem; /* Reduce padding on smaller screens */
+    }
+
+    .footer-section {
+        flex-basis: 100%;
+        text-align: center;
+        padding: 0 1rem; /* Add some horizontal padding */
+    }
+}

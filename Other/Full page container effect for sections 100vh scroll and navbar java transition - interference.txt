@@ -1,0 +1,28 @@
+you need    // We'll initialize fullPage.js in aboutScript.js
+
+
+in your html for the scroll effect between sections with animations BUT 
+
+it interferes with nav scroll a bit 
+
+
+//this bits for your html section scroll effect 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            scrollHorizontally: true,
+            navigation: true,
+            navigationPosition: 'right',
+            scrollingSpeed: 700,
+            fitToSection: true,
+            scrollOverflow: true,
+            afterLoad: function(origin, destination, direction) {
+                // Add fade-in animation to the loaded section
+                destination.item.classList.add('fade-in');
+            }
+        });
+    </script>
+<!-- Custom JavaScript -->
+<script src="aboutScript.js"></script>

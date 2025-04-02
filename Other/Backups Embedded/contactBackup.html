@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Joe Mort's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.30/build/spline-viewer.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fd79a8;
+            --background-color: #f9f9f9;
+            --text-color: #2d3436;
+            --nav-bg: #2d3436;
+            --footer-bg: #2d3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            width: 100%;
+            background-color: var(--nav-bg);
+            padding: 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-social {
+            display: flex;
+        }
+
+        .nav-social a {
+            color: #fff;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .nav-social a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 0;
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .content-wrapper {
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            background-color: #f0f0f0;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin: 50px auto 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+            font-size: 24px;
+        }
+
+        .content-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .left-column, .right-column {
+            width: 48%;
+        }
+
+        .left-column {
+            background-color: var(--footer-bg);
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form-title {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s ease;
+        }
+
+        .form-group.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 10px rgba(108,92,231,0.3);
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 18px;
+            align-self: flex-start;
+            position: relative;
+            z-index: 3;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,206,201,0.4);
+        }
+
+        .spline-scene {
+            width: calc(100% + 60px);
+            height: 550px;
+            margin: -30px -30px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--footer-bg);
+            z-index: 1;
+        }
+
+        .spline-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, -50%); }
+            40% { transform: translate(-50%, -60%); }
+            60% { transform: translate(-50%, -55%); }
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .get-in-touch {
+            background: linear-gradient(135deg, #2d3436, #6c5ce7, #00cec9, #fd79a8, #ffffff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            padding: 40px;
+            color: #fff;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .get-in-touch h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            font-size: 72px;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.3);
+        }
+
+        .testimonials {
+            margin-top: 30px;
+        }
+
+        .testimonial {
+            background-color: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .testimonial-name {
+            font-weight: bold;
+            text-align: right;
+            color: #fff;
+        }
+
+        .feedback {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .feedback button {
+            font-size: 240px;
+            margin: 0 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .feedback button:hover {
+            transform: scale(1.1);
+        }
+
+        #thumbsUp {
+            color: #00ff00;
+        }
+
+        #thumbsDown {
+            color: #ff0000;
+        }
+
+        .feedback-count {
+            font-size: 36px;
+            margin-left: 10px;
+        }
+
+        .invoicing-section {
+            background-color: var(--footer-bg);
+            color: #fff;
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        .invoicing-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .invoicing-process {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex-basis: calc(25% - 20px);
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-step i {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .process-step h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .general-info {
+            margin-top: 50px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .general-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .general-info ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .general-info li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .general-info li::before {
+            content: "\2022";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .faq-section {
+            background-color: #f0f0f0;
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .faq-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: var(--text-color);
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: #fff;
+            padding: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin: 0 20px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+                       padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .chat-box-header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .chat-box-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-box-footer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-box-footer input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .whatsapp-hint {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #25D366;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            display: none;
+            z-index: 998;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-bottom: 20px;
+            }
+            .content-columns {
+                flex-direction: column;
+            }
+            .left-column, .right-column {
+                width: 100%;
+            }
+            .process-step {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="showcase.html"><i class="fas fa-briefcase"></i> Showcase</a></li>
+            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-social">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="nav-progress"></div>
+    </nav>
+
+    <main>
+        <div class="content-wrapper">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p><i class="fas fa-envelope"></i> joe@websiteanimation.co.uk</p>
+                <p><i class="fas fa-phone"></i> +44 UK 7478773451</p>
+                <p><i class="fab fa-whatsapp"></i> +44 UK 7478773451</p>
+                <p><i class="fas fa-map-marker-alt"></i> Swansea, South Wales, UK</p>
+            </div>
+
+            <div class="content-columns">
+                <div class="left-column">
+                    <h1 class="contact-form-title">Get in Touch</h1>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="animation">Animation</option>
+                                <option value="video-production">Video Production</option>
+                                <option value="coding-advice">Coding Advice</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <div class="spline-scene">
+                        <spline-viewer url="https://prod.spline.design/4V97LsHG9OTv-Rtb/scene.splinecode"></spline-viewer>
+                        <div class="spline-hint">Type on me!</div>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <div class="get-in-touch">
+                        <h2>Let's Create Something Amazing Together!</h2>
+                        <p>I'm excited to hear about your project and how we can collaborate to bring your vision to life.</p>
+                        <div class="social-icons">
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                        <div class="testimonials">
+                            <div class="testimonial">
+                                <p>"Joe's web design skills are unparalleled. He transformed our outdated website into a modern, user-friendly platform that has significantly increased our online engagement."</p>
+                                <div class="testimonial-name">- Sarah Johnson, CEO of TechInnovate</div>
+                            </div>
+                            <div class="testimonial">
+                                <p>"The animation work Joe did for our product launch video was absolutely stunning. It perfectly captured our brand essence and helped us stand out in a crowded market."</p>
+                                <div class="testimonial-name">- Michael Chen, Marketing Director at FutureGadgets</div>
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <h3>Are you happy with our services?</h3>
+                            <button id="thumbsUp"><i class="fas fa-thumbs-up"></i></button>
+                            <span class="feedback-count" id="thumbsUpCount">1245</span>
+                            <button id="thumbsDown"><i class="fas fa-thumbs-down"></i></button>
+                            <span class="feedback-count" id="thumbsDownCount">23</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="invoicing-section">
+                <h2>Invoicing Process & General Information</h2>
+                <div class="invoicing-process">
+                    <div class="process-step">
+                        <i class="fas fa-file-invoice"></i>
+                        <h3>Step 1: Project Completion</h3>
+                        <p>Once the project is completed and approved, an invoice will be generated.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-paper-plane"></i>
+                        <h3>Step 2: Invoice Delivery</h3>
+                        <p>The invoice will be sent to you via email in PDF format.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Step 3: Payment</h3>
+                        <p>Payment can be made via bank transfer or PayPal within 14 days.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Step 4: Confirmation</h3>
+                        <p>Once payment is received, a receipt will be issued for your records.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Step 5: Project Review</h3>
+                        <p>We conduct a final review to ensure all project goals have been met.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-comments"></i>
+                        <h3>Step 6: Feedback Session</h3>
+                        <p>We schedule a feedback session to discuss the project outcomes and future improvements.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Step 7: Performance Tracking</h3>
+                        <p>We set up analytics to track the performance of your new website or digital asset.</p>
+                    </div>
+                    <div class="process-step">
+                        <i class="fas fa-headset"></i>
+                        <h3>Step 8: Ongoing Support</h3>
+                        <p>We provide continuous support and maintenance to ensure your project remains up-to-date and effective.</p>
+                    </div>
+                </div>
+                <div class="general-info">
+                    <h3>Additional Information</h3>
+                    <p>We strive to provide the best service possible. Here are some key points to remember:</p>
+                    <ul>
+                        <li>All projects begin with a detailed consultation to understand your needs.</li>
+                        <li>We offer flexible payment plans for larger projects.</li>
+                        <li>Our team is available for support even after project completion.</li>
+                        <li>We value your feedback and continuously work to improve our services.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>What types of web design services do you offer?</h3>
+                        <p>We offer a full range of web design services including responsive design, e-commerce solutions, custom WordPress themes, and more.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How long does a typical web design project take?</h3>
+                        <p>Project timelines vary depending on complexity, but most websites take 4-8 weeks from concept to launch.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What animation styles do you specialize in?</h3>
+                        <p>We specialize in 2D and 3D animations, motion graphics, character animation, and explainer videos.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can you help with video production for marketing?</h3>
+                        <p>Absolutely! We offer full-service video production including scripting, filming, editing, and post-production.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What's your pricing structure for web design projects?</h3>
+                        <p>Our pricing is project-based and depends on the scope and complexity. We provide detailed quotes after initial consultations.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you offer AI video services?</h3>
+                        <p>Yes, we utilize AI for various aspects of video production, including voice synthesis, facial animation, and content generation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What printing services do you provide?</h3>
+                        <p>We offer a wide range of printing services including business cards, brochures, posters, and large format printing.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do you ensure the security of websites you design?</h3>
+                        <p>We implement the latest security measures including SSL certificates, regular updates, and secure coding practices.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can you help with SEO for my website?</h3>
+                        <p>Yes, we offer SEO services including on-page optimization, content strategy, and technical SEO improvements.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you provide ongoing maintenance for websites?</h3>
+                        <p>We offer various maintenance packages to keep your website up-to-date, secure, and performing optimally.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What's your process for creating animations?</h3>
+                        <p>Our animation process includes storyboarding, style development, animation, and revisions based on client feedback.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can you integrate e-commerce into my existing website?</h3>
+                        <p>Yes, we can integrate e-commerce solutions into existing websites or build new e-commerce sites from scratch.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What types of businesses do you typically work with?</h3>
+                        <p>We work with a diverse range of businesses, from small startups to large corporations across various industries.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do you handle revisions and feedback?</h3>
+                        <p>We have a structured revision process and welcome client feedback at key stages of each project.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you offer rush services for urgent projects?</h3>
+                        <p>Yes, we can accommodate rush projects for an additional fee, depending on our current workload and the project scope.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="showcase.html">Showcase</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li>Web Development</li>
+                    <li>Graphic Design</li>
+                    <li>SEO Optimization</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Email: joe@websiteanimation.co.uk</li>
+                    <li>Phone: +44 UK 7478773451</li>
+                    <li>Address: Swansea, South Wales, UK</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Website Animation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="chat-button" id="chatButton">Chat with us</a>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-box-header">Chat with us</div>
+        <div class="chat-box-body" id="chatBody"></div>
+        <div class="chat-box-footer">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+        </div>
+    </div>
+    <div class="whatsapp-hint">Contact us on WhatsApp!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const formGroups = document.querySelectorAll('.form-group');
+            const navLinks = document.querySelectorAll('nav a');
+            const mainContent = document.querySelector('main');
+            const nav = document.querySelector('nav');
+            const navProgress = document.querySelector('.nav-progress');
+            const chatButton = document.getElementById('chatButton');
+            const chatBox = document.getElementById('chatBox');
+            const chatInput = document.getElementById('chatInput');
+            const chatBody = document.getElementById('chatBody');
+            const whatsappHint = document.querySelector('.whatsapp-hint');
+
+            // Animate form groups on scroll
+            function checkFormGroups() {
+                const triggerBottom = window.innerHeight / 5 * 4;
+                formGroups.forEach(group => {
+                    const groupTop = group.getBoundingClientRect().top;
+                    if (groupTop < triggerBottom) {
+                        group.classList.add('visible');
+                    } else {
+                        group.classList.remove('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkFormGroups);
+            checkFormGroups();
+
+            // Change navbar color based on scroll position
+            window.addEventListener('scroll', () => {
+                let st = window.pageYOffset || document.documentElement.scrollTop;
+                let scrollPercentage = (st / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                navProgress.style.width = `${scrollPercentage}%`;
+
+                const invoicingSection = document.querySelector('.invoicing-section');
+                const testimonials = document.querySelector('.testimonials');
+
+                if (testimonials.getBoundingClientRect().top <= nav.offsetHeight) {
+                    nav.style.backgroundColor = '#6c5ce7'; // Blue
+                    nav.style.color = '#fff';
+                    navLinks.forEach(link => link.style.color = '#fff');
+                } else if (invoicingSection.getBoundingClientRect().top <= nav.offsetHeight) {
+                    nav.style.backgroundColor = '#fff'; // White
+                    nav.style.color = '#2d3436';
+                    navLinks.forEach(link => link.style.color = '#2d3436');
+                } else {
+                    nav.style.backgroundColor = '#2d3436'; // Grey
+                    nav.style.color = '#fff';
+                    navLinks.forEach(link => link.style.color = '#fff');
+                }
+            });
+
+            // Navbar link hover effect
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.color = '#00cec9';
+                });
+                link.addEventListener('mouseleave', () => {
+                    link.style.color = nav.style.color;
+                });
+            });
+
+            // Page transition on navbar link click
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+                    nav.style.transform = 'translateY(-100%)';
+                    nav.style.opacity = '0';
+                    mainContent.style.opacity = '0';
+                    mainContent.style.transform = 'translateX(-100%)';
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+
+            // Custom page transition animation
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    nav.style.transform = 'translateY(-100%)';
+                    nav.style.opacity = '0';
+                    mainContent.style.opacity = '0';
+                    mainContent.style.transform = 'translateX(-100%)';
+                    setTimeout(() => {
+                        nav.style.transform = 'translateY(0)';
+                        nav.style.opacity = '1';
+                        mainContent.style.opacity = '1';
+                        mainContent.style.transform = 'translateX(0)';
+                    }, 50);
+                }
+            });
+
+            // Feedback functionality
+            const thumbsUp = document.getElementById('thumbsUp');
+            const thumbsDown = document.getElementById('thumbsDown');
+            const thumbsUpCount = document.getElementById('thumbsUpCount');
+            const thumbsDownCount = document.getElementById('thumbsDownCount');
+
+            thumbsUp.addEventListener('click', () => {
+                if (!thumbsUp.disabled) {
+                    let count = parseInt(thumbsUpCount.textContent);
+                    thumbsUpCount.textContent = count + 1;
+                    thumbsUp.disabled = true;
+                    thumbsDown.disabled = true;
+                }
+            });
+
+            thumbsDown.addEventListener('click', () => {
+                if (!thumbsDown.disabled) {
+                    let count = parseInt(thumbsDownCount.textContent);
+                    thumbsDownCount.textContent = count + 1;
+                    thumbsUp.disabled = true;
+                    thumbsDown.disabled = true;
+                }
+            });
+
+            // Chat functionality
+            chatButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const message = chatInput.value;
+                    if (message.trim() !== '') {
+                        const messageElement = document.createElement('p');
+                        messageElement.textContent = `You: ${message}`;
+                        chatBody.appendChild(messageElement);
+                        chatInput.value = '';
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }
+                }
+            });
+
+            // WhatsApp hint
+            const whatsappLink = document.querySelector('.nav-social a[href="#"]');
+            whatsappLink.href = 'https://wa.me/447478773451';
+            whatsappLink.addEventListener('mouseenter', () => {
+                whatsappHint.style.display = 'block';
+            });
+            whatsappLink.addEventListener('mouseleave', () => {
+                whatsappHint.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
