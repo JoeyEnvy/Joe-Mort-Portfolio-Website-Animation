@@ -1,42 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/Organization">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Joshua Josef Mort - Web Developer & Designer specializing in web design, AI film generation, 2D/3D animation, and graphic/vinyl printing.">
-    <meta name="keywords" content="web design, AI film generation, 2D animation, 3D animation, graphic design, vinyl printing, web development, digital design">
-    <meta name="author" content="Joshua Josef Mort">
-    <title>Joshua Josef Mort - Web Developer & Designer</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Joe Mort - Professional web design, 2D/3D animation, AI film generation & graphic printing services. Based in South Wales, UK, serving clients worldwide.">
+    <meta name="keywords" content="web design, 2D animation, 3D animation, AI animation, film making, graphic design, vinyl printing, SEO optimization, responsive websites">
+    <meta name="author" content="Joe Mort">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://websiteanimation.co.uk" />
+    
+    <title>Website Animation | Joe Mort - Web Design & Animation Services</title>
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "WebsiteAnimation.co.uk",
+        "url": "https://websiteanimation.co.uk",
+        "logo": "https://websiteanimation.co.uk/images/Logo Glow 1.png",
+        "sameAs": [
+            "#", "#", "#"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Neath",
+            "addressRegion": "South Wales",
+            "addressCountry": "United Kingdom"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "your@email.com",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" href="images/Logo Glow 1.png" type="image/png">
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="indexStyles.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+
     <!-- External CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts with preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="indexStyles.css">
     
-    <!-- Spline 3D Viewer -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <!-- Lazy Load Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js" defer></script>
 
-    <!-- Open Graph Tags for Social Media Sharing -->
-    <meta property="og:title" content="Joshua Josef Mort - Web Developer & Designer">
-    <meta property="og:description" content="Web Developer & Designer crafting digital experiences that inspire and engage.">
-    <meta property="og:image" content="images/Logo Glow 1.png">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Website Animation | Joe Mort - Web Design & Animation Services">
+    <meta property="og:description" content="Transform your digital presence with expert web design, animation, and AI-driven solutions. Based in South Wales, serving clients worldwide.">
+    <meta property="og:image" content="https://websiteanimation.co.uk/images/Logo Glow 1.png">
     <meta property="og:url" content="https://websiteanimation.co.uk">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Cards for enhanced social sharing -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Joshua Josef Mort - Web Developer & Designer">
-    <meta name="twitter:description" content="Web Developer & Designer crafting digital experiences that inspire and engage.">
-    <meta name="twitter:image" content="images/Logo Glow 1.png">
-    <meta name="twitter:url" content="https://websiteanimation.co.uk">
+    <meta name="twitter:title" content="Website Animation | Joe Mort - Web Design & Animation Services">
+    <meta name="twitter:description" content="Expert solutions for web design, animation, and digital printing needs. Based in South Wales with global reach.">
+    <meta name="twitter:image" content="https://websiteanimation.co.uk/images/Logo Glow 1.png">
 
 </head>
 <body>
@@ -46,11 +79,11 @@
     <!-- Navigation -->
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="showcase.html"><i class="fas fa-photo-video"></i> Showcase</a></li>
-            <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
-            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="./index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./showcase.html"><i class="fas fa-photo-video"></i> Showcase</a></li>
+            <li><a href="./services.html"><i class="fas fa-cogs"></i> Services</a></li>
+            <li><a href="./about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
         
         <!-- Social Media Links -->
@@ -67,11 +100,11 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <h1>Joshua Josef Mort</h1>
+            <h1>Joe Mort</h1>
             <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p>
             <!-- Call-to-Action Button -->
             <div class="cta-button-container">
-                <a href="contact.html" class="cta-button">Get in Touch</a>
+                <a href="./contact.html" class="cta-button">Get in Touch</a>
             </div>
         </div>
     </div>
@@ -81,99 +114,101 @@
         <!-- Main Progress Bar (Optional) -->
         <div class="progress-bar"></div>
 
-        <!-- 3D Spline Scene (For interactive 3D content) -->
+        <!-- 3D Spline Scene (Lazy Loaded) -->
         <div class="spline-scene-cubes">
             <spline-viewer 
                 hint 
-                loading-anim-type="spinner-small-dark" 
-                url="https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode">
+                loading-anim-type='spinner-small-dark' 
+                url='https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode'>
             </spline-viewer>
         </div>
 
         <!-- Visual Elements like overlays -->
-        <div class="gradient-overlay"></div>
+        <div class='gradient-overlay'></div>
 
-        <!-- Content Wrapper for other sections -->
+  <!-- Content Wrapper for other sections -->
         <div class="content-wrapper">
-            <!-- Additional content can go here -->
-        </div>
-
             <!-- Freelancer Joe Mort About Section -->
             <section id="about" class="freelancer-info section">
-    <div class="container">
-        <!-- Left Column -->
-        <!-- Update this part of your HTML -->
-<div class="freelancer-info-left">
-    <h2>Joshua Josef Mort</h2>
-    <p class="intro">I'm a <span class="highlight">passionate freelance creative technologist</span> based in the UK, dedicated to creating stunning digital experiences that captivate and engage audiences.</p>
-    <p class="company">At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.</p>
-    <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
-    
-    <h3 class="showcase-title">Recent Web Design Examples</h3> <!-- Added title -->
-    <div class="device-showcase">
-        <div class="device desktop-viewer">
-            <div class="video-container">
-                <video id="desktop-video" autoplay muted loop>
-                    <source src="showcase slideshow videos/1.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-        
-        <div class="device mobile-viewer">
-            <div class="video-container">
-                <video id="mobile-video" autoplay muted loop>
-                    <source src="showcase slideshow videos/A.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="container">
+                    <!-- Left Column -->
+                    <div class="freelancer-info-left">
+                        <h2>Joe Mort</h2>
+                        <p class="intro">I'm a <span class="highlight">passionate freelance creative technologist</span> based in South Wales, UK, offering services worldwide. I specialize in creating stunning digital experiences that captivate and engage audiences.</p>
+                        <p class="company">At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.</p>
+                        <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
+                        
+                        <h3 class="showcase-title">Recent Web Design Examples</h3>
+                        <div class="device-showcase">
+                            <div class="device desktop-viewer">
+                                <div class="video-container">
+                                    <video id="desktop-video" autoplay muted loop playsinline loading="lazy">
+                                        <source src="showcase-slideshow-videos/1.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            
+                            <div class="device mobile-viewer">
+                                <div class="video-container">
+                                    <video id="mobile-video" autoplay muted loop playsinline loading="lazy">
+                                        <source src="showcase-slideshow-videos/A.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<!-- Streamlined right column -->
-<div class="freelancer-info-right">
-    <h3>Creative Services</h3>
-    <div class="services-grid">
-        <div class="service-category">
-            <h4><i class="fas fa-code"></i> Web Design</h4>
-            <ul>
-                <li>Responsive Websites</li>
-                <li>E-commerce Solutions</li>
-                <li>Custom Web Applications</li>
-                <li>SEO Optimization</li>
-            </ul>
-        </div>
-        
-        <div class="service-category">
-            <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
-            <ul>
-                <li>3D Modeling & Rendering</li>
-                <li>Character Animation</li>
-                <li>Motion Graphics</li>
-                <li>Product Animation</li>
-            </ul>
-        </div>
-        
-        <div class="service-category">
-            <h4><i class="fas fa-robot"></i> AI Solutions</h4>
-            <ul>
-                <li>Custom AI Integration</li>
-                <li>Chatbot Development</li>
-                <li>Automated Systems</li>
-                <li>AI Content Generation</li>
-            </ul>
-        </div>
-        
-        <div class="service-category">
-            <h4><i class="fas fa-print"></i> Print & Design</h4>
-            <ul>
-                <li>Brand Identity Design</li>
-                <li>Marketing Materials</li>
-                <li>Large Format Printing</li>
-                <li>Business Stationery</li>
-            </ul>
-        </div>
-    </div>
-</div>
+                    <!-- Right Column -->
+                    <div class="freelancer-info-right">
+                        <h3>Creative Services</h3>
+                        <div class="services-grid">
+                            <!-- Web Design -->
+                            <div class="service-category">
+                                <h4><i class="fas fa-code"></i> Web Design</h4>
+                                <ul>
+                                    <li>Responsive Websites</li>
+                                    <li>E-commerce Solutions</li>
+                                    <li>Custom Web Applications</li>
+                                    <li>SEO Optimization</li>
+                                </ul>
+                            </div>
+
+                            <!-- 3D/2D Animation -->
+                            <div class="service-category">
+                                <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
+                                <ul>
+                                    <li>3D Modeling & Rendering</li>
+                                    <li>Character Animation</li>
+                                    <li>Motion Graphics</li>
+                                    <li>Product Animation</li>
+                                </ul>
+                            </div>
+
+                            <!-- AI Solutions -->
+                            <div class="service-category">
+                                <h4><i class="fas fa-robot"></i> AI Solutions</h4>
+                                <ul>
+                                    <li>Custom AI Integration</li>
+                                    <li>Chatbot Development</li>
+                                    <li>Automated Systems</li>
+                                    <li>AI Content Generation</li>
+                                </ul>
+                            </div>
+
+                            <!-- Print & Design -->
+                            <div class="service-category">
+                                <h4><i class="fas fa-print"></i> Print & Design</h4>
+                                <ul>
+                                    <li>Brand Identity Design</li>
+                                    <li>Marketing Materials</li>
+                                    <li>Large Format Printing</li>
+                                    <li>Business Stationery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+   </div>
+            </section>
 
 <section class="portfolio-showcase">
     <!-- Main Columns Container -->
