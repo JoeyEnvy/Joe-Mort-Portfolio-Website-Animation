@@ -98,33 +98,52 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Joe Mort</h1>
-            <p>Web Developer & Designer crafting digital experiences that inspire and engage.</p>
-            <!-- Call-to-Action Button -->
-            <div class="cta-button-container">
-                <a href="./contact.html" class="cta-button">Get in Touch</a>
+   <div class="jj-hero-section" id="jj-hero">
+    <div class="jj-hero-content">
+        <div class="jj-hero-left">
+            <h1 class="jj-animate-in">Joe Mort</h1>
+            <h2 class="jj-animate-in">Digital Innovation & Creative Solutions</h2>
+            <p class="jj-animate-in">Transforming ideas into captivating digital experiences</p>
+            <div class="jj-services-list jj-animate-in">
+                <div class="jj-service-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Design</h3>
+                    <p>Crafting responsive, user-centric websites that engage and convert</p>
+                </div>
+                <div class="jj-service-item">
+                    <i class="fas fa-cube"></i>
+                    <h3>3D/2D Animation</h3>
+                    <p>Bringing stories to life with stunning visual narratives</p>
+                </div>
+                <div class="jj-service-item">
+                    <i class="fas fa-film"></i>
+                    <h3>Video/Image Editing</h3>
+                    <p>Polishing your visual content to perfection</p>
+                </div>
+                <div class="jj-service-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI-Powered Content</h3>
+                    <p>Leveraging cutting-edge AI for innovative video and image production</p>
+                </div>
+                <div class="jj-service-item">
+                    <i class="fas fa-print"></i>
+                    <h3>Print & Logo Design</h3>
+                    <p>Creating memorable brand identities and high-quality print materials</p>
+                </div>
+            </div>
+            <div class="jj-button-group">
+                <a href="#contact" class="jj-cta-button jj-animate-in">Start Your Project</a>
+                <a href="showcase.html" class="jj-showcase-button jj-animate-in">View Showcase</a>
             </div>
         </div>
-    </div>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Main Progress Bar (Optional) -->
-        <div class="progress-bar"></div>
-
-        <!-- 3D Spline Scene (Lazy Loaded) -->
-        <div class="spline-scene-cubes">
-            <spline-viewer 
-                hint 
-                loading-anim-type='spinner-small-dark' 
-                url='https://prod.spline.design/ajrmt9PrOEYooORw/scene.splinecode'>
-            </spline-viewer>
+        <div class="jj-hero-right jj-animate-in">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.51/build/spline-viewer.js" async></script>
+            <spline-viewer hint loading-anim-type="spinner-small-dark" url="https://prod.spline.design/LapAnjjMQ7o6vH0h/scene.splinecode"></spline-viewer>
         </div>
+    </div>
+    <div class="jj-dark-bar"></div>
+</div>
 
-        <!-- Visual Elements like overlays -->
-        <div class='gradient-overlay'></div>
 
   <!-- Content Wrapper for other sections -->
         <div class="content-wrapper">
@@ -210,7 +229,7 @@
    </div>
             </section>
 
-<section class="portfolio-showcase">
+<section class="portfolio-showcase" itemscope itemtype="https://schema.org/CreativeWork">
     <!-- Main Columns Container -->
     <div class="showcase-columns">
         <!-- Left Column -->
@@ -218,29 +237,29 @@
             <div class="inner-columns">
                 <!-- Info Column -->
                 <div class="project-info">
-                    <h2 class="project-title">Sex Pistols Expose</h2>
-                    <a href="https://sexpistolsexpose.com" class="project-link" target="_blank">
+                    <h2 class="project-title" itemprop="name">Sex Pistols Expose</h2>
+                    <a href="https://sexpistolsexpose.com" class="project-link" target="_blank" rel="noopener noreferrer" itemprop="url">
                         sexpistolsexpose.com
-                        <i class="fas fa-external-link-alt"></i>
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                     </a>
-                    <div class="project-description">
+                    <div class="project-description" itemprop="description">
                         <p>The world's premier Sex Pistols tribute band, bringing the raw energy and rebellion of punk rock to modern audiences with authentic performances and attitude.</p>
                     </div>
                     <div class="project-features">
-                        <div class="feature-item">
-                            <i class="fas fa-music"></i>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-music" aria-hidden="true"></i>
                             <span>Live Performance Streaming</span>
                         </div>
-                        <div class="feature-item">
-                            <i class="fas fa-ticket-alt"></i>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-ticket-alt" aria-hidden="true"></i>
                             <span>Tour Date Bookings</span>
                         </div>
-                        <div class="feature-item">
-                            <i class="fas fa-shopping-cart"></i>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                             <span>Merchandise Store</span>
                         </div>
-                        <div class="feature-item">
-                            <i class="fas fa-photo-video"></i>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-photo-video" aria-hidden="true"></i>
                             <span>Media Gallery</span>
                         </div>
                     </div>
@@ -250,7 +269,7 @@
                 <div class="device-previews">
                     <div class="mobile-preview">
                         <div class="mobile-border">
-                            <video class="preview-video" loop muted playsinline>
+                            <video class="preview-video" loop muted playsinline loading="lazy">
                                 <source src="website template content/Sex Pistols Expose Music/A.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -258,7 +277,7 @@
                     </div>
                     <div class="desktop-preview">
                         <div class="desktop-border">
-                            <video class="preview-video" loop muted playsinline>
+                            <video class="preview-video" loop muted playsinline loading="lazy">
                                 <source src="website template content/Sex Pistols Expose Music/Z.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -266,100 +285,98 @@
                     </div>
                 </div>
             </div>
-       
-
-        <!-- Right Column (Placeholder) -->
-        <!-- Right Column -->
-<div class="showcase-right">
-    <div class="inner-columns">
-        <div class="project-info">
-            <h2 class="project-title">TradeMasters Plumbing</h2>
-            <a href="https://trademastersplumbing.com" class="project-link" target="_blank">
-                trademastersplumbing.com
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-            <div class="project-description">
-                <p>Award-winning plumbing services website featuring 24/7 emergency support, online booking, and real-time service tracking. Specializing in residential and commercial plumbing solutions with a focus on customer satisfaction.</p>
-            </div>
-            <div class="project-features">
-                <div class="feature-item">
-                    <i class="fas fa-clock"></i>
-                    <span>24/7 Emergency Service</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Online Booking</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-tools"></i>
-                    <span>Service Tracking</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-award"></i>
-                    <span>Licensed & Insured</span>
-                </div>
-            </div>
         </div>
 
-        <div class="device-previews">
-            <div class="mobile-preview">
-                <div class="mobile-border">
-                    <video class="preview-video" loop muted playsinline>
-                        <source src="website template content/TradeMasters Plumbing/A.mp4" type="video/mp4">
-                    </video>
+        <!-- Right Column -->
+        <div class="showcase-right">
+            <div class="inner-columns">
+                <div class="project-info">
+                    <h2 class="project-title" itemprop="name">TradeMasters Plumbing</h2>
+                    <a href="https://trademastersplumbing.com" class="project-link" target="_blank" rel="noopener noreferrer" itemprop="url">
+                        trademastersplumbing.com
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                    </a>
+                    <div class="project-description" itemprop="description">
+                        <p>Award-winning plumbing services website featuring 24/7 emergency support, online booking, and real-time service tracking. Specializing in residential and commercial plumbing solutions with a focus on customer satisfaction.</p>
+                    </div>
+                    <div class="project-features">
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            <span>24/7 Emergency Service</span>
+                        </div>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                            <span>Online Booking</span>
+                        </div>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-tools" aria-hidden="true"></i>
+                            <span>Service Tracking</span>
+                        </div>
+                        <div class="feature-item" itemprop="featureList">
+                            <i class="fas fa-award" aria-hidden="true"></i>
+                            <span>Licensed & Insured</span>
+                        </div>
+                    </div>
                 </div>
-                <span class="preview-label">Mobile View</span>
-            </div>
-            <div class="desktop-preview">
-                <div class="desktop-border">
-                    <video class="preview-video" loop muted playsinline>
-                        <source src="website template content/TradeMasters Plumbing/C.mp4" type="video/mp4">
-                    </video>
+
+                <div class="device-previews">
+                    <div class="mobile-preview">
+                        <div class="mobile-border">
+                            <video class="preview-video" loop muted playsinline loading="lazy">
+                                <source src="website template content/TradeMasters Plumbing/A.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span class="preview-label">Mobile View</span>
+                    </div>
+                    <div class="desktop-preview">
+                        <div class="desktop-border">
+                            <video class="preview-video" loop muted playsinline loading="lazy">
+                                <source src="website template content/TradeMasters Plumbing/C.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <span class="preview-label">Desktop View</span>
+                    </div>
                 </div>
-                <span class="preview-label">Desktop View</span>
             </div>
         </div>
     </div>
-</div>
-
 </section>
 
-</section>
 
 <!-- Gallery Section -->
-<section class="project-galleries">
+<section class="project-galleries" itemscope itemtype="https://schema.org/ImageGallery">
     <div class="galleries-container">
         <!-- Left Column - Pistols -->
-        <div class="gallery-column">
-            <h3 class="gallery-title">Sex Pistols Reel Gallery</h3>
+        <div class="gallery-column" itemprop="hasPart" itemscope itemtype="https://schema.org/CollectionPage">
+            <h3 class="gallery-title" itemprop="name">Sex Pistols Reel Gallery</h3>
             <div class="gallery-slider">
                 <div class="gallery-track">
-                    <img src="website template content/Sex Pistols Expose Music/1.png" class="gallery-image" alt="Sex Pistols 1">
-                    <img src="website template content/Sex Pistols Expose Music/2.png" class="gallery-image" alt="Sex Pistols 2">
-                    <img src="website template content/Sex Pistols Expose Music/3.png" class="gallery-image" alt="Sex Pistols 3">
-                    <img src="website template content/Sex Pistols Expose Music/4.png" class="gallery-image" alt="Sex Pistols 4">
-                    <img src="website template content/Sex Pistols Expose Music/5.png" class="gallery-image" alt="Sex Pistols 5">
-                    <img src="website template content/Sex Pistols Expose Music/6.png" class="gallery-image" alt="Sex Pistols 6">
-                    <img src="website template content/Sex Pistols Expose Music/7.png" class="gallery-image" alt="Sex Pistols 7">
-                    <img src="website template content/Sex Pistols Expose Music/8.png" class="gallery-image" alt="Sex Pistols 8">
+                    <img src="website template content/Sex Pistols Expose Music/1.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose live performance - punk rock tribute band" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/2.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose guitarist stage performance" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/3.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose crowd interaction at concert" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/4.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose drummer in action" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/5.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose bassist performance shot" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/6.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose full band stage setup" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/7.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose lead singer close-up" itemprop="image">
+                    <img src="website template content/Sex Pistols Expose Music/8.png" class="gallery-image" loading="lazy" alt="Sex Pistols Expose concert lighting effects" itemprop="image">
                 </div>
             </div>
         </div>
 
         <!-- Right Column - Plumbing -->
-        <div class="gallery-column">
-            <h3 class="gallery-title">TradeMasters Reel Gallery</h3>
+        <div class="gallery-column" itemprop="hasPart" itemscope itemtype="https://schema.org/CollectionPage">
+            <h3 class="gallery-title" itemprop="name">TradeMasters Reel Gallery</h3>
             <div class="gallery-slider">
                 <div class="gallery-track">
-                    <img src="website template content/TradeMasters Plumbing/1.png" class="gallery-image" alt="TradeMasters 1">
-                    <img src="website template content/TradeMasters Plumbing/2.png" class="gallery-image" alt="TradeMasters 2">
-                    <img src="website template content/TradeMasters Plumbing/3.png" class="gallery-image" alt="TradeMasters 3">
-                    <img src="website template content/TradeMasters Plumbing/4.png" class="gallery-image" alt="TradeMasters 4">
-                    <img src="website template content/TradeMasters Plumbing/5.png" class="gallery-image" alt="TradeMasters 5">
-                    <img src="website template content/TradeMasters Plumbing/6.png" class="gallery-image" alt="TradeMasters 6">
-                    <img src="website template content/TradeMasters Plumbing/7.png" class="gallery-image" alt="TradeMasters 7">
-                    <img src="website template content/TradeMasters Plumbing/8.png" class="gallery-image" alt="TradeMasters 8">
-                    <img src="website template content/TradeMasters Plumbing/9.png" class="gallery-image" alt="TradeMasters 9">
+                    <img src="website template content/TradeMasters Plumbing/1.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing technician fixing kitchen sink" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/2.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing bathroom installation service" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/3.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing emergency pipe repair" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/4.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing commercial plumbing work" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/5.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing boiler installation service" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/6.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing team with company van" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/7.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing customer satisfaction guarantee" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/8.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing professional tool setup" itemprop="image">
+                    <img src="website template content/TradeMasters Plumbing/9.png" class="gallery-image" loading="lazy" alt="TradeMasters Plumbing award-winning plumbing service" itemprop="image">
                 </div>
             </div>
         </div>
@@ -367,119 +384,119 @@
 </section>
 
 <!-- AI MOVIE TRAILER SECTION -->
-<section class="ai-trailer-section">
-    <h2 class="section-title">Star in Your Favorite Movies</h2>
+<section class="ai-trailer-section" itemscope itemtype="https://schema.org/Service">
+    <h2 class="section-title" itemprop="name">Star in Your Favorite Movies</h2>
     <div class="ai-highlight-banner">
-        <span class="highlight-text">Revolutionary AI Technology</span>
-        <span class="highlight-text">24-Hour Delivery</span>
-        <span class="highlight-text">Hollywood-Grade Quality</span>
+        <span class="highlight-text" itemprop="feature">Revolutionary AI Technology</span>
+        <span class="highlight-text" itemprop="feature">24-Hour Delivery</span>
+        <span class="highlight-text" itemprop="feature">Hollywood-Grade Quality</span>
     </div>
 
     <div class="trailer-showcase">
         <div class="trailer-preview">
-            <video class="preview-video" poster="images/trailer-preview.jpg">
+            <video class="preview-video" poster="images/trailer-preview.jpg" preload="metadata" aria-label="AI Movie Trailer Demo">
                 <source src="your-preview-video.mp4" type="video/mp4">
             </video>
             <div class="preview-overlay">
-                <button class="play-btn"><i class="fas fa-play"></i></button>
+                <button class="play-btn" aria-label="Play demo video"><i class="fas fa-play" aria-hidden="true"></i></button>
             </div>
         </div>
 
         <div class="ai-features">
-            <div class="feature-card">
-                <i class="fas fa-magic"></i>
-                <h3>AI Face Swap Technology</h3>
-                <p>Seamlessly integrate your face into famous movie scenes with our advanced AI technology.</p>
+            <div class="feature-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+                <i class="fas fa-magic" aria-hidden="true"></i>
+                <h3 itemprop="name">AI Face Swap Technology</h3>
+                <p itemprop="description">Seamlessly integrate your face into famous movie scenes with our advanced AI technology.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-film"></i>
-                <h3>Professional Editing</h3>
-                <p>Hollywood-style color grading, sound effects, and transitions.</p>
+            <div class="feature-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+                <i class="fas fa-film" aria-hidden="true"></i>
+                <h3 itemprop="name">Professional Editing</h3>
+                <p itemprop="description">Hollywood-style color grading, sound effects, and transitions.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-clock"></i>
-                <h3>Quick Turnaround</h3>
-                <p>Receive your custom trailer within 24 hours.</p>
+            <div class="feature-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <h3 itemprop="name">Quick Turnaround</h3>
+                <p itemprop="description">Receive your custom trailer within 24 hours.</p>
             </div>
         </div>
 
         <div class="price-cards">
-            <div class="price-card">
-                <h4>30-Second Trailer</h4>
-                <span class="price">£45</span>
-                <ul>
+            <div class="price-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <h4 itemprop="name">30-Second Trailer</h4>
+                <span class="price" itemprop="price" content="45">£45</span>
+                <ul itemprop="description">
                     <li>Single Scene Integration</li>
                     <li>Basic Color Grading</li>
                     <li>Custom Music</li>
                     <li>2 Revisions</li>
                     <li>24hr Delivery</li>
                 </ul>
-        <a href="contact.html" class="order-btn">Order Now</a>
+                <a href="contact.html" class="order-btn" itemprop="url">Order Now</a>
             </div>
-            <div class="price-card featured">
-                <h4>60-Second Trailer</h4>
-                <span class="price">£75</span>
-                <ul>
+            <div class="price-card featured" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <h4 itemprop="name">60-Second Trailer</h4>
+                <span class="price" itemprop="price" content="75">£75</span>
+                <ul itemprop="description">
                     <li>Multiple Scene Integration</li>
                     <li>Advanced Color Grading</li>
                     <li>Custom Music & Effects</li>
                     <li>3 Revisions</li>
                     <li>Priority 24hr Delivery</li>
                 </ul>
-               <a href="contact.html" class="order-btn featured">Order Now</a>
+                <a href="contact.html" class="order-btn featured" itemprop="url">Order Now</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Stylish Divider -->
-<div class="section-divider">
+<div class="section-divider" aria-hidden="true">
     <div class="divider-content">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
+        <i class="fas fa-star" aria-hidden="true"></i>
+        <i class="fas fa-star" aria-hidden="true"></i>
+        <i class="fas fa-star" aria-hidden="true"></i>
     </div>
 </div>
 
 <!-- PAYMENT AND INVOICING SECTION -->
-<section class="payment-section">
-    <h2 class="section-title">Professional Payment & Invoicing</h2>
+<section class="payment-section" itemscope itemtype="https://schema.org/Service">
+    <h2 class="section-title" itemprop="name">Professional Payment & Invoicing</h2>
     
-    <div class="payment-process-cards">
-        <div class="process-card">
-            <div class="step-number">1</div>
-            <h3>Project Discussion</h3>
-            <p>Free consultation to discuss your requirements and provide a detailed quote.</p>
+    <div class="payment-process-cards" itemprop="description">
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">1</div>
+            <h3 itemprop="name">Project Discussion</h3>
+            <p itemprop="text">Free consultation to discuss your requirements and provide a detailed quote.</p>
         </div>
-        <div class="process-card">
-            <div class="step-number">2</div>
-            <h3>Formal Quote</h3>
-            <p>Receive a professional quote outlining all services, deliverables, and timelines.</p>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">2</div>
+            <h3 itemprop="name">Formal Quote</h3>
+            <p itemprop="text">Receive a professional quote outlining all services, deliverables, and timelines.</p>
         </div>
-        <div class="process-card">
-            <div class="step-number">3</div>
-            <h3>Deposit Invoice</h3>
-            <p>50% deposit invoice sent via email with secure payment options.</p>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">3</div>
+            <h3 itemprop="name">Deposit Invoice</h3>
+            <p itemprop="text">50% deposit invoice sent via email with secure payment options.</p>
         </div>
-        <div class="process-card">
-            <div class="step-number">4</div>
-            <h3>Project Completion</h3>
-            <p>Final invoice sent upon approval with remaining balance due within 14 days.</p>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">4</div>
+            <h3 itemprop="name">Project Completion</h3>
+            <p itemprop="text">Final invoice sent upon approval with remaining balance due within 14 days.</p>
         </div>
     </div>
 
     <div class="payment-info-grid">
-        <div class="payment-method-card">
-            <h3>Payment Methods</h3>
-            <ul>
-                <li><i class="fas fa-university"></i> Bank Transfer</li>
-                <li><i class="fab fa-paypal"></i> PayPal</li>
-                <li><i class="fas fa-credit-card"></i> Credit/Debit Card</li>
-                <li><i class="fas fa-pound-sign"></i> International Payments</li>
+        <div class="payment-method-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <h3 itemprop="name">Payment Methods</h3>
+            <ul itemprop="description">
+                <li><i class="fas fa-university" aria-hidden="true"></i> Bank Transfer</li>
+                <li><i class="fab fa-paypal" aria-hidden="true"></i> PayPal</li>
+                <li><i class="fas fa-credit-card" aria-hidden="true"></i> Credit/Debit Card</li>
+                <li><i class="fas fa-pound-sign" aria-hidden="true"></i> International Payments</li>
             </ul>
         </div>
 
-        <div class="payment-terms-card">
+        <div class="payment-terms-card" itemprop="termsOfService">
             <h3>Payment Terms</h3>
             <ul>
                 <li>50% deposit required to commence work</li>
@@ -489,7 +506,7 @@
             </ul>
         </div>
 
-        <div class="invoice-info-card">
+        <div class="invoice-info-card" itemprop="provider" itemscope itemtype="https://schema.org/Organization">
             <h3>Professional Invoicing</h3>
             <ul>
                 <li>Detailed itemized invoices</li>
@@ -500,42 +517,42 @@
         </div>
     </div>
 
-    <div class="service-pricing-table">
-        <h3>Service Pricing Guide</h3>
+    <div class="service-pricing-table" itemscope itemtype="https://schema.org/PriceSpecification">
+        <h3 itemprop="name">Service Pricing Guide</h3>
         <table>
             <tr>
-                <th>Service</th>
-                <th>Starting Price</th>
+                <th itemprop="description">Service</th>
+                <th itemprop="priceCurrency" content="GBP">Starting Price</th>
                 <th>Deposit</th>
-                <th>Delivery Time</th>
+                <th itemprop="eligibleDuration">Delivery Time</th>
             </tr>
-            <tr>
-                <td>AI Movie Trailers</td>
-                <td>£75/minute</td>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">AI Movie Trailers</td>
+                <td itemprop="price" content="75">£75/minute</td>
                 <td>100%</td>
                 <td>24 hours</td>
             </tr>
-            <tr>
-                <td>Web Design</td>
-                <td>£299</td>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Web Design</td>
+                <td itemprop="price" content="299">£299</td>
                 <td>50%</td>
                 <td>2-4 weeks</td>
             </tr>
-            <tr>
-                <td>Logo Design</td>
-                <td>£199</td>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Logo Design</td>
+                <td itemprop="price" content="199">£199</td>
                 <td>50%</td>
                 <td>3-5 days</td>
             </tr>
-            <tr>
-                <td>3D Animation</td>
-                <td>£499</td>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">3D Animation</td>
+                <td itemprop="price" content="499">£499</td>
                 <td>50%</td>
                 <td>1-3 weeks</td>
             </tr>
-            <tr>
-                <td>Print Services</td>
-                <td>£99</td>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Print Services</td>
+                <td itemprop="price" content="99">£99</td>
                 <td>100%</td>
                 <td>3-5 days</td>
             </tr>
@@ -543,52 +560,51 @@
     </div>
 </section>
 
-<!-- mobile and animation informatiion --> 
-
-<section class="spline-mobile-animate">
+<!-- 3D Animation Information Section -->
+<section class="spline-mobile-animate" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="showcase-container">
         <!-- Left Column - Animation Info -->
         <div class="animation-info">
-            <h2>3D Animation Excellence</h2>
-            <p class="highlight-text">Crafting immersive digital experiences with cutting-edge animation technology</p>
+            <h2 itemprop="name">3D Animation Excellence</h2>
+            <p class="highlight-text" itemprop="description">Crafting immersive digital experiences with cutting-edge animation technology</p>
             
             <div class="software-stack">
-                <div class="software-item">
-                    <i class="fas fa-cube"></i>
+                <div class="software-item" itemprop="softwareRequirements">
+                    <i class="fas fa-cube" aria-hidden="true"></i>
                     <div class="software-content">
-                        <h3>Blender Mastery</h3>
-                        <p>Expert 3D modeling, character rigging, and cinematic animation using Blender's powerful pipeline</p>
-                        <span class="tech-tag">3D Modeling</span>
-                        <span class="tech-tag">Animation</span>
-                        <span class="tech-tag">Rendering</span>
+                        <h3 itemprop="name">Blender Mastery</h3>
+                        <p itemprop="description">Expert 3D modeling, character rigging, and cinematic animation using Blender's powerful pipeline</p>
+                        <span class="tech-tag" itemprop="keywords">3D Modeling</span>
+                        <span class="tech-tag" itemprop="keywords">Animation</span>
+                        <span class="tech-tag" itemprop="keywords">Rendering</span>
                     </div>
                 </div>
                 
-                <div class="software-item">
-                    <i class="fas fa-code"></i>
+                <div class="software-item" itemprop="softwareRequirements">
+                    <i class="fas fa-code" aria-hidden="true"></i>
                     <div class="software-content">
-                        <h3>Spline & Web3D</h3>
-                        <p>Interactive web-based 3D experiences with real-time rendering and user engagement</p>
-                        <span class="tech-tag">Interactive</span>
-                        <span class="tech-tag">Real-time</span>
-                        <span class="tech-tag">Web-based</span>
+                        <h3 itemprop="name">Spline & Web3D</h3>
+                        <p itemprop="description">Interactive web-based 3D experiences with real-time rendering and user engagement</p>
+                        <span class="tech-tag" itemprop="keywords">Interactive</span>
+                        <span class="tech-tag" itemprop="keywords">Real-time</span>
+                        <span class="tech-tag" itemprop="keywords">Web-based</span>
                     </div>
                 </div>
                 
-                <div class="software-item">
-                    <i class="fas fa-layer-group"></i>
+                <div class="software-item" itemprop="softwareRequirements">
+                    <i class="fas fa-layer-group" aria-hidden="true"></i>
                     <div class="software-content">
-                        <h3>Advanced Technologies</h3>
-                        <p>Three.js, WebGL, and Motion Graphics for comprehensive animation solutions</p>
-                        <span class="tech-tag">Three.js</span>
-                        <span class="tech-tag">WebGL</span>
-                        <span class="tech-tag">Motion</span>
+                        <h3 itemprop="name">Advanced Technologies</h3>
+                        <p itemprop="description">Three.js, WebGL, and Motion Graphics for comprehensive animation solutions</p>
+                        <span class="tech-tag" itemprop="keywords">Three.js</span>
+                        <span class="tech-tag" itemprop="keywords">WebGL</span>
+                        <span class="tech-tag" itemprop="keywords">Motion</span>
                     </div>
                 </div>
             </div>
 
             <div class="interaction-hint">
-                <i class="fas fa-hand-pointer"></i>
+                <i class="fas fa-hand-pointer" aria-hidden="true"></i>
                 <p>Try our interactive 3D demo →</p>
                 <span class="pulse-dot"></span>
             </div>
@@ -596,104 +612,106 @@
 
         <!-- Right Column - Spline Scene -->
         <div class="spline-container">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/tQJjaEwSggap5jqT/scene.splinecode"></spline-viewer>
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js" defer></script>
+            <spline-viewer 
+                url="https://prod.spline.design/tQJjaEwSggap5jqT/scene.splinecode" 
+                loading="lazy" 
+                aria-label="Interactive 3D animation demo">
+            </spline-viewer>
             <div class="scene-overlay"></div>
         </div>
     </div>
 </section>
 
-</section>
-
-            <!-- Animation Showcase Section -->
+      <!-- Animation Showcase Section -->
 <!-- Top Divider -->
-<div class="section-divider top-wave">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+<div class="section-divider top-wave" aria-hidden="true">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
     </svg>
 </div>
 
-<section id="animation-expertise" class="pro-animation-showcase">
+<section id="animation-expertise" class="pro-animation-showcase" itemscope itemtype="https://schema.org/CreativeWork">
     <div class="showcase-wrapper">
         <!-- Left Column - Videos -->
         <div class="portfolio-display">
-            <h2 class="section-heading">Creative Portfolio</h2>
+            <h2 class="section-heading" itemprop="name">Creative Portfolio</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <video src="videos/0.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/0.mp4" loop muted autoplay playsinline loading="lazy" title="Fluid Dynamics Animation" aria-label="Fluid Dynamics Animation" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">Fluid Dynamics</h3>
-                        <p class="item-description">Advanced 2D water simulation with realistic physics</p>
+                        <h3 class="bold-title" itemprop="name">Fluid Dynamics</h3>
+                        <p class="item-description" itemprop="description">Advanced 2D water simulation with realistic physics</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <video src="videos/13.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/13.mp4" loop muted autoplay playsinline loading="lazy" title="Interactive Particle Systems Animation" aria-label="Interactive Particle Systems Animation" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">Particle Systems</h3>
-                        <p class="item-description">Interactive 3D balloon physics demonstration</p>
+                        <h3 class="bold-title" itemprop="name">Particle Systems</h3>
+                        <p class="item-description" itemprop="description">Interactive 3D balloon physics demonstration</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <video src="videos/2.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/2.mp4" loop muted autoplay playsinline loading="lazy" title="3D Modeling Spacecraft Visualization" aria-label="3D Modeling Spacecraft Visualization" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">3D Modeling</h3>
-                        <p class="item-description">High-fidelity spacecraft visualization</p>
+                        <h3 class="bold-title" itemprop="name">3D Modeling</h3>
+                        <p class="item-description" itemprop="description">High-fidelity spacecraft visualization</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <video src="videos/7.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/7.mp4" loop muted autoplay playsinline loading="lazy" title="Global Environmental Design Animation" aria-label="Global Environmental Design Animation" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">Environmental Design</h3>
-                        <p class="item-description">Global-scale animation and effects</p>
+                        <h3 class="bold-title" itemprop="name">Environmental Design</h3>
+                        <p class="item-description" itemprop="description">Global-scale animation and effects</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <video src="videos/4.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/4.mp4" loop muted autoplay playsinline loading="lazy" title="Dynamic Motion Design Graphics" aria-label="Dynamic Motion Design Graphics" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">Motion Design</h3>
-                        <p class="item-description">Dynamic motion graphics showcase</p>
+                        <h3 class="bold-title" itemprop="name">Motion Design</h3>
+                        <p class="item-description" itemprop="description">Dynamic motion graphics showcase</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <video src="videos/9.mp4" loop muted autoplay playsinline></video>
+                <div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                    <video src="videos/9.mp4" loop muted autoplay playsinline loading="lazy" title="VFX Special Effects Integration" aria-label="VFX Special Effects Integration" itemprop="contentUrl"></video>
                     <div class="item-overlay">
-                        <h3 class="bold-title">VFX Integration</h3>
-                        <p class="item-description">Special effects demonstration</p>
+                        <h3 class="bold-title" itemprop="name">VFX Integration</h3>
+                        <p class="item-description" itemprop="description">Special effects demonstration</p>
                     </div>
                 </div>
 
-<div class="portfolio-item">
-    <video src="videos/11.mp4" loop muted autoplay playsinline></video>
+<div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+    <video src="videos/11.mp4" loop muted autoplay playsinline loading="lazy" title="Character Animation Expressions" aria-label="Character Animation Expressions" itemprop="contentUrl"></video>
     <div class="item-overlay">
-        <h3 class="bold-title">Character Animation</h3>
-        <p class="item-description">Dynamic character movement and expressions</p>
+        <h3 class="bold-title" itemprop="name">Character Animation</h3>
+        <p class="item-description" itemprop="description">Dynamic character movement and expressions</p>
     </div>
 </div>
-<div class="portfolio-item">
-    <video src="videos/5.mp4" loop muted autoplay playsinline></video>
+<div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+    <video src="videos/5.mp4" loop muted autoplay playsinline loading="lazy" title="Logo Animation Corporate Brand" aria-label="Logo Animation Corporate Brand" itemprop="contentUrl"></video>
     <div class="item-overlay">
-        <h3 class="bold-title">Logo Animation</h3>
-        <p class="item-description">Corporate brand animation showcase</p>
+        <h3 class="bold-title" itemprop="name">Logo Animation</h3>
+        <p class="item-description" itemprop="description">Corporate brand animation showcase</p>
     </div>
 </div>
-<div class="portfolio-item">
-    <video src="videos/12.mp4" loop muted autoplay playsinline></video>
+<div class="portfolio-item" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+    <video src="videos/12.mp4" loop muted autoplay playsinline loading="lazy" title="UI Animation Interface" aria-label="UI Animation Interface" itemprop="contentUrl"></video>
     <div class="item-overlay">
-        <h3 class="bold-title">UI Animation</h3>
-        <p class="item-description">Interactive interface animations</p>
+        <h3 class="bold-title" itemprop="name">UI Animation</h3>
+        <p class="item-description" itemprop="description">Interactive interface animations</p>
     </div>
 </div>
             </div>
         </div>
 
         <!-- Right Column - Services -->
-        <div class="services-info">
+        <div class="services-info" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
             <h2 class="section-heading">Animation Services</h2>
             <div class="services-content">
-                <div class="service-category">
-                    <h3 class="bold-title">2D Animation Excellence</h3>
-                    <p class="price-tag">Starting from $500/minute</p>
-                    <ul class="service-list">
+                <div class="service-category" itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                    <h3 class="bold-title" itemprop="name">2D Animation Excellence</h3>
+                    <p class="price-tag"><meta itemprop="priceCurrency" content="USD">Starting from $<span itemprop="lowPrice">500</span>/minute</p>
+                    <ul class="service-list" itemprop="description">
                         <li>Character Design & Animation</li>
                         <li>Motion Graphics & Visual Effects</li>
                         <li>Explainer Videos & Infographics</li>
@@ -702,10 +720,10 @@
                     </ul>
                 </div>
 
-                <div class="service-category">
-                    <h3 class="bold-title">3D Animation Mastery</h3>
-                    <p class="price-tag">Starting from $1000/minute</p>
-                    <ul class="service-list">
+                <div class="service-category" itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                    <h3 class="bold-title" itemprop="name">3D Animation Mastery</h3>
+                    <p class="price-tag"><meta itemprop="priceCurrency" content="USD">Starting from $<span itemprop="lowPrice">1000</span>/minute</p>
+                    <ul class="service-list" itemprop="description">
                         <li>Product Visualization</li>
                         <li>Architectural Visualization</li>
                         <li>Character Modeling & Animation</li>
@@ -760,145 +778,145 @@
     </div>
 </section>
 
-<div class="section-divider bottom-wave">
+
+<div class="section-divider bottom-wave" aria-hidden="true">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
     </svg>
 </div>
 
-
 <!-- Web Design Pricing Section -->
-<section class="wd-pricing-section">
+<section class="wd-pricing-section" itemscope itemtype="https://schema.org/Service">
     <div class="wd-container">
-        <h2 class="wd-section-title">Professional Web Design Solutions</h2>
-        <p class="wd-section-desc">Transform your digital presence with our comprehensive web design packages. Each solution is tailored to meet your specific needs and business goals.</p>
+        <h2 class="wd-section-title" itemprop="name">Professional Web Design Solutions</h2>
+        <p class="wd-section-desc" itemprop="description">Transform your digital presence with our comprehensive web design packages. Each solution is tailored to meet your specific needs and business goals.</p>
         
         <div class="wd-pricing-grid">
             <!-- Starter Package -->
-            <div class="wd-price-card wd-starter">
-                <h3>Starter Package</h3>
-                <div class="wd-price">£499</div>
+            <div class="wd-price-card wd-starter" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <h3 itemprop="name">Starter Package</h3>
+                <div class="wd-price"><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span></div>
                 <p class="wd-price-desc">Perfect for small businesses and startups</p>
-                <ul class="wd-features">
-                    <li><i class="fas fa-check"></i> Responsive Design</li>
-                    <li><i class="fas fa-check"></i> 5 Core Pages</li>
-                    <li><i class="fas fa-check"></i> SEO Optimization</li>
-                    <li><i class="fas fa-check"></i> Contact Form</li>
-                    <li><i class="fas fa-check"></i> Mobile Friendly</li>
-                    <li><i class="fas fa-check"></i> Social Media Integration</li>
-                    <li><i class="fas fa-check"></i> Google Analytics</li>
+                <ul class="wd-features" itemprop="description">
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Responsive Design</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> 5 Core Pages</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> SEO Optimization</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Contact Form</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Mobile Friendly</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Social Media Integration</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Google Analytics</li>
                 </ul>
                 <div class="wd-delivery">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <span>2 Weeks Delivery</span>
                 </div>
-                <a href="contact.html" class="wd-cta-button">Get Started</a>
+                <a href="contact.html" class="wd-cta-button" itemprop="url">Get Started</a>
             </div>
 
             <!-- Professional Package -->
-            <div class="wd-price-card wd-professional">
+            <div class="wd-price-card wd-professional" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                 <div class="wd-popular">Most Popular</div>
-                <h3>Professional Package</h3>
-                <div class="wd-price">£999</div>
+                <h3 itemprop="name">Professional Package</h3>
+                <div class="wd-price"><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="999">999</span></div>
                 <p class="wd-price-desc">Ideal for growing businesses</p>
-                <ul class="wd-features">
-                    <li><i class="fas fa-check"></i> Everything in Starter</li>
-                    <li><i class="fas fa-check"></i> Custom Animations</li>
-                    <li><i class="fas fa-check"></i> E-commerce Ready</li>
-                    <li><i class="fas fa-check"></i> CMS Integration</li>
-                    <li><i class="fas fa-check"></i> Advanced Analytics</li>
-                    <li><i class="fas fa-check"></i> Premium Support</li>
-                    <li><i class="fas fa-check"></i> Performance Optimization</li>
-                    <li><i class="fas fa-check"></i> Security Features</li>
+                <ul class="wd-features" itemprop="description">
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Everything in Starter</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Custom Animations</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> E-commerce Ready</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> CMS Integration</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Advanced Analytics</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Premium Support</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Performance Optimization</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Security Features</li>
                 </ul>
                 <div class="wd-delivery">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <span>3-4 Weeks Delivery</span>
                 </div>
-                <a href="contact.html" class="wd-cta-button">Get Started</a>
+                <a href="contact.html" class="wd-cta-button" itemprop="url">Get Started</a>
             </div>
 
             <!-- Enterprise Package -->
-            <div class="wd-price-card wd-enterprise">
-                <h3>Enterprise Package</h3>
+            <div class="wd-price-card wd-enterprise" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <h3 itemprop="name">Enterprise Package</h3>
                 <div class="wd-price">Custom</div>
                 <p class="wd-price-desc">For large-scale business needs</p>
-                <ul class="wd-features">
-                    <li><i class="fas fa-check"></i> Everything in Professional</li>
-                    <li><i class="fas fa-check"></i> 3D Animations</li>
-                    <li><i class="fas fa-check"></i> Custom Features</li>
-                    <li><i class="fas fa-check"></i> Priority Support</li>
-                    <li><i class="fas fa-check"></i> Advanced Security</li>
-                    <li><i class="fas fa-check"></i> API Integration</li>
-                    <li><i class="fas fa-check"></i> Custom Database</li>
-                    <li><i class="fas fa-check"></i> Scalable Infrastructure</li>
+                <ul class="wd-features" itemprop="description">
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Everything in Professional</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> 3D Animations</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Custom Features</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Priority Support</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Advanced Security</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> API Integration</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Custom Database</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Scalable Infrastructure</li>
                 </ul>
                 <div class="wd-delivery">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <span>Custom Timeline</span>
                 </div>
-                <a href="contact.html" class="wd-cta-button">Contact Us</a>
+                <a href="contact.html" class="wd-cta-button" itemprop="url">Contact Us</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- AI Generation Section -->
-<section class="ai-gen-section">
+<section class="ai-gen-section" itemscope itemtype="https://schema.org/Product">
     <div class="ai-gen-container">
         <div class="ai-gen-content">
-            <h2 class="ai-gen-title">AI-Powered Website Generation</h2>
+            <h2 class="ai-gen-title" itemprop="name">AI-Powered Website Generation</h2>
             <div class="ai-gen-soon">Coming Soon</div>
-            <p class="ai-gen-desc">
+            <p class="ai-gen-desc" itemprop="description">
                 Experience the future of web development with our revolutionary AI-powered platform. 
                 Create professional, custom websites in minutes using advanced artificial intelligence 
                 and machine learning algorithms.
             </p>
             
             <div class="ai-gen-preview">
-                <video class="ai-gen-video" controls poster="path-to-thumbnail.jpg">
+                <video class="ai-gen-video" controls poster="path-to-thumbnail.jpg" preload="metadata" aria-label="AI Website Generation Preview">
                     <source src="webgen.mp4" type="video/x-matroska">
                     Your browser does not support the video tag.
                 </video>
                 <div class="ai-gen-overlay">
                     <span class="ai-gen-play">
-                        <i class="fas fa-play"></i>
+                        <i class="fas fa-play" aria-hidden="true"></i>
                         Preview Our Technology
                     </span>
                 </div>
             </div>
 
             <div class="ai-gen-features">
-                <div class="ai-gen-feature">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Lightning Fast</h4>
-                    <p>Generate complete websites in minutes, not weeks</p>
+                <div class="ai-gen-feature" itemprop="featureList" itemscope itemtype="https://schema.org/ListItem">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <h4 itemprop="name">Lightning Fast</h4>
+                    <p itemprop="description">Generate complete websites in minutes, not weeks</p>
                     <ul class="ai-gen-feature-list">
-                        <li>Instant Prototypes</li>
-                        <li>Quick Iterations</li>
-                        <li>Rapid Deployment</li>
+                        <li itemprop="itemListElement">Instant Prototypes</li>
+                        <li itemprop="itemListElement">Quick Iterations</li>
+                        <li itemprop="itemListElement">Rapid Deployment</li>
                     </ul>
                 </div>
 
-                <div class="ai-gen-feature">
-                    <i class="fas fa-robot"></i>
-                    <h4>AI-Powered Design</h4>
-                    <p>Smart algorithms create optimal user experiences</p>
+                <div class="ai-gen-feature" itemprop="featureList" itemscope itemtype="https://schema.org/ListItem">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    <h4 itemprop="name">AI-Powered Design</h4>
+                    <p itemprop="description">Smart algorithms create optimal user experiences</p>
                     <ul class="ai-gen-feature-list">
-                        <li>Intelligent Layouts</li>
-                        <li>Smart Color Schemes</li>
-                        <li>Automated Optimization</li>
+                        <li itemprop="itemListElement">Intelligent Layouts</li>
+                        <li itemprop="itemListElement">Smart Color Schemes</li>
+                        <li itemprop="itemListElement">Automated Optimization</li>
                     </ul>
                 </div>
 
-                <div class="ai-gen-feature">
-                    <i class="fas fa-code"></i>
-                    <h4>Clean Code Output</h4>
-                    <p>Professional-grade, optimized code generation</p>
+                <div class="ai-gen-feature" itemprop="featureList" itemscope itemtype="https://schema.org/ListItem">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                    <h4 itemprop="name">Clean Code Output</h4>
+                    <p itemprop="description">Professional-grade, optimized code generation</p>
                     <ul class="ai-gen-feature-list">
-                        <li>SEO Friendly</li>
-                        <li>Performance Optimized</li>
-                        <li>Mobile-First Approach</li>
+                        <li itemprop="itemListElement">SEO Friendly</li>
+                        <li itemprop="itemListElement">Performance Optimized</li>
+                        <li itemprop="itemListElement">Mobile-First Approach</li>
                     </ul>
                 </div>
             </div>
@@ -906,8 +924,9 @@
             <div class="ai-gen-signup">
                 <h4>Be First to Know</h4>
                 <p>Join our waitlist for early access and special launch pricing</p>
-                <form class="ai-gen-form">
-                    <input type="email" placeholder="Enter your email" class="ai-gen-input">
+                <form class="ai-gen-form" itemprop="potentialAction" itemscope itemtype="https://schema.org/SubscribeAction">
+                    <meta itemprop="name" content="Join Waitlist">
+                    <input type="email" placeholder="Enter your email" class="ai-gen-input" itemprop="email">
                     <button type="submit" class="ai-gen-submit">Join Waitlist</button>
                 </form>
             </div>
@@ -916,41 +935,47 @@
 </section>
 
 <!-- Film Production Section -->
-<section class="fp-section">
+<section class="fp-section" itemscope itemtype="https://schema.org/VideoObject">
     <div class="fp-container">
         <div class="fp-wrapper">
             <div class="fp-video-col">
-                <h3 class="fp-video-title">My AI Video Generation</h3>
+                <h3 class="fp-video-title" itemprop="name">My AI Video Generation</h3>
                 <div class="fp-video-container">
                     <iframe 
                         class="fp-iframe"
                         src="https://www.youtube.com/embed/qyxbC41titM?autoplay=1&mute=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
+                        allowfullscreen
+                        title="AI Video Production Demonstration"
+                        aria-label="AI Video Production Demonstration"
+                        itemprop="embedUrl">
                     </iframe>
                 </div>
-                <div class="fp-video-desc">
+                <div class="fp-video-desc" itemprop="description">
                     <p>Watch how AI transforms video production</p>
-                    <span class="fp-duration">Duration: 3:45</span>
+                    <span class="fp-duration" itemprop="duration">Duration: 3:45</span>
                 </div>
+
 <div class="ai-video-gallery">
     <!-- Main Video -->
-    <div class="ai-main-video">
+    <div class="ai-main-video" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
         <div class="ai-reel-wrapper">
-            <video class="ai-reel-video" loop playsinline>
+            <video class="ai-reel-video" loop playsinline preload="metadata" 
+                   title="AI Film Production Reel" aria-label="AI Film Production Reel"
+                   itemprop="contentUrl">
                 <source src="film production/shining/1.mp4" type="video/mp4">
             </video>
             <div class="ai-reel-overlay">
                 <div class="ai-reel-controls">
-                    <button class="ai-play-pause">
-                        <i class="fas fa-play"></i>
+                    <button class="ai-play-pause" aria-label="Play/Pause video">
+                        <i class="fas fa-play" aria-hidden="true"></i>
                     </button>
-                    <button class="ai-audio-control">
-                        <i class="fas fa-volume-mute"></i>
+                    <button class="ai-audio-control" aria-label="Toggle audio">
+                        <i class="fas fa-volume-mute" aria-hidden="true"></i>
                     </button>
-                    <button class="ai-fullscreen">
-                        <i class="fas fa-expand"></i>
+                    <button class="ai-fullscreen" aria-label="Fullscreen mode">
+                        <i class="fas fa-expand" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -959,88 +984,87 @@
 
     <!-- Side Thumbnails -->
     <div class="ai-video-thumbs">
-        <div class="ai-thumb" data-video="film production/shining/2.mp4">
-            <video muted loop playsinline>
+        <div class="ai-thumb" data-video="film production/shining/2.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+            <video muted loop playsinline preload="none" aria-label="Film production sample 1" itemprop="contentUrl">
                 <source src="film production/shining/2.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="ai-thumb" data-video="film production/shining/3.mp4">
-            <video muted loop playsinline>
+        <div class="ai-thumb" data-video="film production/shining/3.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+            <video muted loop playsinline preload="none" aria-label="Film production sample 2" itemprop="contentUrl">
                 <source src="film production/shining/3.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="ai-thumb" data-video="film production/shining/4.mp4">
-            <video muted loop playsinline>
+        <div class="ai-thumb" data-video="film production/shining/4.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+            <video muted loop playsinline preload="none" aria-label="Film production sample 3" itemprop="contentUrl">
                 <source src="film production/shining/4.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="ai-thumb" data-video="film production/shining/5.mp4">
-            <video muted loop playsinline>
+        <div class="ai-thumb" data-video="film production/shining/5.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+            <video muted loop playsinline preload="none" aria-label="Film production sample 4" itemprop="contentUrl">
                 <source src="film production/shining/5.mp4" type="video/mp4">
             </video>
         </div>
     </div>
 </div>
 
-
             </div>
 
             <div class="fp-info-col">
-                <h2 class="fp-title">AI & Film Production Services</h2>
-                <p class="fp-desc">
+                <h2 class="fp-title" itemprop="about">AI & Film Production Services</h2>
+                <p class="fp-desc" itemprop="description">
                     Combining cutting-edge AI technology with professional film production 
                     to create stunning visual content for your brand.
                 </p>
 
                 <div class="fp-services">
-                    <div class="fp-service">
-                        <i class="fas fa-film"></i>
-                        <h4>Professional Video Production</h4>
-                        <p>High-quality video content optimized for engagement</p>
+                    <div class="fp-service" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <i class="fas fa-film" aria-hidden="true"></i>
+                        <h4 itemprop="name">Professional Video Production</h4>
+                        <p itemprop="description">High-quality video content optimized for engagement</p>
                         <ul class="fp-service-list">
-                            <li>4K Video Quality</li>
-                            <li>Professional Editing</li>
-                            <li>Color Grading</li>
+                            <li itemprop="itemListElement">4K Video Quality</li>
+                            <li itemprop="itemListElement">Professional Editing</li>
+                            <li itemprop="itemListElement">Color Grading</li>
                         </ul>
                     </div>
 
-                    <div class="fp-service">
-                        <i class="fas fa-brain"></i>
-                        <h4>AI-Enhanced Editing</h4>
-                        <p>Smart editing powered by artificial intelligence</p>
+                    <div class="fp-service" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <i class="fas fa-brain" aria-hidden="true"></i>
+                        <h4 itemprop="name">AI-Enhanced Editing</h4>
+                        <p itemprop="description">Smart editing powered by artificial intelligence</p>
                         <ul class="fp-service-list">
-                            <li>Automated Scene Detection</li>
-                            <li>Smart Color Correction</li>
-                            <li>AI Content Analysis</li>
+                            <li itemprop="itemListElement">Automated Scene Detection</li>
+                            <li itemprop="itemListElement">Smart Color Correction</li>
+                            <li itemprop="itemListElement">AI Content Analysis</li>
                         </ul>
                     </div>
 
-                    <div class="fp-service">
-                        <i class="fas fa-magic"></i>
-                        <h4>Special Effects</h4>
-                        <p>Advanced visual effects and animations</p>
+                    <div class="fp-service" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <i class="fas fa-magic" aria-hidden="true"></i>
+                        <h4 itemprop="name">Special Effects</h4>
+                        <p itemprop="description">Advanced visual effects and animations</p>
                         <ul class="fp-service-list">
-                            <li>3D Integration</li>
-                            <li>Motion Graphics</li>
-                            <li>Visual Effects</li>
+                            <li itemprop="itemListElement">3D Integration</li>
+                            <li itemprop="itemListElement">Motion Graphics</li>
+                            <li itemprop="itemListElement">Visual Effects</li>
                         </ul>
                     </div>
 
-                    <div class="fp-service">
-                        <i class="fas fa-chart-line"></i>
-                        <h4>Analytics Integration</h4>
-                        <p>Track and optimize your video performance</p>
+                    <div class="fp-service" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <h4 itemprop="name">Analytics Integration</h4>
+                        <p itemprop="description">Track and optimize your video performance</p>
                         <ul class="fp-service-list">
-                            <li>Engagement Tracking</li>
-                            <li>Performance Metrics</li>
-                            <li>Audience Insights</li>
+                            <li itemprop="itemListElement">Engagement Tracking</li>
+                            <li itemprop="itemListElement">Performance Metrics</li>
+                            <li itemprop="itemListElement">Audience Insights</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="fp-cta">
-                    <a href="contact.html" class="fp-button">Discuss Your Project</a>
-                    <span class="fp-contact">or call us at <strong>+44 747 877 3451</strong></span>
+                    <a href="contact.html" class="fp-button" itemprop="potentialAction" itemscope itemtype="https://schema.org/ContactPage">Discuss Your Project</a>
+                    <span class="fp-contact">or call us at <strong itemprop="telephone">+44 747 877 3451</strong></span>
                 </div>
             </div>
         </div>
@@ -1048,24 +1072,24 @@
 </section>
 
 <!-- Print & Media Services Section -->
-<div class="section-divider top-wave">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+<div class="section-divider top-wave" aria-hidden="true">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
     </svg>
 </div>
 
-<section id="print-media-services" class="print-media-section">
+<section id="print-media-services" class="print-media-section" itemscope itemtype="https://schema.org/Service">
     <div class="services-container">
         <!-- Left Column - Video & Image Editing -->
         <div class="editing-services">
-            <h2 class="section-heading">Digital Media Services</h2>
+            <h2 class="section-heading" itemprop="name">Digital Media Services</h2>
             
-            <div class="service-card featured-service">
-                <div class="service-icon">
+            <div class="service-card featured-service" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <div class="service-icon" aria-hidden="true">
                     <i class="fas fa-video"></i>
                 </div>
-                <h3>Professional Video Editing</h3>
-                <ul class="service-features">
+                <h3 itemprop="name">Professional Video Editing</h3>
+                <ul class="service-features" itemprop="description">
                     <li>Color Grading & Correction</li>
                     <li>Motion Graphics Integration</li>
                     <li>Sound Design & Mixing</li>
@@ -1073,13 +1097,13 @@
                     <li>Content Optimization</li>
                 </ul>
                 <div class="pricing-table">
-                    <div class="price-item">
-                        <span>Short Form (1-3 min)</span>
-                        <span>From £150</span>
+                    <div class="price-item" itemprop="priceSpecification" itemscope itemtype="https://schema.org/UnitPriceSpecification">
+                        <span itemprop="name">Short Form (1-3 min)</span>
+                        <span><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="150">150</span></span>
                     </div>
-                    <div class="price-item">
-                        <span>Standard (3-10 min)</span>
-                        <span>From £300</span>
+                    <div class="price-item" itemprop="priceSpecification" itemscope itemtype="https://schema.org/UnitPriceSpecification">
+                        <span itemprop="name">Standard (3-10 min)</span>
+                        <span><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="300">300</span></span>
                     </div>
                     <div class="price-item">
                         <span>Long Form (10+ min)</span>
@@ -1088,12 +1112,12 @@
                 </div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">
+            <div class="service-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <div class="service-icon" aria-hidden="true">
                     <i class="fas fa-image"></i>
                 </div>
-                <h3>Image Editing & Retouching</h3>
-                <ul class="service-features">
+                <h3 itemprop="name">Image Editing & Retouching</h3>
+                <ul class="service-features" itemprop="description">
                     <li>Product Photography Enhancement</li>
                     <li>Portrait Retouching</li>
                     <li>Background Removal & Replacement</li>
@@ -1102,13 +1126,13 @@
                     <li>Batch Processing</li>
                 </ul>
                 <div class="pricing-table">
-                    <div class="price-item">
-                        <span>Basic Retouching</span>
-                        <span>£25/image</span>
+                    <div class="price-item" itemprop="priceSpecification" itemscope itemtype="https://schema.org/UnitPriceSpecification">
+                        <span itemprop="name">Basic Retouching</span>
+                        <span><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="25">25</span>/image</span>
                     </div>
-                    <div class="price-item">
-                        <span>Advanced Editing</span>
-                        <span>£45/image</span>
+                    <div class="price-item" itemprop="priceSpecification" itemscope itemtype="https://schema.org/UnitPriceSpecification">
+                        <span itemprop="name">Advanced Editing</span>
+                        <span><span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="45">45</span>/image</span>
                     </div>
                     <div class="price-item">
                         <span>Bulk Orders (10+)</span>
@@ -1120,491 +1144,584 @@
             <div class="professional-tools">
                 <h3>Professional Software & Equipment</h3>
                 <div class="tools-grid">
-                    <div class="tool-category">
-                        <h4>Video Editing</h4>
+                    <div class="tool-category" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <h4 itemprop="name">Video Editing</h4>
                         <ul>
-                            <li>Adobe Premiere Pro</li>
-                            <li>After Effects</li>
-                            <li>DaVinci Resolve Studio</li>
-                            <li>Final Cut Pro</li>
+                            <li itemprop="item">Adobe Premiere Pro</li>
+                            <li itemprop="item">After Effects</li>
+                            <li itemprop="item">DaVinci Resolve Studio</li>
+                            <li itemprop="item">Final Cut Pro</li>
                         </ul>
                     </div>
-                    <div class="tool-category">
-                        <h4>Image Editing</h4>
+                    <div class="tool-category" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <h4 itemprop="name">Image Editing</h4>
                         <ul>
-                            <li>Adobe Photoshop</li>
-                            <li>Lightroom Classic</li>
-                            <li>Capture One Pro</li>
-                            <li>Adobe Bridge</li>
+                            <li itemprop="item">Adobe Photoshop</li>
+                            <li itemprop="item">Lightroom Classic</li>
+                            <li itemprop="item">Capture One Pro</li>
+                            <li itemprop="item">Adobe Bridge</li>
                         </ul>
                     </div>
-                    <div class="tool-category">
-                        <h4>Hardware</h4>
+                    <div class="tool-category" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <h4 itemprop="name">Hardware</h4>
                         <ul>
-                            <li>Professional Color-Calibrated Displays</li>
-                            <li>High-Performance Workstations</li>
-                            <li>Wacom Tablets</li>
-                            <li>Professional Storage Solutions</li>
+                            <li itemprop="item">Professional Color-Calibrated Displays</li>
+                            <li itemprop="item">High-Performance Workstations</li>
+                            <li itemprop="item">Wacom Tablets</li>
+                            <li itemprop="item">Professional Storage Solutions</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-<!-- Right Column - Print Services -->
-<div class="print-services">
-    <h2 class="section-heading">Print & Design Services</h2>
-    
-    <div class="print-showcase">
-        <div class="showcase-grid">
-            <img src="images/print-1.jpg" alt="Vehicle Wrap Example" class="showcase-image">
-            <img src="images/print-2.jpg" alt="Business Signage" class="showcase-image">
-            <img src="images/print-3.jpg" alt="Custom Decals" class="showcase-image">
-        </div>
+        <!-- Right Column - Print Services -->
+        <div class="print-services">
+            <h2 class="section-heading" itemprop="name">Print & Design Services</h2>
+            
+            <div class="print-showcase">
+                <div class="showcase-grid">
+                    <img src="images/print-1.jpg" alt="Vehicle Wrap Example - Professional vinyl wrap for cars and vans" 
+                         class="showcase-image" loading="lazy" itemprop="image">
+                    <img src="images/print-2.jpg" alt="Business Signage - Custom signs for retail stores and offices" 
+                         class="showcase-image" loading="lazy" itemprop="image">
+                    <img src="images/print-3.jpg" alt="Custom Decals - High-quality vinyl decals for any surface" 
+                         class="showcase-image" loading="lazy" itemprop="image">
+                </div>
+            </div>
+
+            <div class="print-categories">
+                <div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <i class="fas fa-car" aria-hidden="true"></i>
+                    <h4 itemprop="name">Vehicle Graphics</h4>
+                    <ul itemprop="description">
+                        <li>Full Vehicle Wraps</li>
+                        <li>Partial Wraps</li>
+                        <li>Commercial Fleet Graphics</li>
+                        <li>Vehicle Decals</li>
+                        <li>Window Tinting</li>
+                        <li>Paint Protection Film</li>
+                    </ul>
+                    <div class="price-range" itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceRange">
+                        From <span itemprop="minPrice">500</span> - <span itemprop="maxPrice">3000</span> <span itemprop="priceCurrency">GBP</span>
+                    </div>
+                </div>
+
+                <div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <i class="fas fa-store-alt" aria-hidden="true"></i>
+                    <h4 itemprop="name">Business Signage</h4>
+                    <ul itemprop="description">
+                        <li>Storefront Signs</li>
+                        <li>Window Graphics</li>
+                        <li>Illuminated Signs</li>
+                        <li>A-Frame Signs</li>
+                        <li>Directory Signs</li>
+                        <li>ADA Compliant Signage</li>
+                    </ul>
+                    <div class="price-range" itemprop="priceSpecification" itemscope itemtype="https://schema.org/PriceRange">
+                        From <span itemprop="minPrice">100</span> - <span itemprop="maxPrice">1000</span> <span itemprop="priceCurrency">GBP</span>
+                    </div>
+                </div>
+
+                <div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                    <h4 itemprop="name">Decals & Stickers</h4>
+                    <ul itemprop="description">
+                        <li>Custom Vinyl Decals</li>
+                        <li>Die-Cut Stickers</li>
+                        <li>Floor Graphics</li>
+                        <li>Window Decals</li>
+                        <li>Holographic Stickers</li>
+                        <li>Safety Labels</li>
+                    </ul>
+                    <div class="price-range">
+                        From £2 per unit
+                    </div>
+                </div>
+
+   <div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <i class="fas fa-couch" aria-hidden="true"></i>
+    <h4 itemprop="name">Interior Solutions</h4>
+    <ul itemprop="description">
+        <li itemprop="itemListElement">Wall Graphics</li>
+        <li itemprop="itemListElement">Furniture Wraps</li>
+        <li itemprop="itemListElement">Architectural Films</li>
+        <li itemprop="itemListElement">Decorative Glass Films</li>
+        <li itemprop="itemListElement">Floor Graphics</li>
+        <li itemprop="itemListElement">Ceiling Graphics</li>
+    </ul>
+    <div class="price-range">Custom Quotation</div>
+</div>
+
+<div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <i class="fas fa-print" aria-hidden="true"></i>
+    <h4 itemprop="name">Marketing Materials</h4>
+    <ul itemprop="description">
+        <li itemprop="itemListElement">Business Cards</li>
+        <li itemprop="itemListElement">Brochures & Flyers</li>
+        <li itemprop="itemListElement">Banners & Posters</li>
+        <li itemprop="itemListElement">Exhibition Graphics</li>
+        <li itemprop="itemListElement">Product Labels</li>
+        <li itemprop="itemListElement">Promotional Items</li>
+    </ul>
+    <div class="price-range" itemprop="priceSpecification" itemscope itemtype="https://schema.org/UnitPriceSpecification">
+        From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="50">50</span>
     </div>
+</div>
 
-    <div class="print-categories">
-        <div class="category-card">
-            <i class="fas fa-car"></i>
-            <h4>Vehicle Graphics</h4>
+<div class="category-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+    <h4 itemprop="name">Specialty Printing</h4>
+    <ul itemprop="description">
+        <li itemprop="itemListElement">Large Format Printing</li>
+        <li itemprop="itemListElement">Heat Transfer Vinyl</li>
+        <li itemprop="itemListElement">Metallic Printing</li>
+        <li itemprop="itemListElement">UV Printing</li>
+        <li itemprop="itemListElement">Embossed Graphics</li>
+        <li itemprop="itemListElement">Custom Die Cutting</li>
+    </ul>
+    <div class="price-range">Custom Quotation</div>
+</div>
+</div>
+
+<div class="print-equipment" itemscope itemtype="https://schema.org/Product">
+    <h3 itemprop="name">Professional Print Equipment</h3>
+    <div class="equipment-list">
+        <div class="equipment-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <h4 itemprop="name">Printing</h4>
             <ul>
-                <li>Full Vehicle Wraps</li>
-                <li>Partial Wraps</li>
-                <li>Commercial Fleet Graphics</li>
-                <li>Vehicle Decals</li>
-                <li>Window Tinting</li>
-                <li>Paint Protection Film</li>
+                <li itemprop="item">Roland TrueVIS VG3-640</li>
+                <li itemprop="item">HP Latex 800W Printer</li>
+                <li itemprop="item">Mimaki UCJV300-160</li>
+                <li itemprop="item">Epson SureColor S80600</li>
             </ul>
-            <div class="price-range">From £500 - £3000</div>
         </div>
-
-        <div class="category-card">
-            <i class="fas fa-store-alt"></i>
-            <h4>Business Signage</h4>
+        <div class="equipment-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <h4 itemprop="name">Finishing</h4>
             <ul>
-                <li>Storefront Signs</li>
-                <li>Window Graphics</li>
-                <li>Illuminated Signs</li>
-                <li>A-Frame Signs</li>
-                <li>Directory Signs</li>
-                <li>ADA Compliant Signage</li>
+                <li itemprop="item">Graphtec FC9000-160</li>
+                <li itemprop="item">Summa S Class 2 D160</li>
+                <li itemprop="item">RollsRoller Flatbed Applicator</li>
+                <li itemprop="item">GFP 363TH Laminator</li>
             </ul>
-            <div class="price-range">From £100 - £1000</div>
         </div>
-
-        <div class="category-card">
-            <i class="fas fa-tags"></i>
-            <h4>Decals & Stickers</h4>
+        <div class="equipment-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <h4 itemprop="name">Materials</h4>
             <ul>
-                <li>Custom Vinyl Decals</li>
-                <li>Die-Cut Stickers</li>
-                <li>Floor Graphics</li>
-                <li>Window Decals</li>
-                <li>Holographic Stickers</li>
-                <li>Safety Labels</li>
+                <li itemprop="item">3M™ Premium Wrap Films</li>
+                <li itemprop="item">Avery Dennison Supreme</li>
+                <li itemprop="item">ORAFOL® Digital Media</li>
+                <li itemprop="item">Premium Lamination Films</li>
             </ul>
-            <div class="price-range">From £2 per unit</div>
-        </div>
-
-        <div class="category-card">
-            <i class="fas fa-couch"></i>
-            <h4>Interior Solutions</h4>
-            <ul>
-                <li>Wall Graphics</li>
-                <li>Furniture Wraps</li>
-                <li>Architectural Films</li>
-                <li>Decorative Glass Films</li>
-                <li>Floor Graphics</li>
-                <li>Ceiling Graphics</li>
-            </ul>
-            <div class="price-range">Custom Quotation</div>
-        </div>
-
-        <div class="category-card">
-            <i class="fas fa-print"></i>
-            <h4>Marketing Materials</h4>
-            <ul>
-                <li>Business Cards</li>
-                <li>Brochures & Flyers</li>
-                <li>Banners & Posters</li>
-                <li>Exhibition Graphics</li>
-                <li>Product Labels</li>
-                <li>Promotional Items</li>
-            </ul>
-            <div class="price-range">From £50</div>
-        </div>
-
-        <div class="category-card">
-            <i class="fas fa-ruler-combined"></i>
-            <h4>Specialty Printing</h4>
-            <ul>
-                <li>Large Format Printing</li>
-                <li>Heat Transfer Vinyl</li>
-                <li>Metallic Printing</li>
-                <li>UV Printing</li>
-                <li>Embossed Graphics</li>
-                <li>Custom Die Cutting</li>
-            </ul>
-            <div class="price-range">Custom Quotation</div>
-        </div>
-    </div>
-
-    <div class="print-equipment">
-        <h3>Professional Print Equipment</h3>
-        <div class="equipment-list">
-            <div class="equipment-item">
-                <h4>Printing</h4>
-                <ul>
-                    <li>Roland TrueVIS VG3-640</li>
-                    <li>HP Latex 800W Printer</li>
-                    <li>Mimaki UCJV300-160</li>
-                    <li>Epson SureColor S80600</li>
-                </ul>
-            </div>
-            <div class="equipment-item">
-                <h4>Finishing</h4>
-                <ul>
-                    <li>Graphtec FC9000-160</li>
-                    <li>Summa S Class 2 D160</li>
-                    <li>RollsRoller Flatbed Applicator</li>
-                    <li>GFP 363TH Laminator</li>
-                </ul>
-            </div>
-            <div class="equipment-item">
-                <h4>Materials</h4>
-                <ul>
-                    <li>3M™ Premium Wrap Films</li>
-                    <li>Avery Dennison Supreme</li>
-                    <li>ORAFOL® Digital Media</li>
-                    <li>Premium Lamination Films</li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
 </div>
 </section>
 
-<div class="section-divider bottom-wave">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+<div class="section-divider bottom-wave" aria-hidden="true">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
     </svg>
 </div>
 
 
-           <!-- SERVICES SECTION -->
-<section id="services" class="skills-section">
-    <h2 class="section-title">My Services</h2>
+
+ <!-- SERVICES SECTION -->
+<section id="services" class="skills-section" itemscope itemtype="https://schema.org/Service">
+    <h2 class="section-title" itemprop="name">My Services</h2>
     <div class="skills-grid">
-        <div class="skill-card">
-            <i class="fas fa-code"></i>
-            <h3>Web Development</h3>
-            <ul>
-                <li>Custom Website Design</li>
-                <li>E-commerce Solutions</li>
-                <li>WordPress Development</li>
-                <li>Mobile-First Responsive Design</li>
-                <li>Website Maintenance</li>
-                <li>Speed Optimization</li>
+        <!-- Web Development Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <h3 itemprop="name">Web Development</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Custom Website Design</li>
+                <li itemprop="itemListElement">E-commerce Solutions</li>
+                <li itemprop="itemListElement">WordPress Development</li>
+                <li itemprop="itemListElement">Mobile-First Responsive Design</li>
+                <li itemprop="itemListElement">Website Maintenance</li>
+                <li itemprop="itemListElement">Speed Optimization</li>
             </ul>
-            <div class="price-tag">From £299</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+            </div>
         </div>
 
-        <div class="skill-card">
-            <i class="fas fa-paint-brush"></i>
-            <h3>Graphic Design</h3>
-            <ul>
-                <li>Logo Design & Branding</li>
-                <li>Social Media Graphics</li>
-                <li>Marketing Materials</li>
-                <li>Business Cards</li>
-                <li>Banner Design</li>
-                <li>Product Packaging</li>
+        <!-- Graphic Design Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-paint-brush" aria-hidden="true"></i>
+            <h3 itemprop="name">Graphic Design</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Logo Design & Branding</li>
+                <li itemprop="itemListElement">Social Media Graphics</li>
+                <li itemprop="itemListElement">Marketing Materials</li>
+                <li itemprop="itemListElement">Business Cards</li>
+                <li itemprop="itemListElement">Banner Design</li>
+                <li itemprop="itemListElement">Product Packaging</li>
             </ul>
-            <div class="price-tag">From £199</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="199">199</span>
+            </div>
         </div>
 
-        <div class="skill-card">
-            <i class="fas fa-film"></i>
-            <h3>3D/2D Animation</h3>
-            <ul>
-                <li>Character Animation</li>
-                <li>Explainer Videos</li>
-                <li>Motion Graphics</li>
-                <li>Logo Animation</li>
-                <li>Product Visualization</li>
-                <li>Animated Advertisements</li>
+        <!-- 3D/2D Animation Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-film" aria-hidden="true"></i>
+            <h3 itemprop="name">3D/2D Animation</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Character Animation</li>
+                <li itemprop="itemListElement">Explainer Videos</li>
+                <li itemprop="itemListElement">Motion Graphics</li>
+                <li itemprop="itemListElement">Logo Animation</li>
+                <li itemprop="itemListElement">Product Visualization</li>
+                <li itemprop="itemListElement">Animated Advertisements</li>
             </ul>
-            <div class="price-tag">From £499</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span>
+            </div>
         </div>
 
-        <div class="skill-card">
-            <i class="fas fa-robot"></i>
-            <h3>AI Content Creation</h3>
-            <ul>
-                <li>AI Video Generation</li>
-                <li>AI Image Creation</li>
-                <li>Text-to-Video</li>
-                <li>AI Voice Overs</li>
-                <li>Character Generation</li>
-                <li>Scene Generation</li>
+        <!-- AI Content Creation Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <h3 itemprop="name">AI Content Creation</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">AI Video Generation</li>
+                <li itemprop="itemListElement">AI Image Creation</li>
+                <li itemprop="itemListElement">Text-to-Video</li>
+                <li itemprop="itemListElement">AI Voice Overs</li>
+                <li itemprop="itemListElement">Character Generation</li>
+                <li itemprop="itemListElement">Scene Generation</li>
             </ul>
-            <div class="price-tag">From £399</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="399">399</span>
+            </div>
         </div>
 
-        <div class="skill-card">
-            <i class="fas fa-print"></i>
-            <h3>Print Services</h3>
-            <ul>
-                <li>Business Cards</li>
-                <li>Brochures & Flyers</li>
-                <li>Banners & Posters</li>
-                <li>Product Labels</li>
-                <li>Corporate Stationery</li>
-                <li>Marketing Materials</li>
+        <!-- Print Services Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-print" aria-hidden="true"></i>
+            <h3 itemprop="name">Print Services</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Business Cards</li>
+                <li itemprop="itemListElement">Brochures & Flyers</li>
+                <li itemprop="itemListElement">Banners & Posters</li>
+                <li itemprop="itemListElement">Product Labels</li>
+                <li itemprop="itemListElement">Corporate Stationery</li>
+                <li itemprop="itemListElement">Marketing Materials</li>
             </ul>
-            <div class="price-tag">From £99</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="99">99</span>
+            </div>
         </div>
 
-        <div class="skill-card">
-            <i class="fas fa-video"></i>
-            <h3>Video Editing</h3>
-            <ul>
-                <li>Commercial Editing</li>
-                <li>Social Media Content</li>
-                <li>Color Grading</li>
-                <li>Visual Effects</li>
-                <li>Sound Design</li>
-                <li>Video Optimization</li>
+        <!-- Video Editing Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-video" aria-hidden="true"></i>
+            <h3 itemprop="name">Video Editing</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Commercial Editing</li>
+                <li itemprop="itemListElement">Social Media Content</li>
+                <li itemprop="itemListElement">Color Grading</li>
+                <li itemprop="itemListElement">Visual Effects</li>
+                <li itemprop="itemListElement">Sound Design</li>
+                <li itemprop="itemListElement">Video Optimization</li>
             </ul>
-            <div class="price-tag">From £299</div>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- TESTIMONIALS SECTION -->
-<section id="testimonials" class="testimonials-section">
+<section id="testimonials" class="testimonials-section" itemscope itemtype="https://schema.org/Review">
     <h2 class="section-title">Client Testimonials</h2>
     <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
             <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"The AI video generation service transformed our marketing approach. The quality and turnaround time were exceptional. Joe's expertise in combining traditional animation with AI is remarkable."</p>
-                <span class="testimonial-author">- Sarah Williams</span>
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
+                <p itemprop="reviewBody">"The AI video generation service transformed our marketing approach. The quality and turnaround time were exceptional. Joe's expertise in combining traditional animation with AI is remarkable."</p>
+                <span class="testimonial-author" itemprop="author">- Sarah Williams</span>
+                <meta itemprop="datePublished" content="2025-03-15">
+                <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" content="5">
+                    <meta itemprop="bestRating" content="5">
+                </div>
             </div>
         </div>
 
-        <div class="testimonial-card">
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
             <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"Our website redesign exceeded all expectations. The integration of modern features and AI elements really sets us apart from competitors. Excellent communication throughout."</p>
-                <span class="testimonial-author">- Michael Chen</span>
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
+                <p itemprop="reviewBody">"Our website redesign exceeded all expectations. The integration of modern features and AI elements really sets us apart from competitors. Excellent communication throughout."</p>
+                <span class="testimonial-author" itemprop="author">- Michael Chen</span>
+                <meta itemprop="datePublished" content="2025-02-28">
+                <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" content="5">
+                    <meta itemprop="bestRating" content="5">
+                </div>
             </div>
         </div>
 
-        <div class="testimonial-card">
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
             <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"The animation work was outstanding. Joe has a unique ability to understand complex concepts and translate them into engaging visual content. Highly recommended!"</p>
-                <span class="testimonial-author">- Emma Thompson</span>
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
+                <p itemprop="reviewBody">"The animation work was outstanding. Joe has a unique ability to understand complex concepts and translate them into engaging visual content. Highly recommended!"</p>
+                <span class="testimonial-author" itemprop="author">- Emma Thompson</span>
+                <meta itemprop="datePublished" content="2025-01-10">
+                <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" content="5">
+                    <meta itemprop="bestRating" content="5">
+                </div>
             </div>
         </div>
 
-        <div class="testimonial-card">
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
             <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"The branding package including logo design and print materials was exactly what we needed. Professional service with creative solutions that perfectly matched our vision."</p>
-                <span class="testimonial-author">- James Anderson</span>
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
+                <p itemprop="reviewBody">"The branding package including logo design and print materials was exactly what we needed. Professional service with creative solutions that perfectly matched our vision."</p>
+                <span class="testimonial-author" itemprop="author">- James Anderson</span>
+                <meta itemprop="datePublished" content="2024-12-05">
+                <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" content="5">
+                    <meta itemprop="bestRating" content="5">
+                </div>
             </div>
         </div>
 
-        <div class="testimonial-card">
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
             <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"Exceptional AI content creation services. The combination of cutting-edge technology and creative expertise delivered results beyond our expectations."</p>
-                <span class="testimonial-author">- David Mitchell</span>
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
+                <p itemprop="reviewBody">"Exceptional AI content creation services. The combination of cutting-edge technology and creative expertise delivered results beyond our expectations."</p>
+                <span class="testimonial-author" itemprop="author">- David Mitchell</span>
+                <meta itemprop="datePublished" content="2024-11-20">
+                <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" content="5">
+                    <meta itemprop="bestRating" content="5">
+                </div>
             </div>
         </div>
 
-        <div class="testimonial-card">
-            <div class="testimonial-content">
-                <i class="fas fa-quote-left"></i>
-                <p>"The video editing and production quality was superb. Quick turnaround times and excellent attention to detail. Will definitely work with Joe again."</p>
-                <span class="testimonial-author">- Rachel Cooper</span>
-            </div>
+        <!-- Testimonial 6 -->
+<div class="testimonial-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
+    <div class="testimonial-content">
+        <i class="fas fa-quote-left" aria-hidden="true"></i>
+        <p itemprop="reviewBody">"The video editing and production quality was superb. Quick turnaround times and excellent attention to detail. Will definitely work with Joe again."</p>
+        <span class="testimonial-author" itemprop="author">- Rachel Cooper</span>
+        <meta itemprop="datePublished" content="2024-10-15">
+        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+            <meta itemprop="ratingValue" content="5">
+            <meta itemprop="bestRating" content="5">
         </div>
     </div>
+</div>
+</div>
 </section>
 
 
 
-<!-- CONTACT AND FAQ SECTION -->
+
 <!-- FAQ AND CONTACT SECTION -->
 <section class="contact-faq-section" id="contact">
     <!-- FAQ Column -->
-    <div class="faq-column">
+    <div class="faq-column" itemscope itemtype="https://schema.org/FAQPage">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
+            
+            <!-- FAQ Item 1 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
                     <h3>What AI services do you offer?</h3>
-                    <span class="faq-toggle">+</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
                 </div>
-                <div class="faq-answer">
-                    <p>We provide cutting-edge AI services including:</p>
-                    <ul>
-                        <li>AI Video Generation and Editing</li>
-                        <li>AI Image Creation and Enhancement</li>
-                        <li>Text-to-Video Conversion</li>
-                        <li>AI Character Creation</li>
-                        <li>AI Voice Generation</li>
-                        <li>Custom AI Solutions</li>
-                    </ul>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>We provide cutting-edge AI services including:</p>
+                        <ul>
+                            <li>AI Video Generation and Editing</li>
+                            <li>AI Image Creation and Enhancement</li>
+                            <li>Text-to-Video Conversion</li>
+                            <li>AI Character Creation</li>
+                            <li>AI Voice Generation</li>
+                            <li>Custom AI Solutions</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
+            <!-- FAQ Item 2 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
                     <h3>What are your pricing packages?</h3>
-                    <span class="faq-toggle">+</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
                 </div>
-                <div class="faq-answer">
-                    <p>Our standard pricing starts at:</p>
-                    <ul>
-                        <li>Web Design: From £299</li>
-                        <li>Logo Design: From £199</li>
-                        <li>AI Video Creation: From £399</li>
-                        <li>3D Animation: From £499</li>
-                        <li>Print Services: From £99</li>
-                    </ul>
-                    <p>Contact us for custom package quotes.</p>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>Our standard pricing starts at:</p>
+                        <ul>
+                            <li>Web Design: From £299</li>
+                            <li>Logo Design: From £199</li>
+                            <li>AI Video Creation: From £399</li>
+                            <li>3D Animation: From £499</li>
+                            <li>Print Services: From £99</li>
+                        </ul>
+                        <p>Contact us for custom package quotes.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
+            <!-- FAQ Item 3 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
                     <h3>How long do projects take?</h3>
-                    <span class="faq-toggle">+</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
                 </div>
-                <div class="faq-answer">
-                    <ul>
-                        <li>Web Design: 2-4 weeks</li>
-                        <li>Logo Design: 3-5 days</li>
-                        <li>AI Content: 1-3 days</li>
-                        <li>Animation: 1-3 weeks</li>
-                        <li>Print Projects: 3-5 days</li>
-                    </ul>
-                    <p>Timelines may vary based on project complexity and requirements.</p>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <ul>
+                            <li>Web Design: 2-4 weeks</li>
+                            <li>Logo Design: 3-5 days</li>
+                            <li>AI Content: 1-3 days</li>
+                            <li>Animation: 1-3 weeks</li>
+                            <li>Print Projects: 3-5 days</li>
+                        </ul>
+                        <p>Timelines may vary based on project complexity and requirements.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
+            <!-- FAQ Item 4 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
                     <h3>Do you offer revisions?</h3>
-                    <span class="faq-toggle">+</span>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
                 </div>
-                <div class="faq-answer">
-                    <p>Yes! All projects include:</p>
-                    <ul>
-                        <li>2-3 revision rounds</li>
-                        <li>Regular progress updates</li>
-                        <li>Client feedback integration</li>
-                        <li>Final files in your preferred format</li>
-                    </ul>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>Yes! All projects include:</p>
+                        <ul>
+                            <li>2-3 revision rounds</li>
+                            <li>Regular progress updates</li>
+                            <li>Client feedback integration</li>
+                            <li>Final files in your preferred format</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-<div class="faq-item">
-    <div class="faq-question">
-        <h3>What type of AI video content can you create?</h3>
-        <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-        <p>We offer a wide range of AI video services including:</p>
-        <ul>
-            <li>Product demonstrations and showcases</li>
-            <li>Marketing and promotional videos</li>
-            <li>Educational and training content</li>
-            <li>Social media shorts and reels</li>
-            <li>AI-generated character animations</li>
-            <li>Custom business presentations</li>
-        </ul>
-    </div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-question">
-        <h3>Do you offer package deals for multiple services?</h3>
-        <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-        <p>Yes, we offer several combination packages:</p>
-        <ul>
-            <li>Website + Logo Design: From £449</li>
-            <li>AI Video + Social Media Package: From £599</li>
-            <li>Full Branding Package (Logo, Website, Business Cards): From £699</li>
-            <li>Animation + Marketing Package: From £799</li>
-            <li>Custom packages available upon request</li>
-        </ul>
-    </div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-question">
-        <h3>What file formats do you deliver?</h3>
-        <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-        <p>We provide files in all standard formats:</p>
-        <ul>
-            <li>Videos: MP4, MOV, AVI, WebM</li>
-            <li>Images: JPG, PNG, SVG, PSD, AI</li>
-            <li>3D Files: FBX, OBJ, GLTF</li>
-            <li>Print: PDF, EPS, INDD</li>
-            <li>Source files available upon request</li>
-            <li>Custom formats to meet your specific needs</li>
-        </ul>
-    </div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-question">
-        <h3>How do you handle client confidentiality?</h3>
-        <span class="faq-toggle">+</span>
-    </div>
-    <div class="faq-answer">
-        <p>We take client confidentiality very seriously:</p>
-        <ul>
-            <li>Signed NDAs available for all projects</li>
-            <li>Secure file transfer and storage systems</li>
-            <li>Private project management workspace</li>
-            <li>Confidential handling of all client materials</li>
-            <li>Option for exclusive rights transfer</li>
-            <li>GDPR compliant processes</li>
-        </ul>
-    </div>
-</div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Where are you located?</h3>
-                    <span class="faq-toggle">+</span>
+            <!-- FAQ Item 5 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
+                    <h3>What type of AI video content can you create?</h3>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
                 </div>
-                <div class="faq-answer">
-                    <p>We're based in the UK with locations in:</p>
-                    <ul>
-                        <li>Swansea</li>
-                        <li>Neath</li>
-                        <li>Crewe</li>
-                    </ul>
-                    <p>We work with clients worldwide through online collaboration.</p>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>We offer a wide range of AI video services including:</p>
+                        <ul>
+                            <li>Product demonstrations and showcases</li>
+                            <li>Marketing and promotional videos</li>
+                            <li>Educational and training content</li>
+                            <li>Social media shorts and reels</li>
+                            <li>AI-generated character animations</li>
+                            <li>Custom business presentations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
+                    <h3>Do you offer package deals for multiple services?</h3>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>Yes, we offer several combination packages:</p>
+                        <ul>
+                            <li>Website + Logo Design: From £449</li>
+                            <li>AI Video + Social Media Package: From £599</li>
+                            <li>Full Branding Package (Logo, Website, Business Cards): From £699</li>
+                            <li>Animation + Marketing Package: From £799</li>
+                            <li>Custom packages available upon request</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 7 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
+                    <h3>What file formats do you deliver?</h3>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>We provide files in all standard formats:</p>
+                        <ul>
+                            <li>Videos: MP4, MOV, AVI, WebM</li>
+                            <li>Images: JPG, PNG, SVG, PSD, AI</li>
+                            <li>3D Files: FBX, OBJ, GLTF</li>
+                            <li>Print: PDF, EPS, INDD</li>
+                            <li>Source files available upon request</li>
+                            <li>Custom formats to meet your specific needs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 8 -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
+                    <h3>How do you handle client confidentiality?</h3>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>We take client confidentiality very seriously:</p>
+                        <ul>
+                            <li>Signed NDAs available for all projects</li>
+                            <li>Secure file transfer and storage systems</li>
+                            <li>Private project management workspace</li>
+                            <li>Confidential handling of all client materials</li>
+                            <li>Option for exclusive rights transfer</li>
+                            <li>GDPR compliant processes</li>
+                        </ul>
+                </div>
+                </div>
+            </div>
+
+            <!-- Location FAQ Item -->
+            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <div class="faq-question" itemprop="name">
+                    <h3>Where are you located?</h3>
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                        <p>We're based in the UK with locations in:</p>
+                        <ul>
+                            <li>Swansea</li>
+                            <li>Neath</li>
+                            <li>Crewe</li>
+                        </ul>
+                        <p>We work with clients worldwide through online collaboration.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Contact Form Column -->
-    <div class="contact-column">
+    <div class="contact-column" itemscope itemtype="https://schema.org/LocalBusiness">
         <h2 class="section-title">Get in Touch</h2>
         <form class="contact-form" action="mailto:joe@websiteanimation.co.uk" method="POST" enctype="text/plain">
             <div class="form-group">
@@ -1638,70 +1755,87 @@
         </form>
 
         <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
+            <div class="contact-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 <div class="contact-text">
                     <h4>Location</h4>
-                    <p>Swansea, Neath, Crewe<br>United Kingdom</p>
+                    <p><span itemprop="addressLocality">Swansea, Neath, Crewe</span><br><span itemprop="addressCountry">United Kingdom</span></p>
                 </div>
             </div>
 
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
+            <div class="contact-item" itemprop="telephone">
+                <i class="fas fa-phone" aria-hidden="true"></i>
                 <div class="contact-text">
                     <h4>Phone</h4>
-                    <p>+44 7478773451</p>
+                    <p><a href="tel:+447478773451">+44 7478773451</a></p>
                 </div>
             </div>
 
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
+            <div class="contact-item" itemprop="email">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
                 <div class="contact-text">
                     <h4>Email</h4>
-                    <p>joe@websiteanimation.co.uk</p>
+                    <p><a href="mailto:joe@websiteanimation.co.uk">joe@websiteanimation.co.uk</a></p>
                 </div>
             </div>
 
-            <div class="contact-item">
-                <i class="fas fa-clock"></i>
+            <div class="contact-item" itemprop="openingHoursSpecification" itemscope itemtype="https://schema.org/OpeningHoursSpecification">
+                <i class="fas fa-clock" aria-hidden="true"></i>
                 <div class="contact-text">
                     <h4>Hours</h4>
-                    <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Weekend: By Appointment</p>
+                    <p><span itemprop="dayOfWeek">Mon - Fri</span>: <span itemprop="opens" content="09:00">9:00 AM</span> - <span itemprop="closes" content="18:00">6:00 PM</span><br><span itemprop="dayOfWeek">Weekend</span>: By Appointment</p>
+                </div>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="contact-item">
+                <i class="fas fa-share-alt" aria-hidden="true"></i>
+                <div class="contact-text">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+
 <!-- FOOTER SECTION -->
-<!-- FOOTER SECTION -->
-<footer class="main-footer">
+<footer class="main-footer" itemscope itemtype="https://schema.org/LocalBusiness">
     <div class="footer-content">
-        <!-- Enlarged Logo Column -->
+        <!-- Brand Column -->
         <div class="footer-logo-column">
-            <div class="footer-logo">
-                <img src="images/logo.png" alt="WebsiteAnimation.co.uk">
+            <div class="footer-logo" itemprop="brand">
+                <img src="images/logo.png" alt="WebsiteAnimation.co.uk - AI Web Design & Animation Services" loading="lazy">
             </div>
-            <p class="company-description">
+            <p class="company-description" itemprop="description">
                 Leading provider of AI-powered web design, animation, and digital content creation services. Transforming ideas into digital reality since 2020.
             </p>
             <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
-        <!-- Quick Links Column -->
+        <!-- Navigation Column -->
         <div class="footer-column">
             <h3>Quick Links</h3>
             <ul class="footer-links">
-                <li><a href="#hero">Home</a></li>
+                <li><a href="#hero" itemprop="url">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#testimonials">Client Reviews</a></li>
+                <li><a href="#contact">Get a Quote</a></li>
             </ul>
         </div>
 
@@ -1709,1314 +1843,74 @@
         <div class="footer-column">
             <h3>Our Services</h3>
             <ul class="footer-links">
-                <li><a href="#web-development">Web Development</a></li>
-                <li><a href="#ai-services">AI Content Creation</a></li>
+                <li><a href="#web-development">Custom Web Development</a></li>
+                <li><a href="#ai-services">AI Content Solutions</a></li>
                 <li><a href="#animation">3D/2D Animation</a></li>
-                <li><a href="#graphic-design">Graphic Design</a></li>
-                <li><a href="#print-services">Print Services</a></li>
-                <li><a href="#video-editing">Video Editing</a></li>
+                <li><a href="#graphic-design">Branding & Design</a></li>
+                <li><a href="#print-services">Professional Printing</a></li>
+                <li><a href="#video-editing">Video Production</a></li>
             </ul>
         </div>
 
-        <!-- Contact Info Column -->
+        <!-- Contact Column -->
         <div class="footer-contact-column">
             <h3>Contact Us</h3>
-            <div class="footer-contact-info">
+            <div class="footer-contact-info" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
                 <div class="footer-contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                     <div class="contact-details">
-                        <span class="location-primary">Swansea • Neath • Crewe</span>
-                        <span class="location-secondary">United Kingdom</span>
+                        <span class="location-primary" itemprop="addressLocality">Swansea • Neath • Crewe</span>
+                        <span class="location-secondary" itemprop="addressCountry">United Kingdom</span>
                     </div>
                 </div>
 
                 <div class="footer-contact-item">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                     <div class="contact-details">
                         <span class="contact-label">Phone:</span>
-                        <span class="contact-value">+44 7478773451</span>
+                        <a href="tel:+447478773451" class="contact-value" itemprop="telephone">+44 7478773451</a>
                     </div>
                 </div>
 
                 <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                     <div class="contact-details">
                         <span class="contact-label">Email:</span>
-                        <span class="contact-value">joe@websiteanimation.co.uk</span>
+                        <a href="mailto:joe@websiteanimation.co.uk" class="contact-value" itemprop="email">joe@websiteanimation.co.uk</a>
                     </div>
                 </div>
 
-                <div class="footer-contact-item">
-                    <i class="fas fa-clock"></i>
+                <div class="footer-contact-item" itemprop="openingHoursSpecification" itemscope itemtype="https://schema.org/OpeningHoursSpecification">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <div class="contact-details">
-                        <span class="hours-primary">Mon - Fri: 9:00 AM - 6:00 PM</span>
-                        <span class="hours-secondary">Weekend: By Appointment</span>
+                        <span class="hours-primary"><span itemprop="dayOfWeek">Mon - Fri</span>: <span itemprop="opens" content="09:00">9:00 AM</span> - <span itemprop="closes" content="18:00">6:00 PM</span></span>
+                        <span class="hours-secondary"><span itemprop="dayOfWeek">Weekend</span>: By Appointment</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer Bottom -->
+    <!-- Legal Section -->
     <div class="footer-bottom">
         <div class="footer-bottom-content">
-            <p>&copy; 2024 WebsiteAnimation.co.uk. All rights reserved.</p>
+            <p>&copy; <span itemprop="copyrightYear">2024</span> <span itemprop="name">WebsiteAnimation.co.uk</span>. All rights reserved.</p>
             <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
+                <a href="/privacy-policy" itemprop="significantLink">Privacy Policy</a>
+                <a href="/terms" itemprop="significantLink">Terms of Service</a>
+                <a href="/cookies" itemprop="significantLink">Cookie Policy</a>
+                <a href="/sitemap" itemprop="significantLink">Sitemap</a>
             </div>
         </div>
     </div>
 </footer>
 
-<script>
 
-// main.js
 
-/**
- * Main Website Controller Class
- * Handles all website functionality and interactions
- */
-class WebsiteController {
-    /**
-     * Initialize the controller and set up all necessary components
-     */
-    constructor() {
-        this.initializeElements();
-        this.setupEventListeners();
-        this.initializeSplineScene();
-        this.updateCopyrightYear();
-        
-        // Initialize scroll tracking
-        this.lastScroll = 0;
-        
-        // Create progress bar for scroll tracking
-        this.createProgressBar();
-    }
 
-    /**
-     * Creates the scroll progress bar element
-     * This shows how far down the page the user has scrolled
-     */
-    createProgressBar() {
-        this.progressBar = document.createElement('div');
-        this.progressBar.className = 'scroll-progress';
-        document.body.appendChild(this.progressBar);
-    }
 
-    /**
-     * Initialize and cache all DOM elements
-     */
-initializeElements() {
-    this.elements = {
-        nav: document.querySelector('nav'),
-        navProgressBar: document.querySelector('.nav-progress'),
-        main: document.querySelector('main'),
-        // ... rest of your elements
-    };
 
-        // Theme colors
-        this.colors = {
-            primary: '#2d3436',
-            secondary: '#6c5ce7',
-            accent: '#00cec9',
-            highlight: '#fd79a8'
-        };
-    }
 
-    /**
-     * Set up all event listeners
-     */
-    setupEventListeners() {
-        // Enhanced scroll handling with throttling
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    this.handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-        
-        // Your existing event listeners...
-        this.setupSmoothScrolling();
-        this.setupAnimationCards();
-        this.setupCTAButton();
-        this.setupFAQInteractions();
-        this.setupContactForm();
-        this.setupHints();
-    }
-
-    /**
-/**
- * Handle scroll events and updates
- * Controls the navigation bar transformation and progress bar
- */
-/**
- * Handle scroll events and updates
- * Controls the navigation bar transformation and progress bar
- */
-/**
- * Handle scroll events and updates
- * Controls the navigation bar transformation and progress bar
- */
-handleScroll() {
-    const currentScroll = window.pageYOffset;
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = (currentScroll / totalHeight) * 100;
-
-    // Update main progress bar width based on scroll position
-    if (this.progressBar) {
-        this.progressBar.style.width = `${scrollProgress}%`;
-    }
-
-    // Transform navigation after scrolling past 100px
-    if (currentScroll > 100) {
-        this.elements.nav.classList.add('scrolled');
-        this.elements.main.classList.add('scrolled');
-        
-        // Update nav progress bar
-        if (this.elements.navProgressBar) {
-            this.elements.navProgressBar.style.width = `${scrollProgress}%`;
-        }
-    } else {
-        // Reset navigation to original state
-        this.elements.nav.classList.remove('scrolled');
-        this.elements.main.classList.remove('scrolled');
-    }
-
-    // Update last scroll position
-    this.lastScroll = currentScroll;
-}
-
-
-
-//nothing to do with load and navbar poage loader 
-
-    /**
-     * Set up smooth scrolling for navigation links
-     */
-    setupSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = anchor.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    }
-
-    /**
-     * Initialize and handle animation cards
-     */
-    setupAnimationCards() {
-        this.elements.animationCards.forEach(card => {
-            const video = card.querySelector('video');
-            if (!video) return;
-
-            card.addEventListener('mouseenter', () => {
-                video.play().catch(err => console.log('Video autoplay failed:', err));
-            });
-
-            card.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        });
-    }
-
-    /**
-     * Set up CTA button interactions
-     */
-    setupCTAButton() {
-        const button = this.elements.ctaButton;
-        if (!button) return;
-
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'translateY(-5px) scale(1.05)';
-            button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translateY(0) scale(1)';
-            button.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
-        });
-    }
-
-    /**
-     * Initialize Spline 3D scene
-     */
-    initializeSplineScene() {
-        document.addEventListener('spline-viewer-load', () => {
-            const viewer = document.querySelector('spline-viewer');
-            if (!viewer) return;
-
-            try {
-                const scene = viewer.spline;
-                this.setupSplineInteractions(scene);
-            } catch (error) {
-                console.error('Error initializing Spline scene:', error);
-            }
-        });
-    }
-
-    /**
-     * Set up FAQ interactions
-     */
-    setupFAQInteractions() {
-        this.elements.faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-
-            question.addEventListener('click', () => {
-                const isOpen = item.classList.contains('active');
-                
-                // Close all other FAQs
-                this.elements.faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-
-                // Toggle current FAQ
-                item.classList.toggle('active');
-            });
-        });
-    }
-
-    /**
-     * Set up contact form handling
-     */
-    setupContactForm() {
-        const form = this.elements.contactForm;
-        if (!form) return;
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your form submission logic here
-            console.log('Form submitted');
-        });
-    }
-
-    /**
-     * Handle UI hints
-     */
-    setupHints() {
-        // Hide interaction hint after delay
-        setTimeout(() => {
-            if (this.elements.interactionHint) {
-                this.elements.interactionHint.style.opacity = '0';
-                setTimeout(() => {
-                    this.elements.interactionHint.style.display = 'none';
-                }, 500);
-            }
-        }, 5000);
-
-        // Hide scroll hint on first scroll
-        window.addEventListener('scroll', () => {
-            if (this.elements.scrollHint) {
-                this.elements.scrollHint.style.opacity = '0';
-                setTimeout(() => {
-                    this.elements.scrollHint.style.display = 'none';
-                }, 500);
-            }
-        }, { once: true });
-    }
-
-    /**
-     * Update copyright year
-     */
-    updateCopyrightYear() {
-        const copyrightElement = document.querySelector('.footer-bottom p');
-        if (copyrightElement) {
-            const currentYear = new Date().getFullYear();
-            copyrightElement.textContent = `© ${currentYear} WebsiteAnimation.co.uk. All rights reserved.`;
-        }
-    }
-}
-
-// Initialize the website controller when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const website = new WebsiteController();
-});
-
-//freelancer info script section 
-
-// Freelancer info script section
-document.addEventListener('DOMContentLoaded', () => {
-    const desktopVideos = [
-        'showcase slideshow videos/1.mp4',
-        'showcase slideshow videos/2.mp4',
-        'showcase slideshow videos/3.mp4',
-        'showcase slideshow videos/4.mp4',
-        'showcase slideshow videos/5.mp4',
-        'showcase slideshow videos/6.mp4',
-        'showcase slideshow videos/7.mp4'
-    ];
-    
-    const mobileVideos = [
-        'showcase slideshow videos/A.mp4',
-        'showcase slideshow videos/B.mp4',
-        'showcase slideshow videos/C.mp4',
-        'showcase slideshow videos/D.mp4',
-        'showcase slideshow videos/E.mp4',
-        'showcase slideshow videos/F.mp4',
-        'showcase slideshow videos/G.mp4'
-    ];
-
-    let currentDesktopVideo = 0;
-    let currentMobileVideo = 0;
-
-    const desktopVideo = document.getElementById('desktop-video');
-    const mobileVideo = document.getElementById('mobile-video');
-
-    if (desktopVideo && mobileVideo) {
-        // Function to change desktop video
-        function changeDesktopVideo() {
-            currentDesktopVideo = (currentDesktopVideo + 1) % desktopVideos.length;
-            desktopVideo.src = desktopVideos[currentDesktopVideo];
-            desktopVideo.play().catch(e => console.log("Auto-play prevented:", e));
-        }
-
-        // Function to change mobile video
-        function changeMobileVideo() {
-            currentMobileVideo = (currentMobileVideo + 1) % mobileVideos.length;
-            mobileVideo.src = mobileVideos[currentMobileVideo];
-            mobileVideo.play().catch(e => console.log("Auto-play prevented:", e));
-        }
-
-        // Auto-change videos every 5 seconds
-        setInterval(changeDesktopVideo, 5000);
-        setInterval(changeMobileVideo, 5000);
-
-        // Add event listeners for video ending
-        desktopVideo.addEventListener('ended', changeDesktopVideo);
-        mobileVideo.addEventListener('ended', changeMobileVideo);
-
-        // Enhanced fullscreen functionality with overlay
-        const videos = document.querySelectorAll('.video-container video');
-        videos.forEach(video => {
-            video.addEventListener('click', () => {
-                if (!document.fullscreenElement) {
-                    // Create overlay
-                    const overlay = document.createElement('div');
-                    overlay.className = 'fullscreen-overlay';
-                    
-                    // Create video container with appropriate class
-                    const videoContainer = document.createElement('div');
-                    videoContainer.className = `fullscreen-video ${video.id === 'desktop-video' ? 'desktop' : 'mobile'}`;
-                    
-                    // Clone the video
-                    const fullscreenVideo = video.cloneNode(true);
-                    fullscreenVideo.play();
-                    
-                    videoContainer.appendChild(fullscreenVideo);
-                    overlay.appendChild(videoContainer);
-                    document.body.appendChild(overlay);
-                    
-                    // Close on overlay click
-                    overlay.addEventListener('click', (e) => {
-                        if (e.target === overlay) {
-                            overlay.remove();
-                        }
-                    });
-
-                    // Close on escape key
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape') {
-                            overlay.remove();
-                        }
-                    });
-                }
-            });
-        });
-
-        // Ensure videos start playing
-        desktopVideo.play().catch(e => console.log("Auto-play prevented:", e));
-        mobileVideo.play().catch(e => console.log("Auto-play prevented:", e));
-    }
-});
-
-// Portfolio Showcase Script
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize elements
-    const galleryImages = document.querySelectorAll('.pistols-image');
-    const mobilePreview = document.querySelector('.mobile-border');
-    const desktopPreview = document.querySelector('.desktop-border');
-    const totalImages = 21; // Total number of images in the gallery
-    let usedImages = new Set();
-    let isTransitioning = false;
-
-    // Create fullscreen view
-    function createFullscreen(element, isVideo = false) {
-        const container = document.createElement('div');
-        container.className = 'fullscreen-container';
-
-        // Create close button
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'fullscreen-close';
-        closeBtn.innerHTML = '×';
-        container.appendChild(closeBtn);
-
-        // Create content
-        let content;
-        if (isVideo) {
-            content = element.querySelector('video').cloneNode(true);
-            content.controls = true;
-            content.muted = false;
-            content.autoplay = true;
-        } else {
-            content = document.createElement('img');
-            content.src = element.src;
-            content.alt = element.alt;
-        }
-        content.className = 'expanded';
-        
-        container.appendChild(content);
-        document.body.appendChild(container);
-
-        // Fade in
-        requestAnimationFrame(() => {
-            container.style.opacity = '1';
-        });
-
-        // Close handlers
-        const closeFullscreen = () => {
-            container.style.opacity = '0';
-            setTimeout(() => container.remove(), 300);
-        };
-
-        closeBtn.addEventListener('click', closeFullscreen);
-        container.addEventListener('click', (e) => {
-            if (e.target === container) closeFullscreen();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeFullscreen();
-        });
-    }
-
-    // Get random unique image number
-    function getUniqueImageNumber() {
-        if (usedImages.size >= totalImages) {
-            usedImages.clear();
-        }
-        
-        let newNum;
-        do {
-            newNum = Math.floor(Math.random() * totalImages) + 1;
-        } while (usedImages.has(newNum));
-        
-        usedImages.add(newNum);
-        return newNum;
-    }
-
-    // Animate single gallery image
-    function animateGalleryImage(img) {
-        if (isTransitioning) return;
-        
-        img.style.opacity = '0';
-        img.style.transform = 'scale(0.95)';
-        
-        setTimeout(() => {
-            const newImageNum = getUniqueImageNumber();
-            img.src = `website template content/Sex Pistols Expose Music/${newImageNum}.png`;
-            img.alt = `Sex Pistols ${newImageNum}`;
-            
-            requestAnimationFrame(() => {
-                img.style.opacity = '0.9';
-                img.style.transform = 'scale(1)';
-            });
-        }, 1000);
-    }
-
-    // Initialize click handlers
-    function initializeClickHandlers() {
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => createFullscreen(img));
-        });
-
-        mobilePreview.addEventListener('click', () => createFullscreen(mobilePreview, true));
-        desktopPreview.addEventListener('click', () => createFullscreen(desktopPreview, true));
-    }
-
-    // Start gallery animation
-    function startGalleryAnimation() {
-        galleryImages.forEach((img, index) => {
-            setInterval(() => {
-                animateGalleryImage(img);
-            }, 8000 + (index * 2000)); // Staggered intervals
-        });
-    }
-
-    // Initialize videos
-    function initializeVideos() {
-        const videos = document.querySelectorAll('.preview-video');
-        videos.forEach(video => {
-            video.muted = true;
-            video.loop = true;
-            video.playsinline = true;
-            
-            video.parentElement.addEventListener('mouseenter', () => {
-                video.play().catch(() => {});
-            });
-            
-            video.parentElement.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        });
-    }
-
-    // Initialize everything
-    initializeVideos();
-    initializeClickHandlers();
-    startGalleryAnimation();
-});
-
-// TradeMasters Plumbing Section Script
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize elements for plumbing section
-    const plumbingMobilePreview = document.querySelector('.showcase-right .mobile-border');
-    const plumbingDesktopPreview = document.querySelector('.showcase-right .desktop-border');
-    const plumbingVideos = document.querySelectorAll('.showcase-right .preview-video');
-
-    // Fullscreen functionality for plumbing videos
-    function createPlumbingFullscreen(element, isVideo = false) {
-        const container = document.createElement('div');
-        container.className = 'fullscreen-container';
-        
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'fullscreen-close';
-        closeBtn.innerHTML = '×';
-        container.appendChild(closeBtn);
-
-        let content;
-        if (isVideo) {
-            content = element.querySelector('video').cloneNode(true);
-            content.controls = true;
-            content.muted = false;
-            content.autoplay = true;
-        }
-        
-        container.appendChild(content);
-        document.body.appendChild(container);
-
-        // Fade in
-        requestAnimationFrame(() => {
-            container.classList.add('active');
-        });
-
-        // Close handlers
-        const closeFullscreen = () => {
-            container.classList.remove('active');
-            setTimeout(() => container.remove(), 300);
-        };
-
-        closeBtn.addEventListener('click', closeFullscreen);
-        container.addEventListener('click', (e) => {
-            if (e.target === container) closeFullscreen();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeFullscreen();
-        });
-    }
-
-    // Initialize click handlers for plumbing section
-    function initializePlumbingClickHandlers() {
-        plumbingMobilePreview.addEventListener('click', () => 
-            createPlumbingFullscreen(plumbingMobilePreview, true));
-        
-        plumbingDesktopPreview.addEventListener('click', () => 
-            createPlumbingFullscreen(plumbingDesktopPreview, true));
-    }
-
-    // Initialize videos for plumbing section
-    function initializePlumbingVideos() {
-        plumbingVideos.forEach(video => {
-            video.muted = true;
-            video.loop = true;
-            video.playsinline = true;
-            
-            // Play video on hover
-            video.parentElement.addEventListener('mouseenter', () => {
-                video.play().catch(() => {
-                    console.log('Auto-play prevented');
-                });
-            });
-            
-            // Pause and reset on mouse leave
-            video.parentElement.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-
-            // Initial play attempt
-            video.play().catch(() => {
-                console.log('Auto-play prevented');
-            });
-        });
-    }
-
-    // Handle touch devices for plumbing section
-    function setupPlumbingTouchBehavior() {
-        if ('ontouchstart' in window) {
-            const touchElements = document.querySelectorAll('.showcase-right .mobile-border, .showcase-right .desktop-border');
-            touchElements.forEach(element => {
-                element.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(1.02)';
-                });
-                element.addEventListener('touchend', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-        }
-    }
-
-    // Initialize everything for plumbing section
-    initializePlumbingVideos();
-    initializePlumbingClickHandlers();
-    setupPlumbingTouchBehavior();
-});
-
-
-// Project Galleries Script
-// Project Galleries Script
-document.addEventListener('DOMContentLoaded', () => {
-    const tracks = document.querySelectorAll('.gallery-track');
-    
-    // Initialize galleries
-    function initializeGalleries() {
-        tracks.forEach(track => {
-            // Clone items for infinite scroll
-            const items = track.querySelectorAll('.gallery-image');
-            const itemCount = items.length;
-            
-            // Clone enough items to ensure smooth scrolling
-            for (let i = 0; i < 2; i++) {
-                items.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    track.appendChild(clone);
-                    
-                    // Add click handler for fullscreen
-                    clone.addEventListener('click', () => createFullscreen(clone));
-                });
-            }
-            
-            // Add click handlers to original images
-            items.forEach(item => {
-                item.addEventListener('click', () => createFullscreen(item));
-            });
-        });
-    }
-
-    // Fullscreen functionality
-    function createFullscreen(image) {
-        const container = document.createElement('div');
-        container.className = 'fullscreen-container';
-        
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'fullscreen-close';
-        closeBtn.innerHTML = '×';
-        
-        const fullscreenImage = document.createElement('img');
-        fullscreenImage.src = image.src;
-        fullscreenImage.className = 'fullscreen-image';
-        
-        // Add loading state
-        fullscreenImage.classList.add('loading');
-        fullscreenImage.onload = () => {
-            fullscreenImage.classList.remove('loading');
-        };
-        
-        container.appendChild(closeBtn);
-        container.appendChild(fullscreenImage);
-        document.body.appendChild(container);
-        
-        // Fade in
-        requestAnimationFrame(() => {
-            container.classList.add('active');
-        });
-
-        // Close handlers
-        const closeFullscreen = () => {
-            container.classList.remove('active');
-            setTimeout(() => container.remove(), 300);
-        };
-
-        closeBtn.addEventListener('click', closeFullscreen);
-        container.addEventListener('click', (e) => {
-            if (e.target === container) closeFullscreen();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeFullscreen();
-        });
-    }
-
-    // Scroll control
-    function initializeScrollControl() {
-        tracks.forEach(track => {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            track.addEventListener('mouseenter', () => {
-                track.style.animationPlayState = 'paused';
-            });
-
-            track.addEventListener('mouseleave', () => {
-                track.style.animationPlayState = 'running';
-            });
-
-            // Mouse drag functionality
-            track.addEventListener('mousedown', (e) => {
-                isDown = true;
-                track.style.cursor = 'grabbing';
-                startX = e.pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-            });
-
-            track.addEventListener('mouseleave', () => {
-                isDown = false;
-                track.style.cursor = 'grab';
-            });
-
-            track.addEventListener('mouseup', () => {
-                isDown = false;
-                track.style.cursor = 'grab';
-            });
-
-            track.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2;
-                track.scrollLeft = scrollLeft - walk;
-            });
-        });
-    }
-
-    // Handle touch devices
-    function initializeTouchSupport() {
-        if ('ontouchstart' in window) {
-            tracks.forEach(track => {
-                track.style.cursor = 'grab';
-                track.addEventListener('touchstart', () => {
-                    track.style.animationPlayState = 'paused';
-                });
-                track.addEventListener('touchend', () => {
-                    track.style.animationPlayState = 'running';
-                });
-            });
-        }
-    }
-
-    // Initialize everything
-    initializeGalleries();
-    initializeScrollControl();
-    initializeTouchSupport();
-});
-
-//web design pricing and info, ai section and film videos and ai generation script 
-
-// JavaScript for all sections
-document.addEventListener('DOMContentLoaded', function() {
-    // AI Generation Video Preview
-    const aiGenVideo = document.querySelector('.ai-gen-video');
-    const aiGenOverlay = document.querySelector('.ai-gen-overlay');
-    
-    if(aiGenVideo && aiGenOverlay) {
-        aiGenOverlay.addEventListener('click', function() {
-            aiGenVideo.play();
-            aiGenOverlay.style.opacity = '0';
-            setTimeout(() => {
-                aiGenOverlay.style.display = 'none';
-            }, 300);
-        });
-    }
-
-    // Waitlist Form Submission
-    const aiGenForm = document.querySelector('.ai-gen-form');
-    if(aiGenForm) {
-        aiGenForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('.ai-gen-input').value;
-            
-            // Add loading state
-            const submitBtn = this.querySelector('.ai-gen-submit');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Joining...';
-            submitBtn.disabled = true;
-
-            // Simulate API call
-            setTimeout(() => {
-                alert('Thanks for joining our waitlist! We\'ll keep you updated.');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                this.reset();
-            }, 1500);
-        });
-    }
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Intersection Observer for animations
-    const animateOnScroll = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    // Add animation to elements
-    document.querySelectorAll('.wd-price-card, .ai-gen-feature, .fp-service').forEach(el => {
-        animateOnScroll.observe(el);
-    });
-
-    // Price hover effect
-    document.querySelectorAll('.wd-price-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-
-    // YouTube API Integration
-    let player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('fp-iframe', {
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    function onPlayerReady(event) {
-        // Player is ready
-        console.log('YouTube player is ready');
-    }
-
-    function onPlayerStateChange(event) {
-        // Handle player state changes
-        console.log('Player state changed');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const mainVideo = document.querySelector('.ai-main-video video');
-    const thumbnails = document.querySelectorAll('.ai-thumb');
-    const playPauseBtn = document.querySelector('.ai-play-pause');
-    const audioBtn = document.querySelector('.ai-audio-control');
-    const fullscreenBtn = document.querySelector('.ai-fullscreen');
-    
-    // Video sources array
-    const videoSources = [
-        'film production/shining/1.mp4',
-        'film production/shining/2.mp4',
-        'film production/shining/3.mp4',
-        'film production/shining/4.mp4',
-        'film production/shining/5.mp4'
-    ];
-    
-    let currentVideoIndex = 0;
-    let autoplayInterval;
-
-    // Initialize thumbnail videos
-    thumbnails.forEach(thumb => {
-        const video = thumb.querySelector('video');
-        video.play().catch(e => console.log("Autoplay prevented:", e));
-    });
-
-    // Thumbnail click handler
-    thumbnails.forEach((thumb, index) => {
-        thumb.addEventListener('click', () => {
-            mainVideo.src = thumb.dataset.video;
-            mainVideo.play();
-            currentVideoIndex = index;
-        });
-    });
-
-    // Auto-rotate main video
-    function startAutoplay() {
-        autoplayInterval = setInterval(() => {
-            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
-            mainVideo.src = videoSources[currentVideoIndex];
-            mainVideo.play();
-        }, 10000); // Change video every 10 seconds
-    }
-
-    // Control handlers
-    playPauseBtn.addEventListener('click', () => {
-        const icon = playPauseBtn.querySelector('i');
-        if (mainVideo.paused) {
-            mainVideo.play();
-            icon.classList.replace('fa-play', 'fa-pause');
-            startAutoplay();
-        } else {
-            mainVideo.pause();
-            icon.classList.replace('fa-pause', 'fa-play');
-            clearInterval(autoplayInterval);
-        }
-    });
-
-    audioBtn.addEventListener('click', () => {
-        const icon = audioBtn.querySelector('i');
-        mainVideo.muted = !mainVideo.muted;
-        icon.classList.replace(
-            mainVideo.muted ? 'fa-volume-up' : 'fa-volume-mute',
-            mainVideo.muted ? 'fa-volume-mute' : 'fa-volume-up'
-        );
-    });
-
-    fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            mainVideo.requestFullscreen();
-        } else {
-            document.exitFullscreen();
-        }
-    });
-
-    // Start autoplay
-    startAutoplay();
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Video autoplay and timing management
-    const videos = document.querySelectorAll('.portfolio-item video');
-    
-    videos.forEach(video => {
-        // Ensure videos start at different times
-        video.currentTime = Math.random() * video.duration;
-        
-        // Handle video loop timing
-        video.addEventListener('timeupdate', function() {
-            if(video.currentTime >= video.duration - 0.5) {
-                setTimeout(() => {
-                    video.currentTime = 0;
-                }, 1000);
-            }
-        });
-    });
-
-    // Smooth scroll functionality
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Enhanced hover effects
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    
-    portfolioItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.4)';
-        });
-
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-        });
-    });
-
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    document.querySelectorAll('.service-category, .expertise-block').forEach((el) => {
-        observer.observe(el);
-    });
-});
-
-//ANIMATION BLACK SECTION SHOWCASE WITH VIDEOS 
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Video autoplay and timing management
-    const videos = document.querySelectorAll('.portfolio-item video');
-    
-    videos.forEach(video => {
-        // Ensure videos start at different times
-        video.currentTime = Math.random() * video.duration;
-        
-        // Handle video loop timing
-        video.addEventListener('timeupdate', function() {
-            if(video.currentTime >= video.duration - 0.5) {
-                setTimeout(() => {
-                    video.currentTime = 0;
-                }, 1000);
-            }
-        });
-    });
-
-    // Smooth scroll functionality
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Enhanced hover effects
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    
-    portfolioItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.4)';
-        });
-
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-        });
-    });
-
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    document.querySelectorAll('.service-category, .expertise-block').forEach((el) => {
-        observer.observe(el);
-    });
-});
-
-// FAQ Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // FAQ Toggle
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            // Close all other FAQ items
-            const currentlyActive = document.querySelector('.faq-item.active');
-            if (currentlyActive && currentlyActive !== question.parentElement) {
-                currentlyActive.classList.remove('active');
-                currentlyActive.querySelector('.faq-toggle').textContent = '+';
-            }
-            
-            // Toggle current FAQ item
-            const faqItem = question.parentElement;
-            faqItem.classList.toggle('active');
-            
-            // Update toggle symbol
-            const toggle = question.querySelector('.faq-toggle');
-            toggle.textContent = faqItem.classList.contains('active') ? '−' : '+';
-        });
-    });
-
-    // Form Validation and Submission
-    const contactForm = document.querySelector('.contact-form');
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Basic form validation
-        const name = this.querySelector('#name').value.trim();
-        const email = this.querySelector('#email').value.trim();
-        const message = this.querySelector('#message').value.trim();
-        
-        if (!name || !email || !message) {
-            alert('Please fill in all required fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // If validation passes, submit the form
-        this.submit();
-    });
-});
-
-//ai trailer part 
-document.addEventListener('DOMContentLoaded', function() {
-    const videoPlaceholder = document.querySelector('.video-placeholder');
-    const video = document.querySelector('.preview-video');
-    const playButton = document.querySelector('.play-button');
-
-    if(videoPlaceholder && video && playButton) {
-        playButton.addEventListener('click', function() {
-            videoPlaceholder.style.display = 'none';
-            video.style.display = 'block';
-            video.play();
-        });
-    }
-});
-
-//ANCHOR MENU ON SCROLL AND HOVER BUTTONS BOTTOM RIGHT 
-
-// Fixed Navigation Controls - Isolated Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const fixedNav = {
-        anchorMenu: document.querySelector('.anchor-menu'),
-        backToTop: document.querySelector('.back-to-top'),
-        contactButtons: document.querySelector('.fixed-buttons'),
-
-        init: function() {
-            if (!this.anchorMenu || !this.backToTop) return;
-            this.initScrollHandling();
-            this.initClickHandling();
-            this.checkMobileDisplay();
-        },
-
-        // Check for mobile device
-        isMobile: function() {
-            return window.innerWidth <= 768;
-        },
-
-        // Handle scroll events
-        initScrollHandling: function() {
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                if (!scrollTimeout) {
-                    scrollTimeout = setTimeout(() => {
-                        const scrollPosition = window.scrollY;
-                        const viewportHeight = window.innerHeight * 0.75;
-
-                        // Show/hide menu and back to top button
-                        if (scrollPosition > viewportHeight && !this.isMobile()) {
-                            this.anchorMenu.classList.add('visible');
-                            this.backToTop.classList.add('visible');
-                        } else {
-                            this.anchorMenu.classList.remove('visible');
-                            this.backToTop.classList.remove('visible');
-                        }
-
-                        scrollTimeout = null;
-                    }, 100);
-                }
-            }, { passive: true });
-        },
-
-        // Handle click events
-        initClickHandling: function() {
-            // Back to top button
-            this.backToTop.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Smooth scroll for anchor links
-            this.anchorMenu.querySelectorAll('a').forEach(anchor => {
-                anchor.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = anchor.getAttribute('href')?.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        const targetPosition = targetElement.offsetTop - 50;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Contact buttons click tracking (optional)
-            document.querySelector('.whatsapp-btn')?.addEventListener('click', () => {
-                console.log('WhatsApp clicked');
-            });
-
-            document.querySelector('.email-btn')?.addEventListener('click', () => {
-                console.log('Email clicked');
-            });
-
-            document.querySelector('.phone-btn')?.addEventListener('click', () => {
-                console.log('Phone clicked');
-            });
-        },
-
-        // Handle mobile display
-        checkMobileDisplay: function() {
-            if (this.isMobile()) {
-                this.anchorMenu.classList.add('hidden');
-                this.anchorMenu.style.display = 'none';
-            } else {
-                this.anchorMenu.classList.remove('hidden');
-                this.anchorMenu.style.removeProperty('display');
-            }
-        }
-    };
-
-    // Initialize
-    fixedNav.init();
-
-    // Handle resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => fixedNav.checkMobileDisplay(), 250);
-    });
-});
-</script>
-
-
-<!-- Fixed Anchor Menu -->
-<!-- Fixed Anchor Menu -->
-<nav class="anchor-menu">
-    <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#freelancer-info">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#spline-mobile-animate">Animation</a></li>
-        <li><a href="#pro-animation-showcase">Showcase</a></li>
-        <li><a href="#digital-media">Digital Media</a></li>
-        <li><a href="#print-design">Print Services</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
 
 <!-- Fixed Contact Buttons -->
 <div class="fixed-buttons">
@@ -3038,6 +1932,20 @@ document.addEventListener('DOMContentLoaded', function() {
     </button>
 </div>
 
+
+
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script src="script.js"></script>
+
+
+
 </body>
+
+
+
+
 </html>
 
