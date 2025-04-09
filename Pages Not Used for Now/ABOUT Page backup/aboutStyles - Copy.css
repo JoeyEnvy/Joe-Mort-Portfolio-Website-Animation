@@ -106,6 +106,158 @@ p {
 }
 
 
+/* about section joe mort */
+
+#about.section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: none;
+}
+
+#about .spline-container {
+    position: absolute;
+    top: 0;
+    left: -200%; /* Start off-screen to the left */
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 1.25s ease; /* Modern duration and easing */
+}
+
+#about .spline-container.active {
+    left: 0; /* Move to default position when active */
+}
+
+#about .spline-container.exit {
+    left: -100%; /* Move off-screen to the left when exiting */
+}
+
+
+#about .right-column {
+    position: absolute;
+    top: 50%;
+    right: 10rem;
+    transform: translateY(-50%) translateX(100%);
+    width: 35vw;
+    max-height: 85vh;
+    z-index: 0;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+#about .content-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 2rem;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#about .content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#about .about-content {
+    margin: 1rem;
+}
+
+#about section {
+    margin-bottom: 2rem;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ff79c6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #bd93f9;
+}
+
+#about h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #50fa7b;
+}
+
+#about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #f8f8f2;
+}
+
+#about ul, #about ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#about li {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: #f8f8f2;
+}
+
+#about .fas {
+    margin-right: 0.5rem;
+    color: #ff79c6;
+}
+
+#about .cta-buttons {
+    position: absolute;
+    bottom: 5vh;
+    left: calc(25% - 0px); /* Moved 300px back to the right */
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Slightly reduced gap between buttons */
+    z-index: 3;
+}
+
+#about .cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.6rem; /* Slightly reduced padding for smaller buttons */
+    background-color: #ff79c6;
+    color: #282a36;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1rem; /* Reduced font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#about .cta-button:hover {
+    background-color: #bd93f9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#about .cta-button .fas {
+    margin-right: 0.5rem;
+}
+
+/* Animation classes */
+#about.section.active .right-column {
+    transform: translateY(-50%) translateX(0);
+}
+
+#about.section.exit .right-column {
+    transform: translateY(-50%) translateX(100%);
+}
+
+
 /* ==========================================================================
    5. Navigation Styles
    ========================================================================== */
@@ -467,149 +619,6 @@ spline-viewer {
         grid-template-columns: 1fr;
     }
 }
-
-
-
-
-
-
-
-
-/* freelancer section */ 
-
-
-/* ==========================================================================
-   FREELANCER INFO SECTION
-   ========================================================================== */
-/* ==========================================================================
-   FREELANCER INFO SECTION
-   ========================================================================== */
-.freelancer-info {
-    background-color: #f8f9fa;
-    padding: 100px 0;
-    margin-top: -75px;
-    position: relative;
-    z-index: 10;
-}
-
-.freelancer-info .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-}
-
-.freelancer-info-left {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.showcase-title {
-    margin-top: 20px;
-    color: var(--primary-color);
-    font-size: 1.8em;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.freelancer-info-left h2 {
-    font-size: 3em;
-    margin-bottom: 30px;
-    color: var(--primary-color);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.freelancer-info-left p:last-of-type {
-    margin-bottom: 10px;
-}
-
-.freelancer-info-left p {
-    font-size: 1.2em;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    color: var(--text-color);
-}
-
-.freelancer-info-left .highlight {
-    color: var(--accent-color);
-    font-weight: 600;
-}
-
-.freelancer-info-right {
-    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
-}
-
-.freelancer-info-right h3 {
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: var(--primary-color);
-    text-align: center;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-.service-category {
-    padding: 20px;
-    background: rgba(255,255,255,0.5);
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.service-category:hover {
-    transform: translateY(-5px);
-}
-
-.service-category h4 {
-    font-size: 1.2em;
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.service-category i {
-    font-size: 1.4em;
-}
-
-.service-category ul {
-    list-style: none;
-    padding: 0;
-}
-
-.service-category ul li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* web design section */
 

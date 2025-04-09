@@ -1,94 +1,156 @@
+/**
+ * WEBSITE CONTROLLER CLASS
+ * Manages scroll interactions, including:
+ * - Navigation state (compact/expanded)
+ * - Scroll progress bar
+ * - Spline scene full-width expansion
+ */
 class WebsiteController {
-    constructor() {
-        this.scrollThreshold = 100; // Pixels before navbar changes
-        this.lastScrollPosition = 0;
-        this.scrollingDown = false;
+  constructor() {
+    // Scroll behavior configuration
+    this.scrollThreshold = 100;  // Pixels to scroll before triggering changes
+    this.lastScrollPosition = 0; // Tracks previous scroll position
+    this.scrollingDown = false;  // Scroll direction flag
+    this.scrollTicking = false;  // Throttles scroll events
+
+    // Initialize DOM references and events
+    this.initializeElements();
+    this.setupEventListeners();
+    this.checkInitialScroll();
+  }
+
+  /**
+   * Initialize DOM element references
+   */
+  initializeElements() {
+    this.elements = {
+      nav: document.querySelector('nav'),              // Navigation bar
+      navProgressBar: document.querySelector('.nav-progress'), // Scroll progress bar
+      main: document.querySelector('main'),            // Main content wrapper
+      heroSection: document.querySelector('.jj-hero-section'), // Hero section
+      splineViewer: document.querySelector('spline-viewer')    // Spline 3D scene
+    };
+  }
+
+  /**
+   * Set up event listeners
+   */
+  setupEventListeners() {
+    // Use passive scrolling for performance
+    window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+  }
+
+  /**
+   * Check initial scroll position on page load
+   */
+  checkInitialScroll() {
+    if (window.pageYOffset > this.scrollThreshold) {
+      this.toggleNavState(true);
+      this.updateSplineWidth(window.pageYOffset); // Initialize Spline width
+    }
+  }
+
+  /**
+   * Throttled scroll event handler
+   */
+  handleScroll() {
+    if (!this.scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
+        
+        // Determine scroll direction
+        this.scrollingDown = currentScroll > this.lastScrollPosition;
+        
+        // Update all scroll-dependent elements
+        this.updateScrollProgress(currentScroll);
+        this.updateNavState(currentScroll);
+        this.updateSplineWidth(currentScroll); // Handle Spline expansion
+        
+        this.lastScrollPosition = currentScroll;
         this.scrollTicking = false;
-        
-        this.initializeElements();
-        this.setupEventListeners();
-        this.checkInitialScroll();
+      });
+      this.scrollTicking = true;
+    }
+  }
+
+  /**
+   * Updates the scroll progress bar
+   * @param {number} currentScroll - Current scroll position (px)
+   */
+  updateScrollProgress(currentScroll) {
+    if (!this.elements.navProgressBar) return;
+    
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
+    
+    // Show/hide progress bar based on scroll position
+    if (currentScroll > this.scrollThreshold) {
+      this.elements.navProgressBar.style.width = `${scrollProgress}%`;
+      this.elements.navProgressBar.style.opacity = '1';
+    } else {
+      this.elements.navProgressBar.style.width = '0%';
+      this.elements.navProgressBar.style.opacity = '0';
+    }
+  }
+
+  /**
+   * Manages navbar state (compact/expanded)
+   * @param {number} currentScroll - Current scroll position (px)
+   */
+  updateNavState(currentScroll) {
+    const pastThreshold = currentScroll > this.scrollThreshold;
+    
+    // Reset to default state at page top
+    if (currentScroll <= this.scrollThreshold) {
+      this.toggleNavState(false);
+      return;
     }
 
-    initializeElements() {
-        this.elements = {
-            nav: document.querySelector('nav'),
-            navProgressBar: document.querySelector('.nav-progress'),
-            main: document.querySelector('main'),
-            heroSection: document.querySelector('.jj-hero-section')
-        };
+    // Compact nav when scrolling down
+    if (this.scrollingDown && pastThreshold) {
+      this.toggleNavState(true);
     }
+    // Expanded nav when scrolling up
+    else if (!this.scrollingDown) {
+      this.toggleNavState(true);
+    }
+  }
 
-    setupEventListeners() {
-        window.addEventListener('scroll', () => this.handleScroll());
-    }
+  /**
+   * Toggles CSS classes for scroll states
+   * @param {boolean} shouldScroll - Whether scroll threshold is passed
+   */
+  toggleNavState(shouldScroll) {
+    this.elements.nav?.classList.toggle('scrolled', shouldScroll);
+    this.elements.main?.classList.toggle('scrolled', shouldScroll);
+    this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
+  }
 
-    checkInitialScroll() {
-        // Set correct state on page load
-        if (window.pageYOffset > this.scrollThreshold) {
-            this.toggleNavState(true);
-        }
+  /**
+   * NEW: Handles Spline scene width expansion
+   * @param {number} currentScroll - Current scroll position (px)
+   */
+  updateSplineWidth(currentScroll) {
+    if (!this.elements.splineViewer) return;
+    
+    // Expand to full viewport width after threshold
+    if (currentScroll > this.scrollThreshold) {
+      this.elements.splineViewer.style.width = '100vw';
+      this.elements.splineViewer.style.left = '0';
+      this.elements.splineViewer.style.right = 'auto';
+    } 
+    // Reset to default position
+    else {
+      this.elements.splineViewer.style.width = '';
+      this.elements.splineViewer.style.left = '';
+      this.elements.splineViewer.style.right = '0';
     }
-
-    handleScroll() {
-        if (!this.scrollTicking) {
-            window.requestAnimationFrame(() => {
-                const currentScroll = window.pageYOffset;
-                this.scrollingDown = currentScroll > this.lastScrollPosition;
-                
-                this.updateScrollProgress(currentScroll);
-                this.updateNavState(currentScroll);
-                
-                this.lastScrollPosition = currentScroll;
-                this.scrollTicking = false;
-            });
-            this.scrollTicking = true;
-        }
-    }
-
-    updateScrollProgress(currentScroll) {
-        if (!this.elements.navProgressBar) return;
-        
-        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
-        
-        // Only show progress bar when scrolled past threshold
-        if (currentScroll > this.scrollThreshold) {
-            this.elements.navProgressBar.style.width = `${scrollProgress}%`;
-            this.elements.navProgressBar.style.opacity = '1';
-        } else {
-            this.elements.navProgressBar.style.width = '0%';
-            this.elements.navProgressBar.style.opacity = '0';
-        }
-    }
-
-    updateNavState(currentScroll) {
-        const pastThreshold = currentScroll > this.scrollThreshold;
-        
-        // Always show navbar when scrolling up
-        if (!this.scrollingDown) {
-            this.toggleNavState(true);
-        } 
-        // Only hide when scrolling down past threshold
-        else if (pastThreshold) {
-            this.toggleNavState(true);
-        } 
-        // Show full navbar at top of page
-        else {
-            this.toggleNavState(false);
-        }
-    }
-
-    toggleNavState(shouldScroll) {
-        this.elements.nav?.classList.toggle('scrolled', shouldScroll);
-        this.elements.main?.classList.toggle('scrolled', shouldScroll);
-        this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
-    }
+  }
 }
 
-// Initialize when DOM is loaded
+// Initialize controller when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new WebsiteController();
+  new WebsiteController();
 });
 
 
