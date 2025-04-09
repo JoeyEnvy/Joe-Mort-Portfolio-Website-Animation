@@ -1,16 +1,13 @@
 class WebsiteController {
     constructor() {
-        this.scrollThreshold = 60; // Reduced from 100 for earlier trigger
+        this.scrollThreshold = 100; // Pixels before navbar changes
         this.lastScrollPosition = 0;
+        this.scrollingDown = false;
         this.scrollTicking = false;
-        this.navbarHidden = false;
         
         this.initializeElements();
         this.setupEventListeners();
         this.checkInitialScroll();
-        
-        // Debugging
-        console.log('Navbar Controller Initialized');
     }
 
     initializeElements() {
@@ -23,41 +20,25 @@ class WebsiteController {
     }
 
     setupEventListeners() {
-        window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+        window.addEventListener('scroll', () => this.handleScroll());
     }
 
     checkInitialScroll() {
-        const currentScroll = window.pageYOffset;
-        this.toggleNavState(currentScroll > this.scrollThreshold);
-        this.updateScrollProgress(currentScroll);
+        // Set correct state on page load
+        if (window.pageYOffset > this.scrollThreshold) {
+            this.toggleNavState(true);
+        }
     }
 
     handleScroll() {
         if (!this.scrollTicking) {
             window.requestAnimationFrame(() => {
                 const currentScroll = window.pageYOffset;
-                const scrollDirection = currentScroll > this.lastScrollPosition ? 'down' : 'up';
-                const pastThreshold = currentScroll > this.scrollThreshold;
-
-                // 1. Handle Progress Bar
+                this.scrollingDown = currentScroll > this.lastScrollPosition;
+                
                 this.updateScrollProgress(currentScroll);
-
-                // 2. Smarter Navbar Behavior
-                if (scrollDirection === 'up') {
-                    // Always show when scrolling up
-                    this.toggleNavState(true);
-                    this.navbarHidden = false;
-                } else {
-                    // Only hide if scrolled past threshold AND moving down
-                    if (pastThreshold && !this.navbarHidden) {
-                        this.toggleNavState(false);
-                        this.navbarHidden = true;
-                    } else if (!pastThreshold) {
-                        this.toggleNavState(true);
-                        this.navbarHidden = false;
-                    }
-                }
-
+                this.updateNavState(currentScroll);
+                
                 this.lastScrollPosition = currentScroll;
                 this.scrollTicking = false;
             });
@@ -71,26 +52,44 @@ class WebsiteController {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
         
-        this.elements.navProgressBar.style.width = `${scrollProgress}%`;
-        this.elements.navProgressBar.style.opacity = currentScroll > this.scrollThreshold ? '1' : '0';
-    }
-
-    toggleNavState(shouldShow) {
-        this.elements.nav?.classList.toggle('scrolled', shouldShow);
-        this.elements.main?.classList.toggle('scrolled', shouldShow);
-        if (this.elements.heroSection) {
-            this.elements.heroSection.classList.toggle('jj-nav-scrolled', shouldShow);
+        // Only show progress bar when scrolled past threshold
+        if (currentScroll > this.scrollThreshold) {
+            this.elements.navProgressBar.style.width = `${scrollProgress}%`;
+            this.elements.navProgressBar.style.opacity = '1';
+        } else {
+            this.elements.navProgressBar.style.width = '0%';
+            this.elements.navProgressBar.style.opacity = '0';
         }
     }
+
+    updateNavState(currentScroll) {
+        const pastThreshold = currentScroll > this.scrollThreshold;
+        
+        // Always show navbar when scrolling up
+        if (!this.scrollingDown) {
+            this.toggleNavState(true);
+        } 
+        // Only hide when scrolling down past threshold
+        else if (pastThreshold) {
+            this.toggleNavState(true);
+        } 
+        // Show full navbar at top of page
+        else {
+            this.toggleNavState(false);
+        }
+    }
+
+    toggleNavState(shouldScroll) {
+        this.elements.nav?.classList.toggle('scrolled', shouldScroll);
+        this.elements.main?.classList.toggle('scrolled', shouldScroll);
+        this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
+    }
 }
 
-// Initialize with DOM ready check
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new WebsiteController());
-} else {
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
     new WebsiteController();
-}
-
+});
 
 
 
