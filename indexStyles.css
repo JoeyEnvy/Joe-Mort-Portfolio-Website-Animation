@@ -283,34 +283,44 @@ main.scrolled {
 
 
 /* =============== HERO SECTION WITH BLUE GRADIENT & NAVBAR INTEGRATION =============== */
+/* ================= HERO SECTION ================= */
 .jj-hero-section {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
     color: #ffffff;
-    width: 100%;
-    left: 0px;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(135deg, #1a3a8f 0%, #00b4db 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    left: 0;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ================= HERO CONTENT ================= */
 .jj-hero-content {
     display: flex;
     height: 100vh;
     padding: 2rem;
-left: 250px;
-    bottom: 50px;
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-width: 1600px; /* ▲ Increased from 1200px */
+    right: 100px;
+    bottom: 50px;
 }
 
+/* ================= LEFT COLUMN ================= */
 .jj-hero-left {
-    width: 40%;
+    width: 60%; /* ▲ Increased from 40% */
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 3;
     position: relative;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .jj-hero-left h1 {
@@ -334,11 +344,16 @@ left: 250px;
     line-height: 1.6;
 }
 
+/* ================= SERVICES GRID ================= */
 .jj-services-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-bottom: 1.5rem;
+    justify-items: center;
+    width: 90%; /* ▲ Added for wider grid */
+    max-width: 1400px; /* ▲ Added for max expansion */
+    margin: 0 auto 1.5rem; /* Centered */
 }
 
 .jj-service-item {
@@ -348,6 +363,17 @@ left: 250px;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    min-width: 300px; /* ▲ Added minimum width */
+    text-align: center;
+    margin: 0;
+}
+
+.jj-service-item:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 60%; /* ▲ Increased from 50% */
+    margin: 0 auto;
+    margin-bottom: 0;
 }
 
 .jj-service-item:hover {
@@ -373,10 +399,12 @@ left: 250px;
     margin-bottom: 0;
 }
 
+/* ================= BUTTONS ================= */
 .jj-button-group {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 .jj-cta-button, .jj-showcase-button {
@@ -387,6 +415,7 @@ left: 250px;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 180px; /* ▲ Added minimum width */
 }
 
 .jj-cta-button {
@@ -411,40 +440,19 @@ left: 250px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.jj-hero-right {
-    position: fixed;
-    top: 0;
-    left: 250px;
-    width: calc(100% - 250px);
-    height: 100vh;
-    z-index: 1;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    mix-blend-mode: screen;
-}
-
-
-.jj-dark-bar {
-    background-color: #2d3436;
-    height: 75px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-}
-
-/* spline hero robot shit */ 
-
-/* Add these rules to your existing CSS */
+/* ================= SPLINE BACKGROUND ================= */
 .jj-hero-right {
     width: 100vw !important;
     height: 100vh !important;
-    left: 0 !important; /* Offset adjustment for full width */
+    left: 0 !important;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    mix-blend-mode: screen;
 }
 
 .jj-hero-right spline-viewer {
-    width: 100vw!important;
+    width: 100vw !important;
     height: 100% !important;
     min-width: 100vw !important;
     min-height: 100vh !important;
@@ -454,41 +462,42 @@ left: 250px;
     z-index: 1 !important;
 }
 
-/* Keep existing dark bar positioning */
+/* ================= DARK BAR ================= */
 .jj-dark-bar {
-    z-index: 1000 !important; /* Ensure it stays above Spline */
+    background-color: #2d3436;
+    height: 75px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-
-
-
-/* =============== RESPONSIVE DESIGN =============== */
+/* ================= RESPONSIVE DESIGN ================= */
 @media (max-width: 1024px) {
-    main, 
-    .jj-hero-section,
+    .jj-hero-content {
+        padding: 2rem;
+    }
+    
     .jj-hero-right {
-        margin-left: 0;
-        left: 0;
-        width: 100%;
-    }
-    
-    nav:not(.scrolled) {
-        transform: translateX(-100%);
-    }
-    
-    nav.scrolled {
-        transform: translateX(0);
+        left: 0 !important;
+        width: 100% !important;
     }
 }
 
 @media (max-width: 768px) {
     .jj-hero-left {
         width: 100%;
-        padding-right: 0;
+        padding: 0 1rem;
     }
     
     .jj-services-list {
         grid-template-columns: 1fr;
+        width: 100%; /* Full width on mobile */
+    }
+    
+    .jj-service-item:nth-child(5) {
+        max-width: 100%;
     }
     
     .jj-hero-right {
@@ -503,16 +512,12 @@ left: 250px;
     
     .jj-button-group {
         flex-direction: column;
+        gap: 0.75rem;
     }
     
-    nav {
-        width: 100%;
-        height: auto;
-        padding: 1rem;
-    }
-    
-    nav.scrolled {
-        height: 50px;
+    .jj-service-item {
+        padding: 1rem 0.5rem;
+        min-width: 250px; /* Adjusted for mobile */
     }
 }
 
