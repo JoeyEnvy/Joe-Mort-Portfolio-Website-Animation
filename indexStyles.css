@@ -834,7 +834,7 @@ div.service-category:nth-child(4) {
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
-  background-color: var(--background-color);
+  background-color: var(--nav-bg);
   scroll-snap-align: start;
 }
 

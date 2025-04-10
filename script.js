@@ -688,3 +688,182 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+
+
+
+
+
+
+
+
+//about section extra joe mort snyposis freelancer second
+
+//html elements animate in and out on scroll 100vh and change background grey to white
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration
+  const animationDuration = 600;
+  const section = document.getElementById('joe-mort-about');
+  
+  // Get colors
+  const greyColor = getComputedStyle(document.documentElement)
+                   .getPropertyValue('--nav-bg').trim();
+  const whiteColor = '#ffffff';
+
+  // Set initial state
+  section.style.backgroundColor = greyColor;
+  section.style.transition = `background-color ${animationDuration}ms ease-out`;
+  section.style.willChange = 'background-color';
+
+  // Animation elements
+  const elementsToAnimate = [
+    section.querySelector('.airwaves-jm-profile-image-wrapper'),
+    section.querySelector('.airwaves-jm-contact-card'),
+    // ... include all your elements
+  ].filter(Boolean);
+
+  // Track state
+  let isScrollingIn = false;
+  let lastScrollPosition = window.scrollY;
+  let scrollDirection = 0;
+
+  // Improved scroll handler
+  function handleScroll() {
+    const currentScroll = window.scrollY;
+    scrollDirection = Math.sign(currentScroll - lastScrollPosition);
+    lastScrollPosition = currentScroll;
+    
+    const sectionRect = section.getBoundingClientRect();
+    const sectionMiddle = sectionRect.top + (sectionRect.height / 2);
+    const viewportMiddle = window.innerHeight / 2;
+    
+    // Check if section is centered in viewport
+    if (Math.abs(sectionMiddle - viewportMiddle) < 100) {
+      if (!isScrollingIn) {
+        isScrollingIn = true;
+        animateBackgroundIn();
+      }
+    } else {
+      if (isScrollingIn) {
+        isScrollingIn = false;
+        animateBackgroundOut();
+      }
+    }
+  }
+
+  // Smooth background transitions
+  function animateBackgroundIn() {
+    let start = null;
+    const duration = animationDuration;
+    
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      
+      // Ease-out interpolation
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      section.style.backgroundColor = interpolateColor(greyColor, whiteColor, easedProgress);
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    }
+    
+    window.requestAnimationFrame(step);
+  }
+
+  function animateBackgroundOut() {
+    let start = null;
+    const duration = animationDuration;
+    const currentColor = getComputedStyle(section).backgroundColor;
+    
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      
+      // Ease-in interpolation
+      const easedProgress = Math.pow(progress, 3);
+      section.style.backgroundColor = interpolateColor(currentColor, greyColor, easedProgress);
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    }
+    
+    window.requestAnimationFrame(step);
+  }
+
+  // Robust color interpolation
+  function interpolateColor(color1, color2, factor) {
+    // Convert CSS var to hex if needed
+    if (color1.startsWith('var(')) {
+      color1 = getComputedStyle(document.documentElement)
+              .getPropertyValue(color1.slice(4, -1)).trim();
+    }
+    
+    // Convert to RGB
+    const hexToRgb = hex => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ] : [0, 0, 0];
+    };
+    
+    const [r1, g1, b1] = hexToRgb(color1);
+    const [r2, g2, b2] = hexToRgb(color2);
+    
+    return `rgb(${
+      Math.round(r1 + factor * (r2 - r1))
+    }, ${
+      Math.round(g1 + factor * (g2 - g1))
+    }, ${
+      Math.round(b1 + factor * (b2 - b1))
+    })`;
+  }
+
+  // Set up scroll listener with debouncing
+  let isTicking = false;
+  window.addEventListener('scroll', function() {
+    if (!isTicking) {
+      window.requestAnimationFrame(function() {
+        handleScroll();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  });
+
+  // Initialize element animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
+      } else {
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  elementsToAnimate.forEach(el => {
+    el.style.transform = 'translateX(50vw)';
+    el.style.opacity = '0';
+    el.style.transition = `
+      transform ${animationDuration}ms cubic-bezier(0.18, 0.89, 0.32, 1.28),
+      opacity ${animationDuration}ms ease-out
+    `;
+    observer.observe(el);
+  });
+});
+
