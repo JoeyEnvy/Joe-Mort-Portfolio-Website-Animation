@@ -632,6 +632,7 @@ div.freelancer-info-left > div.device-showcase {
 
 
 /* ================= DEVICE SHOWCASE ================= */
+/* ================= DEVICE SHOWCASE ================= */
 .device-showcase {
     position: relative;
     display: flex;
@@ -646,7 +647,7 @@ div.device-showcase > div.device.desktop-viewer {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     aspect-ratio: 16/9;
-    transform: translateY(-100px); /* ▲ Moved up 100px */
+    transform: translateY(-125px); /* ▲ Moved up 100px */
 }
 
 /* Mobile Viewer */
@@ -658,7 +659,7 @@ div.device-showcase > div.device.mobile-viewer {
     aspect-ratio: 9/16;
     max-width: 300px;
     height: calc(100% - 10vh); /* Height reduction */
-    transform: translateY(-200px); /* ▲ Moved up 100px */
+    transform: translateY(-225px); /* ▲ Moved up 100px */
 }
 
 /* ================= CTA BUTTON ================= */
@@ -675,6 +676,23 @@ a.cta-button {
     text-align: center;
     white-space: nowrap;
 }
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 768px) {
+    .device-showcase {
+        flex-direction: column;
+    }
+    
+    div.device.desktop-viewer,
+    div.device.mobile-viewer {
+        transform: translateY(-50px); /* Less upward movement on mobile */
+    }
+    
+    a.cta-button {
+        width: 100% !important; /* Full width on mobile */
+    }
+}
+
 
 /* ================= RESPONSIVE ADJUSTMENTS ================= */
 @media (max-width: 768px) {

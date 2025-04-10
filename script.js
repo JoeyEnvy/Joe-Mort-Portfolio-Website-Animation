@@ -610,3 +610,81 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+//freelancer amnimate in and out to the right just java needed second section 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration
+  const animationDuration = 600;
+  const thresholds = [0, 0.1, 0.2, 0.5, 1];
+  const rootMargin = '0px 0px -200px 0px';
+  
+  // Get the about section
+  const section = document.getElementById('about');
+  
+  // Only select left column elements
+  const leftColumnElements = [
+    section.querySelector('h2'),
+    section.querySelector('.intro'),
+    section.querySelector('.company'),
+    section.querySelector('.cta-button'),
+    section.querySelector('.showcase-title'),
+    section.querySelector('.device-showcase')
+  ].filter(Boolean);
+
+  // Initialize elements with animation properties
+  function setupAnimations() {
+    leftColumnElements.forEach((el, index) => {
+      if (el._animationInitialized) return;
+      
+      el._animationInitialized = true;
+      const delay = Math.min(index * 50, 300);
+      
+      el.style.transform = 'translateX(50vw)';
+      el.style.opacity = '0';
+      el.style.transition = `
+        transform ${animationDuration}ms cubic-bezier(0.18, 0.89, 0.32, 1.28),
+        opacity ${animationDuration}ms ease-out
+      `;
+      el.style.transitionDelay = `${delay}ms`;
+      el.style.willChange = 'transform, opacity';
+    });
+  }
+
+  // Create intersection observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        // Slide out to right when leaving viewport
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
+      } else {
+        // Slide in from right when entering viewport
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
+      }
+    });
+  }, {
+    threshold: thresholds,
+    rootMargin: rootMargin
+  });
+
+  // Initialize and observe left column elements only
+  setupAnimations();
+  leftColumnElements.forEach(el => {
+    try {
+      observer.observe(el);
+    } catch (e) {
+      console.warn('Failed to observe element:', el, e);
+    }
+  });
+
+  // Cleanup
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
+  });
+});
+
