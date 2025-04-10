@@ -537,6 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //section elements fly off screen to right robot hero section ONLY JAVA SCRIPT REQURIED, just reference html 
 
+//scrolls elements out and back in on scroll 
+
+
+
+
+
 // Wait for the webpage to fully load before running this script
 document.addEventListener('DOMContentLoaded', function() {
   // Select all elements on the page that have the class 'jj-animate-in'

@@ -536,95 +536,228 @@ main.scrolled {
 /* ==========================================================================
    FREELANCER INFO SECTION
    ========================================================================== */
-.freelancer-info {
-    background-color: #f8f9fa;
-    padding: 100px 0;
-    margin-top: -75px;
+
+/* =============== FREELANCER INFO SECTION =============== */
+section#about.freelancer-info.section {
+    background-color: var(--nav-bg);
+    padding-top: 75px;
+    margin-top: -10px;
     position: relative;
     z-index: 10;
+    height: 105vh;
 }
 
-.freelancer-info .container {
+/* =============== CONTAINER =============== */
+section#about.freelancer-info.section > div.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 25px 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
 }
 
-.freelancer-info-left {
+/* =============== LEFT COLUMN =============== */
+div.freelancer-info-left {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-bottom: 50px;
 }
 
-.showcase-title {
-    margin-top: 20px;
-    color: var(--primary-color);
-    font-size: 1.8em;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.freelancer-info-left h2 {
+/* Left Column - Text Elements */
+div.freelancer-info-left > h2 {
     font-size: 3em;
     margin-bottom: 30px;
-    color: var(--primary-color);
+    color: white;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.freelancer-info-left p:last-of-type {
-    margin-bottom: 10px;
-}
-
-.freelancer-info-left p {
+div.freelancer-info-left > p.intro {
     font-size: 1.2em;
     line-height: 1.8;
     margin-bottom: 30px;
-    color: var(--text-color);
+    color: white;
 }
 
-.freelancer-info-left .highlight {
+div.freelancer-info-left > p.company {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* Highlight spans */
+div.freelancer-info-left span.highlight {
     color: var(--accent-color);
     font-weight: 600;
 }
 
-.freelancer-info-right {
-    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+/* CTA Button */
+div.freelancer-info-left > a.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
-.freelancer-info-right h3 {
+div.freelancer-info-left > a.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Showcase Title */
+div.freelancer-info-left > h3.showcase-title {
+    margin-top: 20px;
+    color: white;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* =============== DEVICE SHOWCASE =============== */
+div.freelancer-info-left > div.device-showcase {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+
+/* ================= DEVICE SHOWCASE ================= */
+.device-showcase {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Desktop Viewer */
+div.device-showcase > div.device.desktop-viewer {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    aspect-ratio: 16/9;
+    transform: translateY(-100px); /* ▲ Moved up 100px */
+}
+
+/* Mobile Viewer */
+div.device-showcase > div.device.mobile-viewer {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    aspect-ratio: 9/16;
+    max-width: 300px;
+    height: calc(100% - 10vh); /* Height reduction */
+    transform: translateY(-200px); /* ▲ Moved up 100px */
+}
+
+/* ================= CTA BUTTON ================= */
+a.cta-button {
+    display: inline-block;
+    width: 300px !important; /* ▲ Increased from 200px */
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 768px) {
+    .device-showcase {
+        flex-direction: column;
+    }
+    
+    div.device.desktop-viewer,
+    div.device.mobile-viewer {
+        transform: translateY(-50px); /* Less upward movement on mobile */
+    }
+    
+    a.cta-button {
+        width: 100% !important; /* Full width on mobile */
+    }
+}
+
+
+
+/* Video Containers */
+div.device > div.video-container {
+    width: 100%;
+    height: 100%;
+}
+
+div.video-container > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Desktop Video Specific */
+div.video-container > video#desktop-video {
+    background-color: #000;
+}
+
+/* Mobile Video Specific */
+div.video-container > video#mobile-video {
+    background-color: #000;
+}
+
+/* =============== RIGHT COLUMN =============== */
+div.freelancer-info-right {
+    background: white;
+    padding: 40px;
+    margin-top: 150px;
+    height: 85vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
+    transform: translateY(-150px);
+}
+
+/* Right Column Title */
+div.freelancer-info-right > h3 {
     font-size: 2em;
     margin-bottom: 30px;
     color: var(--primary-color);
     text-align: center;
 }
 
-.services-grid {
+/* =============== SERVICES GRID =============== */
+div.freelancer-info-right > div.services-grid {
+    gap: 25px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+
 }
 
-.service-category {
+/* Service Category Cards */
+div.services-grid > div.service-category {
     padding: 20px;
-    background: rgba(255,255,255,0.5);
+    background: var(--background-color);
     border-radius: 15px;
     transition: transform 0.3s ease;
 }
 
-.service-category:hover {
+div.service-category:hover {
     transform: translateY(-5px);
 }
 
-.service-category h4 {
+/* Service Category Headings */
+div.service-category > h4 {
     font-size: 1.2em;
     color: var(--secondary-color);
     margin-bottom: 15px;
@@ -633,21 +766,44 @@ main.scrolled {
     gap: 10px;
 }
 
-.service-category i {
+/* Service Icons */
+div.service-category > h4 > i {
     font-size: 1.4em;
+    color: var(--primary-color);
 }
 
-.service-category ul {
+/* Service Lists */
+div.service-category > ul {
     list-style: none;
     padding: 0;
 }
 
-.service-category ul li {
+div.service-category > ul > li {
     margin-bottom: 10px;
     padding-left: 20px;
     position: relative;
+    color: var(--text-color);
 }
 
+/* Web Design Specific */
+div.service-category:nth-child(1) {
+    border-top: 3px solid var(--primary-color);
+}
+
+/* Animation Specific */
+div.service-category:nth-child(2) {
+    border-top: 3px solid var(--secondary-color);
+}
+
+/* AI Specific */
+div.service-category:nth-child(3) {
+    border-top: 3px solid var(--accent-color);
+}
+
+/* Print Specific */
+div.service-category:nth-child(4) {
+    border-top: 3px solid var(--text-color);
+}
 
 
 /* SECOND about / freelancer part */ 
