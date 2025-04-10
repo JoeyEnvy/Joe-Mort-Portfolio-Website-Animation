@@ -20,6 +20,7 @@ html {
     overflow-x: hidden;
     height: 100%;
     scroll-padding-top: 60px; /* Fix for anchor links */
+    scroll-snap-type: y proximity;
 }
 
 body {
@@ -34,6 +35,15 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
 }
+
+
+
+/* slide section elements off screen and on */ 
+
+
+
+
+
 
 /* =============== NAVIGATION SYSTEM =============== */
 /* Base Navbar Structure */
@@ -470,7 +480,7 @@ main.scrolled {
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 500;
 }
 
 /* ================= RESPONSIVE DESIGN ================= */
@@ -638,8 +648,130 @@ main.scrolled {
     position: relative;
 }
 
+
+
+/* SECOND about / freelancer part */ 
+
+
+/* SECTION STYLES */
+.airwaves-jm-profile-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: var(--background-color);
+  scroll-snap-align: start;
+}
+
+.airwaves-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  gap: 40px;
+}
+
+/* LEFT COLUMN */
+.airwaves-jm-profile-left {
+  flex: 1 1 300px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.airwaves-jm-profile-image-wrapper {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.airwaves-jm-profile-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.airwaves-jm-contact-card {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.airwaves-jm-contact-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.airwaves-jm-contact-list li {
+  margin: 5px 0;
+}
+
+/* RIGHT COLUMN */
+.airwaves-jm-profile-right {
+  flex: 2;
+  min-width: 300px;
+}
+
+.airwaves-jm-section-heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.airwaves-jm-lead {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Skills Grid */
+.airwaves-jm-skills-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.airwaves-jm-skill-category {
+  flex: 1;
+  min-width: 200px;
+}
+
+.airwaves-jm-skill-category h4 {
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.airwaves-jm-skill-category ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.airwaves-jm-skill-category li {
+  padding: 5px 0;
+}
+
+/* Philosophy Paragraph */
+.airwaves-jm-philosophy p {
+  font-style: italic;
+  color: var(--text-color);
+}
+
+
+
+
 /* ==========================================================================
-   PORTFOLIO SHOWCASE
+   PORTFOLIO SHOWCASE WHERE PISTOLS AND OTHER WEBSITES START 
    ========================================================================== */
 .portfolio-showcase {
     width: 100%;

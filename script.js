@@ -421,3 +421,186 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //hero section index page redo like about 
 
+
+
+
+
+
+
+
+
+//100vh scroll effect temp WORKS WITH NO HTML OR CSS very good first 400vh then normal 
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Configuration
+  const SECTIONS = [
+    document.getElementById('jj-hero'),
+    document.getElementById('about'),
+    document.getElementById('joe-mort-about'),
+    document.getElementById('services'),
+    document.querySelector('.portfolio-showcase') // New section
+  ].filter(Boolean);
+
+  const SECTION_HEIGHT = window.innerHeight;
+  const SNAP_AREA_END = SECTION_HEIGHT * 4; // Adjusted to 4 sections
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  // 2. Smart Scroll Handler
+  function handleScroll(deltaY) {
+    if (isAnimating) return;
+
+    const currentY = window.scrollY;
+    const direction = Math.sign(deltaY);
+
+    // If we're below snap area and scrolling down, do nothing
+    if (currentY >= SNAP_AREA_END && direction > 0) return;
+
+    // If we're above snap area and scrolling up, do nothing
+    if (currentY <= 0 && direction < 0) return;
+
+    // If in snap area, process snap logic
+    if (currentY < SNAP_AREA_END) {
+      const newIndex = Math.min(Math.max(currentIndex + direction, 0), SECTIONS.length - 1);
+
+      if (newIndex !== currentIndex) {
+        isAnimating = true;
+        currentIndex = newIndex;
+
+        window.scrollTo({
+          top: currentIndex * SECTION_HEIGHT,
+          behavior: 'smooth'
+        });
+
+        setTimeout(() => isAnimating = false, 300);
+      }
+    }
+  }
+
+  // 3. Event Listeners with Priority Handling
+  function onWheel(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll(e.deltaY);
+    }
+  }
+
+  function onTouchStart(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+    }
+  }
+
+  function onTouchMove(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll(-e.touches[0].movementY);
+    }
+  }
+
+  function onKeyDown(e) {
+    const scrollKeys = [32, 33, 34, 38, 40]; // space, page up/down, arrows
+    if (scrollKeys.includes(e.keyCode) && window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll([34, 40].includes(e.keyCode) ? 1 : -1);
+    }
+  }
+
+  // 4. Smart Event Registration
+  window.addEventListener('wheel', onWheel, { passive: false });
+  window.addEventListener('touchstart', onTouchStart, { passive: false });
+  window.addEventListener('touchmove', onTouchMove, { passive: false });
+  window.addEventListener('keydown', onKeyDown);
+
+  // 5. Scroll Boundary Detection
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+
+    // Snap to nearest section if in snap area but not aligned
+    if (!isAnimating && currentY < SNAP_AREA_END) {
+      const expectedY = currentIndex * SECTION_HEIGHT;
+      if (Math.abs(currentY - expectedY) > 5) {
+        window.scrollTo({
+          top: expectedY,
+          behavior: 'auto'
+        });
+      }
+    }
+  }, { passive: true });
+});
+
+
+
+
+
+//section elements fly off screen to right robot hero section ONLY JAVA SCRIPT REQURIED, just reference html 
+
+// Wait for the webpage to fully load before running this script
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all elements on the page that have the class 'jj-animate-in'
+  const animatedElements = document.querySelectorAll('.jj-animate-in');
+  
+  // Define how long the animation should take (in seconds)
+  const preferredDuration = '1.8s'; // This is the speed you liked for scrolling back in
+  
+  // For the first scroll down, make it even slower and more dramatic
+  const firstScrollDuration = '5s'; // This is the speed for the first scroll down
+  
+  // Define the easing curve (how the animation accelerates and decelerates)
+  const easingCurve = 'cubic-bezier(0.12, 0.7, 0.24, 1)';
+  
+  // Flag to track if it's the first scroll down
+  let isFirstScroll = true;
+  
+  // Store the current scroll position
+  let lastScrollY = window.scrollY;
+
+  // Loop through each element that needs animation
+  animatedElements.forEach(el => {
+    // Tell the browser to optimize this element for animation
+    el.style.willChange = 'transform';
+    
+    // Set the initial animation speed to the slower first scroll speed
+    el.style.transition = `transform ${firstScrollDuration} ${easingCurve}`;
+  });
+
+  // Listen for scroll events on the window
+  window.addEventListener('scroll', function() {
+    // Get the current scroll position
+    const currentScrollY = window.scrollY;
+    
+    // Check if the user is scrolling down (not up)
+    const isScrollingDown = currentScrollY > lastScrollY + 10; // Add a small threshold to prevent false triggers
+
+    // Loop through each element again
+    animatedElements.forEach(el => {
+      // If the user is scrolling down
+      if (isScrollingDown) {
+        // Move the element off-screen to the right
+        el.style.transform = 'translateX(150vw)';
+        
+        // If this is the first scroll down
+        if (isFirstScroll) {
+          // Wait for the first scroll animation to finish, then switch to the preferred speed
+          setTimeout(() => {
+            el.style.transition = `transform ${preferredDuration} ${easingCurve}`;
+          }, 2500); // This delay matches the firstScrollDuration
+        }
+      } 
+      // If the user is scrolling up
+      else {
+        // Move the element back to its original position
+        el.style.transform = 'translateX(0)';
+      }
+    });
+
+    // If the user scrolled down, mark it as not the first scroll anymore
+    if (isScrollingDown) isFirstScroll = false;
+    
+    // Update the last scroll position
+    lastScrollY = currentScrollY;
+  });
+});
+

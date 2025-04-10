@@ -72,6 +72,24 @@
     <meta name="twitter:image" content="https://websiteanimation.co.uk/images/Logo Glow 1.png">
 
 </head>
+
+
+
+
+
+
+<!-- Add this right before closing </body> tag -->
+<div id="scroll-proxy" style="position:fixed;top:0;left:0;width:100vw;height:100vh;overflow-y:scroll;z-index:9999;pointer-events:none;visibility:hidden;">
+  <div class="snap-point" style="height:100vh"></div>
+  <div class="snap-point" style="height:100vh"></div>
+  <div class="snap-point" style="height:100vh"></div>
+</div>
+
+
+
+
+
+
 <body>
     <!-- Page Loader (Optional) -->
     <div class="page-loader"></div>
@@ -96,6 +114,12 @@
         <!-- Navigation Progress Bar (Optional) -->
         <div class="nav-progress"></div>
     </nav>
+
+
+
+
+
+
 
     <!-- Hero Section -->
    <div class="jj-hero-section" id="jj-hero">
@@ -142,6 +166,8 @@
         </div>
     </div>
     <div class="jj-dark-bar"></div>
+
+
 </div>
 
 
@@ -228,6 +254,197 @@
                     </div>
    </div>
             </section>
+
+
+
+
+
+
+
+<section id="joe-mort-about" class="airwaves-jm-profile-section airwaves-section">
+  <div class="airwaves-container">
+    <!-- Profile Image Column -->
+    <div class="airwaves-jm-profile-left">
+      <div class="airwaves-jm-profile-image-wrapper">
+        <img src="images/joe-mort-profile.jpg" alt="Joe Mort - Creative Technologist"
+          class="airwaves-jm-profile-image" loading="lazy">
+      </div>
+      <div class="airwaves-jm-contact-card">
+        <h3>Direct Contact</h3>
+        <ul class="airwaves-jm-contact-list">
+          <li>Email: joe@example.com</li>
+          <li>Phone: 07900 123 456</li>
+          <li>Location: UK / Remote</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bio Content Column -->
+    <div class="airwaves-jm-profile-right">
+      <h2 class="airwaves-jm-section-heading">About Joe Mort</h2>
+      <div class="airwaves-jm-bio-content">
+        <p class="airwaves-jm-lead">
+          With over a decade of experience in creative media, Joe Mort is a multi-disciplinary
+          technologist bridging design, music, and software with a signature flair. From punk
+          stages to professional branding decks, his work merges art with insight.
+        </p>
+
+        <div class="airwaves-jm-skills-grid">
+          <div class="airwaves-jm-skill-category">
+            <h4>Core Skills</h4>
+            <ul>
+              <li>Web Design & Development</li>
+              <li>AI & Automation Systems</li>
+              <li>Video Editing & Motion Graphics</li>
+              <li>Music Production & Audio Branding</li>
+            </ul>
+          </div>
+          <div class="airwaves-jm-skill-category">
+            <h4>Tools</h4>
+            <ul>
+              <li>Adobe Creative Suite</li>
+              <li>Logic Pro / FL Studio</li>
+              <li>MidJourney / Runway</li>
+              <li>ChatGPT / JavaScript</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="airwaves-jm-philosophy">
+          <p>
+            Joe believes technology should empower storytelling. Whether he’s building websites,
+            editing reels, or touring with his band, he brings authenticity, craft, and a punk
+            work ethic to every project.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="services" class="skills-section" itemscope itemtype="https://schema.org/Service">
+    <h2 class="section-title" itemprop="name">My Services</h2>
+    <div class="skills-grid">
+        <!-- Web Development Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <h3 itemprop="name">Web Development</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Custom Website Design</li>
+                <li itemprop="itemListElement">E-commerce Solutions</li>
+                <li itemprop="itemListElement">WordPress Development</li>
+                <li itemprop="itemListElement">Mobile-First Responsive Design</li>
+                <li itemprop="itemListElement">Website Maintenance</li>
+                <li itemprop="itemListElement">Speed Optimization</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+            </div>
+        </div>
+
+        <!-- Graphic Design Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-paint-brush" aria-hidden="true"></i>
+            <h3 itemprop="name">Graphic Design</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Logo Design & Branding</li>
+                <li itemprop="itemListElement">Social Media Graphics</li>
+                <li itemprop="itemListElement">Marketing Materials</li>
+                <li itemprop="itemListElement">Business Cards</li>
+                <li itemprop="itemListElement">Banner Design</li>
+                <li itemprop="itemListElement">Product Packaging</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="199">199</span>
+            </div>
+        </div>
+
+        <!-- 3D/2D Animation Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-film" aria-hidden="true"></i>
+            <h3 itemprop="name">3D/2D Animation</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Character Animation</li>
+                <li itemprop="itemListElement">Explainer Videos</li>
+                <li itemprop="itemListElement">Motion Graphics</li>
+                <li itemprop="itemListElement">Logo Animation</li>
+                <li itemprop="itemListElement">Product Visualization</li>
+                <li itemprop="itemListElement">Animated Advertisements</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span>
+            </div>
+        </div>
+
+        <!-- AI Content Creation Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <h3 itemprop="name">AI Content Creation</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">AI Video Generation</li>
+                <li itemprop="itemListElement">AI Image Creation</li>
+                <li itemprop="itemListElement">Text-to-Video</li>
+                <li itemprop="itemListElement">AI Voice Overs</li>
+                <li itemprop="itemListElement">Character Generation</li>
+                <li itemprop="itemListElement">Scene Generation</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="399">399</span>
+            </div>
+        </div>
+
+        <!-- Print Services Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-print" aria-hidden="true"></i>
+            <h3 itemprop="name">Print Services</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Business Cards</li>
+                <li itemprop="itemListElement">Brochures & Flyers</li>
+                <li itemprop="itemListElement">Banners & Posters</li>
+                <li itemprop="itemListElement">Product Labels</li>
+                <li itemprop="itemListElement">Corporate Stationery</li>
+                <li itemprop="itemListElement">Marketing Materials</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="99">99</span>
+            </div>
+        </div>
+
+        <!-- Video Editing Card -->
+        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            <i class="fas fa-video" aria-hidden="true"></i>
+            <h3 itemprop="name">Video Editing</h3>
+            <ul itemprop="description">
+                <li itemprop="itemListElement">Commercial Editing</li>
+                <li itemprop="itemListElement">Social Media Content</li>
+                <li itemprop="itemListElement">Color Grading</li>
+                <li itemprop="itemListElement">Visual Effects</li>
+                <li itemprop="itemListElement">Sound Design</li>
+                <li itemprop="itemListElement">Video Optimization</li>
+            </ul>
+            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <section class="portfolio-showcase" itemscope itemtype="https://schema.org/CreativeWork">
     <!-- Main Columns Container -->
@@ -458,107 +675,9 @@
     </div>
 </div>
 
-<!-- PAYMENT AND INVOICING SECTION -->
-<section class="payment-section" itemscope itemtype="https://schema.org/Service">
-    <h2 class="section-title" itemprop="name">Professional Payment & Invoicing</h2>
-    
-    <div class="payment-process-cards" itemprop="description">
-        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
-            <div class="step-number" itemprop="position">1</div>
-            <h3 itemprop="name">Project Discussion</h3>
-            <p itemprop="text">Free consultation to discuss your requirements and provide a detailed quote.</p>
-        </div>
-        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
-            <div class="step-number" itemprop="position">2</div>
-            <h3 itemprop="name">Formal Quote</h3>
-            <p itemprop="text">Receive a professional quote outlining all services, deliverables, and timelines.</p>
-        </div>
-        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
-            <div class="step-number" itemprop="position">3</div>
-            <h3 itemprop="name">Deposit Invoice</h3>
-            <p itemprop="text">50% deposit invoice sent via email with secure payment options.</p>
-        </div>
-        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
-            <div class="step-number" itemprop="position">4</div>
-            <h3 itemprop="name">Project Completion</h3>
-            <p itemprop="text">Final invoice sent upon approval with remaining balance due within 14 days.</p>
-        </div>
-    </div>
 
-    <div class="payment-info-grid">
-        <div class="payment-method-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-            <h3 itemprop="name">Payment Methods</h3>
-            <ul itemprop="description">
-                <li><i class="fas fa-university" aria-hidden="true"></i> Bank Transfer</li>
-                <li><i class="fab fa-paypal" aria-hidden="true"></i> PayPal</li>
-                <li><i class="fas fa-credit-card" aria-hidden="true"></i> Credit/Debit Card</li>
-                <li><i class="fas fa-pound-sign" aria-hidden="true"></i> International Payments</li>
-            </ul>
-        </div>
 
-        <div class="payment-terms-card" itemprop="termsOfService">
-            <h3>Payment Terms</h3>
-            <ul>
-                <li>50% deposit required to commence work</li>
-                <li>14-day payment terms on final invoice</li>
-                <li>Secure payment processing</li>
-                <li>All prices in GBP (£)</li>
-            </ul>
-        </div>
 
-        <div class="invoice-info-card" itemprop="provider" itemscope itemtype="https://schema.org/Organization">
-            <h3>Professional Invoicing</h3>
-            <ul>
-                <li>Detailed itemized invoices</li>
-                <li>VAT information included</li>
-                <li>Digital invoice delivery</li>
-                <li>Payment tracking system</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="service-pricing-table" itemscope itemtype="https://schema.org/PriceSpecification">
-        <h3 itemprop="name">Service Pricing Guide</h3>
-        <table>
-            <tr>
-                <th itemprop="description">Service</th>
-                <th itemprop="priceCurrency" content="GBP">Starting Price</th>
-                <th>Deposit</th>
-                <th itemprop="eligibleDuration">Delivery Time</th>
-            </tr>
-            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <td itemprop="name">AI Movie Trailers</td>
-                <td itemprop="price" content="75">£75/minute</td>
-                <td>100%</td>
-                <td>24 hours</td>
-            </tr>
-            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <td itemprop="name">Web Design</td>
-                <td itemprop="price" content="299">£299</td>
-                <td>50%</td>
-                <td>2-4 weeks</td>
-            </tr>
-            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <td itemprop="name">Logo Design</td>
-                <td itemprop="price" content="199">£199</td>
-                <td>50%</td>
-                <td>3-5 days</td>
-            </tr>
-            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <td itemprop="name">3D Animation</td>
-                <td itemprop="price" content="499">£499</td>
-                <td>50%</td>
-                <td>1-3 weeks</td>
-            </tr>
-            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <td itemprop="name">Print Services</td>
-                <td itemprop="price" content="99">£99</td>
-                <td>100%</td>
-                <td>3-5 days</td>
-            </tr>
-        </table>
-    </div>
-</section>
 
 <!-- 3D Animation Information Section -->
 <section class="spline-mobile-animate" itemscope itemtype="https://schema.org/CreativeWork">
@@ -1328,112 +1447,6 @@
 
 
  <!-- SERVICES SECTION -->
-<section id="services" class="skills-section" itemscope itemtype="https://schema.org/Service">
-    <h2 class="section-title" itemprop="name">My Services</h2>
-    <div class="skills-grid">
-        <!-- Web Development Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-code" aria-hidden="true"></i>
-            <h3 itemprop="name">Web Development</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Custom Website Design</li>
-                <li itemprop="itemListElement">E-commerce Solutions</li>
-                <li itemprop="itemListElement">WordPress Development</li>
-                <li itemprop="itemListElement">Mobile-First Responsive Design</li>
-                <li itemprop="itemListElement">Website Maintenance</li>
-                <li itemprop="itemListElement">Speed Optimization</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
-            </div>
-        </div>
-
-        <!-- Graphic Design Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-paint-brush" aria-hidden="true"></i>
-            <h3 itemprop="name">Graphic Design</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Logo Design & Branding</li>
-                <li itemprop="itemListElement">Social Media Graphics</li>
-                <li itemprop="itemListElement">Marketing Materials</li>
-                <li itemprop="itemListElement">Business Cards</li>
-                <li itemprop="itemListElement">Banner Design</li>
-                <li itemprop="itemListElement">Product Packaging</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="199">199</span>
-            </div>
-        </div>
-
-        <!-- 3D/2D Animation Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-film" aria-hidden="true"></i>
-            <h3 itemprop="name">3D/2D Animation</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Character Animation</li>
-                <li itemprop="itemListElement">Explainer Videos</li>
-                <li itemprop="itemListElement">Motion Graphics</li>
-                <li itemprop="itemListElement">Logo Animation</li>
-                <li itemprop="itemListElement">Product Visualization</li>
-                <li itemprop="itemListElement">Animated Advertisements</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span>
-            </div>
-        </div>
-
-        <!-- AI Content Creation Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-robot" aria-hidden="true"></i>
-            <h3 itemprop="name">AI Content Creation</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">AI Video Generation</li>
-                <li itemprop="itemListElement">AI Image Creation</li>
-                <li itemprop="itemListElement">Text-to-Video</li>
-                <li itemprop="itemListElement">AI Voice Overs</li>
-                <li itemprop="itemListElement">Character Generation</li>
-                <li itemprop="itemListElement">Scene Generation</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="399">399</span>
-            </div>
-        </div>
-
-        <!-- Print Services Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-print" aria-hidden="true"></i>
-            <h3 itemprop="name">Print Services</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Business Cards</li>
-                <li itemprop="itemListElement">Brochures & Flyers</li>
-                <li itemprop="itemListElement">Banners & Posters</li>
-                <li itemprop="itemListElement">Product Labels</li>
-                <li itemprop="itemListElement">Corporate Stationery</li>
-                <li itemprop="itemListElement">Marketing Materials</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="99">99</span>
-            </div>
-        </div>
-
-        <!-- Video Editing Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <h3 itemprop="name">Video Editing</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Commercial Editing</li>
-                <li itemprop="itemListElement">Social Media Content</li>
-                <li itemprop="itemListElement">Color Grading</li>
-                <li itemprop="itemListElement">Visual Effects</li>
-                <li itemprop="itemListElement">Sound Design</li>
-                <li itemprop="itemListElement">Video Optimization</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- TESTIMONIALS SECTION -->
 <section id="testimonials" class="testimonials-section" itemscope itemtype="https://schema.org/Review">
@@ -1807,6 +1820,119 @@
 
 
 
+
+
+
+
+
+<!-- PAYMENT AND INVOICING SECTION -->
+<section class="payment-section" itemscope itemtype="https://schema.org/Service">
+    <h2 class="section-title" itemprop="name">Professional Payment & Invoicing</h2>
+    
+    <div class="payment-process-cards" itemprop="description">
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">1</div>
+            <h3 itemprop="name">Project Discussion</h3>
+            <p itemprop="text">Free consultation to discuss your requirements and provide a detailed quote.</p>
+        </div>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">2</div>
+            <h3 itemprop="name">Formal Quote</h3>
+            <p itemprop="text">Receive a professional quote outlining all services, deliverables, and timelines.</p>
+        </div>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">3</div>
+            <h3 itemprop="name">Deposit Invoice</h3>
+            <p itemprop="text">50% deposit invoice sent via email with secure payment options.</p>
+        </div>
+        <div class="process-card" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position">4</div>
+            <h3 itemprop="name">Project Completion</h3>
+            <p itemprop="text">Final invoice sent upon approval with remaining balance due within 14 days.</p>
+        </div>
+    </div>
+
+    <div class="payment-info-grid">
+        <div class="payment-method-card" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <h3 itemprop="name">Payment Methods</h3>
+            <ul itemprop="description">
+                <li><i class="fas fa-university" aria-hidden="true"></i> Bank Transfer</li>
+                <li><i class="fab fa-paypal" aria-hidden="true"></i> PayPal</li>
+                <li><i class="fas fa-credit-card" aria-hidden="true"></i> Credit/Debit Card</li>
+                <li><i class="fas fa-pound-sign" aria-hidden="true"></i> International Payments</li>
+            </ul>
+        </div>
+
+        <div class="payment-terms-card" itemprop="termsOfService">
+            <h3>Payment Terms</h3>
+            <ul>
+                <li>50% deposit required to commence work</li>
+                <li>14-day payment terms on final invoice</li>
+                <li>Secure payment processing</li>
+                <li>All prices in GBP (£)</li>
+            </ul>
+        </div>
+
+        <div class="invoice-info-card" itemprop="provider" itemscope itemtype="https://schema.org/Organization">
+            <h3>Professional Invoicing</h3>
+            <ul>
+                <li>Detailed itemized invoices</li>
+                <li>VAT information included</li>
+                <li>Digital invoice delivery</li>
+                <li>Payment tracking system</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service-pricing-table" itemscope itemtype="https://schema.org/PriceSpecification">
+        <h3 itemprop="name">Service Pricing Guide</h3>
+        <table>
+            <tr>
+                <th itemprop="description">Service</th>
+                <th itemprop="priceCurrency" content="GBP">Starting Price</th>
+                <th>Deposit</th>
+                <th itemprop="eligibleDuration">Delivery Time</th>
+            </tr>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">AI Movie Trailers</td>
+                <td itemprop="price" content="75">£75/minute</td>
+                <td>100%</td>
+                <td>24 hours</td>
+            </tr>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Web Design</td>
+                <td itemprop="price" content="299">£299</td>
+                <td>50%</td>
+                <td>2-4 weeks</td>
+            </tr>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Logo Design</td>
+                <td itemprop="price" content="199">£199</td>
+                <td>50%</td>
+                <td>3-5 days</td>
+            </tr>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">3D Animation</td>
+                <td itemprop="price" content="499">£499</td>
+                <td>50%</td>
+                <td>1-3 weeks</td>
+            </tr>
+            <tr itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <td itemprop="name">Print Services</td>
+                <td itemprop="price" content="99">£99</td>
+                <td>100%</td>
+                <td>3-5 days</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+
+
+
+
+
+
 <!-- FOOTER SECTION -->
 <footer class="main-footer" itemscope itemtype="https://schema.org/LocalBusiness">
     <div class="footer-content">
@@ -1934,11 +2060,16 @@
 
 
 
+<script src="smooth-scroll.js" defer></script>
 
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script src="script.js"></script>
+
+
+<!-- Add this right before </body> -->
+<script src="scroll-assist.js" defer></script>
 
 
 
