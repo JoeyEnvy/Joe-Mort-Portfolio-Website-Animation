@@ -721,54 +721,55 @@ document.addEventListener('DOMContentLoaded', function() {
   section.style.transition = `background-color ${animationDuration}ms ease-out`;
   section.style.willChange = 'background-color';
 
-  // Animation elements
-  const elementsToAnimate = [
-    section.querySelector('.airwaves-jm-profile-image-wrapper'),
-    section.querySelector('.airwaves-jm-contact-card'),
-    // ... include all your elements
-  ].filter(Boolean);
-
   // Track state
-  let isScrollingIn = false;
   let lastScrollPosition = window.scrollY;
-  let scrollDirection = 0;
+  let isInSection = false;
 
-  // Improved scroll handler
+  // Smart scroll handler
   function handleScroll() {
     const currentScroll = window.scrollY;
-    scrollDirection = Math.sign(currentScroll - lastScrollPosition);
+    const scrollDirection = Math.sign(currentScroll - lastScrollPosition);
     lastScrollPosition = currentScroll;
     
     const sectionRect = section.getBoundingClientRect();
     const sectionMiddle = sectionRect.top + (sectionRect.height / 2);
     const viewportMiddle = window.innerHeight / 2;
     
-    // Check if section is centered in viewport
-    if (Math.abs(sectionMiddle - viewportMiddle) < 100) {
-      if (!isScrollingIn) {
-        isScrollingIn = true;
-        animateBackgroundIn();
-      }
-    } else {
-      if (isScrollingIn) {
-        isScrollingIn = false;
-        animateBackgroundOut();
-      }
+    // Check if section is in view
+    const isSectionVisible = sectionRect.top < window.innerHeight && 
+                            sectionRect.bottom > 0;
+    
+    // When entering section (from any direction)
+    if (isSectionVisible && !isInSection) {
+      isInSection = true;
+      animateToWhite();
+    } 
+    // When completely leaving section (from any direction)
+    else if (!isSectionVisible && isInSection) {
+      isInSection = false;
+      animateToGrey();
+    }
+    // When scrolling up through section bottom
+    else if (isInSection && scrollDirection < 0 && 
+             sectionRect.bottom < viewportMiddle) {
+      animateToWhite(); // Re-white when scrolling up into section
     }
   }
 
-  // Smooth background transitions
-  function animateBackgroundIn() {
+  // Smooth transition to white
+  function animateToWhite() {
     let start = null;
     const duration = animationDuration;
+    const currentColor = getComputedStyle(section).backgroundColor;
+    
+    // Only animate if not already white
+    if (currentColor === 'rgb(255, 255, 255)') return;
     
     function step(timestamp) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      
-      // Ease-out interpolation
       const easedProgress = 1 - Math.pow(1 - progress, 3);
-      section.style.backgroundColor = interpolateColor(greyColor, whiteColor, easedProgress);
+      section.style.backgroundColor = interpolateColor(currentColor, whiteColor, easedProgress);
       
       if (progress < 1) {
         window.requestAnimationFrame(step);
@@ -778,16 +779,18 @@ document.addEventListener('DOMContentLoaded', function() {
     window.requestAnimationFrame(step);
   }
 
-  function animateBackgroundOut() {
+  // Smooth transition to grey
+  function animateToGrey() {
     let start = null;
     const duration = animationDuration;
     const currentColor = getComputedStyle(section).backgroundColor;
     
+    // Only animate if not already grey
+    if (currentColor === greyColor) return;
+    
     function step(timestamp) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      
-      // Ease-in interpolation
       const easedProgress = Math.pow(progress, 3);
       section.style.backgroundColor = interpolateColor(currentColor, greyColor, easedProgress);
       
@@ -799,39 +802,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.requestAnimationFrame(step);
   }
 
-  // Robust color interpolation
-  function interpolateColor(color1, color2, factor) {
-    // Convert CSS var to hex if needed
-    if (color1.startsWith('var(')) {
-      color1 = getComputedStyle(document.documentElement)
-              .getPropertyValue(color1.slice(4, -1)).trim();
-    }
-    
-    // Convert to RGB
-    const hexToRgb = hex => {
-      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16)
-      ] : [0, 0, 0];
-    };
-    
-    const [r1, g1, b1] = hexToRgb(color1);
-    const [r2, g2, b2] = hexToRgb(color2);
-    
-    return `rgb(${
-      Math.round(r1 + factor * (r2 - r1))
-    }, ${
-      Math.round(g1 + factor * (g2 - g1))
-    }, ${
-      Math.round(b1 + factor * (b2 - b1))
-    })`;
-  }
-
-  // Set up scroll listener with debouncing
+  // Optimized scroll listener with debounce
   let isTicking = false;
   window.addEventListener('scroll', function() {
     if (!isTicking) {
@@ -843,7 +814,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Initialize element animations
+  // Initialize element animations (unchanged)
+  const elementsToAnimate = [
+    // Your elements array
+  ].filter(Boolean);
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -865,5 +840,34 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     observer.observe(el);
   });
-});
 
+  // Color interpolation helper (unchanged)
+  function interpolateColor(color1, color2, factor) {
+    if (color1.startsWith('var(')) {
+      color1 = getComputedStyle(document.documentElement)
+              .getPropertyValue(color1.slice(4, -1)).trim();
+    }
+    
+    const hexToRgb = hex => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ] : [0, 0, 0];
+    };
+    
+    const [r1, g1, b1] = hexToRgb(color1);
+    const [r2, g2, b2] = hexToRgb(color2);
+    
+    return `rgb(${
+      Math.round(r1 + factor * (r2 - r1))
+    }, ${
+      Math.round(g1 + factor * (r2 - r1))
+    }, ${
+      Math.round(b1 + factor * (r2 - r1))
+    })`;
+  }
+});
