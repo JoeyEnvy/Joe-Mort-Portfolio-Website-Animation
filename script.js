@@ -708,62 +708,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   // Configuration
-  const animationDuration = 600;
-  const section = document.getElementById('joe-mort-about');
+  const scrollUpDuration = 300;    // Fast transition up
+  const scrollDownDuration = 800;  // Slower transition down
+  const elementAnimationDuration = 900;
+  const elementExitDuration = 700;
   
-  // Get colors
-  const greyColor = getComputedStyle(document.documentElement)
-                   .getPropertyValue('--nav-bg').trim();
+  const section = document.getElementById('joe-mort-about');
+  const greyColor = 'var(--nav-bg)'; // ONLY this grey
   const whiteColor = '#ffffff';
 
   // Set initial state
   section.style.backgroundColor = greyColor;
-  section.style.transition = `background-color ${animationDuration}ms ease-out`;
+  section.style.transition = `background-color ${scrollUpDuration}ms ease-out`;
   section.style.willChange = 'background-color';
 
   // Track state
   let lastScrollPosition = window.scrollY;
   let isInSection = false;
+  let currentAnimation = null;
 
-  // Smart scroll handler
   function handleScroll() {
     const currentScroll = window.scrollY;
     const scrollDirection = Math.sign(currentScroll - lastScrollPosition);
     lastScrollPosition = currentScroll;
     
     const sectionRect = section.getBoundingClientRect();
-    const sectionMiddle = sectionRect.top + (sectionRect.height / 2);
     const viewportMiddle = window.innerHeight / 2;
     
-    // Check if section is in view
-    const isSectionVisible = sectionRect.top < window.innerHeight && 
-                            sectionRect.bottom > 0;
-    
-    // When entering section (from any direction)
-    if (isSectionVisible && !isInSection) {
-      isInSection = true;
-      animateToWhite();
-    } 
-    // When completely leaving section (from any direction)
-    else if (!isSectionVisible && isInSection) {
-      isInSection = false;
-      animateToGrey();
+    // When scrolling up from below section
+    if (scrollDirection < 0 && sectionRect.top < viewportMiddle && sectionRect.bottom > viewportMiddle) {
+      if (!isInSection || getComputedStyle(section).backgroundColor !== 'rgb(255, 255, 255)') {
+        isInSection = true;
+        animateToWhite(scrollUpDuration);
+      }
     }
-    // When scrolling up through section bottom
-    else if (isInSection && scrollDirection < 0 && 
-             sectionRect.bottom < viewportMiddle) {
-      animateToWhite(); // Re-white when scrolling up into section
+    // When entering section from top
+    else if (sectionRect.top < viewportMiddle && !isInSection) {
+      isInSection = true;
+      animateToWhite(scrollDownDuration);
+    }
+    // When leaving section upwards
+    else if (sectionRect.bottom < 0 && isInSection) {
+      isInSection = false;
+      animateToGrey(scrollUpDuration);
+    }
+    // When leaving section downwards
+    else if (sectionRect.top > window.innerHeight && isInSection) {
+      isInSection = false;
+      animateToGrey(scrollUpDuration);
     }
   }
 
-  // Smooth transition to white
-  function animateToWhite() {
-    let start = null;
-    const duration = animationDuration;
-    const currentColor = getComputedStyle(section).backgroundColor;
+  function animateToWhite(duration) {
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
     
-    // Only animate if not already white
+    const currentColor = getComputedStyle(section).backgroundColor;
     if (currentColor === 'rgb(255, 255, 255)') return;
+    
+    section.style.transition = `background-color ${duration}ms ease-out`;
     
     function step(timestamp) {
       if (!start) start = timestamp;
@@ -772,21 +774,23 @@ document.addEventListener('DOMContentLoaded', function() {
       section.style.backgroundColor = interpolateColor(currentColor, whiteColor, easedProgress);
       
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        currentAnimation = window.requestAnimationFrame(step);
+      } else {
+        currentAnimation = null;
       }
     }
     
-    window.requestAnimationFrame(step);
+    let start = null;
+    currentAnimation = window.requestAnimationFrame(step);
   }
 
-  // Smooth transition to grey
-  function animateToGrey() {
-    let start = null;
-    const duration = animationDuration;
-    const currentColor = getComputedStyle(section).backgroundColor;
+  function animateToGrey(duration) {
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
     
-    // Only animate if not already grey
-    if (currentColor === greyColor) return;
+    const currentColor = getComputedStyle(section).backgroundColor;
+    if (currentColor !== 'rgb(255, 255, 255)') return;
+    
+    section.style.transition = `background-color ${duration}ms ease-out`;
     
     function step(timestamp) {
       if (!start) start = timestamp;
@@ -795,14 +799,17 @@ document.addEventListener('DOMContentLoaded', function() {
       section.style.backgroundColor = interpolateColor(currentColor, greyColor, easedProgress);
       
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        currentAnimation = window.requestAnimationFrame(step);
+      } else {
+        currentAnimation = null;
       }
     }
     
-    window.requestAnimationFrame(step);
+    let start = null;
+    currentAnimation = window.requestAnimationFrame(step);
   }
 
-  // Optimized scroll listener with debounce
+  // Scroll listener
   let isTicking = false;
   window.addEventListener('scroll', function() {
     if (!isTicking) {
@@ -814,17 +821,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Initialize element animations (unchanged)
+  // Initialize ONLY elements that should animate (EXCLUDING PHILOSOPHY SECTION)
   const elementsToAnimate = [
-    // Your elements array
+    // Tech badges only
+    document.querySelector('.airwaves-jm-tech-badges h4'),
+    ...document.querySelectorAll('.airwaves-jm-tech-badges .badge'),
+    
+    // Right column (excluding philosophy)
+    document.querySelector('.airwaves-jm-section-heading'),
+    document.querySelector('.airwaves-jm-lead'),
+    
+    // Skills grid only
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy)'),
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) h4'),
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) li')
   ].filter(Boolean);
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        entry.target.style.transition = `
+          transform ${elementAnimationDuration}ms cubic-bezier(0.23, 1, 0.32, 1),
+          opacity ${elementAnimationDuration}ms ease-out
+        `;
         entry.target.style.transform = 'translateX(0)';
         entry.target.style.opacity = '1';
       } else {
+        entry.target.style.transition = `
+          transform ${elementExitDuration}ms cubic-bezier(0.55, 0.085, 0.68, 0.53),
+          opacity ${elementExitDuration}ms ease-in
+        `;
         entry.target.style.transform = 'translateX(50vw)';
         entry.target.style.opacity = '0';
       }
@@ -834,14 +860,10 @@ document.addEventListener('DOMContentLoaded', function() {
   elementsToAnimate.forEach(el => {
     el.style.transform = 'translateX(50vw)';
     el.style.opacity = '0';
-    el.style.transition = `
-      transform ${animationDuration}ms cubic-bezier(0.18, 0.89, 0.32, 1.28),
-      opacity ${animationDuration}ms ease-out
-    `;
+    el.style.willChange = 'transform, opacity';
     observer.observe(el);
   });
 
-  // Color interpolation helper (unchanged)
   function interpolateColor(color1, color2, factor) {
     if (color1.startsWith('var(')) {
       color1 = getComputedStyle(document.documentElement)
@@ -865,9 +887,10 @@ document.addEventListener('DOMContentLoaded', function() {
     return `rgb(${
       Math.round(r1 + factor * (r2 - r1))
     }, ${
-      Math.round(g1 + factor * (r2 - r1))
+      Math.round(g1 + factor * (g2 - g1))
     }, ${
-      Math.round(b1 + factor * (r2 - r1))
+      Math.round(b1 + factor * (b2 - b1))
     })`;
   }
 });
+

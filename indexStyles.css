@@ -828,7 +828,8 @@ div.service-category:nth-child(4) {
 
 
 /* SECTION STYLES */
-.airwaves-jm-profile-section {
+/* Hyper-specific Joe Mort profile section */
+section#joe-mort-about.airwaves-jm-profile-section.airwaves-section {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -836,110 +837,369 @@ div.service-category:nth-child(4) {
   padding: 60px 20px;
   background-color: var(--nav-bg);
   scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
 }
 
-.airwaves-container {
+section#joe-mort-about .airwaves-container {
   display: flex;
   flex-wrap: wrap;
   max-width: 1200px;
   width: 100%;
   gap: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-/* LEFT COLUMN */
-.airwaves-jm-profile-left {
+/* Left Column */
+section#joe-mort-about .airwaves-jm-profile-left {
   flex: 1 1 300px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 }
 
-.airwaves-jm-profile-image-wrapper {
+/* Right Column */
+section#joe-mort-about .airwaves-jm-profile-right {
+  flex: 1 1 calc(100% - 440px);
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Image Wrapper */
+section#joe-mort-about .airwaves-jm-profile-image-wrapper {
   width: 100%;
   max-width: 300px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
-.airwaves-jm-profile-image {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  border-radius: 20px;
+section#joe-mort-about .airwaves-jm-profile-image-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
-.airwaves-jm-contact-card {
-  background-color: var(--primary-color);
+/* Contact Card */
+section#joe-mort-about .airwaves-jm-contact-card {
+  background: linear-gradient(135deg, var(--primary-color), #3a0ca3);
   color: white;
-  padding: 20px;
+  padding: 25px;
   border-radius: 15px;
   text-align: center;
   width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.airwaves-jm-contact-list {
+section#joe-mort-about .airwaves-jm-contact-list {
   list-style: none;
+  margin: 15px 0;
+  padding: 0;
+}
+
+section#joe-mort-about .airwaves-jm-contact-list li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+section#joe-mort-about .airwaves-jm-contact-btn {
+  background: white;
+  color: var(--primary-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin-top: 10px;
 }
 
-.airwaves-jm-contact-list li {
-  margin: 5px 0;
+section#joe-mort-about .airwaves-jm-contact-btn:hover {
+  background: var(--secondary-color);
+  color: white;
+  transform: translateY(-2px);
 }
 
-/* RIGHT COLUMN */
-.airwaves-jm-profile-right {
-  flex: 2;
-  min-width: 300px;
+/* Tech Badges */
+section#joe-mort-about .airwaves-jm-tech-badges {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
 }
 
-.airwaves-jm-section-heading {
-  font-size: 2rem;
-  margin-bottom: 20px;
+section#joe-mort-about .airwaves-jm-tech-badges h4 {
+  margin-bottom: 15px;
+  color: white;
+}
+
+section#joe-mort-about .badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin: 5px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+/* Right Column Content */
+section#joe-mort-about .airwaves-jm-section-heading {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
   color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.airwaves-jm-lead {
+section#joe-mort-about .airwaves-jm-lead {
   font-size: 1.1rem;
-  margin-bottom: 20px;
-  line-height: 1.6;
+  margin-bottom: 25px;
+  line-height: 1.7;
   color: var(--text-color);
 }
 
 /* Skills Grid */
-.airwaves-jm-skills-grid {
-  display: flex;
+section#joe-mort-about .airwaves-jm-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.airwaves-jm-skill-category {
-  flex: 1;
-  min-width: 200px;
-}
-
-.airwaves-jm-skill-category h4 {
+section#joe-mort-about .airwaves-jm-skill-category h4 {
   color: var(--secondary-color);
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.airwaves-jm-skill-category ul {
+section#joe-mort-about .airwaves-jm-skill-category ul {
   list-style: none;
   padding-left: 0;
 }
 
-.airwaves-jm-skill-category li {
-  padding: 5px 0;
+section#joe-mort-about .airwaves-jm-skill-category li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding-left: 25px;
 }
 
-/* Philosophy Paragraph */
-.airwaves-jm-philosophy p {
-  font-style: italic;
-  color: var(--text-color);
+section#joe-mort-about .airwaves-jm-skill-category li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
 }
+
+/* Philosophy Section */
+section#joe-mort-about .airwaves-jm-philosophy {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 4px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+section#joe-mort-about .airwaves-jm-philosophy h4 {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+section#joe-mort-about .airwaves-jm-manifesto {
+  list-style: none;
+  padding-left: 0;
+}
+
+section#joe-mort-about .airwaves-jm-manifesto li {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Icons */
+section#joe-mort-about .icon {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+/* Background Pattern */
+section#joe-mort-about.airwaves-jm-profile-section:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.03) 1px, transparent 1px),
+                   radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  section#joe-mort-about.airwaves-jm-profile-section {
+    height: auto;
+    padding: 40px 15px;
+  }
+  
+  section#joe-mort-about .airwaves-jm-profile-left,
+  section#joe-mort-about .airwaves-jm-profile-right {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  
+  section#joe-mort-about .airwaves-jm-skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Micro-Interactions */
+section#joe-mort-about .airwaves-jm-manifesto li:hover .icon {
+  animation: jm-icon-bounce 0.4s ease;
+}
+
+@keyframes jm-icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+section#joe-mort-about .airwaves-jm-skill-category li:hover:before {
+  animation: jm-arrow-slide 0.3s ease;
+}
+
+@keyframes jm-arrow-slide {
+  0% { left: 0; }
+  50% { left: -5px; }
+  100% { left: 0; }
+}
+
+section#joe-mort-about .airwaves-jm-philosophy::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+section#joe-mort-about .airwaves-jm-philosophy:hover::after {
+  transform: scaleX(1);
+}
+
+section#joe-mort-about .badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+section#joe-mort-about .badge:hover::before {
+  left: 100%;
+}
+
+section#joe-mort-about .airwaves-jm-contact-btn:active {
+  animation: jm-button-press 0.2s ease;
+}
+
+@keyframes jm-button-press {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+section#joe-mort-about .airwaves-jm-profile-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 60%, rgba(0,0,0,0.1));
+  pointer-events: none;
+}
+
+section#joe-mort-about .airwaves-jm-tech-badges:hover {
+  animation: jm-av-pulse 1.5s infinite alternate;
+}
+
+@keyframes jm-av-pulse {
+  from { box-shadow: 0 0 10px rgba(58, 12, 163, 0.1); }
+  to { box-shadow: 0 0 20px rgba(58, 12, 163, 0.3); }
+}
+
+/* Current Stack Badges - Color Customization */
+section#joe-mort-about .airwaves-jm-tech-badges .badge {
+  --badge-hue: 260; /* Base purple */
+  background: hsl(var(--badge-hue), 70%, 40%);
+  color: white;
+  border: 1px solid hsl(var(--badge-hue), 70%, 60%);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Individual Badge Color Variations */
+section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(1) { --badge-hue: 200; }  /* AI/ML */
+section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(2) { --badge-hue: 30; }   /* WebGL */
+section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(3) { --badge-hue: 160; }  /* Three.js */
+section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(4) { --badge-hue: 220; }  /* React */
+section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(5) { --badge-hue: 330; }  /* Web Audio */
+
+
+/* Current Stack Container Background */
+
+section#joe-mort-about .airwaves-jm-tech-badges {
+  width: 100%;
+  margin-top: 250px;
+  background: grey; /* Changed background to black */
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Current Stack Text Color */
+section#joe-mort-about .airwaves-jm-tech-badges h4 {
+  margin-bottom: 15px;
+  color: white; /* Changed text color to white */
+}
+
+
+
+/* looking robot spline */ 
+
+
+
+
 
 
 
