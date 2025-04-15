@@ -707,26 +707,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Configuration
-  const scrollUpDuration = 300;    // Fast transition up
-  const scrollDownDuration = 800;  // Slower transition down
+  // ========== CONFIGURATION ==========
+  const scrollUpDuration = 300;     // Fast transition up (300ms)
+  const scrollDownDuration = 800;   // Slower transition down (800ms)
   const elementAnimationDuration = 900;
   const elementExitDuration = 700;
   
   const section = document.getElementById('joe-mort-about');
-  const greyColor = 'var(--nav-bg)'; // ONLY this grey
-  const whiteColor = '#ffffff';
+  const greyColor = 'var(--nav-bg)';
+  const whiteColor = 'rgba(255, 255, 255, 0.7)'; // 70% opacity white
+  const bgImageUrl = 'images/tech-background.jpg';
 
-  // Set initial state
-  section.style.backgroundColor = greyColor;
-  section.style.transition = `background-color ${scrollUpDuration}ms ease-out`;
-  section.style.willChange = 'background-color';
+  // ========== BACKGROUND IMAGE SETUP ==========
+  const bgImage = document.createElement('div');
+  Object.assign(bgImage.style, {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${bgImageUrl})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: '-1',
+    opacity: '0',
+    transition: `opacity ${scrollDownDuration}ms ease-out`,
+    willChange: 'opacity'
+  });
+  section.appendChild(bgImage);
 
-  // Track state
+  Object.assign(section.style, {
+    position: 'relative',
+    backgroundColor: greyColor,
+    transition: `background-color ${scrollUpDuration}ms ease-out`,
+    willChange: 'background-color',
+    overflow: 'hidden'
+  });
+
+  // ========== STATE MANAGEMENT ==========
   let lastScrollPosition = window.scrollY;
   let isInSection = false;
   let currentAnimation = null;
+  const initialGreyValue = getComputedStyle(section).backgroundColor;
 
+  // ========== SCROLL HANDLING ==========
   function handleScroll() {
     const currentScroll = window.scrollY;
     const scrollDirection = Math.sign(currentScroll - lastScrollPosition);
@@ -735,43 +759,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const sectionRect = section.getBoundingClientRect();
     const viewportMiddle = window.innerHeight / 2;
     
-    // When scrolling up from below section
-    if (scrollDirection < 0 && sectionRect.top < viewportMiddle && sectionRect.bottom > viewportMiddle) {
-      if (!isInSection || getComputedStyle(section).backgroundColor !== 'rgb(255, 255, 255)') {
-        isInSection = true;
-        animateToWhite(scrollUpDuration);
-      }
-    }
-    // When entering section from top
-    else if (sectionRect.top < viewportMiddle && !isInSection) {
+    // Entering section (from top or scrolling up into it)
+    if ((sectionRect.top < viewportMiddle && !isInSection) || 
+        (scrollDirection < 0 && sectionRect.top < viewportMiddle && sectionRect.bottom > viewportMiddle)) {
       isInSection = true;
-      animateToWhite(scrollDownDuration);
+      animateToWhite(scrollDownDuration); // Slow transition to white
     }
-    // When leaving section upwards
-    else if (sectionRect.bottom < 0 && isInSection) {
+    // Exiting section (up or down)
+    else if ((sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) && isInSection) {
       isInSection = false;
-      animateToGrey(scrollUpDuration);
-    }
-    // When leaving section downwards
-    else if (sectionRect.top > window.innerHeight && isInSection) {
-      isInSection = false;
-      animateToGrey(scrollUpDuration);
+      animateToGrey(scrollUpDuration); // Fast transition to grey
     }
   }
 
+  // ========== ANIMATION FUNCTIONS ==========
   function animateToWhite(duration) {
     if (currentAnimation) cancelAnimationFrame(currentAnimation);
     
     const currentColor = getComputedStyle(section).backgroundColor;
-    if (currentColor === 'rgb(255, 255, 255)') return;
+    if (currentColor === whiteColor) return;
     
     section.style.transition = `background-color ${duration}ms ease-out`;
+    bgImage.style.transition = `opacity ${duration}ms ease-out`;
     
     function step(timestamp) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       section.style.backgroundColor = interpolateColor(currentColor, whiteColor, easedProgress);
+      bgImage.style.opacity = String(easedProgress);
       
       if (progress < 1) {
         currentAnimation = window.requestAnimationFrame(step);
@@ -788,15 +804,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentAnimation) cancelAnimationFrame(currentAnimation);
     
     const currentColor = getComputedStyle(section).backgroundColor;
-    if (currentColor !== 'rgb(255, 255, 255)') return;
+    if (currentColor === initialGreyValue) return;
     
     section.style.transition = `background-color ${duration}ms ease-out`;
+    bgImage.style.transition = `opacity ${duration}ms ease-out`;
     
     function step(timestamp) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
       const easedProgress = Math.pow(progress, 3);
-      section.style.backgroundColor = interpolateColor(currentColor, greyColor, easedProgress);
+      section.style.backgroundColor = interpolateColor(currentColor, initialGreyValue, easedProgress);
+      bgImage.style.opacity = String(1 - easedProgress);
       
       if (progress < 1) {
         currentAnimation = window.requestAnimationFrame(step);
@@ -809,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
     currentAnimation = window.requestAnimationFrame(step);
   }
 
-  // Scroll listener
+  // ========== SCROLL LISTENER ==========
   let isTicking = false;
   window.addEventListener('scroll', function() {
     if (!isTicking) {
@@ -821,17 +839,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Initialize ONLY elements that should animate (EXCLUDING PHILOSOPHY SECTION)
+  // ========== ELEMENT ANIMATIONS ==========
   const elementsToAnimate = [
-    // Tech badges only
+    // Tech badges
     document.querySelector('.airwaves-jm-tech-badges h4'),
     ...document.querySelectorAll('.airwaves-jm-tech-badges .badge'),
     
-    // Right column (excluding philosophy)
+    // Right column
     document.querySelector('.airwaves-jm-section-heading'),
     document.querySelector('.airwaves-jm-lead'),
     
-    // Skills grid only
+    // Skills grid
     ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy)'),
     ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) h4'),
     ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) li')
@@ -858,16 +876,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.1 });
 
   elementsToAnimate.forEach(el => {
-    el.style.transform = 'translateX(50vw)';
-    el.style.opacity = '0';
-    el.style.willChange = 'transform, opacity';
+    Object.assign(el.style, {
+      transform: 'translateX(50vw)',
+      opacity: '0',
+      willChange: 'transform, opacity'
+    });
     observer.observe(el);
   });
 
+  // ========== COLOR UTILITIES ==========
   function interpolateColor(color1, color2, factor) {
     if (color1.startsWith('var(')) {
       color1 = getComputedStyle(document.documentElement)
               .getPropertyValue(color1.slice(4, -1)).trim();
+    }
+    
+    if (color2.startsWith('rgba(')) {
+      const rgbaMatch = color2.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+      if (rgbaMatch) {
+        return color2; // Return as-is for rgba
+      }
     }
     
     const hexToRgb = hex => {
@@ -881,8 +909,10 @@ document.addEventListener('DOMContentLoaded', function() {
       ] : [0, 0, 0];
     };
     
-    const [r1, g1, b1] = hexToRgb(color1);
-    const [r2, g2, b2] = hexToRgb(color2);
+    const [r1, g1, b1] = color1.startsWith('rgb') ? 
+      color1.match(/\d+/g).map(Number) : hexToRgb(color1);
+    const [r2, g2, b2] = color2.startsWith('rgb') ? 
+      color2.match(/\d+/g).map(Number) : hexToRgb(color2);
     
     return `rgb(${
       Math.round(r1 + factor * (r2 - r1))
@@ -893,4 +923,5 @@ document.addEventListener('DOMContentLoaded', function() {
     })`;
   }
 });
+
 

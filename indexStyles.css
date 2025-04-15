@@ -841,6 +841,13 @@ section#joe-mort-about.airwaves-jm-profile-section.airwaves-section {
   overflow: hidden;
 }
 
+#joe-mort-about > div {
+  opacity: 1 !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+
 section#joe-mort-about .airwaves-container {
   display: flex;
   flex-wrap: wrap;
