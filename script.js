@@ -1,158 +1,238 @@
 /**
- * WEBSITE CONTROLLER CLASS
- * Manages scroll interactions, including:
- * - Navigation state (compact/expanded)
- * - Scroll progress bar
- * - Spline scene full-width expansion
+ * WEBSITE CONTROLLER CLASS - ENHANCED NAVIGATION SYSTEM
+ * Version 2.0 - Complete Overhaul
  */
 class WebsiteController {
   constructor() {
-    // Scroll behavior configuration
-    this.scrollThreshold = 100;  // Pixels to scroll before triggering changes
-    this.lastScrollPosition = 0; // Tracks previous scroll position
-    this.scrollingDown = false;  // Scroll direction flag
-    this.scrollTicking = false;  // Throttles scroll events
-
-    // Initialize DOM references and events
-    this.initializeElements();
-    this.setupEventListeners();
-    this.checkInitialScroll();
+    // Configuration
+    this.config = {
+      scrollThreshold: 100,
+      resizeDebounce: 100,
+      mobileBreakpoint: 1024
+    };
+    
+    // State management
+    this.state = {
+      lastScrollPosition: 0,
+      scrollingDown: false,
+      scrollTicking: false,
+      isMobileMenuOpen: false,
+      isScrolled: false
+    };
+    
+    // Initialize
+    this.init();
   }
 
-  /**
-   * Initialize DOM element references
-   */
-  initializeElements() {
+  init() {
+    // Cache DOM elements
+    this.cacheElements();
+    
+    // Setup event listeners
+    this.setupListeners();
+    
+    // Check initial state
+    this.checkInitialState();
+  }
+
+  cacheElements() {
     this.elements = {
-      nav: document.querySelector('nav'),              // Navigation bar
-      navProgressBar: document.querySelector('.nav-progress'), // Scroll progress bar
-      main: document.querySelector('main'),            // Main content wrapper
-      heroSection: document.querySelector('.jj-hero-section'), // Hero section
-      splineViewer: document.querySelector('spline-viewer')    // Spline 3D scene
+      nav: document.querySelector('nav'),
+      navProgressBar: document.querySelector('.nav-progress'),
+      main: document.querySelector('main'),
+      heroSection: document.querySelector('.jj-hero-section'),
+      splineViewer: document.querySelector('spline-viewer'),
+      hamburger: document.querySelector('.hamburger'),
+      navLinks: document.querySelectorAll('nav a'),
+      navList: document.querySelector('nav ul'),
+      html: document.documentElement,
+      body: document.body
     };
   }
 
-  /**
-   * Set up event listeners
-   */
-  setupEventListeners() {
-    // Use passive scrolling for performance
+  setupListeners() {
+    // Passive scroll event
     window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+    
+    // Debounced resize event
+    window.addEventListener('resize', () => {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => this.handleResize(), this.config.resizeDebounce);
+    });
+    
+    // Mobile navigation
+    this.setupMobileNavigation();
   }
 
-  /**
-   * Check initial scroll position on page load
-   */
-  checkInitialScroll() {
-    if (window.pageYOffset > this.scrollThreshold) {
+  setupMobileNavigation() {
+    if (!this.elements.hamburger) return;
+    
+    // Hamburger toggle
+    this.elements.hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMobileMenu();
+    });
+    
+    // Close menu when clicking links
+    this.elements.navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (this.isMobileView() && this.state.isMobileMenuOpen) {
+          this.closeMobileMenu();
+        }
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('nav') && this.state.isMobileMenuOpen) {
+        this.closeMobileMenu();
+      }
+    });
+  }
+
+  checkInitialState() {
+    // Initial scroll state
+    if (window.pageYOffset > this.config.scrollThreshold) {
       this.toggleNavState(true);
-      this.updateSplineWidth(window.pageYOffset); // Initialize Spline width
+      this.updateSplineWidth(window.pageYOffset);
+    }
+    
+    // Initial mobile state
+    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
+      this.elements.navList.style.display = 'none';
     }
   }
 
-  /**
-   * Throttled scroll event handler
-   */
   handleScroll() {
-    if (!this.scrollTicking) {
+    if (!this.state.scrollTicking) {
       window.requestAnimationFrame(() => {
         const currentScroll = window.pageYOffset;
+        this.state.scrollingDown = currentScroll > this.state.lastScrollPosition;
         
-        // Determine scroll direction
-        this.scrollingDown = currentScroll > this.lastScrollPosition;
-        
-        // Update all scroll-dependent elements
         this.updateScrollProgress(currentScroll);
         this.updateNavState(currentScroll);
-        this.updateSplineWidth(currentScroll); // Handle Spline expansion
+        this.updateSplineWidth(currentScroll);
         
-        this.lastScrollPosition = currentScroll;
-        this.scrollTicking = false;
+        this.state.lastScrollPosition = currentScroll;
+        this.state.scrollTicking = false;
       });
-      this.scrollTicking = true;
+      this.state.scrollTicking = true;
     }
   }
 
-  /**
-   * Updates the scroll progress bar
-   * @param {number} currentScroll - Current scroll position (px)
-   */
+  handleResize() {
+    // Close menu when resizing to desktop
+    if (!this.isMobileView() && this.state.isMobileMenuOpen) {
+      this.closeMobileMenu();
+    }
+    
+    // Ensure proper state after resize
+    this.checkInitialState();
+  }
+
+  toggleMobileMenu() {
+    this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
+    
+    if (this.state.isMobileMenuOpen) {
+      this.openMobileMenu();
+    } else {
+      this.closeMobileMenu();
+    }
+  }
+
+  openMobileMenu() {
+    this.elements.nav.classList.add('mobile-open');
+    this.elements.hamburger.classList.add('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'true');
+    this.elements.body.style.overflow = 'hidden';
+    
+    // Show nav list in scrolled state on mobile
+    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
+      this.elements.navList.style.display = 'flex';
+    }
+  }
+
+  closeMobileMenu() {
+    this.elements.nav.classList.remove('mobile-open');
+    this.elements.hamburger.classList.remove('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'false');
+    this.elements.body.style.overflow = '';
+    
+    // Hide nav list in scrolled state on mobile
+    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
+      this.elements.navList.style.display = 'none';
+    }
+    
+    this.state.isMobileMenuOpen = false;
+  }
+
   updateScrollProgress(currentScroll) {
     if (!this.elements.navProgressBar) return;
     
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const totalHeight = this.elements.html.scrollHeight - window.innerHeight;
     const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
+    const isVisible = currentScroll > this.config.scrollThreshold;
     
-    // Show/hide progress bar based on scroll position
-    if (currentScroll > this.scrollThreshold) {
-      this.elements.navProgressBar.style.width = `${scrollProgress}%`;
-      this.elements.navProgressBar.style.opacity = '1';
-    } else {
-      this.elements.navProgressBar.style.width = '0%';
-      this.elements.navProgressBar.style.opacity = '0';
-    }
+    this.elements.navProgressBar.style.width = `${scrollProgress}%`;
+    this.elements.navProgressBar.style.opacity = isVisible ? '1' : '0';
   }
 
-  /**
-   * Manages navbar state (compact/expanded)
-   * @param {number} currentScroll - Current scroll position (px)
-   */
   updateNavState(currentScroll) {
-    const pastThreshold = currentScroll > this.scrollThreshold;
+    const pastThreshold = currentScroll > this.config.scrollThreshold;
     
-    // Reset to default state at page top
-    if (currentScroll <= this.scrollThreshold) {
+    if (currentScroll <= this.config.scrollThreshold) {
       this.toggleNavState(false);
       return;
     }
 
-    // Compact nav when scrolling down
-    if (this.scrollingDown && pastThreshold) {
-      this.toggleNavState(true);
+    // Only update state if it's changing
+    if (pastThreshold !== this.state.isScrolled) {
+      this.toggleNavState(pastThreshold);
     }
-    // Expanded nav when scrolling up
-    else if (!this.scrollingDown) {
-      this.toggleNavState(true);
+    
+    // Close mobile menu when scrolling down
+    if (this.state.scrollingDown && pastThreshold && this.state.isMobileMenuOpen && this.isMobileView()) {
+      this.closeMobileMenu();
     }
   }
 
-  /**
-   * Toggles CSS classes for scroll states
-   * @param {boolean} shouldScroll - Whether scroll threshold is passed
-   */
   toggleNavState(shouldScroll) {
+    this.state.isScrolled = shouldScroll;
+    
     this.elements.nav?.classList.toggle('scrolled', shouldScroll);
     this.elements.main?.classList.toggle('scrolled', shouldScroll);
     this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
+    
+    // Manage mobile menu state
+    if (shouldScroll && this.isMobileView()) {
+      if (this.state.isMobileMenuOpen) {
+        this.closeMobileMenu();
+      } else {
+        this.elements.navList.style.display = 'none';
+      }
+    }
   }
 
-  /**
-   * NEW: Handles Spline scene width expansion
-   * @param {number} currentScroll - Current scroll position (px)
-   */
   updateSplineWidth(currentScroll) {
     if (!this.elements.splineViewer) return;
     
-    // Expand to full viewport width after threshold
-    if (currentScroll > this.scrollThreshold) {
-      this.elements.splineViewer.style.width = '100vw';
-      this.elements.splineViewer.style.left = '0';
-      this.elements.splineViewer.style.right = 'auto';
-    } 
-    // Reset to default position
-    else {
-      this.elements.splineViewer.style.width = '';
-      this.elements.splineViewer.style.left = '';
-      this.elements.splineViewer.style.right = '0';
-    }
+    const spline = this.elements.splineViewer;
+    const isFullWidth = currentScroll > this.config.scrollThreshold;
+    
+    spline.style.width = isFullWidth ? '100vw' : '';
+    spline.style.left = isFullWidth ? '0' : '';
+    spline.style.right = isFullWidth ? 'auto' : '0';
+  }
+
+  isMobileView() {
+    return window.innerWidth <= this.config.mobileBreakpoint;
   }
 }
 
-// Initialize controller when DOM is fully loaded
+// Initialize with DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   new WebsiteController();
 });
-
 
 
 

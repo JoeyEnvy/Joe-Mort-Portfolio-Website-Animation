@@ -1,0 +1,14 @@
+  1. Root Variables & Base Styles
+   2. Navigation Styles
+   3. Main Content Structure
+   4. Hero Section
+   5. Spline Scene
+   6. Freelancer Info Section
+   7. Portfolio Showcase
+   8. Device Showcase
+   9. Gallery Section
+   10. Fullscreen Modal
+   11. Utility Classes
+   12. Responsive Adjustments
+   13. High-DPI & Print Adjustments
+   14. Footer Styles (if applicable)

@@ -52,6 +52,7 @@ body {
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ========== CORE NAVIGATION ========== */
 nav {
     /* Layout & Positioning */
     width: 250px;
@@ -72,13 +73,8 @@ nav {
     justify-content: space-between;
     
     /* Enhanced Transitions */
-    transition: 
-        width var(--transition-base),
-        height var(--transition-base),
-        background-color var(--transition-base),
-        padding var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, height, width;
-    transform: translateZ(0);
 }
 
 /* Navbar List Structure */
@@ -87,7 +83,9 @@ nav ul {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: gap 0.3s ease;
+    margin: 0;
+    padding: 0;
+    transition: gap var(--transition-base);
 }
 
 nav li {
@@ -104,6 +102,7 @@ nav a {
     align-items: center;
     padding: 12px 15px;
     border-radius: 8px;
+    position: relative;
     transition: 
         all var(--transition-base),
         transform 0.2s ease-out;
@@ -127,6 +126,25 @@ nav a.active {
 
 nav a:hover i {
     transform: scale(1.1);
+}
+
+/* Hover Effects */
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--secondary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* Social Icons */
@@ -153,6 +171,25 @@ nav a:hover i {
     transform: scale(1.25) rotate(5deg);
 }
 
+/* Scroll Progress Indicator */
+.nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 7.5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+    z-index: 1002;
+    transform-origin: left;
+    opacity: 0;
+    transition: 
+        width var(--transition-fast),
+        opacity var(--transition-base),
+        height 0.2s ease;
+}
+
+/* ========== STATES ========== */
+
 /* Scrolled State (Compact Header) */
 nav.scrolled {
     width: 100%;
@@ -172,7 +209,6 @@ nav.scrolled {
 nav.scrolled ul {
     flex-direction: row;
     align-items: center;
-    margin: 0;
     gap: 30px;
 }
 
@@ -194,23 +230,6 @@ nav.scrolled .nav-social {
     gap: 25px;
 }
 
-/* Scroll Progress Indicator */
-.nav-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 7.5px;
-    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-    z-index: 1002;
-    transform-origin: left;
-    opacity: 0;
-    transition: 
-        width var(--transition-fast),
-        opacity var(--transition-base),
-        height 0.2s ease;
-}
-
 nav.scrolled .nav-progress {
     opacity: 1;
     height: 7px;
@@ -221,29 +240,48 @@ nav:not(.scrolled) .nav-progress {
     transition-delay: 0.1s;
 }
 
-/* Hover Effects */
-nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
+/* Mobile Open State */
+nav.mobile-open {
+    transform: translateX(0) !important;
+}
+
+/* ========== HAMBURGER MENU ========== */
+.hamburger {
+    width: 30px;
+    height: 24px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.hamburger span {
+    display: block;
     width: 100%;
-    height: 2px;
-    background: var(--secondary-color);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform var(--transition-base);
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+    transform-origin: center;
 }
 
-nav a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.hamburger.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
 }
 
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
 
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
 
-
-/* =============== MAIN CONTENT STRUCTURE =============== */
+/* ========== MAIN CONTENT ========== */
 main {
     margin-left: 250px;
     transition: 
@@ -256,40 +294,144 @@ main {
 
 main.scrolled {
     margin-left: 0;
-    padding-top: 60px;
+    padding-top: 70px;
 }
 
-.content-wrapper {
-    position: relative;
-    z-index: 10;
-    background-color: var(--background-color);
-    padding-top: 1px;
-    width: 100%;
-}
+/* ========== RESPONSIVE BREAKPOINTS ========== */
 
-.section {
-    position: relative;
-    z-index: 10;
-}
-
-.section > * {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* =============== MOBILE RESPONSIVENESS =============== */
-@media (max-width: 768px) {
+/* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+    .hamburger {
+        display: none !important;
+    }
+    
     nav:not(.scrolled) {
-        transform: translateX(-100%);
-    }
-    nav.scrolled {
-        transform: translateX(0);
-    }
-    main {
-        margin-left: 0;
+        width: 220px;
     }
 }
+
+/* Tablet Landscape (1024px and below) */
+/* ========== RESPONSIVE NAVIGATION (BELOW 1024px) ========== */
+@media (max-width: 1024px) {
+    /* UNSCOLLED STATE - ICON SIDEBAR (ALWAYS VISIBLE) */
+    nav:not(.scrolled) {
+        width: 70px;
+        height: 100vh;
+        padding: 25px 10px;
+        transform: translateX(0) !important; /* Force visible */
+        position: fixed;
+        z-index: 1000;
+        display: flex !important; /* Override any hiding */
+    }
+    
+    /* Hide text labels */
+    nav:not(.scrolled) .nav-text {
+        display: none !important;
+    }
+    
+    /* Center icons */
+    nav:not(.scrolled) a {
+        justify-content: center;
+        padding: 12px;
+    }
+    
+    /* Hamburger button styling */
+    .hamburger {
+        display: none !important; /* Hidden in sidebar mode */
+    }
+    
+    /* SCOLLED STATE - TOP NAVBAR (WITH HAMBURGER) */
+    nav.scrolled {
+        width: 100%;
+        height: 60px;
+        padding: 0 20px !important;
+        position: fixed;
+        background: rgba(0,0,0,0.95) !important;
+    }
+    
+    nav.scrolled .hamburger {
+        display: flex !important;
+        position: absolute;
+        top: 18px;
+        left: 20px;
+        z-index: 1100;
+    }
+    
+    /* Hide sidebar elements when in top nav mode */
+    nav.scrolled > *:not(.hamburger) {
+        display: none !important;
+    }
+    
+    /* Mobile menu dropdown */
+    nav.scrolled ul {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.98);
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1001;
+    }
+    
+    nav.scrolled.mobile-open ul {
+        display: flex;
+    }
+    
+    /* Content adjustment */
+    main {
+        margin-left: 70px; /* Account for sidebar */
+    }
+    
+    main.scrolled {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+}
+
+/* ========== SMALLER BREAKPOINTS ========== */
+@media (max-width: 768px) {
+    nav.scrolled {
+        height: 55px !important;
+    }
+    
+    nav.scrolled .hamburger {
+        top: 15px;
+        left: 15px;
+    }
+    
+    nav.scrolled ul {
+        top: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav:not(.scrolled) {
+        width: 60px;
+        padding: 20px 8px;
+    }
+    
+    nav.scrolled {
+        height: 50px !important;
+        padding: 0 15px !important;
+    }
+    
+    nav.scrolled ul {
+        top: 50px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 340px) {
+    nav:not(.scrolled) {
+        width: 55px;
+        padding: 15px 5px;
+    }
+}
+
+
 
 
 /* =============== HERO SECTION WITH BLUE GRADIENT & NAVBAR INTEGRATION =============== */
