@@ -48,48 +48,13 @@ class WebsiteController {
   // Set up scroll, resize, and mobile navigation event listeners
   setupListeners() {
     window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+
     window.addEventListener('resize', () => {
       clearTimeout(this.resizeTimeout);
       this.resizeTimeout = setTimeout(() => this.handleResize(), this.config.resizeDebounce);
     });
-    this.setupMobileNavigation();
-  }
 
-  // Mobile navigation: hamburger toggle, close on link/outside click, accessibility
-  setupMobileNavigation() {
-    if (!this.elements.hamburger) return;
-
-    // Hamburger click toggles menu
-    this.elements.hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggleMobileMenu();
-    });
-
-    // Close menu when clicking a nav link (for overlay)
-    this.elements.navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (this.isMobileView() && this.state.isMobileMenuOpen) {
-          this.closeMobileMenu();
-        }
-      });
-    });
-
-    // Close menu when clicking outside nav (overlay)
-    document.addEventListener('click', (e) => {
-      if (
-        this.isMobileView() &&
-        this.state.isMobileMenuOpen &&
-        !e.target.closest('nav') &&
-        !e.target.closest('.hamburger')
-      ) {
-        this.closeMobileMenu();
-      }
-    });
-
-    // Prevent background scroll when menu is open (mobile)
-    document.addEventListener('touchmove', (e) => {
-      if (this.state.isMobileMenuOpen) e.preventDefault();
-    }, { passive: false });
+    this.setupMobileNavigation(); // Setup hamburger mobile navigation listeners
   }
 
   // On page load, check initial nav/menu state
@@ -99,6 +64,7 @@ class WebsiteController {
       this.toggleNavState(true);
       this.updateSplineWidth(window.pageYOffset);
     }
+
     // Hide nav list if in mobile scrolled state
     if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
       this.elements.navList.style.display = 'none';
@@ -132,43 +98,6 @@ class WebsiteController {
     this.checkInitialState();
   }
 
-  // Toggle mobile menu open/close
-  toggleMobileMenu() {
-    this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
-    if (this.state.isMobileMenuOpen) {
-      this.openMobileMenu();
-    } else {
-      this.closeMobileMenu();
-    }
-  }
-
-  // Open mobile menu (sidebar overlay)
-  openMobileMenu() {
-    this.elements.nav.classList.add('mobile-open');
-    this.elements.hamburger.classList.add('active');
-    this.elements.hamburger.setAttribute('aria-expanded', 'true');
-    this.elements.body.style.overflow = 'hidden';
-
-    // Show nav list in scrolled state on mobile (overlay)
-    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
-      this.elements.navList.style.display = 'flex';
-    }
-  }
-
-  // Close mobile menu (sidebar overlay)
-  closeMobileMenu() {
-    this.elements.nav.classList.remove('mobile-open');
-    this.elements.hamburger.classList.remove('active');
-    this.elements.hamburger.setAttribute('aria-expanded', 'false');
-    this.elements.body.style.overflow = '';
-
-    // Hide nav list in scrolled state on mobile (overlay)
-    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
-      this.elements.navList.style.display = 'none';
-    }
-    this.state.isMobileMenuOpen = false;
-  }
-
   // Update scroll progress bar
   updateScrollProgress(currentScroll) {
     if (!this.elements.navProgressBar) return;
@@ -182,13 +111,16 @@ class WebsiteController {
   // Update nav state (scrolled/unscrolled)
   updateNavState(currentScroll) {
     const pastThreshold = currentScroll > this.config.scrollThreshold;
+
     if (currentScroll <= this.config.scrollThreshold) {
       this.toggleNavState(false);
       return;
     }
+
     if (pastThreshold !== this.state.isScrolled) {
       this.toggleNavState(pastThreshold);
     }
+
     // Close mobile menu when scrolling down
     if (this.state.scrollingDown && pastThreshold && this.state.isMobileMenuOpen && this.isMobileView()) {
       this.closeMobileMenu();
@@ -198,11 +130,11 @@ class WebsiteController {
   // Toggle nav scrolled state and handle menu state
   toggleNavState(shouldScroll) {
     this.state.isScrolled = shouldScroll;
+
     this.elements.nav?.classList.toggle('scrolled', shouldScroll);
     this.elements.main?.classList.toggle('scrolled', shouldScroll);
     this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
 
-    // Manage mobile menu state
     if (shouldScroll && this.isMobileView()) {
       if (this.state.isMobileMenuOpen) {
         this.closeMobileMenu();
@@ -210,7 +142,6 @@ class WebsiteController {
         this.elements.navList.style.display = 'none';
       }
     } else if (!shouldScroll && this.isMobileView()) {
-      // Restore nav list for sidebar
       this.elements.navList.style.display = 'flex';
     }
   }
@@ -218,8 +149,10 @@ class WebsiteController {
   // Update spline viewer width (if present)
   updateSplineWidth(currentScroll) {
     if (!this.elements.splineViewer) return;
+
     const spline = this.elements.splineViewer;
     const isFullWidth = currentScroll > this.config.scrollThreshold;
+
     spline.style.width = isFullWidth ? '100vw' : '';
     spline.style.left = isFullWidth ? '0' : '';
     spline.style.right = isFullWidth ? 'auto' : '0';
@@ -229,12 +162,94 @@ class WebsiteController {
   isMobileView() {
     return window.innerWidth <= this.config.mobileBreakpoint;
   }
+
+  /**
+   * ========================
+   * HAMBURGER / MOBILE MENU
+   * ========================
+   */
+
+  // Set up hamburger mobile menu listeners and behavior
+  setupMobileNavigation() {
+    if (!this.elements.hamburger) return;
+
+    // Toggle menu open/close on hamburger click
+    this.elements.hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMobileMenu();
+    });
+
+    // Close menu when a nav link is clicked (for overlays)
+    this.elements.navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (this.isMobileView() && this.state.isMobileMenuOpen) {
+          this.closeMobileMenu();
+        }
+      });
+    });
+
+    // Close menu when clicking outside nav area
+    document.addEventListener('click', (e) => {
+      if (
+        this.isMobileView() &&
+        this.state.isMobileMenuOpen &&
+        !e.target.closest('nav') &&
+        !e.target.closest('.hamburger')
+      ) {
+        this.closeMobileMenu();
+      }
+    });
+
+    // Prevent scrolling of the background when menu is open (touch devices)
+    document.addEventListener('touchmove', (e) => {
+      if (this.state.isMobileMenuOpen) e.preventDefault();
+    }, { passive: false });
+  }
+
+  // Toggle mobile menu open/close state
+  toggleMobileMenu() {
+    this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
+    if (this.state.isMobileMenuOpen) {
+      this.openMobileMenu();
+    } else {
+      this.closeMobileMenu();
+    }
+  }
+
+  // Open the hamburger mobile menu
+  openMobileMenu() {
+    this.elements.nav.classList.add('mobile-open');
+    this.elements.hamburger.classList.add('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'true');
+    this.elements.body.style.overflow = 'hidden';
+
+    // Show the nav links if in a scrolled state on mobile
+    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
+      this.elements.navList.style.display = 'flex';
+    }
+  }
+
+  // Close the hamburger mobile menu
+  closeMobileMenu() {
+    this.elements.nav.classList.remove('mobile-open');
+    this.elements.hamburger.classList.remove('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'false');
+    this.elements.body.style.overflow = '';
+
+    // Hide nav links if we're in a mobile scrolled state
+    if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
+      this.elements.navList.style.display = 'none';
+    }
+
+    this.state.isMobileMenuOpen = false;
+  }
 }
 
 // Initialize controller on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   new WebsiteController();
 });
+
 
 // [SECTION 3] SHOWCASE ROTATING VIDEO AI SECTION ==========================
 

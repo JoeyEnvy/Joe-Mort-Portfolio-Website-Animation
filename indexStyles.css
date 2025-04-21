@@ -293,6 +293,8 @@ main.scrolled {
     }
 }
 
+/* nav1024 */
+
 /* Tablet and Mobile (1024px and below) */
 @media (max-width: 1024px) {
     /* Sidebar: icons only */
@@ -332,6 +334,11 @@ main.scrolled {
     nav:not(.scrolled) .hamburger {
         display: none !important;
     }
+
+.hamburger { position: relative; z-index: 1100; }
+nav.scrolled .hamburger { display: flex !important; }
+nav.scrolled.mobile-open ul { display: flex !important; /* plus overlay styles */ }
+
 
     /* Top navbar (scrolled) */
     nav.scrolled {
