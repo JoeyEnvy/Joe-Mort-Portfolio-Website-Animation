@@ -1,0 +1,992 @@
+/**
+ * WEBSITE CONTROLLER CLASS - ENHANCED NAVIGATION SYSTEM
+ * Version 3.0 - Scroll-Aware Sidebar to Topbar with Mobile Overlay
+ */
+class WebsiteController {
+  constructor() {
+    this.config = {
+      scrollThreshold: 100,
+      resizeDebounce: 100,
+      mobileBreakpoint: 1024
+    };
+
+    this.state = {
+      lastScrollPosition: 0,
+      scrollingDown: false,
+      scrollTicking: false,
+      isMobileMenuOpen: false,
+      isScrolled: false
+    };
+
+    this.init();
+  }
+
+  // Initial setup on DOM ready
+  init() {
+    this.cacheElements();
+    this.setupListeners();
+    this.checkInitialState(); // Ensure nav starts correctly
+  }
+
+  // Cache all necessary DOM elements
+  cacheElements() {
+    this.elements = {
+      nav: document.querySelector('nav'),
+      navProgressBar: document.querySelector('.nav-progress'),
+      main: document.querySelector('main'),
+      heroSection: document.querySelector('.jj-hero-section'),
+      splineViewer: document.querySelector('spline-viewer'),
+      hamburger: document.querySelector('.hamburger'),
+      navLinks: document.querySelectorAll('nav a, .mobile-menu a'),
+      navList: document.querySelector('nav ul.nav-links'),
+      html: document.documentElement,
+      body: document.body,
+      mobileMenu: document.getElementById('mobileMenu')
+    };
+  }
+
+  // Setup scroll/resize and mobile listeners
+  setupListeners() {
+    window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+
+    window.addEventListener('resize', () => {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => this.handleResize(), this.config.resizeDebounce);
+    });
+
+    this.setupMobileNavigation();
+  }
+
+  // On page load, set nav state depending on scroll
+  checkInitialState() {
+    const yOffset = window.pageYOffset;
+    const shouldScroll = yOffset > this.config.scrollThreshold;
+
+    this.toggleNavState(shouldScroll);
+    this.updateSplineWidth(yOffset);
+  }
+
+  // Handle scroll logic (debounced)
+  handleScroll() {
+    if (!this.state.scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
+        this.state.scrollingDown = currentScroll > this.state.lastScrollPosition;
+
+        this.updateScrollProgress(currentScroll);
+        this.updateNavState(currentScroll);
+        this.updateSplineWidth(currentScroll);
+
+        this.state.lastScrollPosition = currentScroll;
+        this.state.scrollTicking = false;
+      });
+      this.state.scrollTicking = true;
+    }
+  }
+
+  // Handle window resize
+  handleResize() {
+    if (!this.isMobileView() && this.state.isMobileMenuOpen) {
+      this.closeMobileMenu();
+    }
+    this.checkInitialState();
+  }
+
+  // Update scroll progress bar in nav (if present)
+  updateScrollProgress(currentScroll) {
+    if (!this.elements.navProgressBar) return;
+
+    const totalHeight = this.elements.html.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
+    const isVisible = currentScroll > this.config.scrollThreshold;
+
+    this.elements.navProgressBar.style.width = ${scrollProgress}%;
+    this.elements.navProgressBar.style.opacity = isVisible ? '1' : '0';
+  }
+
+  // Adjust nav style based on scroll direction and position
+  updateNavState(currentScroll) {
+    const pastThreshold = currentScroll > this.config.scrollThreshold;
+
+    // When at the top of the page, always reset nav to sidebar
+    if (currentScroll <= this.config.scrollThreshold) {
+      this.toggleNavState(false);
+      return;
+    }
+
+    // Toggle between sidebar and topbar
+    if (pastThreshold !== this.state.isScrolled) {
+      this.toggleNavState(pastThreshold);
+    }
+
+    // Close mobile menu if scrolling down
+    if (this.state.scrollingDown && pastThreshold && this.state.isMobileMenuOpen && this.isMobileView()) {
+      this.closeMobileMenu();
+    }
+  }
+
+  // Toggle classes for nav/sidebar modes
+  toggleNavState(shouldScroll) {
+    this.state.isScrolled = shouldScroll;
+
+    // Toggle 'scrolled' class that controls sidebar vs topbar styles
+    this.elements.nav?.classList.toggle('scrolled', shouldScroll);
+    this.elements.main?.classList.toggle('scrolled', shouldScroll);
+    this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
+  }
+
+  // Optional: widen spline viewer when scrolling past hero
+  updateSplineWidth(currentScroll) {
+    if (!this.elements.splineViewer) return;
+
+    const spline = this.elements.splineViewer;
+    const isFullWidth = currentScroll > this.config.scrollThreshold;
+
+    spline.style.width = isFullWidth ? '100vw' : '';
+    spline.style.left = isFullWidth ? '0' : '';
+    spline.style.right = isFullWidth ? 'auto' : '0';
+  }
+
+  // Detect mobile view
+  isMobileView() {
+    return window.innerWidth <= this.config.mobileBreakpoint;
+  }
+
+  // Handle hamburger and mobile menu logic
+  setupMobileNavigation() {
+    if (!this.elements.hamburger) return;
+
+    this.elements.hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMobileMenu();
+    });
+
+    this.elements.navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (this.isMobileView() && this.state.isMobileMenuOpen) {
+          this.closeMobileMenu();
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (
+        this.isMobileView() &&
+        this.state.isMobileMenuOpen &&
+        !e.target.closest('.mobile-menu') &&
+        !e.target.closest('.hamburger')
+      ) {
+        this.closeMobileMenu();
+      }
+    });
+  }
+
+  toggleMobileMenu() {
+    this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
+    if (this.state.isMobileMenuOpen) {
+      this.openMobileMenu();
+    } else {
+      this.closeMobileMenu();
+    }
+  }
+
+  openMobileMenu() {
+    this.elements.mobileMenu.classList.add('active');
+    this.elements.hamburger.classList.add('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'true');
+    this.elements.body.style.overflow = 'hidden';
+  }
+
+  closeMobileMenu() {
+    this.elements.mobileMenu.classList.remove('active');
+    this.elements.hamburger.classList.remove('active');
+    this.elements.hamburger.setAttribute('aria-expanded', 'false');
+    this.elements.body.style.overflow = '';
+    this.state.isMobileMenuOpen = false;
+  }
+}
+
+// Initialize controller on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  new WebsiteController();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// [SECTION 2] about section with mobile and desktop left column ==========================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ai videos shinining section and spiderman etc ai 
+
+
+// [SECTION 3] SHOWCASE ROTATING VIDEO AI SECTION ==========================
+document.addEventListener('DOMContentLoaded', function () {
+    const mainVideo = document.querySelector('.ai-main-video video');
+    const thumbnails = document.querySelectorAll('.ai-thumb');
+    const playPauseBtn = document.querySelector('.ai-play-pause');
+    const audioBtn = document.querySelector('.ai-audio-control');
+    const fullscreenBtn = document.querySelector('.ai-fullscreen');
+
+    const videoSources = [
+        'film production/shining/1.mp4',
+        'film production/shining/2.mp4',
+        'film production/shining/3.mp4',
+        'film production/shining/4.mp4',
+        'film production/shining/5.mp4'
+    ];
+
+    let currentVideoIndex = 0;
+    let autoplayInterval;
+
+    // Ensure main video starts muted
+    mainVideo.muted = true;
+
+    // Ensure all thumbnails are muted before playing
+    thumbnails.forEach(thumb => {
+        const video = thumb.querySelector('video');
+        video.muted = true; // force muted
+        video.play().catch(e => console.log("Autoplay prevented (thumb):", e));
+    });
+
+    // Clicking a thumbnail changes the main video source
+    thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+            mainVideo.src = thumb.dataset.video;
+            mainVideo.muted = true; // ensure muted when loading new video
+            mainVideo.play().catch(e => console.log("Autoplay prevented (main):", e));
+            currentVideoIndex = index;
+        });
+    });
+
+    // Autoplay cycling function
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+            mainVideo.src = videoSources[currentVideoIndex];
+            mainVideo.muted = true; // make sure autoplay doesn’t play sound
+            mainVideo.play().catch(e => console.log("Autoplay prevented (autoplay):", e));
+        }, 10000);
+    }
+
+    // Play/pause toggle
+    playPauseBtn.addEventListener('click', () => {
+        const icon = playPauseBtn.querySelector('i');
+        if (mainVideo.paused) {
+            mainVideo.play().catch(e => console.log("Autoplay prevented (manual):", e));
+            icon.classList.replace('fa-play', 'fa-pause');
+            startAutoplay();
+        } else {
+            mainVideo.pause();
+            icon.classList.replace('fa-pause', 'fa-play');
+            clearInterval(autoplayInterval);
+        }
+    });
+
+    // Audio toggle
+    audioBtn.addEventListener('click', () => {
+        const icon = audioBtn.querySelector('i');
+        mainVideo.muted = !mainVideo.muted;
+        icon.classList.replace(
+            mainVideo.muted ? 'fa-volume-up' : 'fa-volume-mute',
+            mainVideo.muted ? 'fa-volume-mute' : 'fa-volume-up'
+        );
+    });
+
+    // Fullscreen toggle
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            mainVideo.requestFullscreen().catch(e => console.log("Fullscreen error:", e));
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
+    // Start rotation
+    startAutoplay();
+});
+
+
+
+
+// [SECTION 4] PORTFOLIO ITEMS & ANIMATIONS ================================
+
+document.addEventListener('DOMContentLoaded', function () {
+  const videos = document.querySelectorAll('.portfolio-item video');
+
+  videos.forEach(video => {
+    // Wait for the video's metadata to be loaded before using duration
+    video.addEventListener('loadedmetadata', () => {
+      // Only set currentTime if duration is a valid number
+      if (!isNaN(video.duration) && video.duration > 0) {
+        video.currentTime = Math.random() * video.duration;
+      }
+    });
+
+    video.addEventListener('timeupdate', function () {
+      if (!isNaN(video.duration) && video.currentTime >= video.duration - 0.5) {
+        setTimeout(() => {
+          video.currentTime = 0;
+        }, 1000);
+      }
+    });
+  });
+
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach(item => {
+    item.addEventListener('mouseenter', function () {
+      this.style.transform = 'translateY(-10px) scale(1.02)';
+      this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.4)';
+    });
+    item.addEventListener('mouseleave', function () {
+      this.style.transform = 'translateY(0) scale(1)';
+      this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-category, .expertise-block').forEach(el => {
+    observer.observe(el);
+  });
+});
+
+// [SECTION 5] FAQ & FORM FUNCTIONALITY ====================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const currentlyActive = document.querySelector('.faq-item.active');
+            if (currentlyActive && currentlyActive !== question.parentElement) {
+                currentlyActive.classList.remove('active');
+                currentlyActive.querySelector('.faq-toggle').textContent = '+';
+            }
+            
+            const faqItem = question.parentElement;
+            faqItem.classList.toggle('active');
+            const toggle = question.querySelector('.faq-toggle');
+            toggle.textContent = faqItem.classList.contains('active') ? '−' : '+';
+        });
+    });
+
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = this.querySelector('#name').value.trim();
+        const email = this.querySelector('#email').value.trim();
+        const message = this.querySelector('#message').value.trim();
+        
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        this.submit();
+    });
+});
+
+// [SECTION 6] VIDEO TRAILER CONTROLS ======================================
+document.addEventListener('DOMContentLoaded', function() {
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    const video = document.querySelector('.preview-video');
+    const playButton = document.querySelector('.play-button');
+
+    if (videoPlaceholder && video && playButton) {
+        // Ensure video is muted and hidden by default
+        video.muted = true;
+        video.style.display = 'none';
+
+        playButton.addEventListener('click', function () {
+            // Hide the placeholder image
+            videoPlaceholder.style.display = 'none';
+
+            // Show the video and mute it to avoid unwanted audio
+            video.style.display = 'block';
+            video.muted = true;
+            video.play().catch(err => {
+                console.warn("Playback failed:", err);
+            });
+        });
+    }
+});
+
+
+
+
+//hero section index page redo like about 
+
+
+
+
+
+
+
+
+
+//100vh scroll effect temp WORKS WITH NO HTML OR CSS very good first 400vh then normal 
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Configuration
+  const SECTIONS = [
+    document.getElementById('jj-hero'),
+    document.getElementById('about'),
+    document.getElementById('joe-mort-about'),
+    document.getElementById('services'),
+    document.querySelector('.portfolio-showcase') // New section
+  ].filter(Boolean);
+
+  const SECTION_HEIGHT = window.innerHeight;
+  const SNAP_AREA_END = SECTION_HEIGHT * 4; // Adjusted to 4 sections
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  // 2. Smart Scroll Handler
+  function handleScroll(deltaY) {
+    if (isAnimating) return;
+
+    const currentY = window.scrollY;
+    const direction = Math.sign(deltaY);
+
+    // If we're below snap area and scrolling down, do nothing
+    if (currentY >= SNAP_AREA_END && direction > 0) return;
+
+    // If we're above snap area and scrolling up, do nothing
+    if (currentY <= 0 && direction < 0) return;
+
+    // If in snap area, process snap logic
+    if (currentY < SNAP_AREA_END) {
+      const newIndex = Math.min(Math.max(currentIndex + direction, 0), SECTIONS.length - 1);
+
+      if (newIndex !== currentIndex) {
+        isAnimating = true;
+        currentIndex = newIndex;
+
+        window.scrollTo({
+          top: currentIndex * SECTION_HEIGHT,
+          behavior: 'smooth'
+        });
+
+        setTimeout(() => isAnimating = false, 300);
+      }
+    }
+  }
+
+  // 3. Event Listeners with Priority Handling
+  function onWheel(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll(e.deltaY);
+    }
+  }
+
+  function onTouchStart(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+    }
+  }
+
+  function onTouchMove(e) {
+    if (window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll(-e.touches[0].movementY);
+    }
+  }
+
+  function onKeyDown(e) {
+    const scrollKeys = [32, 33, 34, 38, 40]; // space, page up/down, arrows
+    if (scrollKeys.includes(e.keyCode) && window.scrollY < SNAP_AREA_END) {
+      e.preventDefault();
+      handleScroll([34, 40].includes(e.keyCode) ? 1 : -1);
+    }
+  }
+
+  // 4. Smart Event Registration
+  window.addEventListener('wheel', onWheel, { passive: false });
+  window.addEventListener('touchstart', onTouchStart, { passive: false });
+  window.addEventListener('touchmove', onTouchMove, { passive: false });
+  window.addEventListener('keydown', onKeyDown);
+
+  // 5. Scroll Boundary Detection
+  window.addEventListener('scroll', () => {
+    const currentY = window.scrollY;
+
+    // Snap to nearest section if in snap area but not aligned
+    if (!isAnimating && currentY < SNAP_AREA_END) {
+      const expectedY = currentIndex * SECTION_HEIGHT;
+      if (Math.abs(currentY - expectedY) > 5) {
+        window.scrollTo({
+          top: expectedY,
+          behavior: 'auto'
+        });
+      }
+    }
+  }, { passive: true });
+});
+
+
+
+
+
+//section elements fly off screen to right robot hero section ONLY JAVA SCRIPT REQURIED, just reference html 
+
+//scrolls elements out and back in on scroll 
+
+
+
+
+
+// Wait for the webpage to fully load before running this script
+document.addEventListener('DOMContentLoaded', function() {
+  // Select all elements on the page that have the class 'jj-animate-in'
+  const animatedElements = document.querySelectorAll('.jj-animate-in');
+  
+  // Define how long the animation should take (in seconds)
+  const preferredDuration = '1.8s'; // This is the speed you liked for scrolling back in
+  
+  // For the first scroll down, make it even slower and more dramatic
+  const firstScrollDuration = '5s'; // This is the speed for the first scroll down
+  
+  // Define the easing curve (how the animation accelerates and decelerates)
+  const easingCurve = 'cubic-bezier(0.12, 0.7, 0.24, 1)';
+  
+  // Flag to track if it's the first scroll down
+  let isFirstScroll = true;
+  
+  // Store the current scroll position
+  let lastScrollY = window.scrollY;
+
+  // Loop through each element that needs animation
+  animatedElements.forEach(el => {
+    // Tell the browser to optimize this element for animation
+    el.style.willChange = 'transform';
+    
+    // Set the initial animation speed to the slower first scroll speed
+    el.style.transition = transform ${firstScrollDuration} ${easingCurve};
+  });
+
+  // Listen for scroll events on the window
+  window.addEventListener('scroll', function() {
+    // Get the current scroll position
+    const currentScrollY = window.scrollY;
+    
+    // Check if the user is scrolling down (not up)
+    const isScrollingDown = currentScrollY > lastScrollY + 10; // Add a small threshold to prevent false triggers
+
+    // Loop through each element again
+    animatedElements.forEach(el => {
+      // If the user is scrolling down
+      if (isScrollingDown) {
+        // Move the element off-screen to the right
+        el.style.transform = 'translateX(150vw)';
+        
+        // If this is the first scroll down
+        if (isFirstScroll) {
+          // Wait for the first scroll animation to finish, then switch to the preferred speed
+          setTimeout(() => {
+            el.style.transition = transform ${preferredDuration} ${easingCurve};
+          }, 2500); // This delay matches the firstScrollDuration
+        }
+      } 
+      // If the user is scrolling up
+      else {
+        // Move the element back to its original position
+        el.style.transform = 'translateX(0)';
+      }
+    });
+
+    // If the user scrolled down, mark it as not the first scroll anymore
+    if (isScrollingDown) isFirstScroll = false;
+    
+    // Update the last scroll position
+    lastScrollY = currentScrollY;
+  });
+});
+
+//freelancer amnimate in and out to the right just java needed second section 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // =======================
+  // ORIGINAL ANIMATION SETUP
+  // =======================
+  const animationDuration = 600;
+  const thresholds = [0, 0.1, 0.2, 0.5, 1];
+  const rootMargin = '0px 0px -200px 0px';
+
+  const section = document.getElementById('about');
+
+  const leftColumnElements = [
+    section.querySelector('h2'),
+    section.querySelector('.intro'),
+    section.querySelector('.company'),
+    section.querySelector('.cta-button'),
+    section.querySelector('.showcase-title'),
+    section.querySelector('.device-showcase')
+  ].filter(Boolean);
+
+  function setupAnimations() {
+    leftColumnElements.forEach((el, index) => {
+      if (el._animationInitialized) return;
+
+      el._animationInitialized = true;
+      const delay = Math.min(index * 50, 300);
+
+      el.style.transform = 'translateX(50vw)';
+      el.style.opacity = '0';
+      el.style.transition = 
+        transform ${animationDuration}ms cubic-bezier(0.18, 0.89, 0.32, 1.28),
+        opacity ${animationDuration}ms ease-out
+      ;
+      el.style.transitionDelay = ${delay}ms;
+      el.style.willChange = 'transform, opacity';
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
+      } else {
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
+      }
+    });
+  }, {
+    threshold: thresholds,
+    rootMargin: rootMargin
+  });
+
+  setupAnimations();
+  leftColumnElements.forEach(el => {
+    try {
+      observer.observe(el);
+    } catch (e) {
+      console.warn('Failed to observe element:', el, e);
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
+  });
+
+  // =======================
+  // VIDEO ROTATION LOGIC
+  // =======================
+  const desktopVideo = document.getElementById("desktop-video");
+  const mobileVideo = document.getElementById("mobile-video");
+
+  // Create <source> elements for both video tags
+  const desktopSource = document.createElement("source");
+  desktopSource.type = "video/mp4";
+  desktopVideo.appendChild(desktopSource);
+
+  const mobileSource = document.createElement("source");
+  mobileSource.type = "video/mp4";
+  mobileVideo.appendChild(mobileSource);
+
+  const videoFiles = [
+    "1.mp4", "2.mp4", "3.mp4", "4.mp4", "5.mp4", "6.mp4", "7.mp4", "8.mp4",
+    "A.mp4", "B.mp4", "C.mp4", "D.mp4", "E.mp4", "F.mp4", "G.mp4", "H.mp4"
+  ];
+
+  let currentIndex = 0;
+
+  function playNextVideo(videoEl, sourceEl, offset = 0) {
+    const fileName = videoFiles[(currentIndex + offset) % videoFiles.length];
+    sourceEl.src = showcase-slideshow-videos/${fileName};
+    videoEl.load();
+    videoEl.play().catch(err => console.error("Video play error:", err));
+
+    videoEl.onended = () => {
+      currentIndex++;
+      playNextVideo(videoEl, sourceEl, offset);
+    };
+  }
+
+  playNextVideo(desktopVideo, desktopSource, 0);  // Start at 1.mp4
+  playNextVideo(mobileVideo, mobileSource, 8);    // Start at A.mp4
+});
+
+
+
+
+
+
+
+
+
+//about section extra joe mort snyposis freelancer second
+
+//html elements animate in and out on scroll 100vh and change background grey to white
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ========== CONFIGURATION ==========
+  const scrollUpDuration = 300;     // Fast transition up (300ms)
+  const scrollDownDuration = 800;   // Slower transition down (800ms)
+  const elementAnimationDuration = 900;
+  const elementExitDuration = 700;
+  
+  const section = document.getElementById('joe-mort-about');
+  const greyColor = 'var(--nav-bg)';
+  const whiteColor = 'rgba(255, 255, 255, 0.7)'; // 70% opacity white
+  const bgImageUrl = 'images/tech-background.jpg';
+
+  // ========== BACKGROUND IMAGE SETUP ==========
+  const bgImage = document.createElement('div');
+  Object.assign(bgImage.style, {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    backgroundImage: url(${bgImageUrl}),
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: '-1',
+    opacity: '0',
+    transition: opacity ${scrollDownDuration}ms ease-out,
+    willChange: 'opacity'
+  });
+  section.appendChild(bgImage);
+
+  Object.assign(section.style, {
+    position: 'relative',
+    backgroundColor: greyColor,
+    transition: background-color ${scrollUpDuration}ms ease-out,
+    willChange: 'background-color',
+    overflow: 'hidden'
+  });
+
+  // ========== STATE MANAGEMENT ==========
+  let lastScrollPosition = window.scrollY;
+  let isInSection = false;
+  let currentAnimation = null;
+  const initialGreyValue = getComputedStyle(section).backgroundColor;
+
+  // ========== SCROLL HANDLING ==========
+  function handleScroll() {
+    const currentScroll = window.scrollY;
+    const scrollDirection = Math.sign(currentScroll - lastScrollPosition);
+    lastScrollPosition = currentScroll;
+    
+    const sectionRect = section.getBoundingClientRect();
+    const viewportMiddle = window.innerHeight / 2;
+    
+    // Entering section (from top or scrolling up into it)
+    if ((sectionRect.top < viewportMiddle && !isInSection) || 
+        (scrollDirection < 0 && sectionRect.top < viewportMiddle && sectionRect.bottom > viewportMiddle)) {
+      isInSection = true;
+      animateToWhite(scrollDownDuration); // Slow transition to white
+    }
+    // Exiting section (up or down)
+    else if ((sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) && isInSection) {
+      isInSection = false;
+      animateToGrey(scrollUpDuration); // Fast transition to grey
+    }
+  }
+
+  // ========== ANIMATION FUNCTIONS ==========
+  function animateToWhite(duration) {
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
+    
+    const currentColor = getComputedStyle(section).backgroundColor;
+    if (currentColor === whiteColor) return;
+    
+    section.style.transition = background-color ${duration}ms ease-out;
+    bgImage.style.transition = opacity ${duration}ms ease-out;
+    
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      section.style.backgroundColor = interpolateColor(currentColor, whiteColor, easedProgress);
+      bgImage.style.opacity = String(easedProgress);
+      
+      if (progress < 1) {
+        currentAnimation = window.requestAnimationFrame(step);
+      } else {
+        currentAnimation = null;
+      }
+    }
+    
+    let start = null;
+    currentAnimation = window.requestAnimationFrame(step);
+  }
+
+  function animateToGrey(duration) {
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
+    
+    const currentColor = getComputedStyle(section).backgroundColor;
+    if (currentColor === initialGreyValue) return;
+    
+    section.style.transition = background-color ${duration}ms ease-out;
+    bgImage.style.transition = opacity ${duration}ms ease-out;
+    
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const easedProgress = Math.pow(progress, 3);
+      section.style.backgroundColor = interpolateColor(currentColor, initialGreyValue, easedProgress);
+      bgImage.style.opacity = String(1 - easedProgress);
+      
+      if (progress < 1) {
+        currentAnimation = window.requestAnimationFrame(step);
+      } else {
+        currentAnimation = null;
+      }
+    }
+    
+    let start = null;
+    currentAnimation = window.requestAnimationFrame(step);
+  }
+
+  // ========== SCROLL LISTENER ==========
+  let isTicking = false;
+  window.addEventListener('scroll', function() {
+    if (!isTicking) {
+      window.requestAnimationFrame(function() {
+        handleScroll();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  });
+
+  // ========== ELEMENT ANIMATIONS ==========
+  const elementsToAnimate = [
+    // Tech badges
+    document.querySelector('.airwaves-jm-tech-badges h4'),
+    ...document.querySelectorAll('.airwaves-jm-tech-badges .badge'),
+    
+    // Right column
+    document.querySelector('.airwaves-jm-section-heading'),
+    document.querySelector('.airwaves-jm-lead'),
+    
+    // Skills grid
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy)'),
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) h4'),
+    ...document.querySelectorAll('.airwaves-jm-skill-category:not(.airwaves-jm-philosophy) li')
+  ].filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transition = 
+          transform ${elementAnimationDuration}ms cubic-bezier(0.23, 1, 0.32, 1),
+          opacity ${elementAnimationDuration}ms ease-out
+        ;
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
+      } else {
+        entry.target.style.transition = 
+          transform ${elementExitDuration}ms cubic-bezier(0.55, 0.085, 0.68, 0.53),
+          opacity ${elementExitDuration}ms ease-in
+        ;
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  elementsToAnimate.forEach(el => {
+    Object.assign(el.style, {
+      transform: 'translateX(50vw)',
+      opacity: '0',
+      willChange: 'transform, opacity'
+    });
+    observer.observe(el);
+  });
+
+  // ========== COLOR UTILITIES ==========
+  function interpolateColor(color1, color2, factor) {
+    if (color1.startsWith('var(')) {
+      color1 = getComputedStyle(document.documentElement)
+              .getPropertyValue(color1.slice(4, -1)).trim();
+    }
+    
+    if (color2.startsWith('rgba(')) {
+      const rgbaMatch = color2.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+      if (rgbaMatch) {
+        return color2; // Return as-is for rgba
+      }
+    }
+    
+    const hexToRgb = hex => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ] : [0, 0, 0];
+    };
+    
+    const [r1, g1, b1] = color1.startsWith('rgb') ? 
+      color1.match(/\d+/g).map(Number) : hexToRgb(color1);
+    const [r2, g2, b2] = color2.startsWith('rgb') ? 
+      color2.match(/\d+/g).map(Number) : hexToRgb(color2);
+    
+    return rgb(${
+      Math.round(r1 + factor * (r2 - r1))
+    }, ${
+      Math.round(g1 + factor * (g2 - g1))
+    }, ${
+      Math.round(b1 + factor * (b2 - b1))
+    });
+  }
+});
+

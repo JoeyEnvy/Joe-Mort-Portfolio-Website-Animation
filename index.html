@@ -56,8 +56,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="indexStyles.css">
     
-    <!-- Lazy Load Spline 3D Viewer -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js" defer></script>
+
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Website Animation | Joe Mort - Web Design & Animation Services">
@@ -91,19 +90,23 @@
 
 
 <body>
+
+
+<div class="parallax-logo" aria-hidden="true"></div>
+
+
+
     <!-- Page Loader (Optional) -->
 <div class="page-loader"></div>
 
 <!-- Navigation -->
 <nav class="scrolled" role="navigation">
-  <!-- Hamburger Toggle Button -->
   <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="primary-navigation">
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
   </button>
 
-  <!-- Primary Navigation Links -->
   <ul id="primary-navigation" class="nav-links">
     <li><a href="./index.html"><i class="fas fa-home"></i><span class="nav-text">Home</span></a></li>
     <li><a href="./showcase.html"><i class="fas fa-photo-video"></i><span class="nav-text">Showcase</span></a></li>
@@ -112,19 +115,23 @@
     <li><a href="./contact.html"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
   </ul>
 
-  <!-- Social Media Section -->
   <div class="nav-social" aria-label="Social media links">
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
   </div>
 
-  <!-- Progress Indicator -->
   <div class="nav-progress" role="presentation"></div>
 </nav>
 
-
-
+<!-- Mobile Overlay Menu -->
+<div class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation Menu">
+  <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="./showcase.html"><i class="fas fa-photo-video"></i> Showcase</a>
+  <a href="./services.html"><i class="fas fa-cogs"></i> Services</a>
+  <a href="./about.html"><i class="fas fa-user"></i> About</a>
+  <a href="./contact.html"><i class="fas fa-envelope"></i> Contact</a>
+</div>
 
 
 
@@ -179,92 +186,84 @@
 
 
   <!-- Content Wrapper for other sections -->
-        <div class="content-wrapper">
-            <!-- Freelancer Joe Mort About Section -->
-            <section id="about" class="freelancer-info section">
-                <div class="container">
-                    <!-- Left Column -->
-                    <div class="freelancer-info-left">
-                        <h2>Joe Mort</h2>
-                        <p class="intro">I'm a <span class="highlight">passionate freelance creative technologist</span> based in South Wales, UK, offering services worldwide. I specialize in creating stunning digital experiences that captivate and engage audiences.</p>
-                        <p class="company">At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.</p>
-                        <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
-                        
-                        <h3 class="showcase-title">Recent Web Design Examples</h3>
-                        <div class="device-showcase">
-                            <div class="device desktop-viewer">
-                                <div class="video-container">
-                                    <video id="desktop-video" autoplay muted loop playsinline loading="lazy">
-                                        <source src="showcase-slideshow-videos/1.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                            </div>
-                            
-                            <div class="device mobile-viewer">
-                                <div class="video-container">
-                                    <video id="mobile-video" autoplay muted loop playsinline loading="lazy">
-                                        <source src="showcase-slideshow-videos/A.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- Content Wrapper for other sections -->
+<div class="content-wrapper">
+  <!-- Freelancer Joe Mort About Section -->
+  <section id="about" class="freelancer-info section">
+    <div class="container">
+      <!-- Left Column -->
+      <div class="freelancer-info-left">
+        <h2>Joe Mort</h2>
+        <p class="intro">I'm a <span class="highlight">passionate freelance creative technologist</span> based in South Wales, UK, offering services worldwide. I specialize in creating stunning digital experiences that captivate and engage audiences.</p>
+        <p class="company">At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.</p>
+        <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
 
-                    <!-- Right Column -->
-                    <div class="freelancer-info-right">
-                        <h3>Creative Services</h3>
-                        <div class="services-grid">
-                            <!-- Web Design -->
-                            <div class="service-category">
-                                <h4><i class="fas fa-code"></i> Web Design</h4>
-                                <ul>
-                                    <li>Responsive Websites</li>
-                                    <li>E-commerce Solutions</li>
-                                    <li>Custom Web Applications</li>
-                                    <li>SEO Optimization</li>
-                                </ul>
-                            </div>
+        <h3 class="showcase-title">Recent Web Design Examples</h3>
+        <div class="device-showcase">
+          <!-- Desktop Viewer -->
+          <div class="device desktop-viewer">
+            <div class="video-container">
+              <video id="desktop-video" autoplay muted playsinline></video>
+            </div>
+          </div>
 
-                            <!-- 3D/2D Animation -->
-                            <div class="service-category">
-                                <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
-                                <ul>
-                                    <li>3D Modeling & Rendering</li>
-                                    <li>Character Animation</li>
-                                    <li>Motion Graphics</li>
-                                    <li>Product Animation</li>
-                                </ul>
-                            </div>
+          <!-- Mobile Viewer -->
+          <div class="device mobile-viewer">
+            <div class="video-container">
+              <video id="mobile-video" autoplay muted playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                            <!-- AI Solutions -->
-                            <div class="service-category">
-                                <h4><i class="fas fa-robot"></i> AI Solutions</h4>
-                                <ul>
-                                    <li>Custom AI Integration</li>
-                                    <li>Chatbot Development</li>
-                                    <li>Automated Systems</li>
-                                    <li>AI Content Generation</li>
-                                </ul>
-                            </div>
+      <!-- Right Column -->
+      <div class="freelancer-info-right">
+        <h3>Creative Services</h3>
+        <div class="services-grid">
+          <div class="service-category">
+            <h4><i class="fas fa-code"></i> Web Design</h4>
+            <ul>
+              <li>Responsive Websites</li>
+              <li>E-commerce Solutions</li>
+              <li>Custom Web Applications</li>
+              <li>SEO Optimization</li>
+            </ul>
+          </div>
 
-                            <!-- Print & Design -->
-                            <div class="service-category">
-                                <h4><i class="fas fa-print"></i> Print & Design</h4>
-                                <ul>
-                                    <li>Brand Identity Design</li>
-                                    <li>Marketing Materials</li>
-                                    <li>Large Format Printing</li>
-                                    <li>Business Stationery</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-   </div>
-            </section>
+          <div class="service-category">
+            <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
+            <ul>
+              <li>3D Modeling & Rendering</li>
+              <li>Character Animation</li>
+              <li>Motion Graphics</li>
+              <li>Product Animation</li>
+            </ul>
+          </div>
 
+          <div class="service-category">
+            <h4><i class="fas fa-robot"></i> AI Solutions</h4>
+            <ul>
+              <li>Custom AI Integration</li>
+              <li>Chatbot Development</li>
+              <li>Automated Systems</li>
+              <li>AI Content Generation</li>
+            </ul>
+          </div>
 
-
-
+          <div class="service-category">
+            <h4><i class="fas fa-print"></i> Print & Design</h4>
+            <ul>
+              <li>Brand Identity Design</li>
+              <li>Marketing Materials</li>
+              <li>Large Format Printing</li>
+              <li>Business Stationery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 
 
@@ -654,7 +653,7 @@
 
     <div class="trailer-showcase">
         <div class="trailer-preview">
-            <video class="preview-video" poster="images/trailer-preview.jpg" preload="metadata" aria-label="AI Movie Trailer Demo">
+            <video class="preview-video" poster="images/images/Logo 2.jpg" preload="metadata" aria-label="AI Movie Trailer Demo">
                 <source src="your-preview-video.mp4" type="video/mp4">
             </video>
             <div class="preview-overlay">
@@ -774,12 +773,7 @@
 
         <!-- Right Column - Spline Scene -->
         <div class="spline-container">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js" defer></script>
-            <spline-viewer 
-                url="https://prod.spline.design/tQJjaEwSggap5jqT/scene.splinecode" 
-                loading="lazy" 
-                aria-label="Interactive 3D animation demo">
-            </spline-viewer>
+
             <div class="scene-overlay"></div>
         </div>
     </div>
@@ -1036,7 +1030,7 @@
             </p>
             
             <div class="ai-gen-preview">
-                <video class="ai-gen-video" controls poster="path-to-thumbnail.jpg" preload="metadata" aria-label="AI Website Generation Preview">
+                <video class="ai-gen-video" controls poster="images/Logo 2.jpg" preload="metadata" aria-label="AI Website Generation Preview">
                     <source src="webgen.mp4" type="video/x-matroska">
                     Your browser does not support the video tag.
                 </video>
@@ -1119,56 +1113,55 @@
                     <span class="fp-duration" itemprop="duration">Duration: 3:45</span>
                 </div>
 
-<div class="ai-video-gallery">
-    <!-- Main Video -->
-    <div class="ai-main-video" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
-        <div class="ai-reel-wrapper">
-            <video class="ai-reel-video" loop playsinline preload="metadata" 
-                   title="AI Film Production Reel" aria-label="AI Film Production Reel"
-                   itemprop="contentUrl">
-                <source src="film production/shining/1.mp4" type="video/mp4">
-            </video>
-            <div class="ai-reel-overlay">
-                <div class="ai-reel-controls">
-                    <button class="ai-play-pause" aria-label="Play/Pause video">
-                        <i class="fas fa-play" aria-hidden="true"></i>
-                    </button>
-                    <button class="ai-audio-control" aria-label="Toggle audio">
-                        <i class="fas fa-volume-mute" aria-hidden="true"></i>
-                    </button>
-                    <button class="ai-fullscreen" aria-label="Fullscreen mode">
-                        <i class="fas fa-expand" aria-hidden="true"></i>
-                    </button>
+                <div class="ai-video-gallery">
+                    <!-- Main Video -->
+                    <div class="ai-main-video" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                        <div class="ai-reel-wrapper">
+                            <video class="ai-reel-video" loop muted playsinline preload="metadata"
+                                title="AI Film Production Reel" aria-label="AI Film Production Reel"
+                                itemprop="contentUrl">
+                                <source src="film production/shining/1.mp4" type="video/mp4">
+                            </video>
+                            <div class="ai-reel-overlay">
+                                <div class="ai-reel-controls">
+                                    <button class="ai-play-pause" aria-label="Play/Pause video">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="ai-audio-control" aria-label="Toggle audio">
+                                        <i class="fas fa-volume-mute" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="ai-fullscreen" aria-label="Fullscreen mode">
+                                        <i class="fas fa-expand" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Thumbnails -->
+                    <div class="ai-video-thumbs">
+                        <div class="ai-thumb" data-video="film production/shining/2.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                            <video muted loop playsinline preload="none" aria-label="Film production sample 1" itemprop="contentUrl">
+                                <source src="film production/shining/2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="ai-thumb" data-video="film production/shining/3.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                            <video muted loop playsinline preload="none" aria-label="Film production sample 2" itemprop="contentUrl">
+                                <source src="film production/shining/3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="ai-thumb" data-video="film production/shining/4.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                            <video muted loop playsinline preload="none" aria-label="Film production sample 3" itemprop="contentUrl">
+                                <source src="film production/shining/4.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="ai-thumb" data-video="film production/shining/5.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
+                            <video muted loop playsinline preload="none" aria-label="Film production sample 4" itemprop="contentUrl">
+                                <source src="film production/shining/5.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Side Thumbnails -->
-    <div class="ai-video-thumbs">
-        <div class="ai-thumb" data-video="film production/shining/2.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
-            <video muted loop playsinline preload="none" aria-label="Film production sample 1" itemprop="contentUrl">
-                <source src="film production/shining/2.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="ai-thumb" data-video="film production/shining/3.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
-            <video muted loop playsinline preload="none" aria-label="Film production sample 2" itemprop="contentUrl">
-                <source src="film production/shining/3.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="ai-thumb" data-video="film production/shining/4.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
-            <video muted loop playsinline preload="none" aria-label="Film production sample 3" itemprop="contentUrl">
-                <source src="film production/shining/4.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="ai-thumb" data-video="film production/shining/5.mp4" itemprop="hasPart" itemscope itemtype="https://schema.org/VideoObject">
-            <video muted loop playsinline preload="none" aria-label="Film production sample 4" itemprop="contentUrl">
-                <source src="film production/shining/5.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-</div>
-
             </div>
 
             <div class="fp-info-col">
@@ -2102,17 +2095,9 @@
 </div>
 
 
-
-<script src="smooth-scroll.js" defer></script>
-
-
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script src="script.js"></script>
-
-
-<!-- Add this right before </body> -->
-<script src="scroll-assist.js" defer></script>
 
 <!-- 
   Force the page to always load from the top.
@@ -2141,6 +2126,9 @@
   window.onbeforeunload = () => {
     window.scrollTo(0, 0);
   };
+
+
+
 </script>
 
 
