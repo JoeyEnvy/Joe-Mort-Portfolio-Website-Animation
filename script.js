@@ -567,71 +567,65 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// ========== SLIDE-IN ANIMATIONS FOR .jj-animate-in ELEMENTS ==========
-document.addEventListener('DOMContentLoaded', () => {
-  const animatedElements = document.querySelectorAll('.jj-animate-in');
+// ========== ANIMATE FREELANCER LEFT COLUMN ELEMENTS IN/OUT (NO VIDEO DEPENDENCIES) ==========
+document.addEventListener('DOMContentLoaded', function () {
+  const animationDuration = 600;
+  const thresholds = [0, 0.1, 0.2, 0.5, 1];
+  const rootMargin = '0px 0px -200px 0px';
 
-  // Global animation config
-  const preferredDuration = '1.8s';
-  const firstScrollDuration = '5s';
-  const easingCurve = 'cubic-bezier(0.12, 0.7, 0.24, 1)';
+  const section = document.getElementById('about');
 
-  let isFirstScroll = true;
-  let lastScrollY = window.scrollY;
+  const leftColumnElements = [
+    section.querySelector('h2'),
+    section.querySelector('.intro'),
+    section.querySelector('.company'),
+    section.querySelector('.cta-button'),
+    section.querySelector('.showcase-title'),
+    section.querySelector('.device-showcase')
+  ].filter(Boolean);
 
-  animatedElements.forEach(el => {
-    // Optimise performance
-    el.style.willChange = 'transform, opacity';
+  function setupAnimations() {
+    leftColumnElements.forEach((el, index) => {
+      if (el._animationInitialized) return;
 
-    // Start off-screen and invisible
-    el.style.transform = 'translateX(-100vw)';
-    el.style.opacity = '0';
-    el.style.transition = `transform ${firstScrollDuration} ${easingCurve}, opacity ${firstScrollDuration} ease-out`;
-  });
+      el._animationInitialized = true;
+      const delay = Math.min(index * 50, 300);
 
-  // Use IntersectionObserver to detect when elements come into view
+      el.style.transform = 'translateX(50vw)';
+      el.style.opacity = '0';
+      el.style.transition = `transform ${animationDuration}ms cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity ${animationDuration}ms ease-out`;
+      el.style.transitionDelay = `${delay}ms`;
+      el.style.willChange = 'transform, opacity';
+    });
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const el = entry.target;
-      if (entry.isIntersecting) {
-        el.style.transform = 'translateX(0)';
-        el.style.opacity = '1';
-
-        // After first scroll, use normal duration
-        if (isFirstScroll) {
-          setTimeout(() => {
-            el.style.transition = `transform ${preferredDuration} ${easingCurve}, opacity ${preferredDuration} ease-out`;
-          }, 2500);
-        }
+      if (!entry.isIntersecting) {
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
       } else {
-        // When element exits view (optional reverse)
-        el.style.transform = 'translateX(-100vw)';
-        el.style.opacity = '0';
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
       }
     });
   }, {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: thresholds,
+    rootMargin: rootMargin
   });
 
-  // Observe all animated elements
-  animatedElements.forEach(el => observer.observe(el));
+  setupAnimations();
 
-  // Update scroll state
-  window.addEventListener('scroll', () => {
-    lastScrollY = window.scrollY;
-    if (isFirstScroll && lastScrollY > 50) isFirstScroll = false;
+  leftColumnElements.forEach(el => {
+    try {
+      observer.observe(el);
+    } catch (e) {
+      console.warn('Failed to observe element:', el, e);
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
   });
 });
-
-
-
-
-
-
-
-
-
-
-
 

@@ -366,113 +366,128 @@
 
 
 
-<section id="services" class="skills-section" itemscope itemtype="https://schema.org/Service">
-    <h2 class="section-title" itemprop="name">My Services</h2>
+<section id="services" class="services-section" itemscope itemtype="https://schema.org/Service">
+  <div class="services-wrapper">
+    <h2 class="services-title" itemprop="name">My Services</h2>
     <div class="skills-grid">
-        <!-- Web Development Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-code" aria-hidden="true"></i>
-            <h3 itemprop="name">Web Development</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Custom Website Design</li>
-                <li itemprop="itemListElement">E-commerce Solutions</li>
-                <li itemprop="itemListElement">WordPress Development</li>
-                <li itemprop="itemListElement">Mobile-First Responsive Design</li>
-                <li itemprop="itemListElement">Website Maintenance</li>
-                <li itemprop="itemListElement">Speed Optimization</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
-            </div>
-        </div>
 
-        <!-- Graphic Design Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-paint-brush" aria-hidden="true"></i>
-            <h3 itemprop="name">Graphic Design</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Logo Design & Branding</li>
-                <li itemprop="itemListElement">Social Media Graphics</li>
-                <li itemprop="itemListElement">Marketing Materials</li>
-                <li itemprop="itemListElement">Business Cards</li>
-                <li itemprop="itemListElement">Banner Design</li>
-                <li itemprop="itemListElement">Product Packaging</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="199">199</span>
-            </div>
+      <!-- Web Development -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-code"></i>
+        <h3 itemprop="name">Web Development</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">Custom Website Design</li>
+            <li itemprop="itemListElement">E-commerce Solutions</li>
+            <li itemprop="itemListElement">WordPress Development</li>
+            <li itemprop="itemListElement">Mobile-First Responsive Design</li>
+            <li itemprop="itemListElement">Website Maintenance</li>
+            <li itemprop="itemListElement">Speed Optimization</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+          </div>
         </div>
+      </div>
 
-        <!-- 3D/2D Animation Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-film" aria-hidden="true"></i>
-            <h3 itemprop="name">3D/2D Animation</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Character Animation</li>
-                <li itemprop="itemListElement">Explainer Videos</li>
-                <li itemprop="itemListElement">Motion Graphics</li>
-                <li itemprop="itemListElement">Logo Animation</li>
-                <li itemprop="itemListElement">Product Visualization</li>
-                <li itemprop="itemListElement">Animated Advertisements</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span>
-            </div>
+      <!-- Graphic Design -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-paint-brush"></i>
+        <h3 itemprop="name">Graphic Design</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">Logo Design & Branding</li>
+            <li itemprop="itemListElement">Social Media Graphics</li>
+            <li itemprop="itemListElement">Marketing Materials</li>
+            <li itemprop="itemListElement">Business Cards</li>
+            <li itemprop="itemListElement">Banner Design</li>
+            <li itemprop="itemListElement">Product Packaging</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="199">199</span>
+          </div>
         </div>
+      </div>
 
-        <!-- AI Content Creation Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-robot" aria-hidden="true"></i>
-            <h3 itemprop="name">AI Content Creation</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">AI Video Generation</li>
-                <li itemprop="itemListElement">AI Image Creation</li>
-                <li itemprop="itemListElement">Text-to-Video</li>
-                <li itemprop="itemListElement">AI Voice Overs</li>
-                <li itemprop="itemListElement">Character Generation</li>
-                <li itemprop="itemListElement">Scene Generation</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="399">399</span>
-            </div>
+      <!-- 3D/2D Animation -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-film"></i>
+        <h3 itemprop="name">3D/2D Animation</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">Character Animation</li>
+            <li itemprop="itemListElement">Explainer Videos</li>
+            <li itemprop="itemListElement">Motion Graphics</li>
+            <li itemprop="itemListElement">Logo Animation</li>
+            <li itemprop="itemListElement">Product Visualization</li>
+            <li itemprop="itemListElement">Animated Advertisements</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="499">499</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Print Services Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-print" aria-hidden="true"></i>
-            <h3 itemprop="name">Print Services</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Business Cards</li>
-                <li itemprop="itemListElement">Brochures & Flyers</li>
-                <li itemprop="itemListElement">Banners & Posters</li>
-                <li itemprop="itemListElement">Product Labels</li>
-                <li itemprop="itemListElement">Corporate Stationery</li>
-                <li itemprop="itemListElement">Marketing Materials</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="99">99</span>
-            </div>
+      <!-- AI Content Creation -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-robot"></i>
+        <h3 itemprop="name">AI Content Creation</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">AI Video Generation</li>
+            <li itemprop="itemListElement">AI Image Creation</li>
+            <li itemprop="itemListElement">Text-to-Video</li>
+            <li itemprop="itemListElement">AI Voice Overs</li>
+            <li itemprop="itemListElement">Character Generation</li>
+            <li itemprop="itemListElement">Scene Generation</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="399">399</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Video Editing Card -->
-        <div class="skill-card" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <h3 itemprop="name">Video Editing</h3>
-            <ul itemprop="description">
-                <li itemprop="itemListElement">Commercial Editing</li>
-                <li itemprop="itemListElement">Social Media Content</li>
-                <li itemprop="itemListElement">Color Grading</li>
-                <li itemprop="itemListElement">Visual Effects</li>
-                <li itemprop="itemListElement">Sound Design</li>
-                <li itemprop="itemListElement">Video Optimization</li>
-            </ul>
-            <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
-            </div>
+      <!-- Print Services -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-print"></i>
+        <h3 itemprop="name">Print Services</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">Business Cards</li>
+            <li itemprop="itemListElement">Brochures & Flyers</li>
+            <li itemprop="itemListElement">Banners & Posters</li>
+            <li itemprop="itemListElement">Product Labels</li>
+            <li itemprop="itemListElement">Corporate Stationery</li>
+            <li itemprop="itemListElement">Marketing Materials</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="99">99</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Video Editing -->
+      <div class="skill-card" onclick="if (window.innerWidth <= 768) this.classList.toggle('open')" itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <i class="fas fa-video"></i>
+        <h3 itemprop="name">Video Editing</h3>
+        <div class="card-details">
+          <ul itemprop="description">
+            <li itemprop="itemListElement">Commercial Editing</li>
+            <li itemprop="itemListElement">Social Media Content</li>
+            <li itemprop="itemListElement">Color Grading</li>
+            <li itemprop="itemListElement">Visual Effects</li>
+            <li itemprop="itemListElement">Sound Design</li>
+            <li itemprop="itemListElement">Video Optimization</li>
+          </ul>
+          <div class="price-tag" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            From <span itemprop="priceCurrency" content="GBP">£</span><span itemprop="price" content="299">299</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
-
 
 
 

@@ -2437,185 +2437,190 @@ section#joe-mort-about .airwaves-jm-tech-badges h4 {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Services Section */
-.services-info {
-    background: rgba(108,92,231,0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+/* --- Services Section Container --- */
+.services-section {
+  background: rgba(108, 92, 231, 0.10);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.08);
+  padding: 40px 20px;
+  height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.service-category {
-    margin-bottom: 30px;
-    padding: 25px;
-    background: rgba(0,206,201,0.1);
-    border-radius: 12px;
-    transition: transform 0.3s ease;
+.services-wrapper {
+  width: 100%;
+  max-width: 1300px;
 }
 
-.service-category:hover {
-    transform: scale(1.02);
+/* --- Section Title --- */
+.services-title {
+  font-size: 2.7rem;
+  font-weight: 900;
+  color: #18192a;
+  margin-bottom: 36px;
+  text-align: center;
+  border-bottom: 3px solid #6c5ce7;
+  padding-bottom: 12px;
 }
 
+/* --- Skills Grid Layout --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+}
+
+/* --- Skill Card Styling --- */
+.skill-card {
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 206, 201, 0.13);
+  border-radius: 14px;
+  box-shadow: 0 3px 18px rgba(44, 62, 80, 0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: default;
+  text-align: center;
+}
+.skill-card:hover {
+  background: rgba(0, 206, 201, 0.18);
+  border-color: #00cec9;
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: #6c5ce7;
+  margin-bottom: 12px;
+}
+.skill-card h3 {
+  font-size: 1.2rem;
+  color: #232339;
+  font-weight: 700;
+}
+
+/* --- Card Details (Always visible on desktop) --- */
+.card-details {
+  display: block;
+  margin-top: 14px;
+}
+.card-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.card-details ul li {
+  font-size: 0.9rem;
+  padding-left: 16px;
+  position: relative;
+  color: #232339;
+  margin-bottom: 6px;
+}
+.card-details ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #00cec9;
+}
 .price-tag {
-    font-size: 1.2rem;
-    color: #fd79a8;
-    font-weight: 600;
-    margin-bottom: 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #fd79a8;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 6px 12px;
+  border-radius: 16px;
+  margin-top: 10px;
 }
 
-.service-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.service-list li {
-    margin: 12px 0;
-    padding-left: 25px;
-    position: relative;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.service-list li:before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: #00cec9;
-}
-
-/* CTA Buttons */
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.primary-cta,
-.secondary-cta {
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.primary-cta {
-    background: #6c5ce7;
-    color: white;
-}
-
-.secondary-cta {
-    background: #00cec9;
-    color: white;
-}
-
-.primary-cta:hover,
-.secondary-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-}
-
-/* Expertise Section */
-.expertise-details {
-    max-width: 1400px;
-    margin: 60px auto 0;
-    padding: 0 30px;
-}
-
-.expertise-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.expertise-block {
-    background: rgba(108,92,231,0.1);
-    padding: 25px;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-}
-
-.expertise-block:hover {
-    transform: translateY(-5px);
-}
-
-.expertise-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.expertise-list li {
-    margin: 10px 0;
-    padding-left: 20px;
-    position: relative;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.expertise-list li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #fd79a8;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .showcase-wrapper {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .expertise-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* --- Responsive Layouts --- */
+@media (max-width: 1024px) {
+  .skill-card {
+    width: 250px;
+    height: 250px;
+  }
+  .skills-grid {
+    gap: 32px;
+  }
 }
 
 @media (max-width: 768px) {
-    .section-heading {
-        font-size: 1.8rem;
-    }
-    
-    .portfolio-grid,
-    .expertise-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    .services-info {
-        padding: 20px;
-    }
-    
-    .service-category {
-        padding: 20px;
-    }
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .skill-card {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .skill-card i {
+    font-size: 1.4rem;
+  }
+  .skill-card h3 {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+  .card-details {
+    display: none;
+  }
+  .skill-card.open {
+    height: auto;
+    padding: 14px;
+  }
+  .skill-card.open .card-details {
+    display: block;
+    margin-top: 10px;
+  }
+  .card-details ul li {
+    font-size: 0.8rem;
+  }
+  .price-tag {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
 }
 
 @media (max-width: 480px) {
-    .showcase-wrapper {
-        padding: 0 20px;
-    }
-    
-    .section-heading {
-        font-size: 1.6rem;
-    }
-    
-    .bold-title {
-        font-size: 1.4rem;
-    }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skill-card {
+    width: 100%;
+    height: 100px;
+  }
+  .skill-card i {
+    font-size: 1.2rem;
+  }
+  .skill-card h3 {
+    font-size: 0.7rem;
+  }
 }
+
+@media (max-width: 340px) {
+  .skill-card {
+    width: 100%;
+    height: 90px;
+  }
+  .skill-card h3 {
+    font-size: 0.65rem;
+  }
+  .skill-card i {
+    font-size: 1rem;
+  }
+}
+
+
 
 
 
