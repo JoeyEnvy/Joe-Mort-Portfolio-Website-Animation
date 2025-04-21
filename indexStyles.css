@@ -398,6 +398,51 @@ main.scrolled {
     display: none !important;
   }
 
+/* ===== Social Icons in Top Nav (Scrolled) on Mobile ===== */
+nav.scrolled .nav-social {
+  display: flex !important;
+  flex-direction: row;
+  margin-left: auto;
+  gap: 15px;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1001;
+}
+
+nav.scrolled .nav-social a {
+  font-size: 20px;
+  color: #fff;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav.scrolled .nav-social a:hover {
+  color: var(--accent-color);
+  transform: scale(1.15);
+}
+
+/* ===== Scroll Progress Bar on Mobile Top Nav ===== */
+nav.scrolled .nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  opacity: 1;
+  background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+  z-index: 1002;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+nav:not(.scrolled) .nav-progress {
+  opacity: 0;
+  transition-delay: 0.1s;
+}
+
+
+
   /* Top navbar (scrolled) */
   nav.scrolled {
     width: 100% !important;
