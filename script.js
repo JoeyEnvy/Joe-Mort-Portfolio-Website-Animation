@@ -1,16 +1,15 @@
 /**
  * WEBSITE CONTROLLER CLASS - ENHANCED NAVIGATION SYSTEM
- * Version 2.0 - Complete Overhaul
+ * Version 2.2 - Robust Hamburger Sidebar Mobile Menu
  */
 class WebsiteController {
   constructor() {
-    // Configuration
+    // Configuration for scroll threshold, debounce, and breakpoint
     this.config = {
       scrollThreshold: 100,
       resizeDebounce: 100,
       mobileBreakpoint: 1024
     };
-    
     // State management
     this.state = {
       lastScrollPosition: 0,
@@ -19,22 +18,18 @@ class WebsiteController {
       isMobileMenuOpen: false,
       isScrolled: false
     };
-    
-    // Initialize
+    // Initialize the controller
     this.init();
   }
 
+  // Initialize: cache DOM elements, set up listeners, check initial state
   init() {
-    // Cache DOM elements
     this.cacheElements();
-    
-    // Setup event listeners
     this.setupListeners();
-    
-    // Check initial state
     this.checkInitialState();
   }
 
+  // Cache relevant DOM elements for performance
   cacheElements() {
     this.elements = {
       nav: document.querySelector('nav'),
@@ -44,36 +39,33 @@ class WebsiteController {
       splineViewer: document.querySelector('spline-viewer'),
       hamburger: document.querySelector('.hamburger'),
       navLinks: document.querySelectorAll('nav a'),
-      navList: document.querySelector('nav ul'),
+      navList: document.querySelector('nav ul.nav-links'),
       html: document.documentElement,
       body: document.body
     };
   }
 
+  // Set up scroll, resize, and mobile navigation event listeners
   setupListeners() {
-    // Passive scroll event
     window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
-    
-    // Debounced resize event
     window.addEventListener('resize', () => {
       clearTimeout(this.resizeTimeout);
       this.resizeTimeout = setTimeout(() => this.handleResize(), this.config.resizeDebounce);
     });
-    
-    // Mobile navigation
     this.setupMobileNavigation();
   }
 
+  // Mobile navigation: hamburger toggle, close on link/outside click, accessibility
   setupMobileNavigation() {
     if (!this.elements.hamburger) return;
-    
-    // Hamburger toggle
+
+    // Hamburger click toggles menu
     this.elements.hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       this.toggleMobileMenu();
     });
-    
-    // Close menu when clicking links
+
+    // Close menu when clicking a nav link (for overlay)
     this.elements.navLinks.forEach(link => {
       link.addEventListener('click', () => {
         if (this.isMobileView() && this.state.isMobileMenuOpen) {
@@ -81,38 +73,49 @@ class WebsiteController {
         }
       });
     });
-    
-    // Close menu when clicking outside
+
+    // Close menu when clicking outside nav (overlay)
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('nav') && this.state.isMobileMenuOpen) {
+      if (
+        this.isMobileView() &&
+        this.state.isMobileMenuOpen &&
+        !e.target.closest('nav') &&
+        !e.target.closest('.hamburger')
+      ) {
         this.closeMobileMenu();
       }
     });
+
+    // Prevent background scroll when menu is open (mobile)
+    document.addEventListener('touchmove', (e) => {
+      if (this.state.isMobileMenuOpen) e.preventDefault();
+    }, { passive: false });
   }
 
+  // On page load, check initial nav/menu state
   checkInitialState() {
-    // Initial scroll state
+    // Set scrolled state if already scrolled
     if (window.pageYOffset > this.config.scrollThreshold) {
       this.toggleNavState(true);
       this.updateSplineWidth(window.pageYOffset);
     }
-    
-    // Initial mobile state
+    // Hide nav list if in mobile scrolled state
     if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
       this.elements.navList.style.display = 'none';
     }
   }
 
+  // Handle scroll events (debounced)
   handleScroll() {
     if (!this.state.scrollTicking) {
       window.requestAnimationFrame(() => {
         const currentScroll = window.pageYOffset;
         this.state.scrollingDown = currentScroll > this.state.lastScrollPosition;
-        
+
         this.updateScrollProgress(currentScroll);
         this.updateNavState(currentScroll);
         this.updateSplineWidth(currentScroll);
-        
+
         this.state.lastScrollPosition = currentScroll;
         this.state.scrollTicking = false;
       });
@@ -120,19 +123,18 @@ class WebsiteController {
     }
   }
 
+  // Handle resize events (debounced)
   handleResize() {
-    // Close menu when resizing to desktop
+    // Close menu if resizing to desktop
     if (!this.isMobileView() && this.state.isMobileMenuOpen) {
       this.closeMobileMenu();
     }
-    
-    // Ensure proper state after resize
     this.checkInitialState();
   }
 
+  // Toggle mobile menu open/close
   toggleMobileMenu() {
     this.state.isMobileMenuOpen = !this.state.isMobileMenuOpen;
-    
     if (this.state.isMobileMenuOpen) {
       this.openMobileMenu();
     } else {
@@ -140,69 +142,66 @@ class WebsiteController {
     }
   }
 
+  // Open mobile menu (sidebar overlay)
   openMobileMenu() {
     this.elements.nav.classList.add('mobile-open');
     this.elements.hamburger.classList.add('active');
     this.elements.hamburger.setAttribute('aria-expanded', 'true');
     this.elements.body.style.overflow = 'hidden';
-    
-    // Show nav list in scrolled state on mobile
+
+    // Show nav list in scrolled state on mobile (overlay)
     if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
       this.elements.navList.style.display = 'flex';
     }
   }
 
+  // Close mobile menu (sidebar overlay)
   closeMobileMenu() {
     this.elements.nav.classList.remove('mobile-open');
     this.elements.hamburger.classList.remove('active');
     this.elements.hamburger.setAttribute('aria-expanded', 'false');
     this.elements.body.style.overflow = '';
-    
-    // Hide nav list in scrolled state on mobile
+
+    // Hide nav list in scrolled state on mobile (overlay)
     if (this.isMobileView() && this.elements.nav.classList.contains('scrolled')) {
       this.elements.navList.style.display = 'none';
     }
-    
     this.state.isMobileMenuOpen = false;
   }
 
+  // Update scroll progress bar
   updateScrollProgress(currentScroll) {
     if (!this.elements.navProgressBar) return;
-    
     const totalHeight = this.elements.html.scrollHeight - window.innerHeight;
     const scrollProgress = Math.min(100, (currentScroll / totalHeight) * 100);
     const isVisible = currentScroll > this.config.scrollThreshold;
-    
     this.elements.navProgressBar.style.width = `${scrollProgress}%`;
     this.elements.navProgressBar.style.opacity = isVisible ? '1' : '0';
   }
 
+  // Update nav state (scrolled/unscrolled)
   updateNavState(currentScroll) {
     const pastThreshold = currentScroll > this.config.scrollThreshold;
-    
     if (currentScroll <= this.config.scrollThreshold) {
       this.toggleNavState(false);
       return;
     }
-
-    // Only update state if it's changing
     if (pastThreshold !== this.state.isScrolled) {
       this.toggleNavState(pastThreshold);
     }
-    
     // Close mobile menu when scrolling down
     if (this.state.scrollingDown && pastThreshold && this.state.isMobileMenuOpen && this.isMobileView()) {
       this.closeMobileMenu();
     }
   }
 
+  // Toggle nav scrolled state and handle menu state
   toggleNavState(shouldScroll) {
     this.state.isScrolled = shouldScroll;
-    
     this.elements.nav?.classList.toggle('scrolled', shouldScroll);
     this.elements.main?.classList.toggle('scrolled', shouldScroll);
     this.elements.heroSection?.classList.toggle('jj-nav-scrolled', shouldScroll);
-    
+
     // Manage mobile menu state
     if (shouldScroll && this.isMobileView()) {
       if (this.state.isMobileMenuOpen) {
@@ -210,31 +209,32 @@ class WebsiteController {
       } else {
         this.elements.navList.style.display = 'none';
       }
+    } else if (!shouldScroll && this.isMobileView()) {
+      // Restore nav list for sidebar
+      this.elements.navList.style.display = 'flex';
     }
   }
 
+  // Update spline viewer width (if present)
   updateSplineWidth(currentScroll) {
     if (!this.elements.splineViewer) return;
-    
     const spline = this.elements.splineViewer;
     const isFullWidth = currentScroll > this.config.scrollThreshold;
-    
     spline.style.width = isFullWidth ? '100vw' : '';
     spline.style.left = isFullWidth ? '0' : '';
     spline.style.right = isFullWidth ? 'auto' : '0';
   }
 
+  // Helper: Are we on mobile/tablet?
   isMobileView() {
     return window.innerWidth <= this.config.mobileBreakpoint;
   }
 }
 
-// Initialize with DOMContentLoaded
+// Initialize controller on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   new WebsiteController();
 });
-
-
 
 // [SECTION 3] SHOWCASE ROTATING VIDEO AI SECTION ==========================
 
