@@ -652,3 +652,43 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+/* freelancer video functions */ 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const desktopVideo = document.getElementById('desktop-video');
+  const mobileVideo = document.getElementById('mobile-video');
+
+  const desktopPlaylist = ['A.mp4', 'B.mp4', 'C.mp4', 'D.mp4'];
+  const mobilePlaylist = ['1.mp4', '2.mp4', '3.mp4', '4.mp4'];
+
+  let desktopIndex = 0;
+  let mobileIndex = 0;
+  const interval = 7500;
+
+  function updateVideo(videoEl, playlist, index) {
+    const path = `showcase-slideshow-videos/${playlist[index]}`;
+    videoEl.src = path;
+    videoEl.load();
+    videoEl.play().catch(err => console.warn('Video play error:', err));
+  }
+
+  updateVideo(desktopVideo, desktopPlaylist, desktopIndex);
+  updateVideo(mobileVideo, mobilePlaylist, mobileIndex);
+
+  setInterval(() => {
+    desktopIndex = (desktopIndex + 1) % desktopPlaylist.length;
+    mobileIndex = (mobileIndex + 1) % mobilePlaylist.length;
+    updateVideo(desktopVideo, desktopPlaylist, desktopIndex);
+    updateVideo(mobileVideo, mobilePlaylist, mobileIndex);
+  }, interval);
+
+  // Fullscreen on click
+  function fullscreen(videoEl) {
+    if (videoEl.requestFullscreen) videoEl.requestFullscreen();
+    else if (videoEl.webkitRequestFullscreen) videoEl.webkitRequestFullscreen();
+    else if (videoEl.msRequestFullscreen) videoEl.msRequestFullscreen();
+  }
+
+  desktopVideo.addEventListener('click', () => fullscreen(desktopVideo));
+  mobileVideo.addEventListener('click', () => fullscreen(mobileVideo));
+});
