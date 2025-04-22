@@ -372,11 +372,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// [...existing code remains above untouched...]
-
 // ========== SMOOTH SNAP SCROLLING BETWEEN SECTIONS ==========
 document.addEventListener('DOMContentLoaded', () => {
-  const SECTIONS = [
+  // Collect all snap sections
+  let SECTIONS = [
     document.getElementById('jj-hero'),
     document.getElementById('about'),
     document.getElementById('joe-mort-about'),
@@ -384,50 +383,74 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.portfolio-showcase')
   ].filter(Boolean);
 
-  const SECTION_HEIGHT = window.innerHeight;
-  const SNAP_AREA_END = SECTION_HEIGHT * 4;
+  let SECTION_HEIGHT = window.innerHeight;
   let currentIndex = 0;
   let isAnimating = false;
 
+  // Recalculate section height on viewport changes
+  function updateSectionHeight() {
+    SECTION_HEIGHT = window.innerHeight;
+  }
+  window.addEventListener('resize', updateSectionHeight);
+  window.addEventListener('orientationchange', updateSectionHeight);
+
+  // Helper: Scroll to section by index
+  function scrollToSection(index) {
+    isAnimating = true;
+    currentIndex = index;
+    window.scrollTo({ top: currentIndex * SECTION_HEIGHT, behavior: 'smooth' });
+    setTimeout(() => { isAnimating = false; }, 400);
+  }
+
+  // Handle scroll direction
   function handleScroll(deltaY) {
     if (isAnimating) return;
-
-    const currentY = window.scrollY;
     const direction = Math.sign(deltaY);
-
-    if (currentY >= SNAP_AREA_END && direction > 0) return;
-    if (currentY <= 0 && direction < 0) return;
-
-    if (currentY < SNAP_AREA_END) {
-      const newIndex = Math.min(Math.max(currentIndex + direction, 0), SECTIONS.length - 1);
-      if (newIndex !== currentIndex) {
-        isAnimating = true;
-        currentIndex = newIndex;
-        window.scrollTo({ top: currentIndex * SECTION_HEIGHT, behavior: 'smooth' });
-        setTimeout(() => isAnimating = false, 300);
-      }
+    let newIndex = Math.min(Math.max(currentIndex + direction, 0), SECTIONS.length - 1);
+    if (newIndex !== currentIndex) {
+      scrollToSection(newIndex);
     }
   }
 
+  // Desktop: Wheel event
   window.addEventListener('wheel', (e) => {
-    if (window.scrollY < SNAP_AREA_END) {
+    // Only snap within the snap area (first N sections)
+    if (window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
       e.preventDefault();
       handleScroll(e.deltaY);
     }
   }, { passive: false });
 
+  // Mobile: Touch event support
+  let touchStartY = null;
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      touchStartY = e.touches[0].clientY;
+    }
+  });
+  window.addEventListener('touchend', (e) => {
+    if (touchStartY === null) return;
+    let touchEndY = e.changedTouches[0].clientY;
+    let deltaY = touchStartY - touchEndY;
+    // Only trigger snap on a meaningful swipe (e.g., > 50px)
+    if (Math.abs(deltaY) > 50 && window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
+      handleScroll(deltaY);
+    }
+    touchStartY = null;
+  });
+
+  // Optional: Update currentIndex on manual scroll (e.g., user jumps via anchor)
   window.addEventListener('scroll', () => {
-    const currentY = window.scrollY;
-    if (!isAnimating && currentY < SNAP_AREA_END) {
-      const expectedY = currentIndex * SECTION_HEIGHT;
-      if (Math.abs(currentY - expectedY) > 5) {
-        window.scrollTo({ top: expectedY, behavior: 'auto' });
-      }
+    // Only update if not animating and within snap area
+    if (!isAnimating && window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
+      // Find nearest section index
+      let idx = Math.round(window.scrollY / SECTION_HEIGHT);
+      if (idx !== currentIndex) currentIndex = idx;
     }
   }, { passive: true });
 });
 
-// ========== SCROLL-IN ELEMENTS (jj-animate-in) ========== 
+// ========== SCROLL-IN ELEMENTS (jj-animate-in) ==========
 document.addEventListener('DOMContentLoaded', () => {
   const animatedElements = document.querySelectorAll('.jj-animate-in');
   const preferredDuration = '1.8s';
