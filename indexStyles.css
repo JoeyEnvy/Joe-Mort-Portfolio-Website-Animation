@@ -580,8 +580,10 @@ nav:not(.scrolled) .nav-progress {
 
 /* =============== HERO SECTION WITH BLUE GRADIENT & NAVBAR INTEGRATION =============== */
 /* ================= HERO SECTION ================= */
+/* ================= HERO SECTION ================= */
 .jj-hero-section {
     min-height: 100vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
     color: #ffffff;
@@ -592,24 +594,28 @@ nav:not(.scrolled) .nav-progress {
     width: 100%;
     left: 0;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 /* ================= HERO CONTENT ================= */
 .jj-hero-content {
     display: flex;
+    flex-direction: row;
     height: 100vh;
     padding: 2rem;
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 1600px; /* ▲ Increased from 1200px */
+    max-width: 1600px;
     right: 100px;
     bottom: 50px;
+    box-sizing: border-box;
 }
 
 /* ================= LEFT COLUMN ================= */
 .jj-hero-left {
-    width: 60%; /* ▲ Increased from 40% */
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -617,6 +623,8 @@ nav:not(.scrolled) .nav-progress {
     position: relative;
     margin: 0 auto;
     text-align: center;
+    mix-blend-mode: hard-light;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .jj-hero-left h1 {
@@ -647,9 +655,9 @@ nav:not(.scrolled) .nav-progress {
     gap: 1rem;
     margin-bottom: 1.5rem;
     justify-items: center;
-    width: 90%; /* ▲ Added for wider grid */
-    max-width: 1400px; /* ▲ Added for max expansion */
-    margin: 0 auto 1.5rem; /* Centered */
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
 }
 
 .jj-service-item {
@@ -660,14 +668,14 @@ nav:not(.scrolled) .nav-progress {
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
-    min-width: 300px; /* ▲ Added minimum width */
+    min-width: 300px;
     text-align: center;
     margin: 0;
 }
 
 .jj-service-item:nth-child(5) {
     grid-column: 1 / -1;
-    max-width: 60%; /* ▲ Increased from 50% */
+    max-width: 60%;
     margin: 0 auto;
     margin-bottom: 0;
 }
@@ -711,7 +719,7 @@ nav:not(.scrolled) .nav-progress {
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 180px; /* ▲ Added minimum width */
+    min-width: 180px;
 }
 
 .jj-cta-button {
@@ -741,10 +749,12 @@ nav:not(.scrolled) .nav-progress {
     width: 100vw !important;
     height: 100vh !important;
     left: 0 !important;
-    position: absolute;
+    position: fixed !important;
     top: 0;
     z-index: 1;
     mix-blend-mode: screen;
+    pointer-events: none;
+    transform: scale(1.2);
 }
 
 .jj-hero-right spline-viewer {
@@ -756,12 +766,7 @@ nav:not(.scrolled) .nav-progress {
     top: 0 !important;
     left: 0 !important;
     z-index: 1 !important;
-}
-
-@media (max-width: 1024px) {
-  .jj-hero-right {
-    display: none !important;
-  }
+    pointer-events: none;
 }
 
 /* ================= DARK BAR ================= */
@@ -775,52 +780,231 @@ nav:not(.scrolled) .nav-progress {
     z-index: 500;
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
+/* ================= 1024px BREAKPOINT ================= */
 @media (max-width: 1024px) {
     .jj-hero-content {
-        padding: 2rem;
+        padding: 1.5rem;
+        right: 0;
+        bottom: 30px;
+        max-width: 90%;
     }
-    
+    .jj-hero-left {
+        width: 70%;
+    }
+    .jj-services-list {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 0.8rem;
+    }
+    .jj-service-item {
+        min-width: 200px;
+        padding: 0.7rem;
+    }
     .jj-hero-right {
-        left: 0 !important;
-        width: 100% !important;
+        transform: scale(1);
+        opacity: 0.7;
     }
 }
 
+/* ================= 768px BREAKPOINT ================= */
 @media (max-width: 768px) {
-    .jj-hero-left {
-        width: 100%;
-        padding: 0 1rem;
+    .jj-hero-content {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 0.7rem;
+        right: 0;
+        bottom: 0;
+        margin-bottom: 50px;
+        margin-left: 50px;
+        margin-top: 25px;
     }
-    
+    .jj-hero-left {
+        width: 85%;
+        padding: 0 0.5rem;
+    }
+    .jj-hero-left h1 {
+        font-size: 1.6rem;
+    }
+    .jj-hero-left h2 {
+        font-size: 1rem;
+    }
+    .jj-hero-left p {
+        font-size: 0.9rem;
+    }
     .jj-services-list {
         grid-template-columns: 1fr;
-        width: 100%; /* Full width on mobile */
+        width: 90%;
+        gap: 0.6rem;
     }
-    
+    .jj-service-item {
+        min-width: 100%;
+        margin-bottom: 0.4rem;
+        padding: 0.5rem;
+    }
+    .jj-service-item h3 {
+        font-size: 0.9rem;
+    }
+    .jj-service-item p {
+        font-size: 0.7rem;
+    }
+    .jj-service-item i {
+        font-size: 1.1rem;
+    }
     .jj-service-item:nth-child(5) {
         max-width: 100%;
     }
-    
+    .jj-button-group {
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+    .jj-cta-button, .jj-showcase-button {
+        min-width: 110px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+    }
     .jj-hero-right {
-        opacity: 0.3;
+        transform: scale(0.7);
+        opacity: 0.25;
     }
 }
 
+/* ================= 480px BREAKPOINT ================= */
 @media (max-width: 480px) {
-    .jj-hero-left h1 {
-        font-size: 2.5rem;
-    }
-    
-    .jj-button-group {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-    
-    .jj-service-item {
-        padding: 1rem 0.5rem;
-        min-width: 250px; /* Adjusted for mobile */
-    }
+  .jj-hero-content {
+    padding: 0.3rem;
+    margin-left: 100px;
+    margin-right: 30px;
+    margin-bottom: 75px;
+    margin-top: 22px;
+    max-width: 100%;
+  }
+  .jj-hero-left {
+    width: 98%;
+    padding: 0 0.2rem;
+  }
+  .jj-hero-left h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  .jj-hero-left h2 {
+    font-size: 0.78rem;
+  }
+  .jj-hero-left p {
+    font-size: 0.78rem;
+  }
+  .jj-services-list {
+    width: 100%;
+    gap: 0.25rem;
+  }
+  .jj-service-item {
+    padding: 0.25rem 0.08rem;
+    min-width: 85px;
+  }
+  .jj-service-item h3 {
+    font-size: 0.78rem;
+  }
+  .jj-service-item i {
+    font-size: 0.85rem;
+  }
+  .jj-button-group {
+    flex-direction: column;
+    gap: 0.38rem;
+  }
+  .jj-cta-button, .jj-showcase-button {
+    min-width: 125px;
+    font-size: 1rem;
+    padding: 0.32rem 0.55rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .jj-hero-content {
+    padding: 0.1rem;
+    margin-left: 100px;
+    margin-right: 35px;
+    margin-bottom: 75px;
+    margin-top: 10px;
+  }
+  .jj-hero-left {
+    width: 100%;
+    padding: 0 0.04rem;
+  }
+  .jj-hero-left h1 {
+    font-size: 1.05rem;
+  }
+  .jj-hero-left h2 {
+    font-size: 0.68rem;
+  }
+  .jj-hero-left p {
+    font-size: 0.62rem;
+  }
+  .jj-services-list {
+    width: 100%;
+    gap: 0.13rem;
+  }
+  .jj-service-item {
+    padding: 0.13rem 0.04rem;
+    min-width: 55px;
+  }
+  .jj-service-item h3 {
+    font-size: 0.68rem;
+  }
+  .jj-service-item i {
+    font-size: 0.68rem;
+  }
+  .jj-button-group {
+    gap: 0.22rem;
+  }
+  .jj-cta-button, .jj-showcase-button {
+    min-width: 100px;
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .jj-hero-content {
+    padding: 0.08rem;
+    margin-left: 100px;
+    margin-right: 35px;
+    margin-bottom: 70px;
+    margin-top: 8px;
+  }
+  .jj-hero-left {
+    width: 100%;
+    padding: 0 0.03rem;
+  }
+  .jj-hero-left h1 {
+    font-size: 0.98rem;
+  }
+  .jj-hero-left h2 {
+    font-size: 0.62rem;
+  }
+  .jj-hero-left p {
+    font-size: 0.56rem;
+  }
+  .jj-services-list {
+    width: 100%;
+    gap: 0.11rem;
+  }
+  .jj-service-item {
+    padding: 0.11rem 0.03rem;
+    min-width: 48px;
+  }
+  .jj-service-item h3 {
+    font-size: 0.62rem;
+  }
+  .jj-service-item i {
+    font-size: 0.62rem;
+  }
+  .jj-button-group {
+    gap: 0.20rem;
+  }
+  .jj-cta-button, .jj-showcase-button {
+    min-width: 95px;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.65rem;
+  }
 }
 
 
