@@ -192,14 +192,16 @@
       
       <!-- Left Column -->
       <div class="freelancer-info-left">
-        <h2>Joe Mort</h2>
+        <h1>Joe Mort</h1>
         <p class="intro">
           I'm a <span class="highlight">passionate freelance creative technologist</span> based in South Wales, UK, offering services worldwide. I specialize in creating stunning digital experiences that captivate and engage audiences.
         </p>
         <p class="company">
           At <span class="highlight">WebsiteAnimation.co.uk</span>, I offer comprehensive creative solutions tailored to elevate your digital presence.
         </p>
-        <a href="#contact" class="cta-button">Let's Create Something Amazing</a>
+        <a href="#contact" class="cta-button" aria-label="Contact Joe Mort to create something amazing">
+          Let's Create Something Amazing
+        </a>
 
         <h3 class="showcase-title">Recent Web Design Examples</h3>
 
@@ -215,7 +217,11 @@
                 playsinline
                 loop
                 preload="auto"
-              ></video>
+                loading="lazy"
+                title="Desktop Web Design Preview"
+              >
+                <source src="videos/ShowcaseSlideShowVideos/A.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
 
@@ -229,7 +235,11 @@
                 playsinline
                 loop
                 preload="auto"
-              ></video>
+                loading="lazy"
+                title="Mobile Web Design Preview"
+              >
+                <source src="videos/ShowcaseSlideShowVideos/1.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
         </div>
@@ -240,7 +250,7 @@
         <h3>Creative Services</h3>
         <div class="services-grid">
           <div class="service-category">
-            <h4><i class="fas fa-code"></i> Web Design</h4>
+            <h4><i class="fas fa-code" aria-hidden="true"></i> Web Design</h4>
             <ul>
               <li>Responsive Websites</li>
               <li>E-commerce Solutions</li>
@@ -250,7 +260,7 @@
           </div>
 
           <div class="service-category">
-            <h4><i class="fas fa-cube"></i> 3D/2D Animation</h4>
+            <h4><i class="fas fa-cube" aria-hidden="true"></i> 3D/2D Animation</h4>
             <ul>
               <li>3D Modeling & Rendering</li>
               <li>Character Animation</li>
@@ -260,7 +270,7 @@
           </div>
 
           <div class="service-category">
-            <h4><i class="fas fa-robot"></i> AI Solutions</h4>
+            <h4><i class="fas fa-robot" aria-hidden="true"></i> AI Solutions</h4>
             <ul>
               <li>Custom AI Integration</li>
               <li>Chatbot Development</li>
@@ -270,7 +280,7 @@
           </div>
 
           <div class="service-category">
-            <h4><i class="fas fa-print"></i> Print & Design</h4>
+            <h4><i class="fas fa-print" aria-hidden="true"></i> Print & Design</h4>
             <ul>
               <li>Brand Identity Design</li>
               <li>Marketing Materials</li>

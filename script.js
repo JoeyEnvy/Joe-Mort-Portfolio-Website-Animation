@@ -590,7 +590,24 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// ========== ANIMATE FREELANCER LEFT COLUMN ELEMENTS IN/OUT (NO VIDEO DEPENDENCIES) ==========
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ========== ANIMATE FREELANCER LEFT COLUMN ELEMENTS IN/OUT ==========
 document.addEventListener('DOMContentLoaded', function () {
   const animationDuration = 600;
   const thresholds = [0, 0.1, 0.2, 0.5, 1];
@@ -598,13 +615,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const section = document.getElementById('about');
 
+  // ✅ Removed .device-showcase from animated elements to avoid layout/flicker issues
   const leftColumnElements = [
-    section.querySelector('h2'),
+    section.querySelector('h1'), // updated to match h1 if used
     section.querySelector('.intro'),
     section.querySelector('.company'),
     section.querySelector('.cta-button'),
-    section.querySelector('.showcase-title'),
-    section.querySelector('.device-showcase')
+    section.querySelector('.showcase-title')
   ].filter(Boolean);
 
   function setupAnimations() {
@@ -650,36 +667,37 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('beforeunload', () => {
     observer.disconnect();
   });
-});
 
-/* freelancer video functions */ 
-
-document.addEventListener('DOMContentLoaded', function () {
+  // ========== FREELANCER VIDEO FUNCTIONS ==========
   const desktopVideo = document.getElementById('desktop-video');
   const mobileVideo = document.getElementById('mobile-video');
 
-  const desktopPlaylist = ['A.mp4', 'B.mp4', 'C.mp4', 'D.mp4'];
-  const mobilePlaylist = ['1.mp4', '2.mp4', '3.mp4', '4.mp4'];
+  const desktopSource = desktopVideo.querySelector('source');
+  const mobileSource = mobileVideo.querySelector('source');
+
+  // ✅ Swapped playlists: desktop shows verticals, mobile shows horizontals
+  const desktopPlaylist = ['1.mp4', '2.mp4', '3.mp4', '4.mp4'];
+  const mobilePlaylist = ['A.mp4', 'B.mp4', 'C.mp4', 'D.mp4'];
 
   let desktopIndex = 0;
   let mobileIndex = 0;
   const interval = 7500;
 
-  function updateVideo(videoEl, playlist, index) {
-    const path = `showcase-slideshow-videos/${playlist[index]}`;
-    videoEl.src = path;
+  function updateVideo(videoEl, sourceEl, playlist, index) {
+    const path = `videos/ShowcaseSlideShowVideos/${playlist[index]}`;
+    sourceEl.src = path;
     videoEl.load();
     videoEl.play().catch(err => console.warn('Video play error:', err));
   }
 
-  updateVideo(desktopVideo, desktopPlaylist, desktopIndex);
-  updateVideo(mobileVideo, mobilePlaylist, mobileIndex);
+  updateVideo(desktopVideo, desktopSource, desktopPlaylist, desktopIndex);
+  updateVideo(mobileVideo, mobileSource, mobilePlaylist, mobileIndex);
 
   setInterval(() => {
     desktopIndex = (desktopIndex + 1) % desktopPlaylist.length;
     mobileIndex = (mobileIndex + 1) % mobilePlaylist.length;
-    updateVideo(desktopVideo, desktopPlaylist, desktopIndex);
-    updateVideo(mobileVideo, mobilePlaylist, mobileIndex);
+    updateVideo(desktopVideo, desktopSource, desktopPlaylist, desktopIndex);
+    updateVideo(mobileVideo, mobileSource, mobilePlaylist, mobileIndex);
   }, interval);
 
   // Fullscreen on click
@@ -692,3 +710,4 @@ document.addEventListener('DOMContentLoaded', function () {
   desktopVideo.addEventListener('click', () => fullscreen(desktopVideo));
   mobileVideo.addEventListener('click', () => fullscreen(mobileVideo));
 });
+
