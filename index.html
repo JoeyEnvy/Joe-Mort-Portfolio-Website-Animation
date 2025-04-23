@@ -70,6 +70,12 @@
     <meta name="twitter:description" content="Expert solutions for web design, animation, and digital printing needs. Based in South Wales with global reach.">
     <meta name="twitter:image" content="https://websiteanimation.co.uk/images/Logo Glow 1.png">
 
+
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
 </head>
 
 
@@ -135,53 +141,70 @@
 
 
     <!-- Hero Section -->
-   <div class="jj-hero-section" id="jj-hero">
-    <div class="jj-hero-content">
-        <div class="jj-hero-left">
-            <h1 class="jj-animate-in">Joe Mort</h1>
-            <h2 class="jj-animate-in">Digital Innovation & Creative Solutions</h2>
-            <p class="jj-animate-in">Transforming ideas into captivating digital experiences</p>
-            <div class="jj-services-list jj-animate-in">
-                <div class="jj-service-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Web Design</h3>
-                    <p>Crafting responsive, user-centric websites that engage and convert</p>
-                </div>
-                <div class="jj-service-item">
-                    <i class="fas fa-cube"></i>
-                    <h3>3D/2D Animation</h3>
-                    <p>Bringing stories to life with stunning visual narratives</p>
-                </div>
-                <div class="jj-service-item">
-                    <i class="fas fa-film"></i>
-                    <h3>Video/Image Editing</h3>
-                    <p>Polishing your visual content to perfection</p>
-                </div>
-                <div class="jj-service-item">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI-Powered Content</h3>
-                    <p>Leveraging cutting-edge AI for innovative video and image production</p>
-                </div>
-                <div class="jj-service-item">
-                    <i class="fas fa-print"></i>
-                    <h3>Print & Logo Design</h3>
-                    <p>Creating memorable brand identities and high-quality print materials</p>
-                </div>
-            </div>
-            <div class="jj-button-group">
-                <a href="#contact" class="jj-cta-button jj-animate-in">Start Your Project</a>
-                <a href="showcase.html" class="jj-showcase-button jj-animate-in">View Showcase</a>
-            </div>
+<!-- Hero Section -->
+<div class="jj-hero-section" id="jj-hero">
+  <div class="jj-hero-content">
+    <div class="jj-hero-left">
+      <h1 class="jj-animate-in">Joe Mort</h1>
+      <h2 class="jj-animate-in">Digital Innovation & Creative Solutions</h2>
+      <p class="jj-animate-in">Transforming ideas into captivating digital experiences</p>
+
+      <div class="jj-services-list jj-animate-in">
+        <div class="jj-service-item">
+          <i class="fas fa-laptop-code"></i>
+          <h3>Web Design</h3>
+          <p>Crafting responsive, user-centric websites that engage and convert</p>
         </div>
-        <div class="jj-hero-right jj-animate-in">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.51/build/spline-viewer.js" async></script>
-            <spline-viewer hint loading-anim-type="spinner-small-dark" url="https://prod.spline.design/RE4xoGsjSLIiADS5/scene.splinecode"></spline-viewer>
+        <div class="jj-service-item">
+          <i class="fas fa-cube"></i>
+          <h3>3D/2D Animation</h3>
+          <p>Bringing stories to life with stunning visual narratives</p>
         </div>
+        <div class="jj-service-item">
+          <i class="fas fa-film"></i>
+          <h3>Video/Image Editing</h3>
+          <p>Polishing your visual content to perfection</p>
+        </div>
+        <div class="jj-service-item">
+          <i class="fas fa-brain"></i>
+          <h3>AI-Powered Content</h3>
+          <p>Leveraging cutting-edge AI for innovative video and image production</p>
+        </div>
+        <div class="jj-service-item">
+          <i class="fas fa-print"></i>
+          <h3>Print & Logo Design</h3>
+          <p>Creating memorable brand identities and high-quality print materials</p>
+        </div>
+      </div>
+
+      <div class="jj-button-group">
+        <a href="#contact" class="jj-cta-button jj-animate-in">Start Your Project</a>
+        <a href="showcase.html" class="jj-showcase-button jj-animate-in">View Showcase</a>
+      </div>
     </div>
-    <div class="jj-dark-bar"></div>
 
+    <div class="jj-hero-right jj-animate-in">
+      <!-- Load model-viewer (make sure this is only loaded once on the page) -->
+      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
+      <!-- 3D model -->
+      <model-viewer
+        src="3D/SplineParticle3DRobotLooking.glb"
+        alt="3D Robot Particle Scene"
+        camera-controls
+        auto-rotate
+        autoplay
+        shadow-intensity="1"
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        style="width: 100%; height: 100%; background: transparent; border: none;"
+      ></model-viewer>
+    </div>
+  </div>
+
+  <div class="jj-dark-bar"></div>
 </div>
+
 
 
  <!-- Content Wrapper for other sections -->
