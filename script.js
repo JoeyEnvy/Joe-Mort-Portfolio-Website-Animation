@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========== SMOOTH SNAP SCROLLING BETWEEN SECTIONS ==========
 document.addEventListener('DOMContentLoaded', () => {
   // Collect all snap sections
-  let SECTIONS = [
+  const SECTIONS = [
     document.getElementById('jj-hero'),
     document.getElementById('about'),
     document.getElementById('joe-mort-about'),
@@ -383,65 +383,99 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.portfolio-showcase')
   ].filter(Boolean);
 
-  let SECTION_HEIGHT = window.innerHeight;
+  // Use VisualViewport for mobile browsers if available
+  function getSectionHeight() {
+    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  }
+
+  let SECTION_HEIGHT = getSectionHeight();
   let currentIndex = 0;
   let isAnimating = false;
 
-  // Recalculate section height on viewport changes
   function updateSectionHeight() {
-    SECTION_HEIGHT = window.innerHeight;
+    SECTION_HEIGHT = getSectionHeight();
   }
   window.addEventListener('resize', updateSectionHeight);
   window.addEventListener('orientationchange', updateSectionHeight);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateSectionHeight);
+  }
 
   // Helper: Scroll to section by index
   function scrollToSection(index) {
     isAnimating = true;
-    currentIndex = index;
+    currentIndex = Math.max(0, Math.min(index, SECTIONS.length - 1));
     window.scrollTo({ top: currentIndex * SECTION_HEIGHT, behavior: 'smooth' });
-    setTimeout(() => { isAnimating = false; }, 400);
+    setTimeout(() => { isAnimating = false; }, 450); // Slightly increased for mobile inertia
   }
 
   // Handle scroll direction
-  function handleScroll(deltaY) {
+  function handleScroll(direction) {
     if (isAnimating) return;
-    const direction = Math.sign(deltaY);
-    let newIndex = Math.min(Math.max(currentIndex + direction, 0), SECTIONS.length - 1);
+    let newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       scrollToSection(newIndex);
     }
   }
 
   // Desktop: Wheel event
+  let lastWheelTime = 0;
   window.addEventListener('wheel', (e) => {
-    // Only snap within the snap area (first N sections)
     if (window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
       e.preventDefault();
-      handleScroll(e.deltaY);
+
+      // Prevent rapid-fire wheel events
+      const now = Date.now();
+      if (now - lastWheelTime < 350) return;
+      lastWheelTime = now;
+
+      handleScroll(Math.sign(e.deltaY));
     }
   }, { passive: false });
 
-  // Mobile: Touch event support
+  // Mobile: Touch event support with velocity detection
   let touchStartY = null;
+  let touchStartTime = null;
+  let touchEndY = null;
+
   window.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
       touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
     }
   });
+
   window.addEventListener('touchend', (e) => {
     if (touchStartY === null) return;
-    let touchEndY = e.changedTouches[0].clientY;
-    let deltaY = touchStartY - touchEndY;
-    // Only trigger snap on a meaningful swipe (e.g., > 50px)
-    if (Math.abs(deltaY) > 50 && window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
-      handleScroll(deltaY);
+    touchEndY = e.changedTouches[0].clientY;
+    const deltaY = touchStartY - touchEndY;
+    const time = Date.now() - touchStartTime;
+
+    // Calculate velocity (pixels per ms)
+    const velocity = Math.abs(deltaY) / (time || 1);
+
+    // Only trigger snap on a meaningful swipe (distance or fast flick)
+    const minDistance = SECTION_HEIGHT * 0.18; // 18% of screen height
+    const minVelocity = 0.5; // px/ms, tweak as needed
+
+    if (
+      (Math.abs(deltaY) > minDistance || velocity > minVelocity) &&
+      window.scrollY < SECTION_HEIGHT * SECTIONS.length
+    ) {
+      handleScroll(Math.sign(deltaY));
+    } else {
+      // Snap to nearest section if not a strong flick
+      const nearestIndex = Math.round(window.scrollY / SECTION_HEIGHT);
+      scrollToSection(nearestIndex);
     }
+
     touchStartY = null;
+    touchEndY = null;
+    touchStartTime = null;
   });
 
   // Optional: Update currentIndex on manual scroll (e.g., user jumps via anchor)
   window.addEventListener('scroll', () => {
-    // Only update if not animating and within snap area
     if (!isAnimating && window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
       // Find nearest section index
       let idx = Math.round(window.scrollY / SECTION_HEIGHT);
@@ -449,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 });
+
 
 // ========== SCROLL-IN ELEMENTS (jj-animate-in) ==========
 document.addEventListener('DOMContentLoaded', () => {

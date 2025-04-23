@@ -23,6 +23,16 @@ html {
     scroll-snap-type: y mandatory; /* Use 'mandatory' for strict snap */
 }
 
+
+
+@media (pointer: coarse) {
+  html {
+    /* Mobile-specific adjustments */
+    scroll-snap-stop: always;
+  }
+}
+
+
 body {
     margin: 0;
     padding: 0;

@@ -1,0 +1,9 @@
+Mobile Responsive Heights (Good for Snap Scroll and Responsiveness to know the Length and Width)
+
+Device	                Width (px) Height (px)
+iPhone SE (2020)	375	667
+iPhone 12 / 13 / 14	390	844
+iPhone 14 Pro Max	430	932
+Samsung Galaxy S20+	412	915
+Google Pixel 6	        412	915
+Generic Android	        360	740–800
