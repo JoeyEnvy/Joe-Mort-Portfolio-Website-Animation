@@ -373,7 +373,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== SMOOTH SNAP SCROLLING BETWEEN SECTIONS ==========
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
+  let snapReady = false;
+
   // Collect all snap sections
   const SECTIONS = [
     document.getElementById('jj-hero'),
@@ -406,12 +408,12 @@ document.addEventListener('DOMContentLoaded', () => {
     isAnimating = true;
     currentIndex = Math.max(0, Math.min(index, SECTIONS.length - 1));
     window.scrollTo({ top: currentIndex * SECTION_HEIGHT, behavior: 'smooth' });
-    setTimeout(() => { isAnimating = false; }, 450); // Slightly increased for mobile inertia
+    setTimeout(() => { isAnimating = false; }, 450);
   }
 
   // Handle scroll direction
   function handleScroll(direction) {
-    if (isAnimating) return;
+    if (!snapReady || isAnimating) return;
     let newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       scrollToSection(newIndex);
@@ -421,14 +423,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Desktop: Wheel event
   let lastWheelTime = 0;
   window.addEventListener('wheel', (e) => {
+    if (!snapReady) return;
     if (window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
       e.preventDefault();
-
-      // Prevent rapid-fire wheel events
       const now = Date.now();
       if (now - lastWheelTime < 350) return;
       lastWheelTime = now;
-
       handleScroll(Math.sign(e.deltaY));
     }
   }, { passive: false });
@@ -439,6 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let touchEndY = null;
 
   window.addEventListener('touchstart', (e) => {
+    if (!snapReady) return;
     if (e.touches.length === 1) {
       touchStartY = e.touches[0].clientY;
       touchStartTime = Date.now();
@@ -446,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('touchend', (e) => {
+    if (!snapReady) return;
     if (touchStartY === null) return;
     touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
@@ -476,13 +478,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Optional: Update currentIndex on manual scroll (e.g., user jumps via anchor)
   window.addEventListener('scroll', () => {
+    if (!snapReady) return;
     if (!isAnimating && window.scrollY < SECTION_HEIGHT * SECTIONS.length) {
-      // Find nearest section index
       let idx = Math.round(window.scrollY / SECTION_HEIGHT);
       if (idx !== currentIndex) currentIndex = idx;
     }
   }, { passive: true });
-});
+
+  // --- Enable snap scroll only after all content is loaded ---
+  window.addEventListener('load', () => {
+    // Reset scroll position to top to avoid any jump
+    window.scrollTo({ top: 0, behavior: 'auto' });
+
+    // Remove no-scroll class to enable scrolling
+    document.body.classList.remove('no-scroll');
+
+    // Now enable snap logic
+    updateSectionHeight();
+    snapReady = true;
+  });
+})();
 
 
 // ========== SCROLL-IN ELEMENTS (jj-animate-in) ==========
