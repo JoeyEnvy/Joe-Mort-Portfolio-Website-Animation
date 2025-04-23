@@ -63,12 +63,13 @@ body {
 #jj-hero,
 #about,
 #joe-mort-about,
-#services,
+#listservices-joemort-services,
 .portfolio-showcase {
   height: 100dvh;              /* Each fills the viewport */
   scroll-snap-align: start;   /* Snap at the top */
   scroll-snap-stop: always;   /* Optional: prevents skipping */
 }
+
 
 
 
@@ -2109,6 +2110,22 @@ section#about.freelancer-info.section {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* SECOND about / freelancer part */ 
 
 
@@ -2436,6 +2453,27 @@ section#joe-mort-about .airwaves-jm-tech-badges:hover {
 }
 
 
+
+
+
+
+
+
+/* WHITE ABOUT SECTION SECOND MEDIAQUERIESABOUT1024 */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 1024px) {
   section#joe-mort-about .airwaves-container {
     gap: 30px;
@@ -2470,61 +2508,7 @@ section#joe-mort-about .airwaves-jm-tech-badges:hover {
   }
 }
 
-@media (max-width: 580px) {
-  section#joe-mort-about.airwaves-jm-profile-section {
-    height: 100vh;
-    padding: 50px 15px 15px;
-    overflow: hidden;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 
-  section#joe-mort-about .airwaves-container {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 20px;
-    box-sizing: border-box;
-  }
-
-  section#joe-mort-about .airwaves-jm-profile-left,
-  section#joe-mort-about .airwaves-jm-profile-right {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
-
-  section#joe-mort-about .airwaves-jm-profile-image-wrapper {
-    max-width: 200px;
-  }
-
-  section#joe-mort-about .airwaves-jm-section-heading {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  section#joe-mort-about .airwaves-jm-lead {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    text-align: center;
-  }
-
-  section#joe-mort-about .airwaves-jm-skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  section#joe-mort-about .badge {
-    font-size: 0.68rem;
-  }
-
-  section#joe-mort-about .airwaves-jm-contact-card {
-    padding: 20px;
-  }
-
-  section#joe-mort-about .airwaves-jm-philosophy {
-    padding: 20px;
-  }
-}
 
 @media (max-width: 480px) {
   section#joe-mort-about.airwaves-jm-profile-section {
@@ -2562,8 +2546,248 @@ section#joe-mort-about .airwaves-jm-tech-badges:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- ListServicesJoeMort SERVICES SECTION Container --- */
+
+
+#listservices-joemort-services.services-section {
+  background: rgba(108, 92, 231, 0.10);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.08);
+  padding: 40px 20px;
+  height: auto !important;              /* ✅ Let it grow based on content */
+  min-height: 100dvh !important;        /* ✅ Still fills screen if short */
+  overflow-y: visible !important;       /* ✅ Don't limit scroll */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#listservices-joemort-services .services-wrapper {
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* --- Section Title --- */
+#listservices-joemort-services .services-title {
+  font-size: 2.7rem;
+  font-weight: 900;
+  color: #18192a;
+  margin-bottom: 36px;
+  text-align: center;
+  border-bottom: 3px solid #6c5ce7;
+  padding-bottom: 12px;
+}
+
+/* --- Skills Grid Layout --- */
+#listservices-joemort-services .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+}
+
+/* --- Skill Card Styling --- */
+#listservices-joemort-services .skill-card {
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 206, 201, 0.13);
+  border-radius: 14px;
+  box-shadow: 0 3px 18px rgba(44, 62, 80, 0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: default;
+  text-align: center;
+}
+
+#listservices-joemort-services .skill-card:hover {
+  background: rgba(0, 206, 201, 0.18);
+  border-color: #00cec9;
+}
+
+#listservices-joemort-services .skill-card i {
+  font-size: 2.5rem;
+  color: #6c5ce7;
+  margin-bottom: 12px;
+}
+
+#listservices-joemort-services .skill-card h3 {
+  font-size: 1.2rem;
+  color: #232339;
+  font-weight: 700;
+}
+
+/* --- Card Details (Always visible on desktop) --- */
+#listservices-joemort-services .card-details {
+  display: block;
+  margin-top: 14px;
+}
+
+#listservices-joemort-services .card-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#listservices-joemort-services .card-details ul li {
+  font-size: 0.9rem;
+  padding-left: 16px;
+  position: relative;
+  color: #232339;
+  margin-bottom: 6px;
+}
+
+#listservices-joemort-services .card-details ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #00cec9;
+}
+
+#listservices-joemort-services .price-tag {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #fd79a8;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 6px 12px;
+  border-radius: 16px;
+  margin-top: 10px;
+}
+
+/* --- Responsive Layouts --- */
+@media (max-width: 1024px) {
+  #listservices-joemort-services .skill-card {
+    width: 250px;
+    height: 250px;
+  }
+  #listservices-joemort-services .skills-grid {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  #listservices-joemort-services .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  #listservices-joemort-services .skill-card {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  #listservices-joemort-services .skill-card i {
+    font-size: 1.4rem;
+  }
+
+  #listservices-joemort-services .skill-card h3 {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  #listservices-joemort-services .card-details {
+    display: none;
+  }
+
+  #listservices-joemort-services .skill-card.open {
+    height: auto;
+    padding: 14px;
+  }
+
+  #listservices-joemort-services .skill-card.open .card-details {
+    display: block;
+    margin-top: 10px;
+  }
+
+  #listservices-joemort-services .card-details ul li {
+    font-size: 0.8rem;
+  }
+
+  #listservices-joemort-services .price-tag {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #listservices-joemort-services .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #listservices-joemort-services .skill-card {
+    width: 100%;
+    height: 100px;
+  }
+
+  #listservices-joemort-services .skill-card i {
+    font-size: 1.2rem;
+  }
+
+  #listservices-joemort-services .skill-card h3 {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 340px) {
+  #listservices-joemort-services .skill-card {
+    width: 100%;
+    height: 90px;
+  }
+
+  #listservices-joemort-services .skill-card h3 {
+    font-size: 0.65rem;
+  }
+
+  #listservices-joemort-services .skill-card i {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
-   PORTFOLIO SHOWCASE WHERE PISTOLS AND OTHER WEBSITES START 
+   WEB DESIGN PORTFOLIO SHOWCASE WHERE PISTOLS AND OTHER WEBSITES START 
    ========================================================================== */
 .portfolio-showcase {
     width: 100%;
@@ -3496,188 +3720,15 @@ section#joe-mort-about .airwaves-jm-tech-badges:hover {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* --- Services Section Container --- */
-.services-section {
-  background: rgba(108, 92, 231, 0.10);
-  border-radius: 18px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.08);
-  padding: 40px 20px;
-  height: 90vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.services-wrapper {
-  width: 100%;
-  max-width: 1300px;
-}
 
-/* --- Section Title --- */
-.services-title {
-  font-size: 2.7rem;
-  font-weight: 900;
-  color: #18192a;
-  margin-bottom: 36px;
-  text-align: center;
-  border-bottom: 3px solid #6c5ce7;
-  padding-bottom: 12px;
-}
 
-/* --- Skills Grid Layout --- */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  justify-items: center;
-  align-items: start;
-  width: 100%;
-}
 
-/* --- Skill Card Styling --- */
-.skill-card {
-  width: 300px;
-  height: 300px;
-  background: rgba(0, 206, 201, 0.13);
-  border-radius: 14px;
-  box-shadow: 0 3px 18px rgba(44, 62, 80, 0.09);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  cursor: default;
-  text-align: center;
-}
-.skill-card:hover {
-  background: rgba(0, 206, 201, 0.18);
-  border-color: #00cec9;
-}
 
-.skill-card i {
-  font-size: 2.5rem;
-  color: #6c5ce7;
-  margin-bottom: 12px;
-}
-.skill-card h3 {
-  font-size: 1.2rem;
-  color: #232339;
-  font-weight: 700;
-}
 
-/* --- Card Details (Always visible on desktop) --- */
-.card-details {
-  display: block;
-  margin-top: 14px;
-}
-.card-details ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.card-details ul li {
-  font-size: 0.9rem;
-  padding-left: 16px;
-  position: relative;
-  color: #232339;
-  margin-bottom: 6px;
-}
-.card-details ul li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: #00cec9;
-}
-.price-tag {
-  font-size: 0.95rem;
-  font-weight: bold;
-  color: #fd79a8;
-  background: rgba(255, 255, 255, 0.65);
-  padding: 6px 12px;
-  border-radius: 16px;
-  margin-top: 10px;
-}
 
-/* --- Responsive Layouts --- */
-@media (max-width: 1024px) {
-  .skill-card {
-    width: 250px;
-    height: 250px;
-  }
-  .skills-grid {
-    gap: 32px;
-  }
-}
 
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .skill-card {
-    width: 100%;
-    height: 120px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  .skill-card i {
-    font-size: 1.4rem;
-  }
-  .skill-card h3 {
-    font-size: 0.8rem;
-    margin-top: 4px;
-  }
-  .card-details {
-    display: none;
-  }
-  .skill-card.open {
-    height: auto;
-    padding: 14px;
-  }
-  .skill-card.open .card-details {
-    display: block;
-    margin-top: 10px;
-  }
-  .card-details ul li {
-    font-size: 0.8rem;
-  }
-  .price-tag {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-  }
-}
 
-@media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-  .skill-card {
-    width: 100%;
-    height: 100px;
-  }
-  .skill-card i {
-    font-size: 1.2rem;
-  }
-  .skill-card h3 {
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 340px) {
-  .skill-card {
-    width: 100%;
-    height: 90px;
-  }
-  .skill-card h3 {
-    font-size: 0.65rem;
-  }
-  .skill-card i {
-    font-size: 1rem;
-  }
-}
 
 
 

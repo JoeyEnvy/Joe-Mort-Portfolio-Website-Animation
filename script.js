@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('jj-hero'),
     document.getElementById('about'),
     document.getElementById('joe-mort-about'),
-    document.getElementById('services'),
+    document.getElementById('listservices-joemort-services'),
     document.querySelector('.portfolio-showcase')
   ].filter(Boolean);
 
@@ -402,9 +402,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.visualViewport.addEventListener('resize', updateSectionHeight);
   }
 
-  // Scroll to section using offsetTop instead of fixed height
   function scrollToSection(index) {
-    updateSectionHeight(); // Make sure height is current
+    updateSectionHeight();
     isAnimating = true;
     currentIndex = Math.max(0, Math.min(index, SECTIONS.length - 1));
     const targetOffset = SECTIONS[currentIndex].offsetTop;
@@ -414,15 +413,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function handleScroll(direction) {
     if (!snapReady || isAnimating) return;
-    let newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
+
+    const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       scrollToSection(newIndex);
     }
   }
 
+  function isInSnapScrollZone() {
+    const lastSnapSection = SECTIONS[SECTIONS.length - 1];
+    const lastSnapBottom = lastSnapSection.offsetTop + lastSnapSection.offsetHeight;
+    return window.scrollY < lastSnapBottom - 5;
+  }
+
   let lastWheelTime = 0;
   window.addEventListener('wheel', (e) => {
-    if (!snapReady) return;
+    if (!snapReady || !isInSnapScrollZone()) return;
+
     e.preventDefault();
     const now = Date.now();
     if (now - lastWheelTime < 350) return;
@@ -430,20 +437,19 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScroll(Math.sign(e.deltaY));
   }, { passive: false });
 
-  // Touch support
   let touchStartY = null;
   let touchStartTime = null;
-  let touchEndY = null;
 
   window.addEventListener('touchstart', (e) => {
-    if (!snapReady || e.touches.length !== 1) return;
+    if (!snapReady || e.touches.length !== 1 || !isInSnapScrollZone()) return;
     touchStartY = e.touches[0].clientY;
     touchStartTime = Date.now();
   });
 
   window.addEventListener('touchend', (e) => {
-    if (!snapReady || touchStartY === null) return;
-    touchEndY = e.changedTouches[0].clientY;
+    if (!snapReady || touchStartY === null || !isInSnapScrollZone()) return;
+
+    const touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
     const time = Date.now() - touchStartTime;
     const velocity = Math.abs(deltaY) / (time || 1);
@@ -453,7 +459,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if ((Math.abs(deltaY) > minDistance || velocity > minVelocity)) {
       handleScroll(Math.sign(deltaY));
     } else {
-      // Snap to nearest section by offset
       const scrollY = window.scrollY;
       let nearestIndex = 0;
       let minDistanceToTop = Infinity;
@@ -468,7 +473,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     touchStartY = null;
-    touchEndY = null;
     touchStartTime = null;
   });
 
@@ -492,6 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
     snapReady = true;
   });
 })();
+
 
 
 
