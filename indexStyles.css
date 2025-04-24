@@ -16,21 +16,26 @@
 }
 
 html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    height: 100%;
-    scroll-padding-top: 60px; /* Fix for anchor links */
-    scroll-snap-type: y mandatory; /* Use 'mandatory' for strict snap */
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;           /* ✅ Ensure vertical scrolling is allowed */
+  height: auto;               /* ✅ Let content grow naturally */
+  min-height: 100vh;          /* ✅ Guarantee minimum screen coverage */
+  scroll-padding-top: 60px;   /* ✅ Anchor offset (e.g. for sticky nav) */
+  scroll-snap-type: y proximity; /* ✅ 'proximity' is more natural than 'mandatory' */
+  box-sizing: border-box;
 }
 
-
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 
 @media (pointer: coarse) {
   html {
-    /* Mobile-specific adjustments */
-    scroll-snap-stop: always;
+    scroll-snap-stop: always; /* ✅ Force snap for touch devices */
   }
 }
+
 
 
 body {
@@ -62,7 +67,7 @@ body {
 
 #jj-hero,
 #about,
-#joe-mort-about,
+#aboutfreelancerjoemortmark2,
 #listservices-joemort-services,
 .portfolio-showcase {
   height: 100dvh;              /* Each fills the viewport */
@@ -2158,336 +2163,7 @@ section#about.freelancer-info.section {
 
 
 
-/* SECOND about / freelancer part */ 
-
-
-section#joe-mort-about.airwaves-jm-profile-section.airwaves-section {
-  min-height: 100vh;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  background-color: var(--nav-bg);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-#joe-mort-about > div {
-  opacity: 1 !important;
-  background-size: cover !important;
-  background-position: center !important;
-}
-
-/* Container */
-section#joe-mort-about .airwaves-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  padding-top: 10vh; /* Or clamp it if needed for responsiveness */
-  width: 100%;
-  gap: 40px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Left Column */
-section#joe-mort-about .airwaves-jm-profile-left {
-  flex: 1 1 300px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-}
-
-/* Right Column */
-section#joe-mort-about .airwaves-jm-profile-right {
-  flex: 1 1 calc(100% - 440px);
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-/* Image Styling */
-section#joe-mort-about .airwaves-jm-profile-image-wrapper {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-section#joe-mort-about .airwaves-jm-profile-image-wrapper:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* Contact Card */
-section#joe-mort-about .airwaves-jm-contact-card {
-  background: linear-gradient(135deg, var(--primary-color), #3a0ca3);
-  color: white;
-  padding: 25px;
-  border-radius: 15px;
-  text-align: center;
-  width: 100%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-section#joe-mort-about .airwaves-jm-contact-list {
-  list-style: none;
-  margin: 15px 0;
-  padding: 0;
-}
-
-section#joe-mort-about .airwaves-jm-contact-list li {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* Contact Button */
-section#joe-mort-about .airwaves-jm-contact-btn {
-  background: white;
-  color: var(--primary-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-}
-
-section#joe-mort-about .airwaves-jm-contact-btn:hover {
-  background: var(--secondary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Tech Badges */
-section#joe-mort-about .airwaves-jm-tech-badges {
-  width: 100%;
-  margin-top: 250px;
-  background: grey;
-  backdrop-filter: blur(5px);
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-}
-
-section#joe-mort-about .airwaves-jm-tech-badges h4 {
-  margin-bottom: 15px;
-  color: white;
-}
-
-section#joe-mort-about .badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 5px 12px;
-  border-radius: 20px;
-  margin: 5px;
-  font-size: 0.8rem;
-  color: white;
-  position: relative;
-}
-
-/* Badge Variations */
-section#joe-mort-about .airwaves-jm-tech-badges .badge {
-  --badge-hue: 260;
-  background: hsl(var(--badge-hue), 70%, 40%);
-  color: white;
-  border: 1px solid hsl(var(--badge-hue), 70%, 60%);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(1) { --badge-hue: 200; }
-section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(2) { --badge-hue: 30; }
-section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(3) { --badge-hue: 160; }
-section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(4) { --badge-hue: 220; }
-section#joe-mort-about .airwaves-jm-tech-badges .badge:nth-child(5) { --badge-hue: 330; }
-
-/* Right Column Content */
-section#joe-mort-about .airwaves-jm-section-heading {
-  font-size: 2.2rem;
-  margin-bottom: 25px;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-section#joe-mort-about .airwaves-jm-lead {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-  line-height: 1.7;
-  color: var(--text-color);
-}
-
-/* Skills Grid */
-section#joe-mort-about .airwaves-jm-skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-section#joe-mort-about .airwaves-jm-skill-category h4 {
-  color: var(--secondary-color);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-section#joe-mort-about .airwaves-jm-skill-category ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-section#joe-mort-about .airwaves-jm-skill-category li {
-  padding: 8px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  padding-left: 25px;
-}
-
-section#joe-mort-about .airwaves-jm-skill-category li:before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-}
-
-/* Philosophy Section */
-section#joe-mort-about .airwaves-jm-philosophy {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 25px;
-  border-radius: 15px;
-  border-left: 4px solid var(--primary-color);
-  position: relative;
-  overflow: hidden;
-}
-
-section#joe-mort-about .airwaves-jm-philosophy h4 {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-section#joe-mort-about .airwaves-jm-manifesto {
-  list-style: none;
-  padding-left: 0;
-}
-
-section#joe-mort-about .airwaves-jm-manifesto li {
-  margin: 12px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Micro-Interactions */
-section#joe-mort-about .icon {
-  font-size: 1.2em;
-  vertical-align: middle;
-}
-
-section#joe-mort-about .airwaves-jm-manifesto li:hover .icon {
-  animation: jm-icon-bounce 0.4s ease;
-}
-
-@keyframes jm-icon-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
-section#joe-mort-about .airwaves-jm-skill-category li:hover:before {
-  animation: jm-arrow-slide 0.3s ease;
-}
-
-@keyframes jm-arrow-slide {
-  0% { left: 0; }
-  50% { left: -5px; }
-  100% { left: 0; }
-}
-
-section#joe-mort-about .airwaves-jm-philosophy::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary-color), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-section#joe-mort-about .airwaves-jm-philosophy:hover::after {
-  transform: scaleX(1);
-}
-
-section#joe-mort-about .badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.6s ease;
-}
-
-section#joe-mort-about .badge:hover::before {
-  left: 100%;
-}
-
-section#joe-mort-about .airwaves-jm-contact-btn:active {
-  animation: jm-button-press 0.2s ease;
-}
-
-@keyframes jm-button-press {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(2px); }
-  100% { transform: translateY(0); }
-}
-
-section#joe-mort-about .airwaves-jm-profile-image-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent 60%, rgba(0,0,0,0.1));
-  pointer-events: none;
-}
-
-section#joe-mort-about .airwaves-jm-tech-badges:hover {
-  animation: jm-av-pulse 1.5s infinite alternate;
-}
-
-@keyframes jm-av-pulse {
-  from { box-shadow: 0 0 10px rgba(58, 12, 163, 0.1); }
-  to { box-shadow: 0 0 20px rgba(58, 12, 163, 0.3); }
-}
-
-
-
-
-
+/* SECOND about / freelancer part ABOUT2 */ 
 
 
 
@@ -2495,86 +2171,209 @@ section#joe-mort-about .airwaves-jm-tech-badges:hover {
 
 
 
+#aboutfreelancerjoemortmark2 {
+  height: 100dvh;
+  background: linear-gradient(to bottom, #f9f9f9, #e0e6ed);
+  padding: 80px 20px 40px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  color: var(--text-color);
+  overflow-y: auto;
+}
 
+#aboutfreelancerjoemortmark2 .freelancer-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
+/* Glass Card Base (About / Contact) */
+#aboutfreelancerjoemortmark2 .glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px 25px;
+  transition: all 0.3s ease;
+}
 
+#aboutfreelancerjoemortmark2 .glass-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
 
+/* Headings */
+#aboutfreelancerjoemortmark2 h2,
+#aboutfreelancerjoemortmark2 h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
 
+#aboutfreelancerjoemortmark2 h2 {
+  font-size: 2rem;
+}
 
+#aboutfreelancerjoemortmark2 h3 {
+  font-size: 1.6rem;
+  justify-content: center;
+}
 
+/* Contact Details - Smaller & Compact */
+#aboutfreelancerjoemortmark2 .contact-details {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
 
+#aboutfreelancerjoemortmark2 .contact-details .icon {
+  margin-right: 6px;
+  font-size: 1rem;
+  color: var(--accent-color);
+}
 
+#aboutfreelancerjoemortmark2 .cta-button {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 2px solid var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
 
+#aboutfreelancerjoemortmark2 .cta-button:hover {
+  background: var(--accent-color);
+  transform: scale(1.05);
+}
 
-@media (max-width: 1024px) {
-  section#joe-mort-about .airwaves-container {
-    gap: 30px;
+/* Horizontal 300px x 300px Grid Row */
+#aboutfreelancerjoemortmark2 .freelancer-feature-row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0;
+  justify-content: center;
+  scroll-behavior: smooth;
+}
+
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border: 2px solid var(--secondary-color);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  overflow: visible;
+}
+
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card:hover {
+  transform: scale(1.03);
+  background: var(--primary-color);
+  color: white;
+}
+
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Animations */
+#aboutfreelancerjoemortmark2 .animate {
+  animation: fadeSlideUp 0.6s ease-in-out;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  section#joe-mort-about .airwaves-jm-profile-left {
-    max-width: 350px;
-  }
-  section#joe-mort-about .airwaves-jm-profile-right {
-    max-width: 700px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* Optional Scrollbar Styling */
+#aboutfreelancerjoemortmark2 .freelancer-feature-row::-webkit-scrollbar {
+  height: 8px;
+}
+#aboutfreelancerjoemortmark2 .freelancer-feature-row::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  section#joe-mort-about.airwaves-jm-profile-section {
-    height: calc(100vh - 50px);
-    padding: 50px 15px 20px;
-    overflow-y: auto;
+  #aboutfreelancerjoemortmark2 {
+    padding: 60px 15px 30px;
   }
-  section#joe-mort-about .airwaves-jm-profile-left,
-  section#joe-mort-about .airwaves-jm-profile-right {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
-  section#joe-mort-about .airwaves-jm-skills-grid {
-    grid-template-columns: 1fr;
-  }
-  section#joe-mort-about .airwaves-jm-section-heading {
-    font-size: 1.9rem;
-  }
-  section#joe-mort-about .badge {
-    font-size: 0.75rem;
-  }
-}
 
-
-
-@media (max-width: 480px) {
-  section#joe-mort-about.airwaves-jm-profile-section {
-    padding: 40px 10px;
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
+    width: 250px;
+    height: 250px;
+    font-size: 0.9rem;
   }
-  section#joe-mort-about .airwaves-jm-section-heading {
+
+  #aboutfreelancerjoemortmark2 h2 {
     font-size: 1.6rem;
   }
-  section#joe-mort-about .airwaves-jm-lead {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-  section#joe-mort-about .airwaves-jm-profile-image-wrapper {
-    max-width: 220px;
-  }
-  section#joe-mort-about .badge {
-    font-size: 0.7rem;
+
+  #aboutfreelancerjoemortmark2 h3 {
+    font-size: 1.3rem;
   }
 }
 
-@media (max-width: 320px) {
-  section#joe-mort-about.airwaves-jm-profile-section {
-    padding: 30px 8px;
-  }
-  section#joe-mort-about .airwaves-jm-section-heading {
-    font-size: 1.4rem;
-  }
-  section#joe-mort-about .airwaves-jm-lead {
-    font-size: 0.85rem;
-  }
-  section#joe-mort-about .badge {
-    font-size: 0.65rem;
-  }
-}
+
+
+
+
+
+
+
+/* about1024 */ 
 
 
 

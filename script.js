@@ -373,13 +373,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== SMOOTH SNAP SCROLLING BETWEEN SECTIONS ==========
+
 (function () {
   let snapReady = false;
 
   const SECTIONS = [
     document.getElementById('jj-hero'),
     document.getElementById('about'),
-    document.getElementById('joe-mort-about'),
+    document.getElementById('aboutfreelancerjoemortmark2'),
     document.getElementById('listservices-joemort-services'),
     document.querySelector('.portfolio-showcase')
   ].filter(Boolean);
@@ -396,10 +397,38 @@ document.addEventListener('DOMContentLoaded', function() {
     SECTION_HEIGHT = getSectionHeight();
   }
 
-  window.addEventListener('resize', updateSectionHeight);
-  window.addEventListener('orientationchange', updateSectionHeight);
+  function getNearestSectionIndex(scrollY) {
+    let nearestIndex = 0;
+    let minDistance = Infinity;
+    for (let i = 0; i < SECTIONS.length; i++) {
+      const dist = Math.abs(SECTIONS[i].offsetTop - scrollY);
+      if (dist < minDistance) {
+        minDistance = dist;
+        nearestIndex = i;
+      }
+    }
+    return nearestIndex;
+  }
+
+  function syncCurrentIndex() {
+    currentIndex = getNearestSectionIndex(window.scrollY);
+  }
+
+  window.addEventListener('resize', () => {
+    updateSectionHeight();
+    syncCurrentIndex();
+  });
+
+  window.addEventListener('orientationchange', () => {
+    updateSectionHeight();
+    syncCurrentIndex();
+  });
+
   if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', updateSectionHeight);
+    window.visualViewport.addEventListener('resize', () => {
+      updateSectionHeight();
+      syncCurrentIndex();
+    });
   }
 
   function scrollToSection(index) {
@@ -413,7 +442,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function handleScroll(direction) {
     if (!snapReady || isAnimating) return;
-
     const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       scrollToSection(newIndex);
@@ -423,18 +451,26 @@ document.addEventListener('DOMContentLoaded', function() {
   function isInSnapScrollZone() {
     const lastSnapSection = SECTIONS[SECTIONS.length - 1];
     const lastSnapBottom = lastSnapSection.offsetTop + lastSnapSection.offsetHeight;
-    return window.scrollY < lastSnapBottom - 5;
+    return window.scrollY < lastSnapBottom - window.innerHeight * 0.3;
   }
 
   let lastWheelTime = 0;
   window.addEventListener('wheel', (e) => {
     if (!snapReady || !isInSnapScrollZone()) return;
 
-    e.preventDefault();
     const now = Date.now();
     if (now - lastWheelTime < 350) return;
-    lastWheelTime = now;
-    handleScroll(Math.sign(e.deltaY));
+
+    syncCurrentIndex();
+
+    const direction = Math.sign(e.deltaY);
+    const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
+
+    if (newIndex !== currentIndex) {
+      e.preventDefault();
+      lastWheelTime = now;
+      handleScroll(direction);
+    }
   }, { passive: false });
 
   let touchStartY = null;
@@ -449,6 +485,8 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('touchend', (e) => {
     if (!snapReady || touchStartY === null || !isInSnapScrollZone()) return;
 
+    syncCurrentIndex();
+
     const touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
     const time = Date.now() - touchStartTime;
@@ -456,20 +494,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const minDistance = SECTION_HEIGHT * 0.18;
     const minVelocity = 0.5;
 
-    if ((Math.abs(deltaY) > minDistance || velocity > minVelocity)) {
-      handleScroll(Math.sign(deltaY));
+    const direction = Math.sign(deltaY);
+    const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
+
+    if ((Math.abs(deltaY) > minDistance || velocity > minVelocity) && newIndex !== currentIndex) {
+      e.preventDefault();
+      handleScroll(direction);
     } else {
-      const scrollY = window.scrollY;
-      let nearestIndex = 0;
-      let minDistanceToTop = Infinity;
-      for (let i = 0; i < SECTIONS.length; i++) {
-        const dist = Math.abs(SECTIONS[i].offsetTop - scrollY);
-        if (dist < minDistanceToTop) {
-          minDistanceToTop = dist;
-          nearestIndex = i;
-        }
-      }
-      scrollToSection(nearestIndex);
+      scrollToSection(getNearestSectionIndex(window.scrollY));
     }
 
     touchStartY = null;
@@ -478,21 +510,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', () => {
     if (!snapReady || isAnimating) return;
-    const scrollY = window.scrollY;
-    for (let i = 0; i < SECTIONS.length; i++) {
-      const sectionTop = SECTIONS[i].offsetTop;
-      const sectionBottom = sectionTop + SECTIONS[i].offsetHeight;
-      if (scrollY >= sectionTop && scrollY < sectionBottom) {
-        currentIndex = i;
-        break;
-      }
-    }
+    syncCurrentIndex();
   }, { passive: true });
 
   window.addEventListener('load', () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     document.body.classList.remove('no-scroll');
     updateSectionHeight();
+    syncCurrentIndex();
     snapReady = true;
   });
 })();
@@ -500,144 +525,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// ========== SCROLL-IN ELEMENTS (jj-animate-in) ==========
-document.addEventListener('DOMContentLoaded', () => {
-  const animatedElements = document.querySelectorAll('.jj-animate-in');
-  const preferredDuration = '1.8s';
-  const firstScrollDuration = '5s';
-  const easingCurve = 'cubic-bezier(0.12, 0.7, 0.24, 1)';
 
-  let isFirstScroll = true;
-  let lastScrollY = window.scrollY;
 
-  animatedElements.forEach(el => {
-    el.style.willChange = 'transform';
-    el.style.transition = `transform ${firstScrollDuration} ${easingCurve}`;
-  });
 
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const isScrollingDown = currentScrollY > lastScrollY + 10;
 
-    animatedElements.forEach(el => {
-      if (isScrollingDown) {
-        el.style.transform = 'translateX(150vw)';
-        if (isFirstScroll) {
-          setTimeout(() => {
-            el.style.transition = `transform ${preferredDuration} ${easingCurve}`;
-          }, 2500);
-        }
-      } else {
-        el.style.transform = 'translateX(0)';
-      }
-    });
 
-    if (isScrollingDown) isFirstScroll = false;
-    lastScrollY = currentScrollY;
-  });
-});
 
-// ========== BACKGROUND TRANSITION & ANIMATIONS FOR #joe-mort-about ==========
-document.addEventListener('DOMContentLoaded', function() {
-  const section = document.getElementById('joe-mort-about');
-  if (!section) return;
 
-  const greyColor = 'var(--nav-bg)';
-  const whiteColor = 'rgba(255, 255, 255, 0.7)';
-  const bgImageUrl = 'images/tech-background.jpg';
 
-  const bgImage = document.createElement('div');
-  Object.assign(bgImage.style, {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    backgroundImage: `url(${bgImageUrl})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    zIndex: '-1',
-    opacity: '0',
-    transition: 'opacity 800ms ease-out',
-    willChange: 'opacity'
-  });
-  section.appendChild(bgImage);
 
-  Object.assign(section.style, {
-    position: 'relative',
-    backgroundColor: greyColor,
-    transition: 'background-color 300ms ease-out',
-    willChange: 'background-color',
-    overflow: 'hidden'
-  });
-
-  let lastScrollPosition = window.scrollY;
-  let isInSection = false;
-  let currentAnimation = null;
-  const initialGreyValue = getComputedStyle(section).backgroundColor;
-
-  function handleScroll() {
-    const currentScroll = window.scrollY;
-    const scrollDirection = Math.sign(currentScroll - lastScrollPosition);
-    lastScrollPosition = currentScroll;
-
-    const sectionRect = section.getBoundingClientRect();
-    const viewportMiddle = window.innerHeight / 2;
-
-    if ((sectionRect.top < viewportMiddle && !isInSection) || 
-        (scrollDirection < 0 && sectionRect.top < viewportMiddle && sectionRect.bottom > viewportMiddle)) {
-      isInSection = true;
-      animateToWhite();
-    } else if ((sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) && isInSection) {
-      isInSection = false;
-      animateToGrey();
-    }
-  }
-
-  function animateToWhite() {
-    if (currentAnimation) cancelAnimationFrame(currentAnimation);
-    section.style.backgroundColor = whiteColor;
-    bgImage.style.opacity = '1';
-  }
-
-  function animateToGrey() {
-    if (currentAnimation) cancelAnimationFrame(currentAnimation);
-    section.style.backgroundColor = initialGreyValue;
-    bgImage.style.opacity = '0';
-  }
-
-  window.addEventListener('scroll', () => {
-    window.requestAnimationFrame(handleScroll);
-  });
-
-  // Intersection observer to animate child elements in/out
-  const elementsToAnimate = [
-    ...section.querySelectorAll('.airwaves-jm-tech-badges h4, .airwaves-jm-tech-badges .badge, .airwaves-jm-section-heading, .airwaves-jm-lead, .airwaves-jm-skill-category h4, .airwaves-jm-skill-category li')
-  ];
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.transition = 'transform 900ms cubic-bezier(0.23, 1, 0.32, 1), opacity 900ms ease-out';
-        entry.target.style.transform = 'translateX(0)';
-        entry.target.style.opacity = '1';
-      } else {
-        entry.target.style.transition = 'transform 700ms cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 700ms ease-in';
-        entry.target.style.transform = 'translateX(50vw)';
-        entry.target.style.opacity = '0';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  elementsToAnimate.forEach(el => {
-    Object.assign(el.style, {
-      transform: 'translateX(50vw)',
-      opacity: '0',
-      willChange: 'transform, opacity'
-    });
-    observer.observe(el);
-  });
-});
 
 
 
