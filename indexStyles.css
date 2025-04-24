@@ -2173,7 +2173,7 @@ section#about.freelancer-info.section {
 
 #aboutfreelancerjoemortmark2 {
   height: 100dvh;
-  background: linear-gradient(to bottom, #f9f9f9, #e0e6ed);
+  background: linear-gradient(to bottom, rgba(45, 52, 54, 0.05), rgba(255, 255, 255, 0.5));
   padding: 80px 20px 40px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -2194,7 +2194,7 @@ section#about.freelancer-info.section {
   gap: 30px;
 }
 
-/* Glass Card Base (About / Contact) */
+/* Glass Cards (About / Contact) */
 #aboutfreelancerjoemortmark2 .glass-card {
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
@@ -2231,7 +2231,7 @@ section#about.freelancer-info.section {
   justify-content: center;
 }
 
-/* Contact Details - Smaller & Compact */
+/* Contact Details */
 #aboutfreelancerjoemortmark2 .contact-details {
   list-style: none;
   padding: 0;
@@ -2267,57 +2267,65 @@ section#about.freelancer-info.section {
   transform: scale(1.05);
 }
 
-/* Horizontal 300px x 300px Grid Row */
+/* Grid Row Base */
 #aboutfreelancerjoemortmark2 .freelancer-feature-row {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 20px;
   padding: 10px 0;
   justify-content: center;
-  scroll-behavior: smooth;
+  align-items: start;
 }
 
+/* General Grid Cards */
 #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
-  flex: 0 0 auto;
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(145deg, #ffffff, #f1f1f1);
-  border: 2px solid var(--secondary-color);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
+  width: 100%;
+  height: 200px;
+  background: radial-gradient(circle at top left, #ffffff, #ecf0f1);
+  border: 2px solid rgba(0, 206, 201, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  overflow: visible;
+  overflow: hidden;
 }
 
+/* Specific for Creative Ethos Card */
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card.ethos-card {
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Hover */
 #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card:hover {
-  transform: scale(1.03);
-  background: var(--primary-color);
-  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 206, 201, 0.4);
+  background: linear-gradient(145deg, #6c5ce7, #00cec9);
+  color: #fff;
 }
 
-#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  line-height: 1.8;
-  font-size: 0.95rem;
-}
-
+/* Headings in Grid Cards */
 #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card h3 {
   font-size: 1.6rem;
   font-weight: 800;
   margin-bottom: 15px;
-  color: var(--accent-color);
+  color: #fd79a8;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
+}
+
+/* Lists */
+#aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 /* Animations */
@@ -2336,7 +2344,7 @@ section#about.freelancer-info.section {
   }
 }
 
-/* Optional Scrollbar Styling */
+/* Scrollbar */
 #aboutfreelancerjoemortmark2 .freelancer-feature-row::-webkit-scrollbar {
   height: 8px;
 }
@@ -2345,42 +2353,130 @@ section#about.freelancer-info.section {
   border-radius: 4px;
 }
 
-/* Responsive */
+/* MEDIA QUERIES */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card,
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card.ethos-card {
+    height: 180px;
+    padding: 12px;
+  }
+}
+
+/* Small Tablets */
+/* 🔻 768px and below — Remove only Creative Ethos */
 @media (max-width: 768px) {
-  #aboutfreelancerjoemortmark2 {
-    padding: 60px 15px 30px;
+  #aboutfreelancerjoemortmark2 .freelancer-card.ethos-card {
+    display: none !important;
   }
 
   #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
-    width: 250px;
-    height: 250px;
-    font-size: 0.9rem;
+    height: 160px;
+    padding: 10px;
   }
 
-  #aboutfreelancerjoemortmark2 h2 {
-    font-size: 1.6rem;
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card h3 {
+    font-size: 1.1rem;
   }
 
-  #aboutfreelancerjoemortmark2 h3 {
-    font-size: 1.3rem;
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+/* 📱 520px and below — Show only 3 grid cards stacked */
+@media (max-width: 520px) {
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
+    display: none !important; /* hide all by default */
+  }
+
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card:nth-child(1),
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card:nth-child(2),
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card:nth-child(3) {
+    display: flex !important;
+    height: 130px;
+    padding: 8px;
+  }
+
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 }
 
 
 
+/* 🔻 480px and below — Remove all grid cards */
+@media (max-width: 480px) {
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row {
+    display: none !important;
+  }
+}
 
 
+/* 📱 380px and below — compress everything more */
+@media (max-width: 380px) {
+  #aboutfreelancerjoemortmark2 {
+    padding: 40px 10px 30px;
+  }
 
+  #aboutfreelancerjoemortmark2 .freelancer-wrapper {
+    gap: 20px;
+  }
 
+  #aboutfreelancerjoemortmark2 .glass-card {
+    padding: 12px 16px;
+  }
 
-/* about1024 */ 
+  #aboutfreelancerjoemortmark2 h2 {
+    font-size: 1.3rem;
+  }
 
+  #aboutfreelancerjoemortmark2 h3 {
+    font-size: 1.1rem;
+  }
 
+  #aboutfreelancerjoemortmark2 .cta-button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
 
+/* 🔻 320px and below — Super compressed */
+@media (max-width: 320px) {
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card {
+    height: 100px;
+    padding: 5px 6px;
+  }
 
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card h3 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
 
-
-
+  #aboutfreelancerjoemortmark2 .freelancer-feature-row .freelancer-card ul {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+}
 
 
 
