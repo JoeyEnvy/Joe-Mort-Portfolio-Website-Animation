@@ -1906,6 +1906,10 @@ margin-left: -10px !important;
   }
 }
 
+
+/* freelancer480 freelance480 */ 
+
+
 @media (max-width: 480px) {
 section#about.freelancer-info.section {
   display: flex !important;
@@ -1916,7 +1920,7 @@ section#about.freelancer-info.section {
   padding: 0 !important;
   scroll-snap-align: start !important;   /* ✅ Still snap-scrolls */
   scroll-snap-stop: always !important;   /* Optional: stronger snap */
-  padding-left: 65px !important;
+  padding-left: 115px !important;
   padding-top: 25px !important;
 }
 
@@ -1932,41 +1936,44 @@ section#about.freelancer-info.section {
     order: 1 !important;
     width: 100% !important;
     padding: 10px !important;
-    margin: 0 auto !important;
+    margin-top: -50px;
     text-align: center !important; 
   }
 
 .freelancer-info-left > h1,
 .freelancer-info-left > p,
 .freelancer-info-left > h3.showcase-title,
-.cta-button {
-  margin-left: 35px !important; /* ✅ Shared left margin */
+.freelancer-info-left > a.cta-button {
+  width: 90vw !important;
+  max-width: 1000px !important;
+
+  margin-left: -115px;
+  text-align: center !important;
 }
 
+/* Refined vertical sizing */
 .freelancer-info-left > h1 {
-  font-size: 1.2em !important;       /* Smaller title */
-  margin-top: 40px !important;
-  margin-bottom: 8px !important;
-}
-
-.freelancer-info-left > p {
-  font-size: 0.8em !important;       /* Smaller body text */
-  line-height: 1.3 !important;
-  margin-bottom: 8px !important;
-}
-
-.freelancer-info-left > h3.showcase-title {
-  font-size: 0.85em !important;      /* Smaller subtitle */
+  font-size: 1.1em !important;
   margin-bottom: 6px !important;
 }
 
-.cta-button {
-  font-size: 0.75rem !important;     /* Smaller button text */
-  padding: 0.45rem 0.75rem !important;
-  margin-top: 12px !important;
-  min-width: 220px !important;
+.freelancer-info-left > p {
+  font-size: 0.75em !important;
+  line-height: 1.2 !important;
+  margin-bottom: 6px !important;
 }
 
+.freelancer-info-left > h3.showcase-title {
+  font-size: 0.8em !important;
+  margin-bottom: 8px !important;
+}
+
+.freelancer-info-left > a.cta-button {
+  font-size: 0.7rem !important;
+  padding: 0.4rem 0.7rem !important;
+  margin-top: 12px !important;
+  min-width: 200px !important;
+}
 
  .device.desktop-viewer,
 .device.mobile-viewer {
@@ -1978,17 +1985,17 @@ section#about.freelancer-info.section {
   transform-origin: top left !important;
 }
 
-/* Desktop Viewer: 0.1x larger & moved up 50px */
+/* Desktop Viewer: scaled down to 0.75x original */
 .device.desktop-viewer {
-  transform: translate(-110px, -50px) scale(2.8359375) !important;
+  transform: translate(-110px, -50px) scale(2.126953125) !important; /* 2.8359375 * 0.75 */
   width: 100px !important;
   height: 56px !important;
   aspect-ratio: unset !important;
 }
 
-/* Mobile Viewer: right 25px & down 25px */
+/* Mobile Viewer: scaled down to 0.75x original */
 .device.mobile-viewer {
-  transform: translate(-75px, 60px) scale(2.578125) !important;
+  transform: translate(-75px, 60px) scale(1.93359375) !important; /* 2.578125 * 0.75 */
   width: 60px !important;
   height: 106px !important;
   aspect-ratio: unset !important;
@@ -1999,7 +2006,7 @@ section#about.freelancer-info.section {
   flex-direction: column !important;
   align-items: center !important;
   gap: 12px !important;
-  margin-top: 90px !important;
+  margin-top: 50px !important;
   position: static !important;
 }
 
@@ -2017,7 +2024,7 @@ section#about.freelancer-info.section {
   padding: 0 !important;
   scroll-snap-align: start !important;   /* ✅ Still snap-scrolls */
   scroll-snap-stop: always !important;   /* Optional: stronger snap */
-  padding-left: 0px !important;
+  padding-left: 75px !important;
   padding-top: 25px !important;
 }
 
@@ -2033,41 +2040,47 @@ section#about.freelancer-info.section {
     order: 1 !important;
     width: 100% !important;
     padding: 10px !important;
-    margin: 0 auto !important;
+    margin-top: -75px;
     text-align: center !important; 
   }
 
 .freelancer-info-left > h1,
 .freelancer-info-left > p,
 .freelancer-info-left > h3.showcase-title,
-.cta-button {
-  margin-left: 35px !important; /* ✅ Shared left margin */
+.freelancer-info-left > a.cta-button {
+  width: 90vw !important;
+  max-width: 1000px !important;
+  text-align: center !important;
+  transform: scale(0.85) !important;      /* Scales the text and spacing */
+  transform-origin: top center !important; /* Keeps it anchored from the top center */
+  margin-left: -65px !important;
+  margin-right: auto !important;
 }
 
+
+/* Refined vertical sizing */
 .freelancer-info-left > h1 {
-  font-size: 1.2em !important;       /* Smaller title */
-  margin-top: 40px !important;
-  margin-bottom: 8px !important;
-}
-
-.freelancer-info-left > p {
-  font-size: 0.8em !important;       /* Smaller body text */
-  line-height: 1.3 !important;
-  margin-bottom: 8px !important;
-}
-
-.freelancer-info-left > h3.showcase-title {
-  font-size: 0.85em !important;      /* Smaller subtitle */
+  font-size: 1.1em !important;
   margin-bottom: 6px !important;
 }
 
-.cta-button {
-  font-size: 0.75rem !important;     /* Smaller button text */
-  padding: 0.45rem 0.75rem !important;
-  margin-top: 12px !important;
-  min-width: 220px !important;
+.freelancer-info-left > p {
+  font-size: 0.75em !important;
+  line-height: 1.2 !important;
+  margin-bottom: 6px !important;
 }
 
+.freelancer-info-left > h3.showcase-title {
+  font-size: 0.8em !important;
+  margin-bottom: 8px !important;
+}
+
+.freelancer-info-left > a.cta-button {
+  font-size: 0.7rem !important;
+  padding: 0.4rem 0.7rem !important;
+  margin-top: 12px !important;
+  min-width: 200px !important;
+}
 
  .device.desktop-viewer,
 .device.mobile-viewer {
@@ -2079,20 +2092,21 @@ section#about.freelancer-info.section {
   transform-origin: top left !important;
 }
 
-/* Desktop Viewer: 0.1x larger & moved up 50px */
+/* Desktop Viewer: scaled down to 0.75x original */
 .device.desktop-viewer {
-  transform: translate(-110px, -50px) scale(2.8359375) !important;
+  transform: translate(-110px, -50px) scale(2.126953125) !important; /* 2.8359375 * 0.75 */
   width: 100px !important;
   height: 56px !important;
   aspect-ratio: unset !important;
 }
 
-/* Mobile Viewer: right 25px & down 25px */
+/* Mobile Viewer: scaled down to 0.75x original */
 .device.mobile-viewer {
-  transform: translate(-75px, 60px) scale(2.578125) !important;
+  transform: translate(-75px, 60px) scale(1.93359375) !important; /* 2.578125 * 0.75 */
   width: 60px !important;
   height: 106px !important;
   aspect-ratio: unset !important;
+  margin-top: -35px !important;
 }
 
 .freelancer-info-left > .device-showcase {
@@ -2100,13 +2114,31 @@ section#about.freelancer-info.section {
   flex-direction: column !important;
   align-items: center !important;
   gap: 12px !important;
-  margin-top: 90px !important;
+  margin-top: 50px !important;
   position: static !important;
 }
 
 }
 
 
+@media (max-width: 340px) {
+
+
+.freelancer-info-left > h1,
+.freelancer-info-left > p,
+.freelancer-info-left > h3.showcase-title,
+.freelancer-info-left > a.cta-button {
+  width: 90vw !important;
+  max-width: 1000px !important;
+  text-align: center !important;
+  transform: scale(0.85) !important;      /* Scales the text and spacing */
+  transform-origin: top center !important; /* Keeps it anchored from the top center */
+  margin-left: -50px !important;
+  margin-right: auto !important;
+}
+
+
+}
 
 
 
