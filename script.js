@@ -532,6 +532,104 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+//section 2 freelancer background color change on mobile 480 
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const aboutSection = document.getElementById('about');
+  const rightColumn = aboutSection.querySelector('.freelancer-info-right');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        aboutSection.classList.add('background-transparent');
+        rightColumn.style.opacity = '1';
+        rightColumn.style.transform = 'translateY(0)';
+      } else {
+        aboutSection.classList.remove('background-transparent');
+        rightColumn.style.opacity = '0';
+        rightColumn.style.transform = 'translateY(50px)';
+      }
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(aboutSection);
+});
+
+
+
+
+
+// freelancer about 3rd section info part slide in and color change 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const freelancerSection = document.getElementById('aboutfreelancerjoemortmark2');
+
+  // Set starting background color as solid nav grey
+  freelancerSection.style.backgroundColor = 'rgba(45, 52, 54, 1)';
+  freelancerSection.style.transition = 'background-color 0.8s ease';
+
+  // ========== BACKGROUND FADE OBSERVER ==========
+  const bgObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          freelancerSection.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        }, 100); // tiny delay for smooth transition
+      } else {
+        setTimeout(() => {
+          freelancerSection.style.backgroundColor = 'rgba(45, 52, 54, 1)';
+        }, 100);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  bgObserver.observe(freelancerSection);
+
+  // ========== CONTENT SLIDE-IN/OUT OBSERVER ==========
+
+  // Select all .animate elements except the ones inside 🚀 or 🤖 cards
+  const animatedElements = Array.from(freelancerSection.querySelectorAll('.animate'))
+    .filter(el => {
+      const heading = el.querySelector('h3');
+      if (!heading) return true; // No heading, keep it animating
+      const headingText = heading.textContent || '';
+      return !(headingText.includes('🚀') || headingText.includes('🤖'));
+    });
+
+  animatedElements.forEach(el => {
+    // Start off-screen to the right
+    el.style.transform = 'translateX(50vw)';
+    el.style.opacity = '0';
+    el.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+    el.style.willChange = 'transform, opacity';
+  });
+
+  const contentObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.opacity = '1';
+      } else {
+        entry.target.style.transform = 'translateX(50vw)';
+        entry.target.style.opacity = '0';
+      }
+    });
+  }, {
+    threshold: 0.25,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  animatedElements.forEach(el => {
+    contentObserver.observe(el);
+  });
+
+});
 
 
 
@@ -546,9 +644,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
+//don't know what this below bit is but it's  mega important so leave it there
 
 
 
@@ -614,6 +710,26 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.disconnect();
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+//freelancer 2nd about nd section shit 
+
+
+
+
+
+
+
   // ========== FREELANCER VIDEO FUNCTIONS ==========
   const desktopVideo = document.getElementById('desktop-video');
   const mobileVideo = document.getElementById('mobile-video');
@@ -657,3 +773,25 @@ document.addEventListener('DOMContentLoaded', function () {
   mobileVideo.addEventListener('click', () => fullscreen(mobileVideo));
 });
 
+
+//about freelancer 480 background man laptop image dissappear 
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const aboutSection = document.querySelector("section#about");
+
+    function fadeBackground(enable) {
+      if (enable) {
+        aboutSection.classList.add("background-fade");
+      } else {
+        aboutSection.classList.remove("background-fade");
+      }
+    }
+
+    // Desktop hover
+    aboutSection.addEventListener("mouseenter", () => fadeBackground(true));
+    aboutSection.addEventListener("mouseleave", () => fadeBackground(false));
+
+    // Mobile touch
+    aboutSection.addEventListener("touchstart", () => fadeBackground(true));
+    aboutSection.addEventListener("touchend", () => fadeBackground(false));
+  });

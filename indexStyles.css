@@ -1354,12 +1354,11 @@ main.scrolled {
 
 
 /* ==========================================================================
-   FREELANCER INFO SECTION
+   FREELANCER FREELANCE INFO SECTION
    ========================================================================== */
 
 /* =============== FREELANCER INFO SECTION =============== */
 section#about.freelancer-info.section {
-  background-color: var(--nav-bg);
   padding-top: 75px;
   margin-top: -10px;
   padding-bottom: 10vh;
@@ -1497,7 +1496,7 @@ div.device-showcase > div.device.desktop-viewer {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     aspect-ratio: 16/9;
-    transform: translateY(-125px); /* ▲ Moved up 100px */
+    transform: translateY(-100px); /* ▲ Moved up 100px */
 }
 
 /* Mobile Viewer */
@@ -1508,8 +1507,8 @@ div.device-showcase > div.device.mobile-viewer {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     aspect-ratio: 9/16;
     max-width: 300px;
-    height: calc(100% - 10vh); /* Height reduction */
-    transform: translateY(-225px); /* ▲ Moved up 100px */
+    height: calc(100% - 5vh); /* Height reduction */
+    transform: translateY(-200px); /* ▲ Moved up 100px */
 }
 
 /* ================= CTA BUTTON ================= */
@@ -1553,7 +1552,7 @@ div.video-container > video#mobile-video {
 div.freelancer-info-right {
     background: white;
     padding: 40px;
-    margin-top: 150px;
+    margin-top: 0px;
     height: 85vh;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -1647,7 +1646,7 @@ div.service-category:nth-child(4) {
 
 
 
-/* freelancermediaqueries */ 
+/* freelancermediaqueries freelancer 1024 freelance1024 */ 
 
 
 
@@ -1709,12 +1708,13 @@ div.service-category:nth-child(4) {
     padding: 10px 20px;
     width: 90%;
   }
+}
 
+@media (max-width: 1650px) and (min-width: 769px) {
   .freelancer-info-right {
     display: none !important;
   }
 }
-
 
 @media (max-width: 1024px) {
   section#about.freelancer-info.section > div.container {
@@ -1747,7 +1747,7 @@ div.service-category:nth-child(4) {
     min-width: 460px !important; 
     margin-top: 25px !important; 
     margin-right: 10px !important;
-margin-left: -10px !important;
+    margin-left: -10px !important;
   }
 
   .device.mobile-viewer {
@@ -1759,7 +1759,6 @@ margin-left: -10px !important;
     margin-left: -25px !important; 
   }
 }
-
 
 @media (max-width: 768px) {
   .freelancer-info-left {
@@ -1811,7 +1810,6 @@ margin-left: -10px !important;
     gap: 0;
   }
 
-  /* Mobile video floats top right */
   .device.mobile-viewer {
     position: absolute;
     top: 0;
@@ -1822,14 +1820,12 @@ margin-left: -10px !important;
     z-index: 1;
   }
 
-  /* Desktop video stays below */
   .device.desktop-viewer {
     width: 100%;
     aspect-ratio: 16 / 9;
-    margin-top: 200px; /* Push down to clear mobile viewer */
+    margin-top: 200px;
   }
 }
-
 
 @media (max-width: 768px) {
   section#about.freelancer-info.section {
@@ -1867,12 +1863,12 @@ margin-left: -10px !important;
     margin-bottom: 8px !important;
   }
 
-.cta-button {
-  font-size: 0.85rem !important;
-  padding: 0.5rem 0.9rem !important;
-  margin-top: 15px !important;
-  min-width: 240px !important; /* ✅ Correct spelling */
-}
+  .cta-button {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.9rem !important;
+    margin-top: 15px !important;
+    min-width: 240px !important;
+  }
 
   .freelancer-info-left > .device-showcase {
     margin-top: 25px !important;
@@ -1884,7 +1880,7 @@ margin-left: -10px !important;
     width: 100% !important;
     aspect-ratio: 16 / 9 !important;
     max-height: 160px !important;
-    max-width: 225px !important; /* Already adjusted smaller */
+    max-width: 225px !important;
     margin-left: 75px !important;
     margin-top: 125px !important;
   }
@@ -1892,275 +1888,341 @@ margin-left: -10px !important;
   .device.mobile-viewer {
     position: absolute !important;
     top: -350px !important;
-    left: 265px !important; /* Moved 35px further LEFT */
-    max-width: 225px !important; /* Reduced by 35px */
+    left: 265px !important;
+    max-width: 225px !important;
     aspect-ratio: 9 / 16 !important;
     min-height: 480px !important;
     z-index: 2 !important;
   }
 }
 
-/* ===== Desktop default — reduce width for both screens by 40px ===== */
 @media (min-width: 769px) {
   .device.desktop-viewer {
     max-width: calc(100% - 40px) !important;
   }
 
   .device.mobile-viewer {
-    max-width: 260px !important; /* Your original size minus 40px if needed */
+    max-width: 260px !important;
   }
 }
 
+@media (min-width: 481px) {
+  section#about.freelancer-info.section {
+    background-color: var(--nav-bg);
+    padding-top: 75px;
+    margin-top: -10px;
+    padding-bottom: 10vh;
+    position: relative;
+    z-index: 10;
+    height: 100dvh;
+    overflow: hidden;
+  }
 
-/* freelancer480 freelance480 */ 
+  section#about::before,
+  section#about::after {
+    content: none;
+    display: none;
+  }
 
+  section#about {
+    background: none;
+    position: relative;
+    overflow: visible;
+  }
 
-@media (max-width: 480px) {
-section#about.freelancer-info.section {
-  display: flex !important;
-  flex-direction: column !important;
-  height: auto !important;               /* ✅ Let section grow */
-  min-height: 100vh !important;          /* ✅ Fill screen if short */
-  overflow: hidden !important;           /* ✅ Prevent bleed */
-  padding: 0 !important;
-  scroll-snap-align: start !important;   /* ✅ Still snap-scrolls */
-  scroll-snap-stop: always !important;   /* Optional: stronger snap */
-  padding-left: 115px !important;
-  padding-top: 25px !important;
-}
-
-  section#about.freelancer-info.section > div.container {
-    padding: 10px 15px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 25px !important;
+  section#about .container {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    z-index: auto;
   }
 
   .freelancer-info-left {
-    order: 1 !important;
-    width: 100% !important;
-    padding: 10px !important;
-    margin-top: -50px;
-    text-align: center !important; 
+    display: block;
   }
 
-.freelancer-info-left > h1,
-.freelancer-info-left > p,
-.freelancer-info-left > h3.showcase-title,
-.freelancer-info-left > a.cta-button {
-  width: 90vw !important;
-  max-width: 1000px !important;
-
-  margin-left: -115px;
-  text-align: center !important;
+  .freelancer-info-right {
+    display: block;
+    transform: none;
+    opacity: 1;
+    width: auto;
+    margin-top: 0;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
 }
 
-/* Refined vertical sizing */
-.freelancer-info-left > h1 {
-  font-size: 1.1em !important;
-  margin-bottom: 6px !important;
-}
+@media (max-width: 480px) {
 
-.freelancer-info-left > p {
-  font-size: 0.75em !important;
-  line-height: 1.2 !important;
-  margin-bottom: 6px !important;
-}
+  /* ===== Mobile About Section ===== */
+  section#about {
+    position: relative;
+    overflow: hidden;
+    background: none;
+    min-height: 100vh !important;
+    z-index: 0;
+  }
 
-.freelancer-info-left > h3.showcase-title {
-  font-size: 0.8em !important;
-  margin-bottom: 8px !important;
-}
+  section#about::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    height: 100vh !important;
+    width: 100% !important;
+    background: url('images/Website Guy Animation.com.png') center center / cover no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    z-index: 500 !important;
+    opacity: 1 !important;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
 
-.freelancer-info-left > a.cta-button {
-  font-size: 0.7rem !important;
-  padding: 0.4rem 0.7rem !important;
-  margin-top: 12px !important;
-  min-width: 200px !important;
-}
+  /* Background fade on hover/touch */
+  section#about.background-fade::after {
+    opacity: 0 !important;
+  }
 
- .device.desktop-viewer,
-.device.mobile-viewer {
-  all: unset !important;
+  section#about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #2d3436;
+    opacity: 1;
+    transition: opacity 1s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  section#about.background-transparent::before {
+    opacity: 0;
+  }
+
+  section#about .container {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 15px 0;
+    min-height: 100vh !important;
+    width: 100%;
+  }
+
+  /* ===== Skills Grid (Below Background) ===== */
+  .freelancer-info-right {
+    order: 1;
+    position: relative;
+    z-index: 1 !important;
+    width: 90% !important;
+    max-width: 300px !important;
+    max-height: 460px !important;
+    margin-top: 60px !important;
+    margin-bottom: 30px !important;
+    padding: 20px !important;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem !important;
+  }
+
+  .freelancer-info-right > h3 {
+    font-size: 1.5em !important;
+    margin-bottom: 15px !important;
+    text-align: center;
+  }
+
+  .freelancer-info-right > div.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px !important;
+  }
+
+  .services-grid > .service-category {
+    padding: 14px !important;
+    background: var(--background-color);
+    border-radius: 10px !important;
+    text-align: center;
+    max-width: 140px !important;
+    max-height: 200px !important;
+    width: 100%;
+  }
+
+  .service-category > h4 {
+    font-size: 0.9em !important;
+    margin-bottom: 6px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .service-category > h4 > i {
+    font-size: 1.1em !important;
+  }
+
+  .service-category > ul {
+    padding: 0;
+    list-style: none;
+    margin-top: 5px;
+  }
+
+  .service-category > ul > li {
+    font-size: 0.7em !important;
+    margin-bottom: 5px !important;
+    padding-left: 0;
+    color: var(--text-color);
+  }
+
+  /* ===== Showcase Section (Above Background) ===== */
+  .freelancer-info-left {
+    order: 2;
+    position: relative;
+   z-index: 10000 !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px !important;
+    padding: 0 10px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  .freelancer-info-left > *:not(.showcase-title):not(.device-showcase) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .freelancer-info-left > h3.showcase-title {
+    display: none !important;
+    font-size: 1.2em !important;
+    text-align: center;
+    color: #444 !important;
+    margin: 15px 0 10px !important;
+    opacity: 1 !important;
+  }
+
+  .freelancer-info-left > .device-showcase {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px !important;
+    margin: 0 auto 20px !important;
+    z-index: 10000 !important;
+    width: 100%;
+  }
+
+.device-showcase .desktop-viewer {
   display: block !important;
-  margin: 0 auto !important;
-  flex: 0 0 auto !important;
-  position: relative !important;
-  transform-origin: top left !important;
+  position: relative;
+  z-index: 10000 !important;
+  width: 75% !important; /* Simpler, responsive margin */
+  min-width: 340px !important;
+  min-height: 160px !important;
+  aspect-ratio: 16/9 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15) !important;
+  transform: translate(calc(25px), -175px) !important;
 }
 
-/* Desktop Viewer: scaled down to 0.75x original */
-.device.desktop-viewer {
-  transform: translate(-110px, -50px) scale(2.126953125) !important; /* 2.8359375 * 0.75 */
-  width: 100px !important;
-  height: 56px !important;
-  aspect-ratio: unset !important;
-}
 
-/* Mobile Viewer: scaled down to 0.75x original */
-.device.mobile-viewer {
-  transform: translate(-75px, 60px) scale(1.93359375) !important; /* 2.578125 * 0.75 */
-  width: 60px !important;
-  height: 106px !important;
-  aspect-ratio: unset !important;
-}
 
-.freelancer-info-left > .device-showcase {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin-top: 50px !important;
-  position: static !important;
-}
+  .device-showcase .desktop-viewer video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    background-color: black !important;
+  }
 
+  .device-showcase .mobile-viewer {
+    display: none !important;
+  }
 }
-
 
 
 @media (max-width: 420px) {
-section#about.freelancer-info.section {
-  display: flex !important;
-  flex-direction: column !important;
-  height: auto !important;               /* ✅ Let section grow */
-  min-height: 100vh !important;          /* ✅ Fill screen if short */
-  overflow: hidden !important;           /* ✅ Prevent bleed */
-  padding: 0 !important;
-  scroll-snap-align: start !important;   /* ✅ Still snap-scrolls */
-  scroll-snap-stop: always !important;   /* Optional: stronger snap */
-  padding-left: 75px !important;
-  padding-top: 25px !important;
-}
 
-  section#about.freelancer-info.section > div.container {
-    padding: 10px 15px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 25px !important;
+  .freelancer-info-right {
+    max-width: 280px !important;
+    padding: 18px !important;
+    font-size: 0.78rem !important;
+    min-height: 340px !important;
+  }
+
+  .freelancer-info-right > h3 {
+    font-size: 2em !important;
+  }
+
+  .freelancer-info-right > div.services-grid {
+    gap: 18px !important;
+  }
+
+  .services-grid > .service-category {
+    padding: 12px !important;
+    max-width: 120px !important;
+    max-height: 250px !important;
+  }
+
+  .service-category > h4 {
+    font-size: 0.9em !important;
+  }
+
+  .service-category > h4 > i {
+    font-size: 1.1em !important;
+  }
+
+  .service-category > ul > li {
+    font-size: 0.7em !important;
+  }
+
+  .freelancer-info-left > .device-showcase {
+    gap: 10px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .device-showcase .desktop-viewer {
+    width: 80% !important;
+    transform: translate(-25px, -120px) !important;
+    min-height: 165px !important;
+min-width: 260px !important;
+    margin-top: 75px !important;
   }
 
   .freelancer-info-left {
-    order: 1 !important;
-    width: 100% !important;
-    padding: 10px !important;
-    margin-top: -75px;
-    text-align: center !important; 
+    gap: 12px !important;
   }
 
-.freelancer-info-left > h1,
-.freelancer-info-left > p,
-.freelancer-info-left > h3.showcase-title,
-.freelancer-info-left > a.cta-button {
-  width: 90vw !important;
-  max-width: 1000px !important;
-  text-align: center !important;
-  transform: scale(0.85) !important;      /* Scales the text and spacing */
-  transform-origin: top center !important; /* Keeps it anchored from the top center */
-  margin-left: -65px !important;
-  margin-right: auto !important;
+  .freelancer-info-left > h3.showcase-title {
+    font-size: 1.15em !important;
+  }
+
+  section#about::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    height: 100vh !important;
+    width: 100% !important;
+    background: url('images/Website Guy Animation.com.png') center center / cover no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    z-index: 1 !important;
+    opacity: 1 !important;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
 }
-
-
-/* Refined vertical sizing */
-.freelancer-info-left > h1 {
-  font-size: 1.1em !important;
-  margin-bottom: 6px !important;
-}
-
-.freelancer-info-left > p {
-  font-size: 0.75em !important;
-  line-height: 1.2 !important;
-  margin-bottom: 6px !important;
-}
-
-.freelancer-info-left > h3.showcase-title {
-  font-size: 0.8em !important;
-  margin-bottom: 8px !important;
-}
-
-.freelancer-info-left > a.cta-button {
-  font-size: 0.7rem !important;
-  padding: 0.4rem 0.7rem !important;
-  margin-top: 12px !important;
-  min-width: 200px !important;
-}
-
- .device.desktop-viewer,
-.device.mobile-viewer {
-  all: unset !important;
-  display: block !important;
-  margin: 0 auto !important;
-  flex: 0 0 auto !important;
-  position: relative !important;
-  transform-origin: top left !important;
-}
-
-/* Desktop Viewer: scaled down to 0.75x original */
-.device.desktop-viewer {
-  transform: translate(-110px, -50px) scale(2.126953125) !important; /* 2.8359375 * 0.75 */
-  width: 100px !important;
-  height: 56px !important;
-  aspect-ratio: unset !important;
-}
-
-/* Mobile Viewer: scaled down to 0.75x original */
-.device.mobile-viewer {
-  transform: translate(-75px, 60px) scale(1.93359375) !important; /* 2.578125 * 0.75 */
-  width: 60px !important;
-  height: 106px !important;
-  aspect-ratio: unset !important;
-  margin-top: -35px !important;
-}
-
-.freelancer-info-left > .device-showcase {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin-top: 50px !important;
-  position: static !important;
-}
-
-}
-
-
-@media (max-width: 340px) {
-
-
-.freelancer-info-left > h1,
-.freelancer-info-left > p,
-.freelancer-info-left > h3.showcase-title,
-.freelancer-info-left > a.cta-button {
-  width: 90vw !important;
-  max-width: 1000px !important;
-  text-align: center !important;
-  transform: scale(0.85) !important;      /* Scales the text and spacing */
-  transform-origin: top center !important; /* Keeps it anchored from the top center */
-  margin-left: -50px !important;
-  margin-right: auto !important;
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+s
 
 
 /* SECOND about / freelancer part ABOUT2 */ 
@@ -2173,7 +2235,7 @@ section#about.freelancer-info.section {
 
 #aboutfreelancerjoemortmark2 {
   height: 100dvh;
-  background: linear-gradient(to bottom, rgba(45, 52, 54, 0.05), rgba(255, 255, 255, 0.5));
+  background-color: rgba(45, 52, 54, 1); /* nav grey as rgba */
   padding: 80px 20px 40px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -2432,11 +2494,13 @@ section#about.freelancer-info.section {
 }
 
 
-/* 📱 380px and below — compress everything more */
 @media (max-width: 380px) {
-  #aboutfreelancerjoemortmark2 {
-    padding: 40px 10px 30px;
-  }
+#aboutfreelancerjoemortmark2 {
+  padding: 125px 25px 0 !important; /* top right/left bottom */
+  scroll-snap-align: start !important;
+  display: block;
+}
+
 
   #aboutfreelancerjoemortmark2 .freelancer-wrapper {
     gap: 20px;
@@ -2492,116 +2556,154 @@ section#about.freelancer-info.section {
 
 
 #listservices-joemort-services.services-section {
-  background: rgba(108, 92, 231, 0.10);
+  background: rgba(255, 255, 255, 0.5); /* semi-transparent white background */
+  backdrop-filter: blur(16px); /* blurred behind it */
   border-radius: 18px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.08);
-  padding: 40px 20px;
-  height: auto !important;              /* ✅ Let it grow based on content */
-  min-height: 100dvh !important;        /* ✅ Still fills screen if short */
-  overflow-y: visible !important;       /* ✅ Don't limit scroll */
+  box-shadow: 0 10px 40px rgba(44, 62, 80, 0.15);
+  padding: 100px 20px 40px 20px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+
+
+/* --- Wrapper --- */
+#listservices-joemort-services .services-wrapper {
+  width: 100%;
+  max-width: 1300px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-#listservices-joemort-services .services-wrapper {
-  width: 100%;
-  max-width: 1300px;
-}
-
 /* --- Section Title --- */
 #listservices-joemort-services .services-title {
-  font-size: 2.7rem;
+  font-size: 2.6rem;
   font-weight: 900;
-  color: #18192a;
-  margin-bottom: 36px;
+  color: var(--text-color);
+  margin-bottom: 30px;
   text-align: center;
-  border-bottom: 3px solid #6c5ce7;
-  padding-bottom: 12px;
+  border-bottom: 4px solid var(--primary-color);
+  padding-bottom: 10px;
 }
 
 /* --- Skills Grid Layout --- */
 #listservices-joemort-services .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  justify-items: center;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
   width: 100%;
+  justify-items: center;
 }
 
 /* --- Skill Card Styling --- */
 #listservices-joemort-services .skill-card {
-  width: 300px;
-  height: 300px;
-  background: rgba(0, 206, 201, 0.13);
-  border-radius: 14px;
-  box-shadow: 0 3px 18px rgba(44, 62, 80, 0.09);
+  width: 100%;
+  max-width: 290px;
+  height: 290px;
+  background: rgba(0, 206, 201, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   cursor: default;
   text-align: center;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 #listservices-joemort-services .skill-card:hover {
-  background: rgba(0, 206, 201, 0.18);
-  border-color: #00cec9;
+  background: rgba(0, 206, 201, 0.24);
+  transform: translateY(-6px);
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
 }
 
+/* --- Icon --- */
 #listservices-joemort-services .skill-card i {
-  font-size: 2.5rem;
-  color: #6c5ce7;
-  margin-bottom: 12px;
+  font-size: 2.7rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
 }
 
+/* --- Title --- */
 #listservices-joemort-services .skill-card h3 {
   font-size: 1.2rem;
-  color: #232339;
-  font-weight: 700;
+  color: var(--text-color);
+  font-weight: 800;
+  margin-bottom: 8px;
 }
 
-/* --- Card Details (Always visible on desktop) --- */
+/* --- Card Details --- */
 #listservices-joemort-services .card-details {
   display: block;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 #listservices-joemort-services .card-details ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: left;
 }
 
 #listservices-joemort-services .card-details ul li {
-  font-size: 0.9rem;
-  padding-left: 16px;
+  font-size: 0.85rem;
+  padding-left: 24px;
   position: relative;
-  color: #232339;
+  color: var(--text-color);
   margin-bottom: 6px;
+  line-height: 1.3;
 }
 
+/* --- Fancy Tick Before Each Line --- */
 #listservices-joemort-services .card-details ul li::before {
-  content: "→";
+  content: "\f00c"; /* FontAwesome check icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   position: absolute;
   left: 0;
-  color: #00cec9;
+  top: 2px;
+  color: var(--secondary-color);
+  font-size: 0.8rem;
 }
 
+/* --- Price Tag --- */
 #listservices-joemort-services .price-tag {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: #fd79a8;
-  background: rgba(255, 255, 255, 0.65);
+  color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.8);
   padding: 6px 12px;
   border-radius: 16px;
-  margin-top: 10px;
+  margin-top: 14px;
+  transition: background 0.3s ease;
 }
+
+#listservices-joemort-services .price-tag:hover {
+  background: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* --- Responsive Layouts --- */
 @media (max-width: 1024px) {
