@@ -3061,6 +3061,102 @@ min-width: 260px !important;
     padding: 0 40px;
 }
 
+
+
+
+
+
+
+
+
+.joe-mort-apollo-showcase-intro {
+  margin-bottom: 60px;
+  padding: 60px 30px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.joe-mort-apollo-intro-videos {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.joe-mort-apollo-video-block {
+  flex: 1;
+  min-width: 280px;
+  max-width: 480px;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.joe-mort-apollo-video-block video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.joe-mort-apollo-device-label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8em;
+}
+
+.joe-mort-apollo-heading {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.joe-mort-apollo-heading span {
+  color: #0984e3;
+}
+
+.joe-mort-apollo-description {
+  font-size: 1.1rem;
+  color: #34495e;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.joe-mort-apollo-cta-button {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #0984e3;
+  color: white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.joe-mort-apollo-cta-button:hover {
+  background: #2d3436;
+  transform: translateY(-2px);
+}
+
+
+
+
+
+
 .web-design-recent-joe-mort-columns {
     display: flex;
     height: 450px;
