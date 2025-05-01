@@ -376,22 +376,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 (function () {
   let snapReady = false;
+  let currentIndex = 0;
+  let isAnimating = false;
 
-  const SECTIONS = [
-    document.getElementById('jj-hero'),
-    document.getElementById('about'),
-    document.getElementById('aboutfreelancerjoemortmark2'),
-    document.getElementById('listservices-joemort-services'),
-    document.querySelector('.portfolio-showcase')
-  ].filter(Boolean);
+  // Dynamically build SECTIONS array — skip hidden section if on mobile
+  function getActiveSections() {
+    const isMobile = window.innerWidth <= 480;
+    return [
+      document.getElementById('jj-hero'),
+      document.getElementById('about'),
+      document.getElementById('aboutfreelancerjoemortmark2'),
+      !isMobile ? document.getElementById('listservices-joemort-services') : null,
+      document.querySelector('.web-design-recent-joe-mort-showcase-section')
+    ].filter(el => el && getComputedStyle(el).display !== 'none');
+  }
+
+  let SECTIONS = getActiveSections();
 
   function getSectionHeight() {
     return window.visualViewport ? window.visualViewport.height : window.innerHeight;
   }
 
   let SECTION_HEIGHT = getSectionHeight();
-  let currentIndex = 0;
-  let isAnimating = false;
 
   function updateSectionHeight() {
     SECTION_HEIGHT = getSectionHeight();
@@ -414,34 +420,21 @@ document.addEventListener('DOMContentLoaded', function() {
     currentIndex = getNearestSectionIndex(window.scrollY);
   }
 
-  window.addEventListener('resize', () => {
-    updateSectionHeight();
-    syncCurrentIndex();
-  });
-
-  window.addEventListener('orientationchange', () => {
-    updateSectionHeight();
-    syncCurrentIndex();
-  });
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', () => {
-      updateSectionHeight();
-      syncCurrentIndex();
-    });
-  }
-
   function scrollToSection(index) {
     updateSectionHeight();
     isAnimating = true;
+
+    // Clamp index within bounds
     currentIndex = Math.max(0, Math.min(index, SECTIONS.length - 1));
     const targetOffset = SECTIONS[currentIndex].offsetTop;
+
     window.scrollTo({ top: targetOffset, behavior: 'smooth' });
     setTimeout(() => { isAnimating = false; }, 450);
   }
 
   function handleScroll(direction) {
     if (!snapReady || isAnimating) return;
+
     const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       scrollToSection(newIndex);
@@ -513,15 +506,27 @@ document.addEventListener('DOMContentLoaded', function() {
     syncCurrentIndex();
   }, { passive: true });
 
+  // Update sections and layout size on resize/orientation
+  function handleViewportChange() {
+    SECTIONS = getActiveSections(); // update section list (mobile-aware)
+    updateSectionHeight();
+    syncCurrentIndex();
+  }
+
+  window.addEventListener('resize', handleViewportChange);
+  window.addEventListener('orientationchange', handleViewportChange);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handleViewportChange);
+  }
+
+  // On load: reset scroll and initialize system
   window.addEventListener('load', () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     document.body.classList.remove('no-scroll');
-    updateSectionHeight();
-    syncCurrentIndex();
+    handleViewportChange();
     snapReady = true;
   });
 })();
-
 
 
 
@@ -795,3 +800,49 @@ document.addEventListener('DOMContentLoaded', function () {
     aboutSection.addEventListener("touchstart", () => fadeBackground(true));
     aboutSection.addEventListener("touchend", () => fadeBackground(false));
   });
+
+
+
+
+
+
+
+
+
+//SERVICES GRID SECTION ANIMATE IN FROM THE RIGHT AND OUT
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".skill-card");
+
+  // Set initial inline styles
+  cards.forEach(card => {
+    card.style.opacity = "1";
+    card.style.transform = "translateX(150px)";
+    card.style.transition = "transform 1.2s ease, opacity 1.2s ease";
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const card = entry.target;
+
+      if (entry.isIntersecting) {
+        // Slide in from right
+        card.style.transition = "transform 1.2s ease, opacity 1.2s ease";
+        card.style.transform = "translateX(0)";
+        card.style.opacity = "1";
+      } else {
+        // Slide out to left quickly
+        card.style.transition = "transform 0.2s ease-out, opacity 0.2s ease-out";
+        card.style.transform = "translateX(-150px)";
+        card.style.opacity = "0.3";
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  cards.forEach(card => observer.observe(card));
+});
+
+
