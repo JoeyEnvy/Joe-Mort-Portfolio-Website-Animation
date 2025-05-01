@@ -65,15 +65,14 @@ body {
 
 
 
-#jj-hero,
-#about,
-#aboutfreelancerjoemortmark2,
-#listservices-joemort-services,
-.portfolio-showcase {
-  height: 100dvh;              /* Each fills the viewport */
-  scroll-snap-align: start;   /* Snap at the top */
-  scroll-snap-stop: always;   /* Optional: prevents skipping */
-}
+
+
+
+
+
+
+
+
 
 
 
@@ -2823,6 +2822,12 @@ min-width: 260px !important;
 
 
 
+@media (min-width: 481px) and (max-width: 1023px) {
+  .freelancer-info-right,
+  .about-background-wrapper {
+    display: none !important;
+  }
+}
 
 
 
@@ -3037,164 +3042,444 @@ min-width: 260px !important;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==========================================================================
-   WEB DESIGN PORTFOLIO SHOWCASE WHERE PISTOLS AND OTHER WEBSITES START 
+   Apollo Web Design Intro
    ========================================================================== */
-.web-design-recent-joe-mort-showcase-section {
-    width: 100%;
-    max-width: 1600px;
-    margin: 60px auto;
-    padding: 0 40px;
+
+.joe-mort-apollo-showcase-section {
+  width: 100%;
+  height: 100vh;
+  max-width: 1100px; /* Reduced for better fit on large screens */
+  margin: 60px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-.joe-mort-apollo-showcase-intro {
-  margin-bottom: 60px;
-  padding: 60px 30px;
-  background: linear-gradient(135deg, #fdfbfb, #ebedee);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
+/* Video Section Layout */
 .joe-mort-apollo-intro-videos {
   display: flex;
-  gap: 30px;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
+/* Video Block Base */
 .joe-mort-apollo-video-block {
-  flex: 1;
-  min-width: 280px;
-  max-width: 480px;
   position: relative;
-  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  max-height: 380px; /* Prevent video blocks from being too tall */
 }
 
-.joe-mort-apollo-video-block video {
+/* Desktop Video Block: 16:9, Balanced */
+.joe-mort-apollo-video-block.desktop {
+  flex: 1 1 350px;
+  max-width: 760px;
+  min-width: 240px;
+  aspect-ratio: 16 / 9;
+}
+
+/* Mobile Video Block: 9:16, Balanced */
+.joe-mort-apollo-video-block.mobile {
+  flex: 1 1 200px;
+  max-width: 240px;
+  min-width: 120px;
+  min-height: 400px;
+  aspect-ratio: 9 / 16;
+}
+
+/* Hover: Bigger and more shadow */
+.joe-mort-apollo-video-block:hover {
+  transform: scale(1.10);
+  z-index: 2;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+}
+
+/* Video Itself */
+.joe-mort-apollo-video {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  border-radius: 16px;
+  pointer-events: none; /* Prevent accidental play/pause on click */
+  max-height: 100%;
 }
 
+/* Device Label */
 .joe-mort-apollo-device-label {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   right: 12px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.8em;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 7px;
+  font-size: 0.85em;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* CTA Section */
+.joe-mort-apollo-intro-cta {
+  text-align: center;
+  margin-top: 18px;
 }
 
 .joe-mort-apollo-heading {
-  font-size: 2.2rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  font-size: 2rem;
   font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .joe-mort-apollo-heading span {
-  color: #0984e3;
+  color: #1e90ff;
 }
 
 .joe-mort-apollo-description {
-  font-size: 1.1rem;
-  color: #34495e;
-  margin-bottom: 30px;
-  line-height: 1.6;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.08rem;
+  color: #444;
+  margin-bottom: 18px;
 }
 
 .joe-mort-apollo-cta-button {
   display: inline-block;
-  padding: 14px 30px;
-  background: #0984e3;
-  color: white;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
+  background: #1e90ff;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1.08rem;
+  transition: background 0.2s;
 }
 
 .joe-mort-apollo-cta-button:hover {
-  background: #2d3436;
-  transform: translateY(-2px);
+  background: #156dc1;
+}
+
+/* ===========================
+   Modal Styles
+   =========================== */
+.joe-mort-apollo-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.88);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.joe-mort-apollo-modal-overlay.active {
+  display: flex;
+}
+
+.joe-mort-apollo-modal-content {
+  position: relative;
+  width: 96vw;
+  max-width: 900px;
+  max-height: 92vh;
+  background: #000;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#apolloModalVideo {
+  width: 100%;
+  height: 100%;
+  max-height: 88vh;
+  border-radius: 14px;
+  background: #000;
+  object-fit: contain;
+  display: block;
+}
+
+/* Close Button */
+.joe-mort-apollo-modal-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  background: #fff;
+  border: none;
+  color: #000;
+  font-size: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.joe-mort-apollo-modal-close:hover {
+  background: #eee;
+}
+
+/* ========================
+   MEDIA QUERIES (Bottom)
+   ======================== */
+
+/* ========================
+   1024px and below
+   ======================== */
+@media (max-width: 1024px) {
+  .joe-mort-apollo-showcase-section {
+    padding: 40px 32px 60px;
+    margin-top: 60px;
+  }
+
+  .joe-mort-apollo-heading {
+    font-size: 1.75rem;
+  }
+
+  .joe-mort-apollo-description,
+  .joe-mort-apollo-cta-button {
+    font-size: 1rem;
+  }
+
+  .joe-mort-apollo-video-block.desktop {
+    max-width: 88vw;
+    aspect-ratio: 16 / 9;
+    margin: 20px auto;
+  }
+
+  .joe-mort-apollo-video-block.mobile {
+    max-width: 34vw;
+    aspect-ratio: 9 / 16;
+    margin: 20px auto;
+  }
+}
+
+
+/* ========================
+   768px and below (Tablet)
+   ======================== */
+@media (max-width: 768px) {
+  .joe-mort-apollo-showcase-section {
+    padding: 40px 28px 60px;
+    margin-top: 70px;
+  }
+
+  .joe-mort-apollo-heading {
+    font-size: 1.5rem;
+  }
+
+  .joe-mort-apollo-description {
+    font-size: 0.95rem;
+  }
+
+  .joe-mort-apollo-cta-button {
+    font-size: 0.95rem;
+    padding: 10px 22px;
+  }
+
+  .joe-mort-apollo-video-block.desktop {
+    max-width: 94vw;
+    aspect-ratio: 16 / 9;
+    margin: 20px auto;
+  }
+
+  .joe-mort-apollo-video-block.mobile {
+    max-width: 44vw;
+    aspect-ratio: 9 / 16;
+    margin: 20px auto;
+  }
+
+  .joe-mort-apollo-device-label {
+    font-size: 0.75em;
+    padding: 3px 10px;
+  }
+}
+
+
+/* ========================
+   480px and below (Phones)
+   ======================== */
+@media (max-width: 480px) {
+  .joe-mort-apollo-showcase-section {
+    padding: 40px 24px 60px;
+    margin-top: 80px;
+  }
+
+  .joe-mort-apollo-heading {
+    font-size: 1.3rem;
+  }
+
+  .joe-mort-apollo-description {
+    font-size: 0.88rem;
+  }
+
+  .joe-mort-apollo-cta-button {
+    font-size: 0.9rem;
+    padding: 9px 20px;
+  }
+
+  .joe-mort-apollo-video-block.desktop {
+    width: 100%;
+    max-width: 98vw;
+    aspect-ratio: 16 / 9;
+    margin: 24px auto;
+  }
+
+  .joe-mort-apollo-video-block.mobile {
+    width: 100%;
+    max-width: 58vw;
+    aspect-ratio: 9 / 16;
+    margin: 24px auto;
+  }
+
+  .joe-mort-apollo-modal-content {
+    width: 98vw;
+    max-height: 90vh;
+  }
+
+  #apolloModalVideo {
+    max-height: 82vh;
+  }
+
+  .joe-mort-apollo-modal-close {
+    top: -14px;
+    right: -14px;
+    font-size: 1.6rem;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+/* ========================
+   320px and below (Small Phones)
+   ======================== */
+@media (max-width: 320px) {
+  .joe-mort-apollo-showcase-section {
+    padding: 40px 18px 60px;
+    margin-top: 90px;
+  }
+
+  .joe-mort-apollo-heading {
+    font-size: 1.15rem;
+  }
+
+  .joe-mort-apollo-description {
+    font-size: 0.8rem;
+  }
+
+  .joe-mort-apollo-cta-button {
+    font-size: 0.82rem;
+    padding: 8px 16px;
+  }
+
+  .joe-mort-apollo-device-label {
+    font-size: 0.7em;
+    padding: 2px 8px;
+  }
+
+  .joe-mort-apollo-video-block.desktop {
+    width: 100%;
+    max-width: 96vw;
+    aspect-ratio: 16 / 9;
+    margin: 24px auto;
+  }
+
+  .joe-mort-apollo-video-block.mobile {
+    width: 90%;
+    max-width: 52vw;
+    aspect-ratio: 9 / 16;
+    margin: 24px auto;
+  }
 }
 
 
 
 
 
+/* ============================================================================
+   WEB DESIGN PORTFOLIO SHOWCASE SECTION STYLING
+   ============================================================================ */
 
+.web-design-recent-joe-mort-showcase-section {
+    width: 100%;
+    max-width: 1600px;
+    padding: 10vh 40px 40px; /* Reduced bottom padding */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Outer 2-column container */
 .web-design-recent-joe-mort-columns {
     display: flex;
-    height: 450px;
+    flex-wrap: wrap;
     gap: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 20px; /* Reduced spacing from next section */
+    height: auto;
 }
 
+/* Each outer column takes half the space */
 .web-design-recent-joe-mort-left-column,
 .web-design-recent-joe-mort-right-column {
-    flex: 1;
+    flex: 1 1 0;
     display: flex;
-    gap: 40px;
+    min-width: 0;
 }
 
-.web-design-recent-joe-mort-inner-left {
+/* Shared inner layout for left/right content blocks */
+.web-design-recent-joe-mort-inner-left,
+.web-design-recent-joe-mort-inner-right {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 30px;
-    background: linear-gradient(145deg,
-        rgba(108, 92, 231, 0.05),
-        rgba(253, 121, 168, 0.05)
-    );
+    background: linear-gradient(145deg, rgba(108, 92, 231, 0.05), rgba(253, 121, 168, 0.05));
     border-radius: 15px;
     padding: 30px;
     width: 100%;
+    align-items: center;
 }
 
+/* Textual project info */
 .web-design-recent-joe-mort-project-info {
-    flex: 1;
+    flex: 1 1 300px;
     display: flex;
     flex-direction: column;
     gap: 25px;
+    min-width: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    font-smooth: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 .web-design-recent-joe-mort-project-title {
-    font-size: 2.4em;
+    font-size: 2.8em;
     color: var(--accent-color);
-    letter-spacing: 2px;
-    margin-bottom: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    line-height: 1.2;
 }
 
 .web-design-recent-joe-mort-project-link {
@@ -3215,44 +3500,47 @@ min-width: 260px !important;
     transform: translateX(5px);
 }
 
-
-/* Device Previews */
+/* Preview area (mobile + desktop) */
 .web-design-recent-joe-mort-device-previews {
-    width: 220px;
-    height: 100%;
-    position: relative;
+    width: auto;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-shrink: 0;
+    gap: 25px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.web-design-recent-joe-mort-preview-border-mobile {
-    width: 100%;
-    height: calc(100% - 30px);
+.web-design-recent-joe-mort-preview-border-mobile,
+.web-design-recent-joe-mort-preview-border-desktop {
     border: 8px solid #2d3436;
     border-radius: 20px;
     overflow: hidden;
-    position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
-    flex-shrink: 0;
+    position: relative;
+    width: 280px;
+    max-width: 100%;
 }
 
+/* 9:16 ratio for mobile */
+.web-design-recent-joe-mort-preview-border-mobile {
+    height: calc(280px * 16 / 9);
+}
+
+/* 16:9 ratio for desktop */
 .web-design-recent-joe-mort-preview-border-desktop {
-    width: 100%;
-    height: 100%;
-    border: 8px solid #2d3436;
+    height: calc(280px * 9 / 16);
     border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+    margin: 0 auto;
 }
 
 .web-design-recent-joe-mort-preview-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .web-design-recent-joe-mort-preview-border-mobile:hover,
@@ -3260,11 +3548,10 @@ min-width: 260px !important;
     transform: scale(1.02);
 }
 
-
-/* Features Grid */
+/* Feature List Grid */
 .web-design-recent-joe-mort-project-features {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
 }
 
@@ -3277,33 +3564,107 @@ min-width: 260px !important;
     border-radius: 8px;
 }
 
+
+
+
+
+
+
+
+
+
+/* Fullscreen Modal */
+.media-fullscreen-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.media-fullscreen-modal.active {
+  display: flex;
+}
+
+.media-fullscreen-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-fullscreen-inner video,
+.media-fullscreen-inner img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+.media-fullscreen-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2em;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  transition: transform 0.2s ease;
+}
+
+.media-fullscreen-close:hover {
+  transform: scale(1.2);
+}
+
+
+
+
+
+
+
+
+
+
+/* ============================================================================
+   GALLERY SECTION STYLING
+   ============================================================================ */
+
 .web-design-recent-joe-mort-gallery-section {
     width: 100%;
     max-width: 1600px;
-    margin: 60px auto;
+    margin: 30px auto 30px; /* Reduced top margin for closer spacing */
     padding: 0 40px;
     position: relative;
 }
 
 .web-design-recent-joe-mort-gallery-container {
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     gap: 40px;
 }
 
 .web-design-recent-joe-mort-gallery-column {
-    flex: 1;
-    background: linear-gradient(145deg,
-        rgba(108, 92, 231, 0.05),
-        rgba(253, 121, 168, 0.05)
-    );
+    width: 49%;
+    background: linear-gradient(145deg, rgba(108, 92, 231, 0.05), rgba(253, 121, 168, 0.05));
     border-radius: 15px;
     padding: 30px;
-    max-width: calc(50% - 20px);
+    align-self: flex-start;
 }
 
 .web-design-recent-joe-mort-gallery-title {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.2em;
     color: var(--accent-color);
     margin-bottom: 30px;
     font-weight: 600;
@@ -3353,7 +3714,7 @@ min-width: 260px !important;
     opacity: 0.5;
 }
 
-/* Animation */
+/* Gallery scroll animation */
 @keyframes scroll {
     0% {
         transform: translateX(0);
@@ -3362,6 +3723,13 @@ min-width: 260px !important;
         transform: translateX(calc(-200px * 4));
     }
 }
+
+
+
+
+
+
+
 
 
 

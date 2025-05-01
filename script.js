@@ -373,25 +373,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== SMOOTH SNAP SCROLLING BETWEEN SECTIONS ==========
-
 (function () {
   let snapReady = false;
   let currentIndex = 0;
   let isAnimating = false;
-
-  // Dynamically build SECTIONS array — skip hidden section if on mobile
-  function getActiveSections() {
-    const isMobile = window.innerWidth <= 480;
-    return [
-      document.getElementById('jj-hero'),
-      document.getElementById('about'),
-      document.getElementById('aboutfreelancerjoemortmark2'),
-      !isMobile ? document.getElementById('listservices-joemort-services') : null,
-      document.querySelector('.web-design-recent-joe-mort-showcase-section')
-    ].filter(el => el && getComputedStyle(el).display !== 'none');
-  }
-
-  let SECTIONS = getActiveSections();
 
   function getSectionHeight() {
     return window.visualViewport ? window.visualViewport.height : window.innerHeight;
@@ -403,33 +388,57 @@ document.addEventListener('DOMContentLoaded', function() {
     SECTION_HEIGHT = getSectionHeight();
   }
 
-  function getNearestSectionIndex(scrollY) {
+  function getActiveSections() {
+    const isMobile = window.innerWidth <= 480;
+    return [
+      document.getElementById('jj-hero'),
+      document.getElementById('about'),
+      document.getElementById('aboutfreelancerjoemortmark2'),
+      !isMobile ? document.getElementById('listservices-joemort-services') : null,
+      document.getElementById('joe-mort-apollo-showcase-section'),
+      document.getElementById('web-design-recent-joe-mort-showcase-section')
+    ].filter(el => el && getComputedStyle(el).display !== 'none');
+  }
+
+  let SECTIONS = getActiveSections();
+
+  function getNearestSectionIndex(scrollY, direction = 0) {
     let nearestIndex = 0;
     let minDistance = Infinity;
     for (let i = 0; i < SECTIONS.length; i++) {
-      const dist = Math.abs(SECTIONS[i].offsetTop - scrollY);
-      if (dist < minDistance) {
-        minDistance = dist;
+      const sectionTop = SECTIONS[i].offsetTop;
+      const dist = sectionTop - scrollY;
+
+      const biasedDist = direction === 0
+        ? Math.abs(dist)
+        : direction > 0
+          ? (dist >= 0 ? dist : Infinity)
+          : (dist <= 0 ? Math.abs(dist) : Infinity);
+
+      if (biasedDist < minDistance) {
+        minDistance = biasedDist;
         nearestIndex = i;
       }
     }
     return nearestIndex;
   }
 
-  function syncCurrentIndex() {
-    currentIndex = getNearestSectionIndex(window.scrollY);
+  function syncCurrentIndex(direction = 0) {
+    currentIndex = getNearestSectionIndex(window.scrollY, direction);
   }
 
   function scrollToSection(index) {
     updateSectionHeight();
     isAnimating = true;
 
-    // Clamp index within bounds
     currentIndex = Math.max(0, Math.min(index, SECTIONS.length - 1));
     const targetOffset = SECTIONS[currentIndex].offsetTop;
 
     window.scrollTo({ top: targetOffset, behavior: 'smooth' });
-    setTimeout(() => { isAnimating = false; }, 450);
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 360); // Slightly increased for stability
   }
 
   function handleScroll(direction) {
@@ -442,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function isInSnapScrollZone() {
-    const lastSnapSection = SECTIONS[SECTIONS.length - 1];
+    const lastSnapSection = SECTIONS[SECTIONS.length - 2];
     const lastSnapBottom = lastSnapSection.offsetTop + lastSnapSection.offsetHeight;
     return window.scrollY < lastSnapBottom - window.innerHeight * 0.3;
   }
@@ -452,16 +461,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!snapReady || !isInSnapScrollZone()) return;
 
     const now = Date.now();
-    if (now - lastWheelTime < 350) return;
-
-    syncCurrentIndex();
+    if (now - lastWheelTime < 200) return;
+    lastWheelTime = now;
 
     const direction = Math.sign(e.deltaY);
-    const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
+    syncCurrentIndex(direction);
 
+    const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
     if (newIndex !== currentIndex) {
       e.preventDefault();
-      lastWheelTime = now;
       handleScroll(direction);
     }
   }, { passive: false });
@@ -478,8 +486,6 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('touchend', (e) => {
     if (!snapReady || touchStartY === null || !isInSnapScrollZone()) return;
 
-    syncCurrentIndex();
-
     const touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
     const time = Date.now() - touchStartTime;
@@ -488,6 +494,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const minVelocity = 0.5;
 
     const direction = Math.sign(deltaY);
+    syncCurrentIndex(direction);
+
     const newIndex = Math.max(0, Math.min(currentIndex + direction, SECTIONS.length - 1));
 
     if ((Math.abs(deltaY) > minDistance || velocity > minVelocity) && newIndex !== currentIndex) {
@@ -503,12 +511,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', () => {
     if (!snapReady || isAnimating) return;
-    syncCurrentIndex();
+    syncCurrentIndex(); // Neutral direction on normal scroll
   }, { passive: true });
 
-  // Update sections and layout size on resize/orientation
   function handleViewportChange() {
-    SECTIONS = getActiveSections(); // update section list (mobile-aware)
+    SECTIONS = getActiveSections();
     updateSectionHeight();
     syncCurrentIndex();
   }
@@ -519,7 +526,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.visualViewport.addEventListener('resize', handleViewportChange);
   }
 
-  // On load: reset scroll and initialize system
   window.addEventListener('load', () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     document.body.classList.remove('no-scroll');
@@ -527,10 +533,6 @@ document.addEventListener('DOMContentLoaded', function() {
     snapReady = true;
   });
 })();
-
-
-
-
 
 
 
@@ -774,8 +776,6 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (videoEl.msRequestFullscreen) videoEl.msRequestFullscreen();
   }
 
-  desktopVideo.addEventListener('click', () => fullscreen(desktopVideo));
-  mobileVideo.addEventListener('click', () => fullscreen(mobileVideo));
 });
 
 
@@ -845,4 +845,235 @@ document.addEventListener("DOMContentLoaded", function () {
   cards.forEach(card => observer.observe(card));
 });
 
+
+
+
+
+
+
+
+
+
+
+
+//web design index apollo videos
+
+
+document.querySelectorAll('.joe-mort-apollo-video-block').forEach(block => {
+  block.addEventListener('click', function() {
+    const videoSrc = this.getAttribute('data-video');
+    const modal = document.getElementById('apolloModal');
+    const modalVideo = document.getElementById('apolloModalVideo');
+    modalVideo.src = videoSrc;
+    modal.classList.add('active');
+    modalVideo.play();
+  });
+});
+
+document.getElementById('apolloModalClose').addEventListener('click', function() {
+  const modal = document.getElementById('apolloModal');
+  const modalVideo = document.getElementById('apolloModalVideo');
+  modal.classList.remove('active');
+  modalVideo.pause();
+  modalVideo.currentTime = 0;
+  modalVideo.src = '';
+});
+
+document.getElementById('apolloModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    const modal = document.getElementById('apolloModal');
+    const modalVideo = document.getElementById('apolloModalVideo');
+    modal.classList.remove('active');
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    modalVideo.src = '';
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+// pistols and trademasters or whatever index web design full screen and video stuff
+
+const modal = document.getElementById('mediaFullscreenModal');
+const modalContent = document.getElementById('mediaFullscreenContent');
+const closeBtn = document.getElementById('mediaFullscreenClose');
+
+// Helper to open modal with video or image
+function openMediaModal(type, src) {
+  modalContent.innerHTML = '';
+
+  const wrapper = document.createElement('div');
+  wrapper.style.maxWidth = '90vw';
+  wrapper.style.maxHeight = '90vh';
+  wrapper.style.display = 'flex';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.justifyContent = 'center';
+
+  const element = document.createElement(type);
+  element.src = src;
+  element.setAttribute('loading', 'lazy');
+  element.style.borderRadius = '12px';
+  element.style.boxShadow = '0 0 25px rgba(0,0,0,0.5)';
+  element.style.maxWidth = '100%';
+  element.style.maxHeight = '100%';
+  element.style.display = 'block';
+
+  if (type === 'video') {
+    element.autoplay = true;
+    element.muted = true;
+    element.loop = true;
+    element.playsInline = true;
+    element.controls = false;
+
+    // Force correct aspect ratio based on known dimensions
+    const isMobilePreview = src.includes('A.mp4') || src.includes('mobile'); // adjust logic if needed
+    const aspectRatio = isMobilePreview ? (9 / 16) : (16 / 9);
+
+    if (isMobilePreview) {
+      wrapper.style.width = '360px';
+      wrapper.style.height = `${360 / aspectRatio}px`;
+    } else {
+      wrapper.style.width = '90vw';
+      wrapper.style.height = `calc(90vw * ${1 / aspectRatio})`;
+    }
+  }
+
+  wrapper.appendChild(element);
+  modalContent.appendChild(wrapper);
+  modal.classList.add('active');
+
+  // Style close button on the fly
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '20px';
+  closeBtn.style.right = '-400px';
+  closeBtn.style.fontSize = '2em';
+  closeBtn.style.color = '#fff';
+  closeBtn.style.background = 'none';
+  closeBtn.style.border = 'none';
+  closeBtn.style.cursor = 'pointer';
+  closeBtn.style.zIndex = '10000';
+}
+
+// Close logic
+function closeMediaModal() {
+  modal.classList.remove('active');
+  modalContent.innerHTML = '';
+}
+
+closeBtn.addEventListener('click', closeMediaModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeMediaModal();
+});
+
+// Apply to preview videos
+document.querySelectorAll('.web-design-recent-joe-mort-preview-video').forEach(video => {
+  video.play();
+
+  video.parentElement.addEventListener('mouseenter', () => {
+    video.style.transform = 'scale(1.05)';
+    video.style.transition = 'transform 0.3s ease';
+  });
+  video.parentElement.addEventListener('mouseleave', () => {
+    video.style.transform = 'scale(1)';
+  });
+
+  video.parentElement.addEventListener('click', () => {
+    const videoSrc = video.querySelector('source')?.src || video.src;
+    openMediaModal('video', videoSrc);
+  });
+});
+
+// Apply to gallery images
+document.querySelectorAll('.web-design-recent-joe-mort-gallery-image').forEach(img => {
+  img.addEventListener('click', () => {
+    openMediaModal('img', img.src);
+  });
+});
+
+
+
+
+
+
+
+//about freelancer mobile and desktop videos full screen and hover 
+
+
+// Desktop & Mobile preview videos from About section
+['#desktop-video', '#mobile-video'].forEach(selector => {
+  const video = document.querySelector(selector);
+  if (!video) return;
+
+  // Autoplay and hover scaling
+  video.play();
+
+  video.addEventListener('mouseenter', () => {
+    video.style.transform = 'scale(1.05)';
+    video.style.transition = 'transform 0.3s ease';
+  });
+
+  video.addEventListener('mouseleave', () => {
+    video.style.transform = 'scale(1)';
+  });
+
+  video.addEventListener('click', () => {
+    const videoSrc = video.querySelector('source')?.src || video.src;
+
+    // Use known aspect ratio (mobile = 9:16, desktop = 16:9)
+    const isMobile = selector.includes('mobile');
+    const aspectRatio = isMobile ? (9 / 16) : (16 / 9);
+
+    modalContent.innerHTML = '';
+    const wrapper = document.createElement('div');
+    wrapper.style.maxWidth = '90vw';
+    wrapper.style.maxHeight = '90vh';
+    wrapper.style.display = 'flex';
+    wrapper.style.alignItems = 'center';
+    wrapper.style.justifyContent = 'center';
+
+    if (isMobile) {
+      wrapper.style.width = '360px';
+      wrapper.style.height = `${360 / aspectRatio}px`;
+    } else {
+      wrapper.style.width = '90vw';
+      wrapper.style.height = `calc(90vw * ${1 / aspectRatio})`;
+    }
+
+    const clone = document.createElement('video');
+    clone.src = videoSrc;
+    clone.autoplay = true;
+    clone.muted = true;
+    clone.loop = true;
+    clone.playsInline = true;
+    clone.controls = false;
+    clone.style.borderRadius = '12px';
+    clone.style.boxShadow = '0 0 25px rgba(0,0,0,0.5)';
+    clone.style.maxWidth = '100%';
+    clone.style.maxHeight = '100%';
+    clone.style.display = 'block';
+
+    wrapper.appendChild(clone);
+    modalContent.appendChild(wrapper);
+    modal.classList.add('active');
+
+    // Style the close button
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '20px';
+    closeBtn.style.right = '-250px';
+    closeBtn.style.fontSize = '2em';
+    closeBtn.style.color = '#fff';
+    closeBtn.style.background = 'none';
+    closeBtn.style.border = 'none';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.style.zIndex = '10000';
+  });
+});
 
